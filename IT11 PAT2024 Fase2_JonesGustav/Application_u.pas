@@ -28,8 +28,14 @@ var
   smStyleManager : TStyleManager;
 begin
   smStyleManager := TStyleManager.Create;
-  shStyleHandle := smStyleManager.LoadFromFile('BoereRaadStyle.vsf');
-  smStyleManager.SetStyle(shStyleHandle);
+  if (smStyleManager.IsValidStyle('BoereRaadStyle.vsf')) then
+  begin
+    shStyleHandle := smStyleManager.LoadFromFile('BoereRaadStyle.vsf');
+    smStyleManager.SetStyle(shStyleHandle);
+  end
+  else
+    ShowMessage('Not A valid style');
+
 end;
 
 end.

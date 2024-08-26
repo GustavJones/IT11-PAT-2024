@@ -2,13 +2,13 @@ program BoereRaad_p;
 
 uses
   Vcl.Forms,
-  Application_u in 'Application_u.pas' {Form1};
+  Application_u in 'Application_u.pas' {frmHome};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmHome, frmHome);
   Application.Run;
 end.
