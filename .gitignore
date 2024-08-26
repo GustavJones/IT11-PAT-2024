@@ -1,2 +1,4 @@
 *.ini
 *.ldb
+__history
+__recovery
