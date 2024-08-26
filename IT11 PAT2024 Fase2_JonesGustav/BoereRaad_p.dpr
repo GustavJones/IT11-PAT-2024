@@ -2,7 +2,9 @@ program BoereRaad_p;
 
 uses
   Vcl.Forms,
-  Application_u in 'Application_u.pas' {frmHome};
+  Application_u in 'Application_u.pas' {frmHome},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 

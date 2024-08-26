@@ -23,19 +23,31 @@ implementation
 {$R *.dfm}
 
 procedure TfrmHome.FormActivate(Sender: TObject);
+const
+  sSTYLE_PATH = 'BoereRaadStyle.vsf';
 var
   shStyleHandle : TStyleManager.TStyleServicesHandle;
   smStyleManager : TStyleManager;
+  siStyleInfo : TStyleInfo;
 begin
   smStyleManager := TStyleManager.Create;
-  if (smStyleManager.IsValidStyle('BoereRaadStyle.vsf')) then
+
+  if FileExists(sSTYLE_PATH) then
   begin
-    shStyleHandle := smStyleManager.LoadFromFile('BoereRaadStyle.vsf');
-    smStyleManager.SetStyle(shStyleHandle);
+    if (smStyleManager.IsValidStyle(sSTYLE_PATH, siStyleInfo)) then
+    begin
+      shStyleHandle := smStyleManager.LoadFromFile(sSTYLE_PATH);
+      smStyleManager.SetStyle(shStyleHandle);
+    end
+    else
+    begin
+      ShowMessage('Not A valid style');
+    end;
   end
   else
-    ShowMessage('Not A valid style');
-
+  begin
+    ShowMessage('Style file not found');
+  end;
 end;
 
 end.
