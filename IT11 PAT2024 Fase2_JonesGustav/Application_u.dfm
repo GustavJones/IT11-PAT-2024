@@ -20,6 +20,8 @@ object frmHome: TfrmHome
     ActivePage = tsHome
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 1260
+    ExplicitHeight = 683
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -44314,6 +44316,8 @@ object frmHome: TfrmHome
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seBorder]
+        ExplicitWidth = 652
+        ExplicitHeight = 413
         object lblTitle: TLabel
           AlignWithMargins = True
           Left = 274
