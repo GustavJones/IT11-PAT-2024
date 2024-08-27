@@ -1,7 +1,0 @@
-*.ini
-*.ldb
-__history
-__recovery
-Win32/*
-*.local
-*.identcache
