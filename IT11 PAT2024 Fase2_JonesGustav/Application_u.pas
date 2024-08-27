@@ -4,11 +4,17 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls, Login_u, SignUp_u;
 
 type
   TfrmHome = class(TForm)
-    procedure FormActivate(Sender: TObject);
+    pgcTabs: TPageControl;
+    tsHome: TTabSheet;
+    btnSignUp: TButton;
+    btnLogIn: TButton;
+    procedure btnSignUpClick(Sender: TObject);
+    procedure btnLogInClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -22,7 +28,17 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmHome.FormActivate(Sender: TObject);
+procedure TfrmHome.btnLogInClick(Sender: TObject);
+begin
+  frmLogIn.Show;
+end;
+
+procedure TfrmHome.btnSignUpClick(Sender: TObject);
+begin
+  frmSignUp.Show;
+end;
+
+procedure TfrmHome.FormCreate(Sender: TObject);
 const
   sSTYLE_PATH = 'BoereRaadStyle.vsf';
 var
