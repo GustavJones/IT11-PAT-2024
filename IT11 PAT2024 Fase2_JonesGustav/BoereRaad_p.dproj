@@ -106,14 +106,6 @@
             <Form>frmHome</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="SignUp_u.pas">
-            <Form>frmSignUp</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="LogIn_u.pas">
-            <Form>frmLogIn</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -142,7 +134,12 @@
             </Delphi.Personality>
             <Deployment Version="4">
                 <DeployFile LocalName="Win32\Debug\BoereRaad_p.exe" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="Win32\Debug\BoereRaad_p.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="Win32\Debug\BoereRaad_p.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>BoereRaad_p.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>

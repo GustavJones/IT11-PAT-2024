@@ -4,16 +4,33 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls, Login_u, SignUp_u;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
+  Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage;
 
 type
   TfrmHome = class(TForm)
     pgcTabs: TPageControl;
     tsHome: TTabSheet;
-    btnSignUp: TButton;
+    imgBackground: TImage;
+    pnlRegister: TPanel;
+    lblTitle: TLabel;
+    imgIcon: TImage;
+    lblDescription: TLabel;
+    pnlLogIn: TPanel;
+    pnlSignUp: TPanel;
+    lblLogIn: TLabel;
+    lblSignUp: TLabel;
     btnLogIn: TButton;
-    procedure btnSignUpClick(Sender: TObject);
-    procedure btnLogInClick(Sender: TObject);
+    btnSignUp: TButton;
+    edtLogInEmail: TEdit;
+    edtLogInPassword: TEdit;
+    edtSignUpEmail: TEdit;
+    edtSignUpPassword: TEdit;
+    edtSignUpSurname: TEdit;
+    edtSignUpName: TEdit;
+    rgpGender: TRadioGroup;
+    dtpSignUpBirthDate: TDateTimePicker;
+    lblSignUpBirthDay: TLabel;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -28,19 +45,10 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmHome.btnLogInClick(Sender: TObject);
-begin
-  frmLogIn.Show;
-end;
-
-procedure TfrmHome.btnSignUpClick(Sender: TObject);
-begin
-  frmSignUp.Show;
-end;
-
 procedure TfrmHome.FormCreate(Sender: TObject);
 const
   sSTYLE_PATH = 'BoereRaadStyle.vsf';
+  bUSE_CUSTOM_STYLE = True;
 var
   shStyleHandle : TStyleManager.TStyleServicesHandle;
   smStyleManager : TStyleManager;
@@ -48,21 +56,24 @@ var
 begin
   smStyleManager := TStyleManager.Create;
 
-  if FileExists(sSTYLE_PATH) then
+  if (bUSE_CUSTOM_STYLE) then
   begin
-    if (smStyleManager.IsValidStyle(sSTYLE_PATH, siStyleInfo)) then
+    if FileExists(sSTYLE_PATH) then
     begin
-      shStyleHandle := smStyleManager.LoadFromFile(sSTYLE_PATH);
-      smStyleManager.SetStyle(shStyleHandle);
+      if (smStyleManager.IsValidStyle(sSTYLE_PATH, siStyleInfo)) then
+      begin
+        shStyleHandle := smStyleManager.LoadFromFile(sSTYLE_PATH);
+        smStyleManager.SetStyle(shStyleHandle);
+      end
+      else
+      begin
+        ShowMessage('Not A valid style');
+      end;
     end
     else
     begin
-      ShowMessage('Not A valid style');
+      ShowMessage('Style file not found');
     end;
-  end
-  else
-  begin
-    ShowMessage('Style file not found');
   end;
 end;
 
