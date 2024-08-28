@@ -17,11 +17,9 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1264
     Height = 684
-    ActivePage = tsHome
+    ActivePage = tsRemedies
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1260
-    ExplicitHeight = 683
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -44316,8 +44314,6 @@ object frmHome: TfrmHome
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seBorder]
-        ExplicitWidth = 652
-        ExplicitHeight = 413
         object lblTitle: TLabel
           AlignWithMargins = True
           Left = 274
@@ -44884,6 +44880,176 @@ object frmHome: TfrmHome
             Date = 45531.000000000000000000
             Time = 0.806187974536442200
             TabOrder = 6
+          end
+        end
+      end
+    end
+    object tsRemedies: TTabSheet
+      Caption = 'Remedies'
+      ImageIndex = 2
+      object pnlRemedies: TPanel
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 1250
+        Height = 648
+        Align = alClient
+        BorderStyle = bsSingle
+        ShowCaption = False
+        TabOrder = 0
+        object lblRemediesTitle: TLabel
+          Left = 1
+          Top = 1
+          Width = 1244
+          Height = 32
+          Align = alTop
+          Alignment = taCenter
+          Caption = 'Remedies:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -24
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = [fsBold]
+          ParentFont = False
+          ExplicitLeft = 17
+          ExplicitTop = 9
+          ExplicitWidth = 1232
+        end
+        object pnlRemedy1: TPanel
+          AlignWithMargins = True
+          Left = 4
+          Top = 36
+          Width = 1238
+          Height = 173
+          Align = alTop
+          BorderStyle = bsSingle
+          ShowCaption = False
+          TabOrder = 0
+          ExplicitLeft = 3
+          ExplicitTop = 3
+          ExplicitWidth = 1250
+          object lblRemediesRemedy1: TLabel
+            AlignWithMargins = True
+            Left = 31
+            Top = 4
+            Width = 1172
+            Height = 32
+            Margins.Left = 30
+            Margins.Right = 30
+            Align = alTop
+            Caption = 'Onion:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitWidth = 72
+          end
+          object lblRemediesRemedy1SymptomsUse: TLabel
+            Left = 807
+            Top = 42
+            Width = 128
+            Height = 20
+            Caption = 'Use for Symptoms:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Image1: TImage
+            Left = 31
+            Top = 42
+            Width = 114
+            Height = 111
+          end
+          object lblRemediesRemedy1Price: TLabel
+            Left = 1095
+            Top = 42
+            Width = 124
+            Height = 20
+            Caption = 'Price per dose:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtRemediesRemedy1Price: TEdit
+            Left = 1095
+            Top = 68
+            Width = 124
+            Height = 23
+            TabOrder = 0
+            TextHint = 'Price per Dose'
+          end
+          object btnRemediesRemedy1Update: TButton
+            Left = 1095
+            Top = 128
+            Width = 124
+            Height = 25
+            Caption = 'Update Remedy'
+            TabOrder = 1
+          end
+          object cltRemediesRemedy1SymptomUse: TCheckListBox
+            Left = 807
+            Top = 68
+            Width = 128
+            Height = 85
+            ItemHeight = 15
+            Items.Strings = (
+              'Colds'
+              'Flu'
+              'Detox')
+            TabOrder = 2
+          end
+          object btnRemediesRemedy1RemoveSymptom: TButton
+            Left = 951
+            Top = 128
+            Width = 121
+            Height = 25
+            Caption = 'Remove Symptom'
+            TabOrder = 3
+          end
+          object btnRemediesRemedy1AddSymptom: TButton
+            Left = 951
+            Top = 97
+            Width = 121
+            Height = 25
+            Caption = 'Add Symptom'
+            TabOrder = 4
+          end
+          object edtRemediesRemedy1AddSymptom: TEdit
+            Left = 951
+            Top = 68
+            Width = 121
+            Height = 23
+            TabOrder = 5
+            TextHint = 'Add symptom'
+          end
+          object redDescription: TRichEdit
+            Left = 168
+            Top = 42
+            Width = 617
+            Height = 111
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 6
+          end
+          object chkRemediesRemedy1Natural: TCheckBox
+            Left = 1095
+            Top = 97
+            Width = 124
+            Height = 25
+            Caption = 'Is Natural'
+            TabOrder = 7
           end
         end
       end

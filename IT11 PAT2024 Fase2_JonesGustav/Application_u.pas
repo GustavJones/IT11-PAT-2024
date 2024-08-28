@@ -31,6 +31,22 @@ type
     rgpGender: TRadioGroup;
     dtpSignUpBirthDate: TDateTimePicker;
     lblSignUpBirthDay: TLabel;
+    tsRemedies: TTabSheet;
+    pnlRemedies: TPanel;
+    pnlRemedy1: TPanel;
+    lblRemediesTitle: TLabel;
+    lblRemediesRemedy1: TLabel;
+    edtRemediesRemedy1Price: TEdit;
+    btnRemediesRemedy1Update: TButton;
+    cltRemediesRemedy1SymptomUse: TCheckListBox;
+    lblRemediesRemedy1SymptomsUse: TLabel;
+    btnRemediesRemedy1RemoveSymptom: TButton;
+    btnRemediesRemedy1AddSymptom: TButton;
+    edtRemediesRemedy1AddSymptom: TEdit;
+    redDescription: TRichEdit;
+    Image1: TImage;
+    lblRemediesRemedy1Price: TLabel;
+    chkRemediesRemedy1Natural: TCheckBox;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
