@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage;
+  Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
+  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u;
 
 type
   TfrmHome = class(TForm)
@@ -47,9 +48,17 @@ type
     Image1: TImage;
     lblRemediesRemedy1Price: TLabel;
     chkRemediesRemedy1Natural: TCheckBox;
+    tsAdmin: TTabSheet;
+    btnPickImage: TButton;
+    pnlAdmin: TPanel;
+    lblAdminPendingChanges: TLabel;
+    dbgUsers: TDBGrid;
+    dbgRemedies: TDBGrid;
+    dbgSymptoms: TDBGrid;
     procedure FormCreate(Sender: TObject);
   private
-    { Private declarations }
+    var
+      dmBoereRaad : TdmBoereraad;
   public
     { Public declarations }
   end;
@@ -91,6 +100,8 @@ begin
       ShowMessage('Style file not found');
     end;
   end;
+
+  dmBoereraad_u.dmBoereraad.InitialiseDatabase('Boereraad.mdb');
 end;
 
 end.

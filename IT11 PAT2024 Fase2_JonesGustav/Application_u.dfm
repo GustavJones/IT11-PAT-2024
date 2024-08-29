@@ -17,7 +17,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1264
     Height = 684
-    ActivePage = tsRemedies
+    ActivePage = tsHome
     Align = alClient
     TabOrder = 0
     object tsHome: TTabSheet
@@ -44906,14 +44906,13 @@ object frmHome: TfrmHome
           Alignment = taCenter
           Caption = 'Remedies:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
+          Font.Color = 11130150
           Font.Height = -24
           Font.Name = 'Segoe UI Semibold'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 17
-          ExplicitTop = 9
-          ExplicitWidth = 1232
+          StyleElements = [seClient, seBorder]
+          ExplicitWidth = 110
         end
         object pnlRemedy1: TPanel
           AlignWithMargins = True
@@ -44925,9 +44924,8 @@ object frmHome: TfrmHome
           BorderStyle = bsSingle
           ShowCaption = False
           TabOrder = 0
-          ExplicitLeft = 3
-          ExplicitTop = 3
-          ExplicitWidth = 1250
+          ExplicitLeft = 1
+          ExplicitTop = 39
           object lblRemediesRemedy1: TLabel
             AlignWithMargins = True
             Left = 31
@@ -44948,7 +44946,7 @@ object frmHome: TfrmHome
           end
           object lblRemediesRemedy1SymptomsUse: TLabel
             Left = 807
-            Top = 42
+            Top = 11
             Width = 128
             Height = 20
             Caption = 'Use for Symptoms:'
@@ -44969,7 +44967,7 @@ object frmHome: TfrmHome
             Left = 1095
             Top = 42
             Width = 124
-            Height = 20
+            Height = 25
             Caption = 'Price per dose:'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -44980,7 +44978,7 @@ object frmHome: TfrmHome
           end
           object edtRemediesRemedy1Price: TEdit
             Left = 1095
-            Top = 68
+            Top = 73
             Width = 124
             Height = 23
             TabOrder = 0
@@ -44991,14 +44989,21 @@ object frmHome: TfrmHome
             Top = 128
             Width = 124
             Height = 25
-            Caption = 'Update Remedy'
+            Caption = 'Save Updates'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = 11130150
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 1
+            StyleElements = [seClient, seBorder]
           end
           object cltRemediesRemedy1SymptomUse: TCheckListBox
             Left = 807
-            Top = 68
+            Top = 42
             Width = 128
-            Height = 85
+            Height = 80
             ItemHeight = 15
             Items.Strings = (
               'Colds'
@@ -45008,7 +45013,7 @@ object frmHome: TfrmHome
           end
           object btnRemediesRemedy1RemoveSymptom: TButton
             Left = 951
-            Top = 128
+            Top = 73
             Width = 121
             Height = 25
             Caption = 'Remove Symptom'
@@ -45016,17 +45021,17 @@ object frmHome: TfrmHome
           end
           object btnRemediesRemedy1AddSymptom: TButton
             Left = 951
-            Top = 97
+            Top = 42
             Width = 121
             Height = 25
             Caption = 'Add Symptom'
             TabOrder = 4
           end
           object edtRemediesRemedy1AddSymptom: TEdit
-            Left = 951
-            Top = 68
-            Width = 121
-            Height = 23
+            Left = 807
+            Top = 128
+            Width = 128
+            Height = 25
             TabOrder = 5
             TextHint = 'Add symptom'
           end
@@ -45036,21 +45041,116 @@ object frmHome: TfrmHome
             Width = 617
             Height = 111
             Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -12
+            Font.Color = 11130150
+            Font.Height = -15
             Font.Name = 'Segoe UI'
             Font.Style = []
+            Lines.Strings = (
+              'This is a description of the remedy')
             ParentFont = False
             TabOrder = 6
           end
           object chkRemediesRemedy1Natural: TCheckBox
-            Left = 1095
-            Top = 97
+            Left = 951
+            Top = 104
             Width = 124
-            Height = 25
+            Height = 19
             Caption = 'Is Natural'
             TabOrder = 7
           end
+          object btnPickImage: TButton
+            Left = 951
+            Top = 128
+            Width = 121
+            Height = 25
+            Caption = 'Update Image'
+            TabOrder = 8
+          end
+        end
+      end
+    end
+    object tsAdmin: TTabSheet
+      Caption = 'Admin'
+      ImageIndex = 2
+      object pnlAdmin: TPanel
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 1250
+        Height = 648
+        Align = alClient
+        BorderStyle = bsSingle
+        ShowCaption = False
+        TabOrder = 0
+        ExplicitLeft = 6
+        ExplicitTop = 6
+        object lblAdminPendingChanges: TLabel
+          Left = 1
+          Top = 1
+          Width = 1244
+          Height = 32
+          Align = alTop
+          Alignment = taCenter
+          Caption = 'Pending Changes:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 11130150
+          Font.Height = -24
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = [fsBold]
+          ParentFont = False
+          StyleElements = [seClient, seBorder]
+          ExplicitWidth = 194
+        end
+        object dbgUsers: TDBGrid
+          AlignWithMargins = True
+          Left = 16
+          Top = 39
+          Width = 593
+          Height = 434
+          Margins.Left = 20
+          Margins.Top = 10
+          Margins.Right = 20
+          Margins.Bottom = 100
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+        end
+        object dbgRemedies: TDBGrid
+          AlignWithMargins = True
+          Left = 632
+          Top = 39
+          Width = 593
+          Height = 210
+          Margins.Left = 20
+          Margins.Top = 10
+          Margins.Right = 20
+          Margins.Bottom = 100
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+        end
+        object dbgSymptoms: TDBGrid
+          AlignWithMargins = True
+          Left = 632
+          Top = 264
+          Width = 593
+          Height = 209
+          Margins.Left = 20
+          Margins.Top = 10
+          Margins.Right = 20
+          Margins.Bottom = 100
+          TabOrder = 2
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
         end
       end
     end
