@@ -2,18 +2,15 @@ object dmBoereraad: TdmBoereraad
   Height = 480
   Width = 640
   object conBoereraad: TADOConnection
-    Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=BoereRaadDB.mdb;Mod' +
       'e=ReadWrite;Persist Security Info=False'
     LoginPrompt = False
-    Mode = cmReadWrite
     Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 120
     Top = 176
   end
   object tblUser: TADOTable
-    Active = True
     Connection = conBoereraad
     CursorType = ctStatic
     TableName = 'tblUser'
@@ -21,7 +18,29 @@ object dmBoereraad: TdmBoereraad
     Top = 176
   end
   object dsrUser: TDataSource
+    Left = 192
+    Top = 240
+  end
+  object dsrRemedy: TDataSource
     Left = 256
-    Top = 184
+    Top = 240
+  end
+  object dsrSymptom: TDataSource
+    Left = 320
+    Top = 240
+  end
+  object tblRemedy: TADOTable
+    Connection = conBoereraad
+    CursorType = ctStatic
+    TableName = 'tblUser'
+    Left = 256
+    Top = 176
+  end
+  object tblSymptom: TADOTable
+    Connection = conBoereraad
+    CursorType = ctStatic
+    TableName = 'tblUser'
+    Left = 320
+    Top = 176
   end
 end

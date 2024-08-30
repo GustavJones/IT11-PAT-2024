@@ -10,11 +10,15 @@ type
     conBoereraad: TADOConnection;
     tblUser: TADOTable;
     dsrUser: TDataSource;
+    dsrRemedy: TDataSource;
+    dsrSymptom: TDataSource;
+    tblRemedy: TADOTable;
+    tblSymptom: TADOTable;
 
   private
     { Private declarations }
   public
-    procedure InitialiseDatabase(pDatabaseFile : string);
+    function InitialiseDatabase() : Boolean;
   end;
 
 var
@@ -28,9 +32,15 @@ implementation
 
 { TDataModule1 }
 
-procedure TdmBoereraad.InitialiseDatabase(pDatabaseFile : string);
+function TdmBoereraad.InitialiseDatabase() : Boolean;
 begin
-  conBoereraad.ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=' + pDatabaseFile + ';Mode=ReadWrite;Persist Security Info=False';
+  if not (FileExists('BoereRaadDB.mdb')) then
+  begin
+    Result := False;
+    Exit;
+  end;
+
+  conBoereraad.ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=BoereRaadDB.mdb;Mode=ReadWrite;Persist Security Info=False';
   conBoereraad.LoginPrompt := False;
   conBoereraad.Open;
 
@@ -38,6 +48,18 @@ begin
   tblUser.TableName := 'tblUser';
   tblUser.Open;
   dsrUser.DataSet := tblUser;
+
+  tblRemedy.Connection := conBoereraad;
+  tblRemedy.TableName := 'tblRemedy';
+  tblRemedy.Open;
+  dsrRemedy.DataSet := tblRemedy;
+
+  tblSymptom.Connection := conBoereraad;
+  tblSymptom.TableName := 'tblSymptom';
+  tblSymptom.Open;
+  dsrSymptom.DataSet := tblSymptom;
+
+  Result := True;
 end;
 
 end.

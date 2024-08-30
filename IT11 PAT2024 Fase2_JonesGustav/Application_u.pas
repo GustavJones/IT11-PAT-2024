@@ -3,7 +3,8 @@ unit Application_u;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
   Vcl.Grids, Vcl.DBGrids, dmBoereraad_u;
@@ -56,11 +57,11 @@ type
     dbgRemedies: TDBGrid;
     dbgSymptoms: TDBGrid;
     procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
-    var
-      dmBoereRaad : TdmBoereraad;
   public
-    { Public declarations }
+  var
+    bDBInit: Boolean;
   end;
 
 var
@@ -70,14 +71,25 @@ implementation
 
 {$R *.dfm}
 
+procedure TfrmHome.FormActivate(Sender: TObject);
+begin
+  if not(bDBInit) then
+  begin
+    if not(dmBoereraad.InitialiseDatabase) then
+    begin
+      ShowMessage('Failed to find database');
+    end;
+  end;
+end;
+
 procedure TfrmHome.FormCreate(Sender: TObject);
 const
   sSTYLE_PATH = 'BoereRaadStyle.vsf';
   bUSE_CUSTOM_STYLE = True;
 var
-  shStyleHandle : TStyleManager.TStyleServicesHandle;
-  smStyleManager : TStyleManager;
-  siStyleInfo : TStyleInfo;
+  shStyleHandle: TStyleManager.TStyleServicesHandle;
+  smStyleManager: TStyleManager;
+  siStyleInfo: TStyleInfo;
 begin
   smStyleManager := TStyleManager.Create;
 
@@ -101,7 +113,7 @@ begin
     end;
   end;
 
-  dmBoereraad_u.dmBoereraad.InitialiseDatabase('Boereraad.mdb');
+  bDBInit := False;
 end;
 
 end.

@@ -10,6 +10,7 @@ object frmHome: TfrmHome
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnActivate = FormActivate
   OnCreate = FormCreate
   TextHeight = 15
   object pgcTabs: TPageControl
@@ -17,7 +18,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1264
     Height = 684
-    ActivePage = tsHome
+    ActivePage = tsAdmin
     Align = alClient
     TabOrder = 0
     object tsHome: TTabSheet
@@ -44924,8 +44925,6 @@ object frmHome: TfrmHome
           BorderStyle = bsSingle
           ShowCaption = False
           TabOrder = 0
-          ExplicitLeft = 1
-          ExplicitTop = 39
           object lblRemediesRemedy1: TLabel
             AlignWithMargins = True
             Left = 31
@@ -44966,8 +44965,8 @@ object frmHome: TfrmHome
           object lblRemediesRemedy1Price: TLabel
             Left = 1095
             Top = 42
-            Width = 124
-            Height = 25
+            Width = 89
+            Height = 17
             Caption = 'Price per dose:'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -45031,7 +45030,7 @@ object frmHome: TfrmHome
             Left = 807
             Top = 128
             Width = 128
-            Height = 25
+            Height = 23
             TabOrder = 5
             TextHint = 'Add symptom'
           end
@@ -45082,8 +45081,6 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitLeft = 6
-        ExplicitTop = 6
         object lblAdminPendingChanges: TLabel
           Left = 1
           Top = 1
@@ -45104,13 +45101,14 @@ object frmHome: TfrmHome
         object dbgUsers: TDBGrid
           AlignWithMargins = True
           Left = 16
-          Top = 39
+          Top = 40
           Width = 593
-          Height = 434
+          Height = 185
           Margins.Left = 20
           Margins.Top = 10
           Margins.Right = 20
           Margins.Bottom = 100
+          DataSource = dmBoereraad.dsrUser
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -45120,14 +45118,15 @@ object frmHome: TfrmHome
         end
         object dbgRemedies: TDBGrid
           AlignWithMargins = True
-          Left = 632
-          Top = 39
+          Left = 16
+          Top = 240
           Width = 593
-          Height = 210
+          Height = 185
           Margins.Left = 20
           Margins.Top = 10
           Margins.Right = 20
           Margins.Bottom = 100
+          DataSource = dmBoereraad.dsrRemedy
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -45137,14 +45136,15 @@ object frmHome: TfrmHome
         end
         object dbgSymptoms: TDBGrid
           AlignWithMargins = True
-          Left = 632
-          Top = 264
+          Left = 16
+          Top = 440
           Width = 593
-          Height = 209
+          Height = 185
           Margins.Left = 20
           Margins.Top = 10
           Margins.Right = 20
           Margins.Bottom = 100
+          DataSource = dmBoereraad.dsrSymptom
           TabOrder = 2
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
