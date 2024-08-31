@@ -67,6 +67,28 @@ type
     bttRemediesNavigationNext: TBitBtn;
     bttRemediesNavigationPrevious: TBitBtn;
     bttRemediesRemedy1Reset: TBitBtn;
+    pnlAddRemedy: TPanel;
+    lblAddRemedyTitle: TLabel;
+    pnlAddRemedyNavigation: TPanel;
+    bttAddRemedyNavigationHelp: TBitBtn;
+    bttAddRemedyNavigationHome: TBitBtn;
+    bttAddRemedyNavigationNext: TBitBtn;
+    bttAddRemedyNavigationPrevious: TBitBtn;
+    pnlAddRemedyInputs: TPanel;
+    edtAddRemedyInputsRemedyName: TEdit;
+    redAddRemedyInputsDescription: TRichEdit;
+    cltAddRemedyInputsSymptoms: TCheckListBox;
+    edtAddRemedyInputsAddSymptom: TEdit;
+    btnAddRemedyInputsRemoveSymptom: TButton;
+    btnAddRemedyInputsAddSymptom: TButton;
+    lblAddRemedyInputsRemedyName: TLabel;
+    lblAddRemedyInputsRemedyInfo: TLabel;
+    edtAddRemedyInputsPrice: TEdit;
+    imgAddRemedyInputsImage: TImage;
+    chkAddRemedyInputsNatural: TCheckBox;
+    bttAddRemedyNavigationReset: TBitBtn;
+    bttAddRemedyInputsCreateRemedy: TBitBtn;
+    btnAddRemedyInputsAddImage: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
