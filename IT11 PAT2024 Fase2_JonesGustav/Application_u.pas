@@ -56,6 +56,9 @@ type
     dbgUsers: TDBGrid;
     dbgRemedies: TDBGrid;
     dbgSymptoms: TDBGrid;
+    pnlHomeTitle: TPanel;
+    pnlHomeSignUpBirthDate: TPanel;
+    pnlHomeLoginFields: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
