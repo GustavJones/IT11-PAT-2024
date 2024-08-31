@@ -2,8 +2,8 @@ object frmHome: TfrmHome
   Left = 0
   Top = 0
   Caption = 'Boereraad'
-  ClientHeight = 649
-  ClientWidth = 1197
+  ClientHeight = 647
+  ClientWidth = 1189
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,20 +16,18 @@ object frmHome: TfrmHome
   object pgcTabs: TPageControl
     Left = 0
     Top = 0
-    Width = 1197
-    Height = 649
+    Width = 1189
+    Height = 647
     ActivePage = tsHome
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1260
-    ExplicitHeight = 683
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
         Left = 0
         Top = 0
-        Width = 1189
-        Height = 619
+        Width = 1181
+        Height = 617
         Align = alClient
         Center = True
         Picture.Data = {
@@ -44302,8 +44300,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 300
         Top = 120
-        Width = 589
-        Height = 379
+        Width = 581
+        Height = 377
         Margins.Left = 300
         Margins.Top = 120
         Margins.Right = 300
@@ -44311,19 +44309,18 @@ object frmHome: TfrmHome
         Align = alClient
         BevelEdges = []
         BevelOuter = bvNone
+        BorderStyle = bsSingle
         Color = clWindowFrame
         FullRepaint = False
         ParentBackground = False
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seBorder]
-        ExplicitWidth = 656
-        ExplicitHeight = 612
         object lblDescription: TLabel
           AlignWithMargins = True
           Left = 3
-          Top = 51
-          Width = 583
+          Top = 57
+          Width = 571
           Height = 23
           Align = alTop
           Alignment = taCenter
@@ -44335,14 +44332,15 @@ object frmHome: TfrmHome
           Font.Style = []
           ParentFont = False
           StyleElements = [seClient, seBorder]
+          ExplicitTop = 51
           ExplicitWidth = 403
         end
         object pnlLogIn: TPanel
           AlignWithMargins = True
           Left = 10
-          Top = 85
+          Top = 91
           Width = 255
-          Height = 284
+          Height = 272
           Margins.Left = 10
           Margins.Top = 8
           Margins.Right = 10
@@ -44350,7 +44348,6 @@ object frmHome: TfrmHome
           Align = alLeft
           ShowCaption = False
           TabOrder = 0
-          ExplicitHeight = 325
           object lblLogIn: TLabel
             AlignWithMargins = True
             Left = 1
@@ -44370,24 +44367,20 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
-            ExplicitLeft = 11
-            ExplicitTop = -12
-            ExplicitWidth = 305
+            ExplicitWidth = 60
           end
           object btnLogIn: TButton
             AlignWithMargins = True
-            Left = 101
-            Top = 243
-            Width = 53
+            Left = 81
+            Top = 231
+            Width = 93
             Height = 25
-            Margins.Left = 100
-            Margins.Right = 100
+            Margins.Left = 80
+            Margins.Right = 80
             Margins.Bottom = 15
             Align = alBottom
             Caption = 'Log In'
             TabOrder = 1
-            ExplicitTop = 277
-            ExplicitWidth = 105
           end
           object pnlHomeLoginFields: TPanel
             AlignWithMargins = True
@@ -44402,9 +44395,6 @@ object frmHome: TfrmHome
             AutoSize = True
             BevelOuter = bvNone
             TabOrder = 0
-            ExplicitLeft = 35
-            ExplicitTop = 229
-            ExplicitWidth = 205
             object edtLogInEmail: TEdit
               AlignWithMargins = True
               Left = 3
@@ -44420,9 +44410,6 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 1
               TextHint = 'Email'
-              ExplicitLeft = 11
-              ExplicitTop = 89
-              ExplicitWidth = 199
             end
             object edtLogInPassword: TEdit
               AlignWithMargins = True
@@ -44439,16 +44426,15 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 0
               TextHint = 'Password'
-              ExplicitWidth = 199
             end
           end
         end
         object pnlSignUp: TPanel
           AlignWithMargins = True
-          Left = 274
-          Top = 85
+          Left = 262
+          Top = 91
           Width = 305
-          Height = 284
+          Height = 272
           Margins.Left = 10
           Margins.Top = 8
           Margins.Right = 10
@@ -44456,8 +44442,6 @@ object frmHome: TfrmHome
           Align = alRight
           ShowCaption = False
           TabOrder = 1
-          ExplicitLeft = 328
-          ExplicitHeight = 325
           object lblSignUp: TLabel
             AlignWithMargins = True
             Left = 1
@@ -44482,7 +44466,7 @@ object frmHome: TfrmHome
           object btnSignUp: TButton
             AlignWithMargins = True
             Left = 101
-            Top = 243
+            Top = 231
             Width = 103
             Height = 25
             Margins.Left = 100
@@ -44491,8 +44475,6 @@ object frmHome: TfrmHome
             Align = alBottom
             Caption = 'Sign Up'
             TabOrder = 6
-            ExplicitTop = 277
-            ExplicitWidth = 108
           end
           object edtSignUpEmail: TEdit
             AlignWithMargins = True
@@ -44511,7 +44493,6 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 2
             TextHint = 'Email'
-            ExplicitWidth = 208
           end
           object edtSignUpPassword: TEdit
             AlignWithMargins = True
@@ -44530,7 +44511,6 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 3
             TextHint = 'Password'
-            ExplicitWidth = 208
           end
           object edtSignUpName: TEdit
             AlignWithMargins = True
@@ -44549,7 +44529,6 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 0
             TextHint = 'Name'
-            ExplicitWidth = 208
           end
           object edtSignUpSurname: TEdit
             AlignWithMargins = True
@@ -44568,14 +44547,13 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 1
             TextHint = 'Surname'
-            ExplicitWidth = 208
           end
           object rgpGender: TRadioGroup
             AlignWithMargins = True
             Left = 51
             Top = 173
             Width = 89
-            Height = 57
+            Height = 45
             Margins.Left = 50
             Margins.Top = 10
             Margins.Right = 5
@@ -44587,15 +44565,13 @@ object frmHome: TfrmHome
               'Female')
             Constraints.MaxHeight = 72
             TabOrder = 4
-            ExplicitLeft = 59
-            ExplicitHeight = 70
           end
           object pnlHomeSignUpBirthDate: TPanel
             AlignWithMargins = True
             Left = 145
             Top = 173
             Width = 109
-            Height = 57
+            Height = 45
             Margins.Left = 5
             Margins.Top = 10
             Margins.Right = 50
@@ -44603,8 +44579,6 @@ object frmHome: TfrmHome
             Align = alRight
             BevelOuter = bvNone
             TabOrder = 5
-            ExplicitLeft = 150
-            ExplicitHeight = 72
             object lblSignUpBirthDay: TLabel
               AlignWithMargins = True
               Left = 0
@@ -44639,20 +44613,19 @@ object frmHome: TfrmHome
               Date = 45531.000000000000000000
               Time = 0.806187974536442200
               TabOrder = 0
-              ExplicitWidth = 257
             end
           end
         end
         object pnlHomeTitle: TPanel
-          Left = 0
-          Top = 0
-          Width = 589
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 571
           Height = 48
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
           TabOrder = 2
-          ExplicitWidth = 652
           object imgIcon: TImage
             Left = 230
             Top = 0
@@ -44989,18 +44962,16 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1183
-        Height = 613
+        Width = 1175
+        Height = 611
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1250
-        ExplicitHeight = 648
         object lblRemediesTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1177
+          Width = 1169
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -45014,160 +44985,337 @@ object frmHome: TfrmHome
           StyleElements = [seClient, seBorder]
           ExplicitWidth = 110
         end
-        object pnlRemedy1: TPanel
-          AlignWithMargins = True
-          Left = 4
-          Top = 36
-          Width = 1171
-          Height = 173
-          Align = alTop
-          BorderStyle = bsSingle
-          ShowCaption = False
+        object sbxRemediesList: TScrollBox
+          Left = 1
+          Top = 33
+          Width = 1169
+          Height = 535
+          Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1238
-          object lblRemediesRemedy1: TLabel
+          ExplicitHeight = 573
+          object pnlRemedy1: TPanel
             AlignWithMargins = True
-            Left = 31
-            Top = 4
-            Width = 1105
-            Height = 32
-            Margins.Left = 30
-            Margins.Right = 30
+            Left = 3
+            Top = 3
+            Width = 1159
+            Height = 173
             Align = alTop
-            Caption = 'Onion:'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -24
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = [fsBold]
-            ParentFont = False
-            ExplicitLeft = 143
-            ExplicitTop = 90
-          end
-          object lblRemediesRemedy1SymptomsUse: TLabel
-            Left = 751
-            Top = 16
-            Width = 128
-            Height = 20
-            Caption = 'Use for Symptoms:'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -15
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Image1: TImage
-            Left = 31
-            Top = 42
-            Width = 114
-            Height = 111
-          end
-          object lblRemediesRemedy1Price: TLabel
-            Left = 1023
-            Top = 42
-            Width = 124
-            Height = 26
-            Caption = 'Price per dose:'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = []
-            ParentFont = False
-          end
-          object edtRemediesRemedy1Price: TEdit
-            Left = 1023
-            Top = 74
-            Width = 124
-            Height = 23
+            BorderStyle = bsSingle
+            ShowCaption = False
             TabOrder = 0
-            TextHint = 'Price per Dose'
+            ExplicitTop = 898
+            ExplicitWidth = 1142
+            object lblRemediesRemedy1: TLabel
+              AlignWithMargins = True
+              Left = 31
+              Top = 4
+              Width = 1093
+              Height = 32
+              Margins.Left = 30
+              Margins.Right = 30
+              Align = alTop
+              Caption = 'Template Remedy:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -24
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = [fsBold]
+              ParentFont = False
+              ExplicitWidth = 200
+            end
+            object lblRemediesRemedy1SymptomsUse: TLabel
+              Left = 743
+              Top = 16
+              Width = 128
+              Height = 20
+              Caption = 'Use for Symptoms:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -15
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = []
+              ParentFont = False
+            end
+            object imgRemediesRemedy1Image: TImage
+              Left = 31
+              Top = 42
+              Width = 114
+              Height = 111
+            end
+            object lblRemediesRemedy1Price: TLabel
+              Left = 1015
+              Top = 19
+              Width = 89
+              Height = 17
+              Caption = 'Price per dose:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = []
+              ParentFont = False
+            end
+            object edtRemediesRemedy1Price: TEdit
+              Left = 1015
+              Top = 42
+              Width = 124
+              Height = 23
+              TabOrder = 0
+              TextHint = 'Price per Dose'
+            end
+            object cltRemediesRemedy1SymptomUse: TCheckListBox
+              Left = 743
+              Top = 42
+              Width = 128
+              Height = 79
+              ItemHeight = 17
+              Items.Strings = (
+                'Colds'
+                'Flu'
+                'Detox')
+              TabOrder = 1
+            end
+            object btnRemediesRemedy1RemoveSymptom: TButton
+              Left = 880
+              Top = 72
+              Width = 121
+              Height = 25
+              Caption = 'Remove Symptom'
+              TabOrder = 2
+            end
+            object btnRemediesRemedy1AddSymptom: TButton
+              Left = 880
+              Top = 42
+              Width = 121
+              Height = 24
+              Caption = 'Add Symptom'
+              TabOrder = 3
+            end
+            object edtRemediesRemedy1AddSymptom: TEdit
+              Left = 743
+              Top = 127
+              Width = 128
+              Height = 26
+              TabOrder = 4
+              TextHint = 'Add symptom'
+            end
+            object redRemediesRemedy1Description: TRichEdit
+              Left = 160
+              Top = 42
+              Width = 569
+              Height = 111
+              Font.Charset = ANSI_CHARSET
+              Font.Color = 11130150
+              Font.Height = -15
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Lines.Strings = (
+                'This is a description of the remedy')
+              ParentFont = False
+              TabOrder = 5
+            end
+            object chkRemediesRemedy1Natural: TCheckBox
+              Left = 880
+              Top = 103
+              Width = 121
+              Height = 19
+              Caption = 'Is Natural'
+              TabOrder = 6
+            end
+            object btnRemediesRemedy1PickImage: TButton
+              Left = 1015
+              Top = 72
+              Width = 124
+              Height = 25
+              Caption = 'Update Image'
+              TabOrder = 7
+            end
+            object bttRemediesRemedy1Reset: TBitBtn
+              Left = 877
+              Top = 128
+              Width = 124
+              Height = 25
+              Caption = 'Reset'
+              Kind = bkRetry
+              NumGlyphs = 2
+              TabOrder = 8
+            end
           end
-          object btnRemediesRemedy1Update: TButton
-            Left = 1023
-            Top = 127
+          object bttRemediesRemedy1Save: TBitBtn
+            Left = 1020
+            Top = 133
             Width = 124
-            Height = 26
+            Height = 25
             Caption = 'Save Updates'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = 11130150
+            Font.Color = clWindowText
             Font.Height = -12
             Font.Name = 'Segoe UI'
             Font.Style = []
+            Kind = bkAll
+            NumGlyphs = 2
             ParentFont = False
             TabOrder = 1
-            StyleElements = [seClient, seBorder]
           end
-          object cltRemediesRemedy1SymptomUse: TCheckListBox
-            Left = 751
-            Top = 42
-            Width = 128
-            Height = 79
-            ItemHeight = 17
-            Items.Strings = (
-              'Colds'
-              'Flu'
-              'Detox')
+        end
+        object pnlRemediesNavigation: TPanel
+          Left = 1
+          Top = 568
+          Width = 1169
+          Height = 38
+          Align = alBottom
+          ShowCaption = False
+          TabOrder = 1
+          object bttRemediesNavigationHelp: TBitBtn
+            Left = 86
+            Top = 6
+            Width = 75
+            Height = 25
+            Kind = bkHelp
+            NumGlyphs = 2
+            TabOrder = 0
+          end
+          object bttRemediesNavigationHome: TBitBtn
+            Left = 5
+            Top = 6
+            Width = 75
+            Height = 25
+            Caption = 'Home'
+            Glyph.Data = {
+              42040000424D4204000000000000420000002800000010000000100000000100
+              20000300000000040000650F0000650F000000000000000000000000FF0000FF
+              0000FF0000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFF0000000000000000FEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000FFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFF
+              FFFFFFFFFFFF00000000FFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFF
+              FFFF000000000000000000000000FFFFFFFFFFFFFFFF0000000000000000FFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF0000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFF000000000000
+              0000FFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF000000000000
+              00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFF0000
+              0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
+              0000000000000000000000000000000000000000000000000000FFFFFFFFFFFF
+              FFFF0000000000000000FFFFFFFFFFFFFFFF0000000000000000000000000000
+              000000000000000000000000000000000000000000000000000000000000FFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              000000000000}
+            ModalResult = 3
+            TabOrder = 1
+          end
+          object bttRemediesNavigationNext: TBitBtn
+            Left = 1086
+            Top = 6
+            Width = 75
+            Height = 25
+            Caption = 'Next'
+            Glyph.Data = {
+              42040000424D4204000000000000420000002800000010000000100000000100
+              20000300000000040000D80F0000D80F000000000000000000000000FF0000FF
+              0000FF000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFF00FFFFFFFF00000000000000000000000000000000000000000000
+              00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000000000000000
+              00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00}
+            ModalResult = 3
             TabOrder = 2
           end
-          object btnRemediesRemedy1RemoveSymptom: TButton
-            Left = 888
-            Top = 72
-            Width = 121
+          object bttRemediesNavigationPrevious: TBitBtn
+            Left = 1005
+            Top = 6
+            Width = 75
             Height = 25
-            Caption = 'Remove Symptom'
+            Caption = 'Previous'
+            Glyph.Data = {
+              42040000424D4204000000000000420000002800000010000000100000000100
+              20000300000000040000D80F0000D80F000000000000000000000000FF0000FF
+              0000FF000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFF00000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000FFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFF00000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00}
+            ModalResult = 3
             TabOrder = 3
-          end
-          object btnRemediesRemedy1AddSymptom: TButton
-            Left = 888
-            Top = 42
-            Width = 121
-            Height = 24
-            Caption = 'Add Symptom'
-            TabOrder = 4
-          end
-          object edtRemediesRemedy1AddSymptom: TEdit
-            Left = 751
-            Top = 127
-            Width = 128
-            Height = 26
-            TabOrder = 5
-            TextHint = 'Add symptom'
-          end
-          object redDescription: TRichEdit
-            Left = 168
-            Top = 42
-            Width = 569
-            Height = 111
-            Font.Charset = ANSI_CHARSET
-            Font.Color = 11130150
-            Font.Height = -15
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            Lines.Strings = (
-              'This is a description of the remedy')
-            ParentFont = False
-            TabOrder = 6
-          end
-          object chkRemediesRemedy1Natural: TCheckBox
-            Left = 888
-            Top = 103
-            Width = 121
-            Height = 19
-            Caption = 'Is Natural'
-            TabOrder = 7
-          end
-          object btnPickImage: TButton
-            Left = 888
-            Top = 128
-            Width = 121
-            Height = 25
-            Caption = 'Update Image'
-            TabOrder = 8
           end
         end
       end
+    end
+    object tsAddRemedy: TTabSheet
+      Caption = 'Add Remedy'
+      ImageIndex = 3
     end
     object tsAdmin: TTabSheet
       Caption = 'Admin'
@@ -45176,18 +45324,16 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1183
-        Height = 613
+        Width = 1175
+        Height = 611
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1250
-        ExplicitHeight = 648
         object lblAdminPendingChanges: TLabel
           Left = 1
           Top = 1
-          Width = 1177
+          Width = 1169
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -45212,6 +45358,7 @@ object frmHome: TfrmHome
           Margins.Right = 20
           Margins.Bottom = 100
           DataSource = dmBoereraad.dsrUser
+          ReadOnly = True
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -45230,6 +45377,7 @@ object frmHome: TfrmHome
           Margins.Right = 20
           Margins.Bottom = 100
           DataSource = dmBoereraad.dsrRemedy
+          ReadOnly = True
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -45248,6 +45396,7 @@ object frmHome: TfrmHome
           Margins.Right = 20
           Margins.Bottom = 100
           DataSource = dmBoereraad.dsrSymptom
+          ReadOnly = True
           TabOrder = 2
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText

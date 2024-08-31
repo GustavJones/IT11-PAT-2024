@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u;
+  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, Vcl.Buttons;
 
 type
   TfrmHome = class(TForm)
@@ -39,18 +39,17 @@ type
     lblRemediesTitle: TLabel;
     lblRemediesRemedy1: TLabel;
     edtRemediesRemedy1Price: TEdit;
-    btnRemediesRemedy1Update: TButton;
     cltRemediesRemedy1SymptomUse: TCheckListBox;
     lblRemediesRemedy1SymptomsUse: TLabel;
     btnRemediesRemedy1RemoveSymptom: TButton;
     btnRemediesRemedy1AddSymptom: TButton;
     edtRemediesRemedy1AddSymptom: TEdit;
-    redDescription: TRichEdit;
-    Image1: TImage;
+    redRemediesRemedy1Description: TRichEdit;
+    imgRemediesRemedy1Image: TImage;
     lblRemediesRemedy1Price: TLabel;
     chkRemediesRemedy1Natural: TCheckBox;
     tsAdmin: TTabSheet;
-    btnPickImage: TButton;
+    btnRemediesRemedy1PickImage: TButton;
     pnlAdmin: TPanel;
     lblAdminPendingChanges: TLabel;
     dbgUsers: TDBGrid;
@@ -59,6 +58,15 @@ type
     pnlHomeTitle: TPanel;
     pnlHomeSignUpBirthDate: TPanel;
     pnlHomeLoginFields: TPanel;
+    sbxRemediesList: TScrollBox;
+    tsAddRemedy: TTabSheet;
+    pnlRemediesNavigation: TPanel;
+    bttRemediesRemedy1Save: TBitBtn;
+    bttRemediesNavigationHelp: TBitBtn;
+    bttRemediesNavigationHome: TBitBtn;
+    bttRemediesNavigationNext: TBitBtn;
+    bttRemediesNavigationPrevious: TBitBtn;
+    bttRemediesRemedy1Reset: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
