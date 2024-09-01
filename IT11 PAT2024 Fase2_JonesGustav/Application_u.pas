@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, Vcl.Buttons;
+  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, Vcl.Buttons, Vcl.Samples.Spin;
 
 type
   TfrmHome = class(TForm)
@@ -51,7 +51,7 @@ type
     tsAdmin: TTabSheet;
     btnRemediesRemedy1PickImage: TButton;
     pnlAdmin: TPanel;
-    lblAdminPendingChanges: TLabel;
+    lblAdmin: TLabel;
     dbgUsers: TDBGrid;
     dbgRemedies: TDBGrid;
     dbgSymptoms: TDBGrid;
@@ -89,6 +89,77 @@ type
     bttAddRemedyNavigationReset: TBitBtn;
     bttAddRemedyInputsCreateRemedy: TBitBtn;
     btnAddRemedyInputsAddImage: TButton;
+    tsRemedyPendingChanges: TTabSheet;
+    pnlRemedyPendingChanges: TPanel;
+    lblRemedyPendingChanges: TLabel;
+    pnlRemedyPendingChangesNavigation: TPanel;
+    bttRemedyPendingChangesNavigationHelp: TBitBtn;
+    bttRemedyPendingChangesNavigationHome: TBitBtn;
+    bttRemedyPendingChangesNavigationNext: TBitBtn;
+    bttRemedyPendingChangesNavigationPrevious: TBitBtn;
+    pnlRemedyPendingChangesAdditions: TPanel;
+    lblRemedyPendingChangesAdditions: TLabel;
+    lstRemedyPendingChangesAdditionsRemediesList: TListBox;
+    edtRemedyPendingChangesAdditionsInfoName: TEdit;
+    edtRemedyPendingChangesAdditionsInfoPrice: TEdit;
+    pnlRemedyPendingChangesAdditionsInfo: TPanel;
+    chkRemedyPendingChangesAdditionsInfoNatural: TCheckBox;
+    lblPendingChangesAdditionsInfo: TLabel;
+    redRemedyPendingChangesAdditionsInfoDescription: TRichEdit;
+    bttRemedyPendingChangesAdditionsInfoReset: TBitBtn;
+    bttRemedyPendingChangesAdditionsInfoAddRemedy: TBitBtn;
+    cltRemedyPendingChangesAdditionsInfoSymptoms: TCheckListBox;
+    edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit;
+    btnRemedyPendingChangesAdditionsInfoRemoveSymptom: TButton;
+    btnRemedyPendingChangesAdditionsInfoAddSymptom: TButton;
+    lblRemedyPendingChangesAdditionsInfoSymptoms: TLabel;
+    imgRemedyPendingChangesAdditionsInfoImage: TImage;
+    pnlRemedyPendingChangesEdit: TPanel;
+    lblRemedyPendingChangesEdit: TLabel;
+    lstRemedyPendingChangesEditRemediesList: TListBox;
+    pnlRemedyPendingChangesEditInfo: TPanel;
+    lblRemedyPendingChangesEditInfo: TLabel;
+    lblRemedyPendingChangesEditInfoSymptoms: TLabel;
+    imgRemedyPendingChangesEditInfoImage: TImage;
+    edtRemedyPendingChangesEditInfoName: TEdit;
+    edtRemedyPendingChangesEditInfoPrice: TEdit;
+    chkRemedyPendingChangesEditInfoNatural: TCheckBox;
+    redRemedyPendingChangesEditInfoDescription: TRichEdit;
+    bttRemedyPendingChangesEditInfoReset: TBitBtn;
+    bttRemedyPendingChangesEditInfoSaveRemedy: TBitBtn;
+    cltRemedyPendingChangesEditInfoSymptoms: TCheckListBox;
+    edtRemedyPendingChangesEditInfoSymptomName: TEdit;
+    btnRemedyPendingChangesEditInfoRemoveSymptom: TButton;
+    btnRemedyPendingChangesEditInfoAddSymptom: TButton;
+    tsRemedyUsage: TTabSheet;
+    pnlRemedyUsage: TPanel;
+    lblRemedyUsageTitle: TLabel;
+    sbxRemedyUsageList: TScrollBox;
+    pnlRemedyUsageNavigation: TPanel;
+    bttRemedyUsageNavigationHelp: TBitBtn;
+    bttRemedyUsageNavigationHome: TBitBtn;
+    bttRemedyUsageNavigationNext: TBitBtn;
+    bttRemedyUsageNavigationPrevious: TBitBtn;
+    pnlPrescription1: TPanel;
+    lblPrescription1: TLabel;
+    bttPrescription1Save: TBitBtn;
+    pnlRemedyUsageAdd: TPanel;
+    bttPrescription1Reset: TBitBtn;
+    redPrescription1Dosage: TRichEdit;
+    sedPrescription1DaysUsed: TSpinEdit;
+    lblPrescription1Dosage: TLabel;
+    lblPrescription1DaysUsed: TLabel;
+    lblRemedyUsageAddDosage: TLabel;
+    redRemedyUsageAddDosage: TRichEdit;
+    lblRemedyUsageAddDaysUsed: TLabel;
+    sedRemedyUsageAddDaysUsed: TSpinEdit;
+    bttRemedyUsageAddReset: TBitBtn;
+    bttRemedyUsageAddAddPrescription: TBitBtn;
+    lblRemedyUsageUseList: TLabel;
+    lblRemedyUsageAddRemedyName: TLabel;
+    edtRemedyUsageAddRemedyName: TEdit;
+    sedAddRemedyInputsEaseOfUse: TSpinEdit;
+    lblAddRemedyInputsEaseOfUse: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
