@@ -20,7 +20,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1189
     Height = 647
-    ActivePage = tsHome
+    ActivePage = tsUserAdmin
     Align = alClient
     TabOrder = 0
     object tsHome: TTabSheet
@@ -13956,10 +13956,6 @@ object frmHome: TfrmHome
           Height = 529
           Align = alClient
           TabOrder = 0
-          ExplicitLeft = 1
-          ExplicitTop = 33
-          ExplicitWidth = 1169
-          ExplicitHeight = 535
           object pnlRemedy1: TPanel
             AlignWithMargins = True
             Left = 3
@@ -13970,7 +13966,6 @@ object frmHome: TfrmHome
             BorderStyle = bsSingle
             ShowCaption = False
             TabOrder = 0
-            ExplicitWidth = 1159
             object lblRemediesRemedy1: TLabel
               AlignWithMargins = True
               Left = 31
@@ -14034,7 +14029,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 17
+              ItemHeight = 15
               Items.Strings = (
                 'Colds'
                 'Flu'
@@ -14553,7 +14548,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 17
+            ItemHeight = 15
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -14646,8 +14641,6 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitLeft = 6
-        ExplicitTop = 6
         object lblRemedyUsageTitle: TLabel
           Left = 1
           Top = 1
@@ -14680,7 +14673,6 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitTop = 244
           ExplicitWidth = 273
         end
         object sbxRemedyUsageList: TScrollBox
@@ -14691,10 +14683,6 @@ object frmHome: TfrmHome
           Height = 358
           Align = alClient
           TabOrder = 0
-          ExplicitLeft = -143
-          ExplicitTop = -84
-          ExplicitWidth = 1169
-          ExplicitHeight = 316
           object pnlPrescription1: TPanel
             AlignWithMargins = True
             Left = 3
@@ -14705,7 +14693,6 @@ object frmHome: TfrmHome
             BorderStyle = bsSingle
             ShowCaption = False
             TabOrder = 0
-            ExplicitWidth = 1159
             object lblPrescription1: TLabel
               AlignWithMargins = True
               Left = 31
@@ -14995,7 +14982,7 @@ object frmHome: TfrmHome
           object lblRemedyUsageAddRemedyName: TLabel
             Left = 11
             Top = 10
-            Width = 128
+            Width = 104
             Height = 20
             Caption = 'Remedy Name:'
             Font.Charset = DEFAULT_CHARSET
@@ -15082,8 +15069,6 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1171
-        ExplicitHeight = 610
         object lblRemedyPendingChanges: TLabel
           Left = 1
           Top = 1
@@ -15109,8 +15094,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 0
-          ExplicitTop = 567
-          ExplicitWidth = 1165
           object bttRemedyPendingChangesNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15265,7 +15248,6 @@ object frmHome: TfrmHome
           Align = alTop
           ShowCaption = False
           TabOrder = 1
-          ExplicitWidth = 1159
           object lblRemedyPendingChangesAdditions: TLabel
             Left = 16
             Top = 15
@@ -15434,8 +15416,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
-          ExplicitTop = 308
-          ExplicitWidth = 1159
           object lblRemedyPendingChangesEdit: TLabel
             Left = 16
             Top = 15
@@ -15597,10 +15577,10 @@ object frmHome: TfrmHome
         end
       end
     end
-    object tsAdmin: TTabSheet
-      Caption = 'Admin'
+    object tsUserAdmin: TTabSheet
+      Caption = 'User Admin'
       ImageIndex = 2
-      object pnlAdmin: TPanel
+      object pnlUserAdmin: TPanel
         AlignWithMargins = True
         Left = 3
         Top = 3
@@ -15610,14 +15590,14 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        object lblAdmin: TLabel
+        object lblUserAdmin: TLabel
           Left = 1
           Top = 1
           Width = 1169
           Height = 32
           Align = alTop
           Alignment = taCenter
-          Caption = 'Admin:'
+          Caption = 'User Admin:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = 11130150
           Font.Height = -24
@@ -15625,14 +15605,14 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 77
+          ExplicitWidth = 133
         end
         object dbgUsers: TDBGrid
           AlignWithMargins = True
           Left = 16
           Top = 40
-          Width = 593
-          Height = 185
+          Width = 393
+          Height = 217
           Margins.Left = 20
           Margins.Top = 10
           Margins.Right = 20
@@ -15646,43 +15626,21 @@ object frmHome: TfrmHome
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
         end
-        object dbgRemedies: TDBGrid
-          AlignWithMargins = True
-          Left = 16
-          Top = 240
-          Width = 593
-          Height = 185
-          Margins.Left = 20
-          Margins.Top = 10
-          Margins.Right = 20
-          Margins.Bottom = 100
-          DataSource = dmBoereraad.dsrRemedy
-          ReadOnly = True
+        object bttUserAdminRemoveUser: TBitBtn
+          Left = 496
+          Top = 128
+          Width = 108
+          Height = 25
+          Caption = 'Remove User'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          Kind = bkCancel
+          NumGlyphs = 2
+          ParentFont = False
           TabOrder = 1
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -12
-          TitleFont.Name = 'Segoe UI'
-          TitleFont.Style = []
-        end
-        object dbgSymptoms: TDBGrid
-          AlignWithMargins = True
-          Left = 16
-          Top = 440
-          Width = 593
-          Height = 137
-          Margins.Left = 20
-          Margins.Top = 10
-          Margins.Right = 20
-          Margins.Bottom = 100
-          DataSource = dmBoereraad.dsrSymptom
-          ReadOnly = True
-          TabOrder = 2
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -12
-          TitleFont.Name = 'Segoe UI'
-          TitleFont.Style = []
         end
       end
     end

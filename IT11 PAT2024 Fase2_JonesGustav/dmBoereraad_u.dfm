@@ -25,22 +25,11 @@ object dmBoereraad: TdmBoereraad
     Left = 256
     Top = 240
   end
-  object dsrSymptom: TDataSource
-    Left = 320
-    Top = 240
-  end
   object tblRemedy: TADOTable
     Connection = conBoereraad
     CursorType = ctStatic
     TableName = 'tblUser'
     Left = 256
-    Top = 176
-  end
-  object tblSymptom: TADOTable
-    Connection = conBoereraad
-    CursorType = ctStatic
-    TableName = 'tblUser'
-    Left = 320
     Top = 176
   end
 end

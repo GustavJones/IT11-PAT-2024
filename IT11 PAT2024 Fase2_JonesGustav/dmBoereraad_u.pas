@@ -11,9 +11,7 @@ type
     tblUser: TADOTable;
     dsrUser: TDataSource;
     dsrRemedy: TDataSource;
-    dsrSymptom: TDataSource;
     tblRemedy: TADOTable;
-    tblSymptom: TADOTable;
 
   private
     { Private declarations }
@@ -53,11 +51,6 @@ begin
   tblRemedy.TableName := 'tblRemedy';
   tblRemedy.Open;
   dsrRemedy.DataSet := tblRemedy;
-
-  tblSymptom.Connection := conBoereraad;
-  tblSymptom.TableName := 'tblSymptom';
-  tblSymptom.Open;
-  dsrSymptom.DataSet := tblSymptom;
 
   Result := True;
 end;

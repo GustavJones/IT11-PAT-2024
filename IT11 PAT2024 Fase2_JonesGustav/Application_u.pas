@@ -48,13 +48,11 @@ type
     imgRemediesRemedy1Image: TImage;
     lblRemediesRemedy1Price: TLabel;
     chkRemediesRemedy1Natural: TCheckBox;
-    tsAdmin: TTabSheet;
+    tsUserAdmin: TTabSheet;
     btnRemediesRemedy1PickImage: TButton;
-    pnlAdmin: TPanel;
-    lblAdmin: TLabel;
+    pnlUserAdmin: TPanel;
+    lblUserAdmin: TLabel;
     dbgUsers: TDBGrid;
-    dbgRemedies: TDBGrid;
-    dbgSymptoms: TDBGrid;
     pnlHomeTitle: TPanel;
     pnlHomeSignUpBirthDate: TPanel;
     pnlHomeLoginFields: TPanel;
@@ -160,6 +158,7 @@ type
     edtRemedyUsageAddRemedyName: TEdit;
     sedAddRemedyInputsEaseOfUse: TSpinEdit;
     lblAddRemedyInputsEaseOfUse: TLabel;
+    bttUserAdminRemoveUser: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
