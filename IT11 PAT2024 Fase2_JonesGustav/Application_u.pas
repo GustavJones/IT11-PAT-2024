@@ -52,7 +52,7 @@ type
     btnRemediesRemedy1PickImage: TButton;
     pnlUserAdmin: TPanel;
     lblUserAdmin: TLabel;
-    dbgUsers: TDBGrid;
+    dbgUserAdminUserEditUsers: TDBGrid;
     pnlHomeTitle: TPanel;
     pnlHomeSignUpBirthDate: TPanel;
     pnlHomeLoginFields: TPanel;
@@ -158,7 +158,22 @@ type
     edtRemedyUsageAddRemedyName: TEdit;
     sedAddRemedyInputsEaseOfUse: TSpinEdit;
     lblAddRemedyInputsEaseOfUse: TLabel;
-    bttUserAdminRemoveUser: TBitBtn;
+    bttUserAdminUserEditRemoveUser: TBitBtn;
+    dbgRemedy: TDBGrid;
+    lstUserAdminUserEditPrescriptions: TListBox;
+    bttPrescription1Remove: TBitBtn;
+    pnlUserAdminUserEdit: TPanel;
+    bttUserAdminUserEditRemovePrescription: TBitBtn;
+    redUserAdminUserEditDosage: TRichEdit;
+    sedUserAdminUserEditDaysUsed: TSpinEdit;
+    lblUserAdminUserEditDaysUsed: TLabel;
+    lblUserAdminUserEditDosage: TLabel;
+    Label3: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    chkUserAdminUserEditIsMale: TCheckBox;
+    bttUserAdminUserEditSaveUser: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private

@@ -14790,6 +14790,22 @@ object frmHome: TfrmHome
               TabOrder = 3
               Value = 0
             end
+            object bttPrescription1Remove: TBitBtn
+              Left = 1015
+              Top = 105
+              Width = 124
+              Height = 25
+              Caption = 'Remove'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Kind = bkCancel
+              NumGlyphs = 2
+              ParentFont = False
+              TabOrder = 4
+            end
           end
         end
         object pnlRemedyUsageNavigation: TPanel
@@ -15607,17 +15623,17 @@ object frmHome: TfrmHome
           StyleElements = [seClient, seBorder]
           ExplicitWidth = 133
         end
-        object dbgUsers: TDBGrid
+        object dbgRemedy: TDBGrid
           AlignWithMargins = True
           Left = 16
-          Top = 40
+          Top = 272
           Width = 393
           Height = 217
           Margins.Left = 20
           Margins.Top = 10
           Margins.Right = 20
           Margins.Bottom = 100
-          DataSource = dmBoereraad.dsrUser
+          DataSource = dmBoereraad.dsrRemedy
           ReadOnly = True
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
@@ -15626,21 +15642,215 @@ object frmHome: TfrmHome
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
         end
-        object bttUserAdminRemoveUser: TBitBtn
-          Left = 496
-          Top = 128
-          Width = 108
-          Height = 25
-          Caption = 'Remove User'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          Kind = bkCancel
-          NumGlyphs = 2
-          ParentFont = False
+        object pnlUserAdminUserEdit: TPanel
+          Left = 1
+          Top = 33
+          Width = 1169
+          Height = 216
+          Align = alTop
           TabOrder = 1
+          object lblUserAdminUserEditDaysUsed: TLabel
+            Left = 1016
+            Top = 35
+            Width = 75
+            Height = 20
+            Caption = 'Days Used:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblUserAdminUserEditDosage: TLabel
+            Left = 797
+            Top = 6
+            Width = 55
+            Height = 20
+            Caption = 'Dosage:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label3: TLabel
+            Left = 584
+            Top = 6
+            Width = 82
+            Height = 20
+            Caption = 'Prescription'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
+          object bttUserAdminUserEditRemoveUser: TBitBtn
+            Left = 424
+            Top = 176
+            Width = 145
+            Height = 25
+            Caption = 'Remove User'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Kind = bkCancel
+            NumGlyphs = 2
+            ParentFont = False
+            TabOrder = 0
+          end
+          object dbgUserAdminUserEditUsers: TDBGrid
+            AlignWithMargins = True
+            Left = 15
+            Top = 13
+            Width = 393
+            Height = 188
+            Margins.Left = 20
+            Margins.Top = 10
+            Margins.Right = 20
+            Margins.Bottom = 100
+            DataSource = dmBoereraad.dsrUser
+            ReadOnly = True
+            TabOrder = 1
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -12
+            TitleFont.Name = 'Segoe UI'
+            TitleFont.Style = []
+          end
+          object lstUserAdminUserEditPrescriptions: TListBox
+            Left = 584
+            Top = 32
+            Width = 207
+            Height = 169
+            ItemHeight = 15
+            TabOrder = 2
+          end
+          object bttUserAdminUserEditRemovePrescription: TBitBtn
+            Left = 1016
+            Top = 176
+            Width = 145
+            Height = 25
+            Caption = 'Remove Prescription'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Kind = bkCancel
+            NumGlyphs = 2
+            ParentFont = False
+            TabOrder = 3
+          end
+          object redUserAdminUserEditDosage: TRichEdit
+            Left = 797
+            Top = 32
+            Width = 213
+            Height = 169
+            Font.Charset = ANSI_CHARSET
+            Font.Color = 11130150
+            Font.Height = -15
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Lines.Strings = (
+              'This is a description of usage '
+              'dose'
+              'e.g.'
+              'Apply 3 times a day after '
+              'meals')
+            ParentFont = False
+            TabOrder = 4
+          end
+          object sedUserAdminUserEditDaysUsed: TSpinEdit
+            Left = 1016
+            Top = 61
+            Width = 128
+            Height = 24
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 5
+            Value = 0
+          end
+          object Edit1: TEdit
+            AlignWithMargins = True
+            Left = 424
+            Top = 13
+            Width = 145
+            Height = 25
+            Margins.Left = 50
+            Margins.Right = 50
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 6
+            TextHint = 'Name'
+          end
+          object Edit2: TEdit
+            AlignWithMargins = True
+            Left = 424
+            Top = 44
+            Width = 145
+            Height = 25
+            Margins.Left = 50
+            Margins.Right = 50
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 7
+            TextHint = 'Surname'
+          end
+          object Edit3: TEdit
+            AlignWithMargins = True
+            Left = 424
+            Top = 75
+            Width = 145
+            Height = 25
+            Margins.Left = 50
+            Margins.Right = 50
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 8
+            TextHint = 'Email'
+          end
+          object chkUserAdminUserEditIsMale: TCheckBox
+            Left = 424
+            Top = 106
+            Width = 145
+            Height = 33
+            Caption = 'Is Male'
+            TabOrder = 9
+          end
+          object bttUserAdminUserEditSaveUser: TBitBtn
+            Left = 424
+            Top = 145
+            Width = 145
+            Height = 25
+            Caption = 'Save User'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Kind = bkAll
+            NumGlyphs = 2
+            ParentFont = False
+            TabOrder = 10
+          end
         end
       end
     end
