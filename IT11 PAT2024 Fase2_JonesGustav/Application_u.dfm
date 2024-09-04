@@ -20,7 +20,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1189
     Height = 647
-    ActivePage = tsAdmin
+    ActivePage = tsHome
     Align = alClient
     TabOrder = 0
     object tsHome: TTabSheet
