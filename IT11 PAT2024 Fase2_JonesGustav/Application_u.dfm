@@ -20,7 +20,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1189
     Height = 647
-    ActivePage = tsUserAdmin
+    ActivePage = tsHome
     Align = alClient
     TabOrder = 0
     object tsHome: TTabSheet
@@ -15621,26 +15621,25 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 133
+          ExplicitLeft = 16
+          ExplicitTop = -15
         end
-        object dbgRemedy: TDBGrid
-          AlignWithMargins = True
-          Left = 16
-          Top = 272
-          Width = 393
-          Height = 217
-          Margins.Left = 20
-          Margins.Top = 10
-          Margins.Right = 20
-          Margins.Bottom = 100
-          DataSource = dmBoereraad.dsrRemedy
-          ReadOnly = True
-          TabOrder = 0
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -12
-          TitleFont.Name = 'Segoe UI'
-          TitleFont.Style = []
+        object lblUserAdminRemedy: TLabel
+          Left = 1
+          Top = 249
+          Width = 1169
+          Height = 32
+          Align = alTop
+          Alignment = taCenter
+          Caption = 'Remedy Admin:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 11130150
+          Font.Height = -24
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = [fsBold]
+          ParentFont = False
+          StyleElements = [seClient, seBorder]
+          ExplicitWidth = 171
         end
         object pnlUserAdminUserEdit: TPanel
           Left = 1
@@ -15648,7 +15647,7 @@ object frmHome: TfrmHome
           Width = 1169
           Height = 216
           Align = alTop
-          TabOrder = 1
+          TabOrder = 0
           object lblUserAdminUserEditDaysUsed: TLabel
             Left = 1016
             Top = 35
@@ -15776,7 +15775,7 @@ object frmHome: TfrmHome
             TabOrder = 5
             Value = 0
           end
-          object Edit1: TEdit
+          object edtUserAdminUserEditName: TEdit
             AlignWithMargins = True
             Left = 424
             Top = 13
@@ -15793,7 +15792,7 @@ object frmHome: TfrmHome
             TabOrder = 6
             TextHint = 'Name'
           end
-          object Edit2: TEdit
+          object edtUserAdminUserEditSurname: TEdit
             AlignWithMargins = True
             Left = 424
             Top = 44
@@ -15810,7 +15809,7 @@ object frmHome: TfrmHome
             TabOrder = 7
             TextHint = 'Surname'
           end
-          object Edit3: TEdit
+          object edtUserAdminUserEditEmail: TEdit
             AlignWithMargins = True
             Left = 424
             Top = 75
@@ -15850,6 +15849,150 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 10
+          end
+        end
+        object pnlUserAdminRemedyEdit: TPanel
+          Left = 1
+          Top = 281
+          Width = 1169
+          Height = 216
+          Align = alTop
+          TabOrder = 1
+          ExplicitTop = 249
+          object lblUserAdminRemedyEditDescription: TLabel
+            Left = 424
+            Top = 6
+            Width = 82
+            Height = 20
+            Caption = 'Description:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
+          object bttUserAdminRemedyEditRemoveRemedy: TBitBtn
+            Left = 1016
+            Top = 176
+            Width = 145
+            Height = 25
+            Caption = 'Remove Remedy'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Kind = bkCancel
+            NumGlyphs = 2
+            ParentFont = False
+            TabOrder = 0
+          end
+          object dbgUserAdminRemedyEditRemedy: TDBGrid
+            AlignWithMargins = True
+            Left = 15
+            Top = 13
+            Width = 393
+            Height = 188
+            Margins.Left = 20
+            Margins.Top = 10
+            Margins.Right = 20
+            Margins.Bottom = 100
+            DataSource = dmBoereraad.dsrRemedy
+            ReadOnly = True
+            TabOrder = 1
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -12
+            TitleFont.Name = 'Segoe UI'
+            TitleFont.Style = []
+          end
+          object redUserAdminRemedyEditDescription: TRichEdit
+            Left = 424
+            Top = 32
+            Width = 569
+            Height = 169
+            Font.Charset = ANSI_CHARSET
+            Font.Color = 11130150
+            Font.Height = -15
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Lines.Strings = (
+              'This is a description of usage '
+              'dose'
+              'e.g.'
+              'Apply 3 times a day after '
+              'meals')
+            ParentFont = False
+            TabOrder = 2
+          end
+          object edtUserAdminRemedyEditName: TEdit
+            AlignWithMargins = True
+            Left = 1016
+            Top = 32
+            Width = 145
+            Height = 25
+            Margins.Left = 50
+            Margins.Right = 50
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 3
+            TextHint = 'Name'
+          end
+          object bttUserAdminRemedyEditSaveRemedy: TBitBtn
+            Left = 1016
+            Top = 145
+            Width = 145
+            Height = 25
+            Caption = 'Save Remedy'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Kind = bkAll
+            NumGlyphs = 2
+            ParentFont = False
+            TabOrder = 4
+          end
+          object edtUserAdminRemedyEditPrice: TEdit
+            AlignWithMargins = True
+            Left = 1016
+            Top = 63
+            Width = 145
+            Height = 25
+            Margins.Left = 50
+            Margins.Right = 50
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 5
+            TextHint = 'Price Per Dose'
+          end
+          object chkUserAdminRemedyEditNatural: TCheckBox
+            Left = 1016
+            Top = 94
+            Width = 145
+            Height = 15
+            Caption = 'Natural'
+            TabOrder = 6
+          end
+          object sedUserAdminRemedyEditEaseOfUse: TSpinEdit
+            Left = 1016
+            Top = 115
+            Width = 145
+            Height = 24
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 7
+            Value = 0
           end
         end
       end

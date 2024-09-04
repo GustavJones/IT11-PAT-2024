@@ -159,7 +159,6 @@ type
     sedAddRemedyInputsEaseOfUse: TSpinEdit;
     lblAddRemedyInputsEaseOfUse: TLabel;
     bttUserAdminUserEditRemoveUser: TBitBtn;
-    dbgRemedy: TDBGrid;
     lstUserAdminUserEditPrescriptions: TListBox;
     bttPrescription1Remove: TBitBtn;
     pnlUserAdminUserEdit: TPanel;
@@ -169,11 +168,22 @@ type
     lblUserAdminUserEditDaysUsed: TLabel;
     lblUserAdminUserEditDosage: TLabel;
     Label3: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
+    edtUserAdminUserEditName: TEdit;
+    edtUserAdminUserEditSurname: TEdit;
+    edtUserAdminUserEditEmail: TEdit;
     chkUserAdminUserEditIsMale: TCheckBox;
     bttUserAdminUserEditSaveUser: TBitBtn;
+    pnlUserAdminRemedyEdit: TPanel;
+    lblUserAdminRemedyEditDescription: TLabel;
+    bttUserAdminRemedyEditRemoveRemedy: TBitBtn;
+    dbgUserAdminRemedyEditRemedy: TDBGrid;
+    redUserAdminRemedyEditDescription: TRichEdit;
+    edtUserAdminRemedyEditName: TEdit;
+    bttUserAdminRemedyEditSaveRemedy: TBitBtn;
+    edtUserAdminRemedyEditPrice: TEdit;
+    chkUserAdminRemedyEditNatural: TCheckBox;
+    lblUserAdminRemedy: TLabel;
+    sedUserAdminRemedyEditEaseOfUse: TSpinEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
