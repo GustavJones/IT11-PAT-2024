@@ -20,7 +20,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1189
     Height = 647
-    ActivePage = tsHome
+    ActivePage = tsAdmin
     Align = alClient
     TabOrder = 0
     object tsHome: TTabSheet
@@ -13528,28 +13528,30 @@ object frmHome: TfrmHome
               'Female')
             Constraints.MaxHeight = 72
             TabOrder = 4
+            ExplicitHeight = 44
           end
           object pnlHomeSignUpBirthDate: TPanel
             AlignWithMargins = True
             Left = 145
-            Top = 173
+            Top = 168
             Width = 109
-            Height = 65
+            Height = 50
             Margins.Left = 5
-            Margins.Top = 10
+            Margins.Top = 5
             Margins.Right = 50
-            Margins.Bottom = 10
+            Margins.Bottom = 30
             Align = alRight
             BevelOuter = bvNone
             TabOrder = 5
+            ExplicitTop = 173
+            ExplicitHeight = 65
             object lblSignUpBirthDay: TLabel
               AlignWithMargins = True
               Left = 0
-              Top = 10
+              Top = 3
               Width = 109
-              Height = 23
+              Height = 15
               Margins.Left = 0
-              Margins.Top = 10
               Margins.Right = 0
               Align = alTop
               Alignment = taCenter
@@ -13561,11 +13563,12 @@ object frmHome: TfrmHome
               Font.Name = 'Segoe UI Semilight'
               Font.Style = []
               ParentFont = False
-              ExplicitLeft = -5
+              ExplicitTop = 10
             end
             object dtpSignUpBirthDate: TDateTimePicker
+              AlignWithMargins = True
               Left = 0
-              Top = 36
+              Top = 21
               Width = 109
               Height = 24
               Margins.Left = 0
@@ -13576,7 +13579,16 @@ object frmHome: TfrmHome
               Date = 45531.000000000000000000
               Time = 0.806187974536442200
               TabOrder = 0
+              ExplicitTop = 36
             end
+          end
+          object chkHomeAdmin: TCheckBox
+            Left = 148
+            Top = 216
+            Width = 109
+            Height = 17
+            Caption = 'Admin Account'
+            TabOrder = 7
           end
         end
         object pnlHomeTitle: TPanel
@@ -15593,10 +15605,10 @@ object frmHome: TfrmHome
         end
       end
     end
-    object tsUserAdmin: TTabSheet
-      Caption = 'User Admin'
+    object tsAdmin: TTabSheet
+      Caption = 'Admin_a'
       ImageIndex = 2
-      object pnlUserAdmin: TPanel
+      object pnlAdmin: TPanel
         AlignWithMargins = True
         Left = 3
         Top = 3
@@ -15606,7 +15618,7 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        object lblUserAdmin: TLabel
+        object lblAdminUser: TLabel
           Left = 1
           Top = 1
           Width = 1169
@@ -15621,10 +15633,9 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitLeft = 16
-          ExplicitTop = -15
+          ExplicitWidth = 133
         end
-        object lblUserAdminRemedy: TLabel
+        object lblAdminRemedy: TLabel
           Left = 1
           Top = 249
           Width = 1169
@@ -15641,14 +15652,14 @@ object frmHome: TfrmHome
           StyleElements = [seClient, seBorder]
           ExplicitWidth = 171
         end
-        object pnlUserAdminUserEdit: TPanel
+        object pnlAdminUserEdit: TPanel
           Left = 1
           Top = 33
           Width = 1169
           Height = 216
           Align = alTop
           TabOrder = 0
-          object lblUserAdminUserEditDaysUsed: TLabel
+          object lblAdminUserEditDaysUsed: TLabel
             Left = 1016
             Top = 35
             Width = 75
@@ -15661,7 +15672,7 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
           end
-          object lblUserAdminUserEditDosage: TLabel
+          object lblAdminUserEditDosage: TLabel
             Left = 797
             Top = 6
             Width = 55
@@ -15674,7 +15685,7 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
           end
-          object Label3: TLabel
+          object lblAdminUserEditPrescription: TLabel
             Left = 584
             Top = 6
             Width = 82
@@ -15687,7 +15698,7 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
           end
-          object bttUserAdminUserEditRemoveUser: TBitBtn
+          object bttAdminUserEditRemoveUser: TBitBtn
             Left = 424
             Top = 176
             Width = 145
@@ -15703,7 +15714,7 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 0
           end
-          object dbgUserAdminUserEditUsers: TDBGrid
+          object dbgAdminUserEditUsers: TDBGrid
             AlignWithMargins = True
             Left = 15
             Top = 13
@@ -15722,7 +15733,7 @@ object frmHome: TfrmHome
             TitleFont.Name = 'Segoe UI'
             TitleFont.Style = []
           end
-          object lstUserAdminUserEditPrescriptions: TListBox
+          object lstAdminUserEditPrescription: TListBox
             Left = 584
             Top = 32
             Width = 207
@@ -15730,7 +15741,7 @@ object frmHome: TfrmHome
             ItemHeight = 15
             TabOrder = 2
           end
-          object bttUserAdminUserEditRemovePrescription: TBitBtn
+          object bttAdminUserEditRemovePrescription: TBitBtn
             Left = 1016
             Top = 176
             Width = 145
@@ -15746,7 +15757,7 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 3
           end
-          object redUserAdminUserEditDosage: TRichEdit
+          object redAdminUserEditDosage: TRichEdit
             Left = 797
             Top = 32
             Width = 213
@@ -15765,7 +15776,7 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 4
           end
-          object sedUserAdminUserEditDaysUsed: TSpinEdit
+          object sedAdminUserEditDaysUsed: TSpinEdit
             Left = 1016
             Top = 61
             Width = 128
@@ -15775,7 +15786,7 @@ object frmHome: TfrmHome
             TabOrder = 5
             Value = 0
           end
-          object edtUserAdminUserEditName: TEdit
+          object edtAdminUserEditName: TEdit
             AlignWithMargins = True
             Left = 424
             Top = 13
@@ -15792,7 +15803,7 @@ object frmHome: TfrmHome
             TabOrder = 6
             TextHint = 'Name'
           end
-          object edtUserAdminUserEditSurname: TEdit
+          object edtAdminUserEditSurname: TEdit
             AlignWithMargins = True
             Left = 424
             Top = 44
@@ -15809,7 +15820,7 @@ object frmHome: TfrmHome
             TabOrder = 7
             TextHint = 'Surname'
           end
-          object edtUserAdminUserEditEmail: TEdit
+          object edtAdminUserEditEmail: TEdit
             AlignWithMargins = True
             Left = 424
             Top = 75
@@ -15826,7 +15837,7 @@ object frmHome: TfrmHome
             TabOrder = 8
             TextHint = 'Email'
           end
-          object chkUserAdminUserEditIsMale: TCheckBox
+          object chkAdminUserEditIsMale: TCheckBox
             Left = 424
             Top = 106
             Width = 145
@@ -15834,7 +15845,7 @@ object frmHome: TfrmHome
             Caption = 'Is Male'
             TabOrder = 9
           end
-          object bttUserAdminUserEditSaveUser: TBitBtn
+          object bttAdminUserEditSaveUser: TBitBtn
             Left = 424
             Top = 145
             Width = 145
@@ -15851,15 +15862,14 @@ object frmHome: TfrmHome
             TabOrder = 10
           end
         end
-        object pnlUserAdminRemedyEdit: TPanel
+        object pnlAdminRemedyEdit: TPanel
           Left = 1
           Top = 281
           Width = 1169
           Height = 216
           Align = alTop
           TabOrder = 1
-          ExplicitTop = 249
-          object lblUserAdminRemedyEditDescription: TLabel
+          object lblAdminRemedyEditDescription: TLabel
             Left = 424
             Top = 6
             Width = 82
@@ -15872,7 +15882,7 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
           end
-          object bttUserAdminRemedyEditRemoveRemedy: TBitBtn
+          object bttAdminRemedyEditRemoveRemedy: TBitBtn
             Left = 1016
             Top = 176
             Width = 145
@@ -15888,7 +15898,7 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 0
           end
-          object dbgUserAdminRemedyEditRemedy: TDBGrid
+          object dbgAdminRemedyEditRemedy: TDBGrid
             AlignWithMargins = True
             Left = 15
             Top = 13
@@ -15907,7 +15917,7 @@ object frmHome: TfrmHome
             TitleFont.Name = 'Segoe UI'
             TitleFont.Style = []
           end
-          object redUserAdminRemedyEditDescription: TRichEdit
+          object redAdminRemedyEditDescription: TRichEdit
             Left = 424
             Top = 32
             Width = 569
@@ -15926,7 +15936,7 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 2
           end
-          object edtUserAdminRemedyEditName: TEdit
+          object edtAdminRemedyEditName: TEdit
             AlignWithMargins = True
             Left = 1016
             Top = 32
@@ -15943,7 +15953,7 @@ object frmHome: TfrmHome
             TabOrder = 3
             TextHint = 'Name'
           end
-          object bttUserAdminRemedyEditSaveRemedy: TBitBtn
+          object bttAdminRemedyEditSaveRemedy: TBitBtn
             Left = 1016
             Top = 145
             Width = 145
@@ -15959,7 +15969,7 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 4
           end
-          object edtUserAdminRemedyEditPrice: TEdit
+          object edtAdminRemedyEditPrice: TEdit
             AlignWithMargins = True
             Left = 1016
             Top = 63
@@ -15976,7 +15986,7 @@ object frmHome: TfrmHome
             TabOrder = 5
             TextHint = 'Price Per Dose'
           end
-          object chkUserAdminRemedyEditNatural: TCheckBox
+          object chkAdminRemedyEditNatural: TCheckBox
             Left = 1016
             Top = 94
             Width = 145
@@ -15984,7 +15994,7 @@ object frmHome: TfrmHome
             Caption = 'Natural'
             TabOrder = 6
           end
-          object sedUserAdminRemedyEditEaseOfUse: TSpinEdit
+          object sedAdminRemedyEditEaseOfUse: TSpinEdit
             Left = 1016
             Top = 115
             Width = 145
