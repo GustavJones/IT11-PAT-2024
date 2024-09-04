@@ -185,6 +185,7 @@ type
     lblAdminRemedy: TLabel;
     sedAdminRemedyEditEaseOfUse: TSpinEdit;
     chkHomeAdmin: TCheckBox;
+    chkAdminUserEditAdmin: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private

@@ -15841,7 +15841,7 @@ object frmHome: TfrmHome
             Left = 424
             Top = 106
             Width = 145
-            Height = 33
+            Height = 15
             Caption = 'Is Male'
             TabOrder = 9
           end
@@ -15860,6 +15860,14 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 10
+          end
+          object chkAdminUserEditAdmin: TCheckBox
+            Left = 424
+            Top = 127
+            Width = 145
+            Height = 15
+            Caption = 'Admin Account'
+            TabOrder = 11
           end
         end
         object pnlAdminRemedyEdit: TPanel
