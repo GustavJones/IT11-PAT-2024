@@ -12,3 +12,4 @@
 *.projdata
 *.tvsconfig
 *.dsk
+**/Thumbs.db
