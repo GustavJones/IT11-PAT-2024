@@ -20,7 +20,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1189
     Height = 647
-    ActivePage = tsHome
+    ActivePage = tsAdmin
     Align = alClient
     TabOrder = 0
     object tsHome: TTabSheet
@@ -15646,7 +15646,6 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitTop = 249
           ExplicitWidth = 171
         end
         object pnlAdminUserEdit: TPanel
@@ -15656,7 +15655,6 @@ object frmHome: TfrmHome
           Height = 264
           Align = alTop
           TabOrder = 0
-          ExplicitTop = 39
           object lblAdminUserEditDaysUsed: TLabel
             Left = 1016
             Top = 35
@@ -15867,6 +15865,22 @@ object frmHome: TfrmHome
             Caption = 'Admin Account'
             TabOrder = 11
           end
+          object bttAdminUserEditSavePrescription: TBitBtn
+            Left = 1016
+            Top = 185
+            Width = 145
+            Height = 25
+            Caption = 'Save Prescription'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Kind = bkAll
+            NumGlyphs = 2
+            ParentFont = False
+            TabOrder = 12
+          end
         end
         object pnlAdminRemedyEdit: TPanel
           Left = 1
@@ -15875,7 +15889,6 @@ object frmHome: TfrmHome
           Height = 264
           Align = alTop
           TabOrder = 1
-          ExplicitTop = 281
           object lblAdminRemedyEditDescription: TLabel
             Left = 424
             Top = 6

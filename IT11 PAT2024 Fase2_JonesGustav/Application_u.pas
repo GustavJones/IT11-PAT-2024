@@ -186,6 +186,7 @@ type
     sedAdminRemedyEditEaseOfUse: TSpinEdit;
     chkHomeAdmin: TCheckBox;
     chkAdminUserEditAdmin: TCheckBox;
+    bttAdminUserEditSavePrescription: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
