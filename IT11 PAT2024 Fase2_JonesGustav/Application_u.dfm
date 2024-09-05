@@ -13528,7 +13528,6 @@ object frmHome: TfrmHome
               'Female')
             Constraints.MaxHeight = 72
             TabOrder = 4
-            ExplicitHeight = 44
           end
           object pnlHomeSignUpBirthDate: TPanel
             AlignWithMargins = True
@@ -13543,8 +13542,6 @@ object frmHome: TfrmHome
             Align = alRight
             BevelOuter = bvNone
             TabOrder = 5
-            ExplicitTop = 173
-            ExplicitHeight = 65
             object lblSignUpBirthDay: TLabel
               AlignWithMargins = True
               Left = 0
@@ -13579,7 +13576,6 @@ object frmHome: TfrmHome
               Date = 45531.000000000000000000
               Time = 0.806187974536442200
               TabOrder = 0
-              ExplicitTop = 36
             end
           end
           object chkHomeAdmin: TCheckBox
@@ -15637,7 +15633,7 @@ object frmHome: TfrmHome
         end
         object lblAdminRemedy: TLabel
           Left = 1
-          Top = 249
+          Top = 297
           Width = 1169
           Height = 32
           Align = alTop
@@ -15650,15 +15646,17 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
+          ExplicitTop = 249
           ExplicitWidth = 171
         end
         object pnlAdminUserEdit: TPanel
           Left = 1
           Top = 33
           Width = 1169
-          Height = 216
+          Height = 264
           Align = alTop
           TabOrder = 0
+          ExplicitTop = 39
           object lblAdminUserEditDaysUsed: TLabel
             Left = 1016
             Top = 35
@@ -15700,7 +15698,7 @@ object frmHome: TfrmHome
           end
           object bttAdminUserEditRemoveUser: TBitBtn
             Left = 424
-            Top = 176
+            Top = 216
             Width = 145
             Height = 25
             Caption = 'Remove User'
@@ -15719,7 +15717,7 @@ object frmHome: TfrmHome
             Left = 15
             Top = 13
             Width = 393
-            Height = 188
+            Height = 228
             Margins.Left = 20
             Margins.Top = 10
             Margins.Right = 20
@@ -15737,13 +15735,13 @@ object frmHome: TfrmHome
             Left = 584
             Top = 32
             Width = 207
-            Height = 169
+            Height = 209
             ItemHeight = 15
             TabOrder = 2
           end
           object bttAdminUserEditRemovePrescription: TBitBtn
             Left = 1016
-            Top = 176
+            Top = 216
             Width = 145
             Height = 25
             Caption = 'Remove Prescription'
@@ -15761,7 +15759,7 @@ object frmHome: TfrmHome
             Left = 797
             Top = 32
             Width = 213
-            Height = 169
+            Height = 209
             Font.Charset = ANSI_CHARSET
             Font.Color = 11130150
             Font.Height = -15
@@ -15806,7 +15804,7 @@ object frmHome: TfrmHome
           object edtAdminUserEditSurname: TEdit
             AlignWithMargins = True
             Left = 424
-            Top = 44
+            Top = 50
             Width = 145
             Height = 25
             Margins.Left = 50
@@ -15823,7 +15821,7 @@ object frmHome: TfrmHome
           object edtAdminUserEditEmail: TEdit
             AlignWithMargins = True
             Left = 424
-            Top = 75
+            Top = 88
             Width = 145
             Height = 25
             Margins.Left = 50
@@ -15839,7 +15837,7 @@ object frmHome: TfrmHome
           end
           object chkAdminUserEditIsMale: TCheckBox
             Left = 424
-            Top = 106
+            Top = 126
             Width = 145
             Height = 15
             Caption = 'Is Male'
@@ -15847,7 +15845,7 @@ object frmHome: TfrmHome
           end
           object bttAdminUserEditSaveUser: TBitBtn
             Left = 424
-            Top = 145
+            Top = 185
             Width = 145
             Height = 25
             Caption = 'Save User'
@@ -15863,20 +15861,21 @@ object frmHome: TfrmHome
           end
           object chkAdminUserEditAdmin: TCheckBox
             Left = 424
-            Top = 127
+            Top = 147
             Width = 145
-            Height = 15
+            Height = 22
             Caption = 'Admin Account'
             TabOrder = 11
           end
         end
         object pnlAdminRemedyEdit: TPanel
           Left = 1
-          Top = 281
+          Top = 329
           Width = 1169
-          Height = 216
+          Height = 264
           Align = alTop
           TabOrder = 1
+          ExplicitTop = 281
           object lblAdminRemedyEditDescription: TLabel
             Left = 424
             Top = 6
@@ -15892,7 +15891,7 @@ object frmHome: TfrmHome
           end
           object bttAdminRemedyEditRemoveRemedy: TBitBtn
             Left = 1016
-            Top = 176
+            Top = 224
             Width = 145
             Height = 25
             Caption = 'Remove Remedy'
@@ -15911,7 +15910,7 @@ object frmHome: TfrmHome
             Left = 15
             Top = 13
             Width = 393
-            Height = 188
+            Height = 236
             Margins.Left = 20
             Margins.Top = 10
             Margins.Right = 20
@@ -15929,7 +15928,7 @@ object frmHome: TfrmHome
             Left = 424
             Top = 32
             Width = 569
-            Height = 169
+            Height = 217
             Font.Charset = ANSI_CHARSET
             Font.Color = 11130150
             Font.Height = -15
@@ -15963,7 +15962,7 @@ object frmHome: TfrmHome
           end
           object bttAdminRemedyEditSaveRemedy: TBitBtn
             Left = 1016
-            Top = 145
+            Top = 185
             Width = 145
             Height = 25
             Caption = 'Save Remedy'
@@ -15996,7 +15995,7 @@ object frmHome: TfrmHome
           end
           object chkAdminRemedyEditNatural: TCheckBox
             Left = 1016
-            Top = 94
+            Top = 110
             Width = 145
             Height = 15
             Caption = 'Natural'
@@ -16004,7 +16003,7 @@ object frmHome: TfrmHome
           end
           object sedAdminRemedyEditEaseOfUse: TSpinEdit
             Left = 1016
-            Top = 115
+            Top = 139
             Width = 145
             Height = 24
             MaxValue = 0
