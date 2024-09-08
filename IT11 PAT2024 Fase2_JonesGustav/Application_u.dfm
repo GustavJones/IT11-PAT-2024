@@ -3,8 +3,8 @@ object frmHome: TfrmHome
   Top = 74
   BorderStyle = bsDialog
   Caption = 'Boereraad'
-  ClientHeight = 647
-  ClientWidth = 1189
+  ClientHeight = 646
+  ClientWidth = 1185
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,9 +18,9 @@ object frmHome: TfrmHome
   object pgcTabs: TPageControl
     Left = 0
     Top = 0
-    Width = 1189
-    Height = 647
-    ActivePage = tsAdmin
+    Width = 1185
+    Height = 646
+    ActivePage = tsHome
     Align = alClient
     TabOrder = 0
     object tsHome: TTabSheet
@@ -28,8 +28,8 @@ object frmHome: TfrmHome
       object imgBackground: TImage
         Left = 0
         Top = 0
-        Width = 1181
-        Height = 617
+        Width = 1177
+        Height = 616
         Align = alClient
         Center = True
         Picture.Data = {
@@ -13264,8 +13264,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 300
         Top = 110
-        Width = 581
-        Height = 397
+        Width = 577
+        Height = 396
         Margins.Left = 300
         Margins.Top = 110
         Margins.Right = 300
@@ -13284,7 +13284,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 57
-          Width = 571
+          Width = 567
           Height = 23
           Align = alTop
           Alignment = taCenter
@@ -13303,7 +13303,7 @@ object frmHome: TfrmHome
           Left = 10
           Top = 91
           Width = 255
-          Height = 292
+          Height = 291
           Margins.Left = 10
           Margins.Top = 8
           Margins.Right = 10
@@ -13335,7 +13335,7 @@ object frmHome: TfrmHome
           object btnLogIn: TButton
             AlignWithMargins = True
             Left = 81
-            Top = 251
+            Top = 250
             Width = 93
             Height = 25
             Margins.Left = 80
@@ -13394,10 +13394,10 @@ object frmHome: TfrmHome
         end
         object pnlSignUp: TPanel
           AlignWithMargins = True
-          Left = 262
+          Left = 258
           Top = 91
           Width = 305
-          Height = 292
+          Height = 291
           Margins.Left = 10
           Margins.Top = 8
           Margins.Right = 10
@@ -13429,7 +13429,7 @@ object frmHome: TfrmHome
           object btnSignUp: TButton
             AlignWithMargins = True
             Left = 101
-            Top = 251
+            Top = 250
             Width = 103
             Height = 25
             Margins.Left = 100
@@ -13516,7 +13516,7 @@ object frmHome: TfrmHome
             Left = 51
             Top = 173
             Width = 89
-            Height = 65
+            Height = 64
             Margins.Left = 50
             Margins.Top = 10
             Margins.Right = 5
@@ -13534,7 +13534,7 @@ object frmHome: TfrmHome
             Left = 145
             Top = 168
             Width = 109
-            Height = 50
+            Height = 49
             Margins.Left = 5
             Margins.Top = 5
             Margins.Right = 50
@@ -13591,7 +13591,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 571
+          Width = 567
           Height = 48
           Align = alTop
           AutoSize = True
@@ -13933,8 +13933,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1175
-        Height = 611
+        Width = 1171
+        Height = 610
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -13942,7 +13942,7 @@ object frmHome: TfrmHome
         object lblRemediesTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1169
+          Width = 1165
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -13960,15 +13960,15 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1163
-          Height = 529
+          Width = 1159
+          Height = 528
           Align = alClient
           TabOrder = 0
           object pnlRemedy1: TPanel
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 1153
+            Width = 1149
             Height = 173
             Align = alTop
             BorderStyle = bsSingle
@@ -13978,7 +13978,7 @@ object frmHome: TfrmHome
               AlignWithMargins = True
               Left = 31
               Top = 4
-              Width = 1087
+              Width = 1083
               Height = 32
               Margins.Left = 30
               Margins.Right = 30
@@ -14014,9 +14014,9 @@ object frmHome: TfrmHome
             object lblRemediesRemedy1Price: TLabel
               Left = 1015
               Top = 19
-              Width = 89
+              Width = 84
               Height = 17
-              Caption = 'Price per dose:'
+              Caption = 'Price per unit:'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -13
@@ -14030,14 +14030,14 @@ object frmHome: TfrmHome
               Width = 124
               Height = 23
               TabOrder = 0
-              TextHint = 'Price per Dose'
+              TextHint = 'Price per Unit'
             end
             object cltRemediesRemedy1SymptomUse: TCheckListBox
               Left = 743
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 15
+              ItemHeight = 17
               Items.Strings = (
                 'Colds'
                 'Flu'
@@ -14074,10 +14074,10 @@ object frmHome: TfrmHome
               Width = 569
               Height = 111
               Font.Charset = ANSI_CHARSET
-              Font.Color = 11130150
+              Font.Color = 13431400
               Font.Height = -15
               Font.Name = 'Segoe UI'
-              Font.Style = []
+              Font.Style = [fsBold]
               Lines.Strings = (
                 'This is a description of the remedy')
               ParentFont = False
@@ -14129,8 +14129,8 @@ object frmHome: TfrmHome
         end
         object pnlRemediesNavigation: TPanel
           Left = 1
-          Top = 568
-          Width = 1169
+          Top = 567
+          Width = 1165
           Height = 38
           Align = alBottom
           ShowCaption = False
@@ -14289,8 +14289,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1175
-        Height = 611
+        Width = 1171
+        Height = 610
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -14298,7 +14298,7 @@ object frmHome: TfrmHome
         object lblAddRemedyTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1169
+          Width = 1165
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14314,8 +14314,8 @@ object frmHome: TfrmHome
         end
         object pnlAddRemedyNavigation: TPanel
           Left = 1
-          Top = 568
-          Width = 1169
+          Top = 567
+          Width = 1165
           Height = 38
           Align = alBottom
           ShowCaption = False
@@ -14478,8 +14478,8 @@ object frmHome: TfrmHome
         object pnlAddRemedyInputs: TPanel
           Left = 1
           Top = 33
-          Width = 1169
-          Height = 535
+          Width = 1165
+          Height = 534
           Align = alClient
           ShowCaption = False
           TabOrder = 1
@@ -14542,10 +14542,10 @@ object frmHome: TfrmHome
             Width = 713
             Height = 144
             Font.Charset = ANSI_CHARSET
-            Font.Color = 11130150
+            Font.Color = 13431400
             Font.Height = -15
             Font.Name = 'Segoe UI'
-            Font.Style = []
+            Font.Style = [fsBold]
             Lines.Strings = (
               'This is a description of the remedy')
             ParentFont = False
@@ -14556,7 +14556,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 15
+            ItemHeight = 17
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -14643,8 +14643,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1175
-        Height = 611
+        Width = 1171
+        Height = 610
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -14652,7 +14652,7 @@ object frmHome: TfrmHome
         object lblRemedyUsageTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1169
+          Width = 1165
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14669,7 +14669,7 @@ object frmHome: TfrmHome
         object lblRemedyUsageUseList: TLabel
           Left = 1
           Top = 172
-          Width = 1169
+          Width = 1165
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14687,15 +14687,15 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 207
-          Width = 1163
-          Height = 358
+          Width = 1159
+          Height = 357
           Align = alClient
           TabOrder = 0
           object pnlPrescription1: TPanel
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 1153
+            Width = 1149
             Height = 182
             Align = alTop
             BorderStyle = bsSingle
@@ -14705,7 +14705,7 @@ object frmHome: TfrmHome
               AlignWithMargins = True
               Left = 31
               Top = 4
-              Width = 1087
+              Width = 1083
               Height = 32
               Margins.Left = 30
               Margins.Right = 30
@@ -14722,9 +14722,9 @@ object frmHome: TfrmHome
             object lblPrescription1Dosage: TLabel
               Left = 31
               Top = 54
-              Width = 55
+              Width = 140
               Height = 20
-              Caption = 'Dosage:'
+              Caption = 'Dosage Information:'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -15
@@ -14733,11 +14733,24 @@ object frmHome: TfrmHome
               ParentFont = False
             end
             object lblPrescription1DaysUsed: TLabel
-              Left = 877
-              Top = 80
+              Left = 868
+              Top = 54
               Width = 75
               Height = 20
               Caption = 'Days Used:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -15
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = []
+              ParentFont = False
+            end
+            object Label1: TLabel
+              Left = 868
+              Top = 110
+              Width = 141
+              Height = 20
+              Caption = 'Effectiveness: (0 - 10)'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -15
@@ -14762,8 +14775,8 @@ object frmHome: TfrmHome
               TabOrder = 0
             end
             object bttPrescription1Reset: TBitBtn
-              Left = 877
-              Top = 136
+              Left = 1015
+              Top = 74
               Width = 124
               Height = 25
               Caption = 'Reset'
@@ -14777,10 +14790,10 @@ object frmHome: TfrmHome
               Width = 818
               Height = 81
               Font.Charset = ANSI_CHARSET
-              Font.Color = 11130150
+              Font.Color = 13431400
               Font.Height = -15
               Font.Name = 'Segoe UI'
-              Font.Style = []
+              Font.Style = [fsBold]
               Lines.Strings = (
                 'This is a description of usage dose'
                 'e.g.'
@@ -14789,9 +14802,9 @@ object frmHome: TfrmHome
               TabOrder = 2
             end
             object sedPrescription1DaysUsed: TSpinEdit
-              Left = 877
-              Top = 106
-              Width = 124
+              Left = 868
+              Top = 80
+              Width = 129
               Height = 24
               MaxValue = 0
               MinValue = 0
@@ -14814,16 +14827,28 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 4
             end
+            object SpinEdit1: TSpinEdit
+              Left = 868
+              Top = 136
+              Width = 129
+              Height = 24
+              MaxValue = 0
+              MinValue = 0
+              TabOrder = 5
+              Value = 0
+            end
           end
         end
         object pnlRemedyUsageNavigation: TPanel
           Left = 1
-          Top = 568
-          Width = 1169
+          Top = 567
+          Width = 1165
           Height = 38
           Align = alBottom
           ShowCaption = False
           TabOrder = 1
+          ExplicitTop = 568
+          ExplicitWidth = 1169
           object bttRemedyUsageNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -14973,16 +14998,16 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1163
+          Width = 1159
           Height = 133
           Align = alTop
           TabOrder = 2
           object lblRemedyUsageAddDosage: TLabel
             Left = 159
             Top = 10
-            Width = 55
+            Width = 140
             Height = 20
-            Caption = 'Dosage:'
+            Caption = 'Dosage Information:'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -15
@@ -15016,16 +15041,29 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
           end
+          object lblRemedyUsageAddEffectiveness: TLabel
+            Left = 875
+            Top = 34
+            Width = 200
+            Height = 20
+            Caption = 'Remedy Effectiveness: (0 - 10)'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
           object redRemedyUsageAddDosage: TRichEdit
             Left = 159
             Top = 36
             Width = 697
             Height = 85
             Font.Charset = ANSI_CHARSET
-            Font.Color = 11130150
+            Font.Color = 13431400
             Font.Height = -15
             Font.Name = 'Segoe UI'
-            Font.Style = []
+            Font.Style = [fsBold]
             Lines.Strings = (
               'This is a description of usage dose'
               'e.g.'
@@ -15044,9 +15082,9 @@ object frmHome: TfrmHome
             Value = 0
           end
           object bttRemedyUsageAddReset: TBitBtn
-            Left = 880
+            Left = 875
             Top = 96
-            Width = 124
+            Width = 129
             Height = 25
             Caption = 'Reset'
             Kind = bkRetry
@@ -15069,13 +15107,23 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 3
           end
-          object edtRemedyUsageAddRemedyName: TEdit
+          object sedRemedyUsageAddEffectiveness: TSpinEdit
+            Left = 875
+            Top = 60
+            Width = 129
+            Height = 24
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 4
+            Value = 0
+          end
+          object cmbRemedyUsageAddRemedy: TComboBox
             Left = 11
             Top = 36
             Width = 128
             Height = 23
-            TabOrder = 4
-            TextHint = 'Remedy Name'
+            TabOrder = 5
+            Text = 'Remedy Name'
           end
         end
       end
@@ -15087,8 +15135,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1175
-        Height = 611
+        Width = 1171
+        Height = 610
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -15096,7 +15144,7 @@ object frmHome: TfrmHome
         object lblRemedyPendingChanges: TLabel
           Left = 1
           Top = 1
-          Width = 1169
+          Width = 1165
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15112,12 +15160,14 @@ object frmHome: TfrmHome
         end
         object pnlRemedyPendingChangesNavigation: TPanel
           Left = 1
-          Top = 568
-          Width = 1169
+          Top = 567
+          Width = 1165
           Height = 38
           Align = alBottom
           ShowCaption = False
           TabOrder = 0
+          ExplicitTop = 568
+          ExplicitWidth = 1169
           object bttRemedyPendingChangesNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15267,7 +15317,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1163
+          Width = 1159
           Height = 256
           Align = alTop
           ShowCaption = False
@@ -15345,7 +15395,7 @@ object frmHome: TfrmHome
               Width = 145
               Height = 23
               TabOrder = 1
-              TextHint = 'Remedy Price per Dose'
+              TextHint = 'Remedy Price per Unit'
             end
             object chkRemedyPendingChangesAdditionsInfoNatural: TCheckBox
               Left = 32
@@ -15361,10 +15411,10 @@ object frmHome: TfrmHome
               Width = 209
               Height = 125
               Font.Charset = ANSI_CHARSET
-              Font.Color = 11130150
+              Font.Color = 13431400
               Font.Height = -15
               Font.Name = 'Segoe UI'
-              Font.Style = []
+              Font.Style = [fsBold]
               Lines.Strings = (
                 'This is a description of the '
                 'remedy')
@@ -15402,7 +15452,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 6
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15434,8 +15484,8 @@ object frmHome: TfrmHome
         object pnlRemedyPendingChangesEdit: TPanel
           AlignWithMargins = True
           Left = 4
-          Top = 309
-          Width = 1163
+          Top = 308
+          Width = 1159
           Height = 256
           Align = alBottom
           ShowCaption = False
@@ -15513,7 +15563,7 @@ object frmHome: TfrmHome
               Width = 145
               Height = 23
               TabOrder = 1
-              TextHint = 'Remedy Price per Dose'
+              TextHint = 'Remedy Price per Unit'
             end
             object chkRemedyPendingChangesEditInfoNatural: TCheckBox
               Left = 32
@@ -15529,10 +15579,10 @@ object frmHome: TfrmHome
               Width = 209
               Height = 125
               Font.Charset = ANSI_CHARSET
-              Font.Color = 11130150
+              Font.Color = 13431400
               Font.Height = -15
               Font.Name = 'Segoe UI'
-              Font.Style = []
+              Font.Style = [fsBold]
               Lines.Strings = (
                 'This is a description of the '
                 'remedy')
@@ -15570,7 +15620,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 6
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -15608,8 +15658,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1175
-        Height = 611
+        Width = 1171
+        Height = 610
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -15617,7 +15667,7 @@ object frmHome: TfrmHome
         object lblAdminUser: TLabel
           Left = 1
           Top = 1
-          Width = 1169
+          Width = 1165
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15634,7 +15684,7 @@ object frmHome: TfrmHome
         object lblAdminRemedy: TLabel
           Left = 1
           Top = 297
-          Width = 1169
+          Width = 1165
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15651,7 +15701,7 @@ object frmHome: TfrmHome
         object pnlAdminUserEdit: TPanel
           Left = 1
           Top = 33
-          Width = 1169
+          Width = 1165
           Height = 264
           Align = alTop
           TabOrder = 0
@@ -15759,10 +15809,10 @@ object frmHome: TfrmHome
             Width = 213
             Height = 209
             Font.Charset = ANSI_CHARSET
-            Font.Color = 11130150
+            Font.Color = 13431400
             Font.Height = -15
             Font.Name = 'Segoe UI'
-            Font.Style = []
+            Font.Style = [fsBold]
             Lines.Strings = (
               'This is a description of usage '
               'dose'
@@ -15885,8 +15935,8 @@ object frmHome: TfrmHome
         object pnlAdminRemedyEdit: TPanel
           Left = 1
           Top = 329
-          Width = 1169
-          Height = 264
+          Width = 1165
+          Height = 232
           Align = alTop
           TabOrder = 1
           object lblAdminRemedyEditDescription: TLabel
@@ -15902,9 +15952,22 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
           end
+          object lblAdminRemedyEditEaseOfUse: TLabel
+            Left = 1016
+            Top = 115
+            Width = 81
+            Height = 20
+            Caption = 'Ease of Use:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
           object bttAdminRemedyEditRemoveRemedy: TBitBtn
             Left = 1016
-            Top = 224
+            Top = 202
             Width = 145
             Height = 25
             Caption = 'Remove Remedy'
@@ -15923,7 +15986,7 @@ object frmHome: TfrmHome
             Left = 15
             Top = 13
             Width = 393
-            Height = 236
+            Height = 212
             Margins.Left = 20
             Margins.Top = 10
             Margins.Right = 20
@@ -15941,12 +16004,12 @@ object frmHome: TfrmHome
             Left = 424
             Top = 32
             Width = 569
-            Height = 217
+            Height = 193
             Font.Charset = ANSI_CHARSET
-            Font.Color = 11130150
+            Font.Color = 13431400
             Font.Height = -15
             Font.Name = 'Segoe UI'
-            Font.Style = []
+            Font.Style = [fsBold]
             Lines.Strings = (
               'This is a description of usage '
               'dose'
@@ -15975,7 +16038,7 @@ object frmHome: TfrmHome
           end
           object bttAdminRemedyEditSaveRemedy: TBitBtn
             Left = 1016
-            Top = 185
+            Top = 171
             Width = 145
             Height = 25
             Caption = 'Save Remedy'
@@ -16008,7 +16071,7 @@ object frmHome: TfrmHome
           end
           object chkAdminRemedyEditNatural: TCheckBox
             Left = 1016
-            Top = 110
+            Top = 94
             Width = 145
             Height = 15
             Caption = 'Natural'
@@ -16016,13 +16079,169 @@ object frmHome: TfrmHome
           end
           object sedAdminRemedyEditEaseOfUse: TSpinEdit
             Left = 1016
-            Top = 139
+            Top = 141
             Width = 145
             Height = 24
             MaxValue = 0
             MinValue = 0
             TabOrder = 7
             Value = 0
+          end
+        end
+        object pnlAdminNavigation: TPanel
+          Left = 1
+          Top = 567
+          Width = 1165
+          Height = 38
+          Align = alBottom
+          ShowCaption = False
+          TabOrder = 2
+          ExplicitLeft = 2
+          ExplicitTop = 569
+          ExplicitWidth = 1169
+          object bttAdminNavigationHelp: TBitBtn
+            Left = 86
+            Top = 6
+            Width = 75
+            Height = 25
+            Kind = bkHelp
+            NumGlyphs = 2
+            TabOrder = 0
+          end
+          object bttAdminNavigationHome: TBitBtn
+            Left = 5
+            Top = 6
+            Width = 75
+            Height = 25
+            Caption = 'Home'
+            Glyph.Data = {
+              42040000424D4204000000000000420000002800000010000000100000000100
+              20000300000000040000650F0000650F000000000000000000000000FF0000FF
+              0000FF0000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFF0000000000000000FEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+              000000000000FFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFF
+              FFFFFFFFFFFF00000000FFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFF
+              FFFF000000000000000000000000FFFFFFFFFFFFFFFF0000000000000000FFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF0000
+              000000000000000000000000000000000000FFFFFFFFFFFFFFFF000000000000
+              0000FFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF000000000000
+              00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFF0000
+              0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
+              0000000000000000000000000000000000000000000000000000FFFFFFFFFFFF
+              FFFF0000000000000000FFFFFFFFFFFFFFFF0000000000000000000000000000
+              000000000000000000000000000000000000000000000000000000000000FFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              000000000000}
+            ModalResult = 3
+            TabOrder = 1
+          end
+          object bttAdminNavigationNext: TBitBtn
+            Left = 1086
+            Top = 6
+            Width = 75
+            Height = 25
+            Caption = 'Next'
+            Glyph.Data = {
+              42040000424D4204000000000000420000002800000010000000100000000100
+              20000300000000040000D80F0000D80F000000000000000000000000FF0000FF
+              0000FF000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFF00FFFFFFFF00000000000000000000000000000000000000000000
+              00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000000000000000
+              00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00}
+            ModalResult = 3
+            TabOrder = 2
+          end
+          object bttAdminNavigationPrevious: TBitBtn
+            Left = 1005
+            Top = 6
+            Width = 75
+            Height = 25
+            Caption = 'Previous'
+            Glyph.Data = {
+              42040000424D4204000000000000420000002800000010000000100000000100
+              20000300000000040000D80F0000D80F000000000000000000000000FF0000FF
+              0000FF000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFF00000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000FFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+              0000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFF00000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00}
+            ModalResult = 3
+            TabOrder = 3
           end
         end
       end

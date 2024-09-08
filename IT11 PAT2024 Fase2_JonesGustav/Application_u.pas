@@ -155,7 +155,6 @@ type
     bttRemedyUsageAddAddPrescription: TBitBtn;
     lblRemedyUsageUseList: TLabel;
     lblRemedyUsageAddRemedyName: TLabel;
-    edtRemedyUsageAddRemedyName: TEdit;
     sedAddRemedyInputsEaseOfUse: TSpinEdit;
     lblAddRemedyInputsEaseOfUse: TLabel;
     bttAdminUserEditRemoveUser: TBitBtn;
@@ -187,6 +186,17 @@ type
     chkHomeAdmin: TCheckBox;
     chkAdminUserEditAdmin: TCheckBox;
     bttAdminUserEditSavePrescription: TBitBtn;
+    sedRemedyUsageAddEffectiveness: TSpinEdit;
+    SpinEdit1: TSpinEdit;
+    Label1: TLabel;
+    lblRemedyUsageAddEffectiveness: TLabel;
+    cmbRemedyUsageAddRemedy: TComboBox;
+    lblAdminRemedyEditEaseOfUse: TLabel;
+    pnlAdminNavigation: TPanel;
+    bttAdminNavigationHelp: TBitBtn;
+    bttAdminNavigationHome: TBitBtn;
+    bttAdminNavigationNext: TBitBtn;
+    bttAdminNavigationPrevious: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
