@@ -32,4 +32,15 @@ object dmBoereraad: TdmBoereraad
     Left = 256
     Top = 176
   end
+  object tblReview: TADOTable
+    Connection = conBoereraad
+    CursorType = ctStatic
+    TableName = 'tblUser'
+    Left = 320
+    Top = 176
+  end
+  object dsrReview: TDataSource
+    Left = 320
+    Top = 240
+  end
 end

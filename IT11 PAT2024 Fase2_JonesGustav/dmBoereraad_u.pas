@@ -12,6 +12,8 @@ type
     dsrUser: TDataSource;
     dsrRemedy: TDataSource;
     tblRemedy: TADOTable;
+    tblReview: TADOTable;
+    dsrReview: TDataSource;
 
   private
     { Private declarations }
@@ -51,6 +53,11 @@ begin
   tblRemedy.TableName := 'tblRemedy';
   tblRemedy.Open;
   dsrRemedy.DataSet := tblRemedy;
+
+  tblReview.Connection := conBoereraad;
+  tblReview.TableName := 'tblReview';
+  tblReview.Open;
+  dsrReview.DataSet := tblReview;
 
   Result := True;
 end;

@@ -194,24 +194,30 @@ type
     bttAdminNavigationPrevious: TBitBtn;
     sedAdminUserEditEffectiveness: TSpinEdit;
     lblAdminUserEditEffectiveness: TLabel;
+    btnHomeLogOut: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure pgcTabsChange(Sender: TObject);
     procedure btnLogInClick(Sender: TObject);
     procedure btnSignUpClick(Sender: TObject);
 
-    function CalculateFieldInformation(pFieldName : string; pSerializedChanges : string): string;
-    function GetUserPassword(pUserID : Integer): string;
+    function CalculateFieldInformation(pFieldName: string;
+      pSerializedChanges: string): string;
+    function GetUserPassword(pUserID: Integer): string;
     procedure AddRemedy();
     procedure AddReview();
+    procedure btnHomeLogOutClick(Sender: TObject);
+    procedure NavigationHomeClick(Sender: TObject);
+    procedure bttRemedyUsageAddAddReviewClick(Sender: TObject);
+    procedure dbgAdminUserEditUsersCellClick(Column: TColumn);
 
   private
   var
     iUserID: Integer;
-    bUserAdmin : Boolean;
+    bUserAdmin: Boolean;
 
-    arrPendingChangeRemedyName : array[1..150] of string;
-    arrPendingChangeRemedyInformation : array[1..150] of string;
+    arrPendingChangeRemedyName: array [1 .. 150] of string;
+    arrPendingChangeRemedyInformation: array [1 .. 150] of string;
   public
   var
     bDBInit: Boolean;
@@ -226,12 +232,33 @@ implementation
 
 procedure TfrmHome.AddRemedy;
 begin
-//
+  //
 end;
 
 procedure TfrmHome.AddReview;
 begin
-//
+  //
+end;
+
+procedure TfrmHome.btnHomeLogOutClick(Sender: TObject);
+begin
+  if bUserAdmin then
+  begin
+    tsAdmin.TabVisible := False;
+    tsRemedyPendingChanges.TabVisible := False;
+
+    iUserID := 0;
+    bUserAdmin := False;
+  end
+  else
+  begin
+    tsRemedies.TabVisible := False;
+    tsAddRemedy.TabVisible := False;
+    tsRemedyUsage.TabVisible := False;
+
+    iUserID := 0;
+    bUserAdmin := False;
+  end;
 end;
 
 procedure TfrmHome.btnLogInClick(Sender: TObject);
@@ -265,7 +292,7 @@ begin
   begin
     ShowMessage('Login information incorrect try again');
   end
-  else if not (bLogIn) then
+  else if not(bLogIn) then
   begin
     ShowMessage('Incorrect Password for Account Email');
   end
@@ -296,10 +323,74 @@ begin
   //
 end;
 
-function TfrmHome.CalculateFieldInformation(pFieldName,
-  pSerializedChanges: string): string;
+procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
+var
+  iTableIndex: Integer;
+  iDaysUsed: Integer;
+  sDosageInformation: String;
+  iEffectiveness: Integer;
+  iRemedyID: Integer;
+  i: Integer;
 begin
-//
+  iTableIndex := dmBoereraad.tblReview.RecNo;
+
+  iDaysUsed := sedRemedyUsageAddDaysUsed.Value;
+  sDosageInformation := redRemedyUsageAddDosage.Lines[0];
+
+  for i := 1 to redRemedyUsageAddDosage.Lines.Count do
+  begin
+    sDosageInformation := sDosageInformation + '#' + redRemedyUsageAddDosage.Lines[i];
+  end;
+
+  iEffectiveness := sedRemedyUsageAddEffectiveness.Value;
+
+  dmBoereraad.tblRemedy.First;
+  while not(dmBoereraad.tblRemedy.Eof) do
+  begin
+    if dmBoereraad.tblRemedy['RemedyName'] = cmbRemedyUsageAddRemedy.Items
+      [cmbRemedyUsageAddRemedy.ItemIndex] then
+    begin
+      iRemedyID := dmBoereraad.tblRemedy['ID'];
+    end;
+
+    dmBoereraad.tblRemedy.Next;
+  end;
+
+  dmBoereraad.tblReview.Last;
+
+  dmBoereraad.tblReview.Append;
+  dmBoereraad.tblReview['DaysUsed'] := iDaysUsed;
+  dmBoereraad.tblReview['Dosage'] := sDosageInformation;
+  dmBoereraad.tblReview['Effectiveness'] := iEffectiveness;
+  dmBoereraad.tblReview['UserID'] := iUserID;
+  dmBoereraad.tblReview['RemedyID'] := iRemedyID;
+  dmBoereraad.tblReview.Post;
+end;
+
+procedure TfrmHome.NavigationHomeClick(Sender: TObject);
+begin
+  pgcTabs.TabIndex := 0;
+end;
+
+function TfrmHome.CalculateFieldInformation(pFieldName, pSerializedChanges
+  : string): string;
+begin
+  //
+end;
+
+procedure TfrmHome.dbgAdminUserEditUsersCellClick(Column: TColumn);
+begin
+  dmBoereraad.tblReview.First;
+
+  while not(dmBoereraad.tblReview.Eof) do
+  begin
+    if dmBoereraad.tblReview['UserID'] = dmBoereraad.tblUser['ID'] then
+    begin
+      lstAdminUserEditReview.Items.Add(dmBoereraad.tblReview['RemedyID'])
+    end;
+
+    dmBoereraad.tblReview.Next;
+  end;
 end;
 
 procedure TfrmHome.FormActivate(Sender: TObject);
@@ -349,7 +440,8 @@ end;
 
 function TfrmHome.GetUserPassword(pUserID: Integer): string;
 begin
-//
+
+  //
 end;
 
 procedure TfrmHome.pgcTabsChange(Sender: TObject);
@@ -380,6 +472,7 @@ begin
     5:
       begin
         // Update selected user and remedy information
+
       end;
   end;
 end;
