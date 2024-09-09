@@ -188,7 +188,7 @@ type
     bttAdminUserEditSavePrescription: TBitBtn;
     sedRemedyUsageAddEffectiveness: TSpinEdit;
     SpinEdit1: TSpinEdit;
-    Label1: TLabel;
+    lblPrescription1Effectiveness: TLabel;
     lblRemedyUsageAddEffectiveness: TLabel;
     cmbRemedyUsageAddRemedy: TComboBox;
     lblAdminRemedyEditEaseOfUse: TLabel;
@@ -199,6 +199,7 @@ type
     bttAdminNavigationPrevious: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure pgcTabsChange(Sender: TObject);
   private
   public
   var
@@ -255,6 +256,24 @@ begin
   end;
 
   bDBInit := False;
+end;
+
+procedure TfrmHome.pgcTabsChange(Sender: TObject);
+begin
+case pgcTabs.TabIndex of
+  1:
+  begin
+    // List Remedies in DB
+  end;
+  3:
+  begin
+    // List Prescriptions of selected user
+  end;
+  5:
+  begin
+    // Update selected user and remedy information
+  end;
+end;
 end;
 
 end.

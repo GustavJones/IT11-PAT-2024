@@ -23,6 +23,7 @@ object frmHome: TfrmHome
     ActivePage = tsHome
     Align = alClient
     TabOrder = 0
+    OnChange = pgcTabsChange
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -14037,7 +14038,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 17
+              ItemHeight = 15
               Items.Strings = (
                 'Colds'
                 'Flu'
@@ -14556,7 +14557,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 17
+            ItemHeight = 15
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -14745,7 +14746,7 @@ object frmHome: TfrmHome
               Font.Style = []
               ParentFont = False
             end
-            object Label1: TLabel
+            object lblPrescription1Effectiveness: TLabel
               Left = 868
               Top = 110
               Width = 141
@@ -14847,8 +14848,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 1
-          ExplicitTop = 568
-          ExplicitWidth = 1169
           object bttRemedyUsageNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15166,8 +15165,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 0
-          ExplicitTop = 568
-          ExplicitWidth = 1169
           object bttRemedyPendingChangesNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15452,7 +15449,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 6
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15620,7 +15617,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 6
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -16096,9 +16093,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
-          ExplicitLeft = 2
-          ExplicitTop = 569
-          ExplicitWidth = 1169
           object bttAdminNavigationHelp: TBitBtn
             Left = 86
             Top = 6
