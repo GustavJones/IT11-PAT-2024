@@ -13256,6 +13256,7 @@ object frmHome: TfrmHome
           B1358CEC0684FE73980BBD499D2499C337E308B944C49D86E8EF1750C5481641
           DB8A7526B3FFD9}
         Stretch = True
+        Visible = False
         ExplicitLeft = 576
         ExplicitTop = 272
         ExplicitWidth = 105
@@ -13281,6 +13282,8 @@ object frmHome: TfrmHome
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seBorder]
+        ExplicitWidth = 573
+        ExplicitHeight = 395
         object lblDescription: TLabel
           AlignWithMargins = True
           Left = 3
@@ -13312,6 +13315,7 @@ object frmHome: TfrmHome
           Align = alLeft
           ShowCaption = False
           TabOrder = 0
+          ExplicitHeight = 290
           object lblLogIn: TLabel
             AlignWithMargins = True
             Left = 1
@@ -13345,6 +13349,8 @@ object frmHome: TfrmHome
             Align = alBottom
             Caption = 'Log In'
             TabOrder = 1
+            OnClick = btnLogInClick
+            ExplicitTop = 249
           end
           object pnlHomeLoginFields: TPanel
             AlignWithMargins = True
@@ -13362,7 +13368,7 @@ object frmHome: TfrmHome
             object edtLogInEmail: TEdit
               AlignWithMargins = True
               Left = 3
-              Top = 34
+              Top = 3
               Width = 147
               Height = 25
               Align = alTop
@@ -13374,11 +13380,13 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 1
               TextHint = 'Email'
+              ExplicitLeft = -5
+              ExplicitTop = -14
             end
             object edtLogInPassword: TEdit
               AlignWithMargins = True
               Left = 3
-              Top = 3
+              Top = 34
               Width = 147
               Height = 25
               Align = alTop
@@ -13390,6 +13398,7 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 0
               TextHint = 'Password'
+              ExplicitTop = 3
             end
           end
         end
@@ -13406,6 +13415,8 @@ object frmHome: TfrmHome
           Align = alRight
           ShowCaption = False
           TabOrder = 1
+          ExplicitLeft = 254
+          ExplicitHeight = 290
           object lblSignUp: TLabel
             AlignWithMargins = True
             Left = 1
@@ -13439,6 +13450,8 @@ object frmHome: TfrmHome
             Align = alBottom
             Caption = 'Sign Up'
             TabOrder = 6
+            OnClick = btnSignUpClick
+            ExplicitTop = 249
           end
           object edtSignUpEmail: TEdit
             AlignWithMargins = True
@@ -13529,6 +13542,7 @@ object frmHome: TfrmHome
               'Female')
             Constraints.MaxHeight = 72
             TabOrder = 4
+            ExplicitHeight = 63
           end
           object pnlHomeSignUpBirthDate: TPanel
             AlignWithMargins = True
@@ -13543,6 +13557,7 @@ object frmHome: TfrmHome
             Align = alRight
             BevelOuter = bvNone
             TabOrder = 5
+            ExplicitHeight = 48
             object lblSignUpBirthDay: TLabel
               AlignWithMargins = True
               Left = 0
@@ -13598,6 +13613,7 @@ object frmHome: TfrmHome
           AutoSize = True
           BevelOuter = bvNone
           TabOrder = 2
+          ExplicitWidth = 563
           object imgIcon: TImage
             Left = 230
             Top = 0
@@ -13928,8 +13944,9 @@ object frmHome: TfrmHome
       end
     end
     object tsRemedies: TTabSheet
-      Caption = 'Remedies_u'
+      Caption = 'Remedies'
       ImageIndex = 2
+      TabVisible = False
       object pnlRemedies: TPanel
         AlignWithMargins = True
         Left = 3
@@ -14038,7 +14055,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 15
+              ItemHeight = 17
               Items.Strings = (
                 'Colds'
                 'Flu'
@@ -14276,8 +14293,9 @@ object frmHome: TfrmHome
       end
     end
     object tsAddRemedy: TTabSheet
-      Caption = 'Add Remedy_u'
+      Caption = 'Add Remedy'
       ImageIndex = 3
+      TabVisible = False
       object pnlAddRemedy: TPanel
         AlignWithMargins = True
         Left = 3
@@ -14549,7 +14567,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 15
+            ItemHeight = 17
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -14622,8 +14640,9 @@ object frmHome: TfrmHome
       end
     end
     object tsRemedyUsage: TTabSheet
-      Caption = 'Remedy Usage_u'
+      Caption = 'Remedy Usage'
       ImageIndex = 5
+      TabVisible = False
       object pnlRemedyUsage: TPanel
         AlignWithMargins = True
         Left = 3
@@ -14641,7 +14660,7 @@ object frmHome: TfrmHome
           Height = 32
           Align = alTop
           Alignment = taCenter
-          Caption = 'Add Remedy Prescription:'
+          Caption = 'Add Remedy Review:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = 11130150
           Font.Height = -24
@@ -14649,7 +14668,7 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 280
+          ExplicitWidth = 227
         end
         object lblRemedyUsageUseList: TLabel
           Left = 1
@@ -14658,7 +14677,7 @@ object frmHome: TfrmHome
           Height = 32
           Align = alTop
           Alignment = taCenter
-          Caption = 'Remedy Prescription List:'
+          Caption = 'Remedy Review List:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = 11130150
           Font.Height = -24
@@ -14666,7 +14685,7 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 273
+          ExplicitWidth = 220
         end
         object sbxRemedyUsageList: TScrollBox
           AlignWithMargins = True
@@ -14676,7 +14695,7 @@ object frmHome: TfrmHome
           Height = 357
           Align = alClient
           TabOrder = 0
-          object pnlPrescription1: TPanel
+          object pnlReview1: TPanel
             AlignWithMargins = True
             Left = 3
             Top = 3
@@ -14686,7 +14705,7 @@ object frmHome: TfrmHome
             BorderStyle = bsSingle
             ShowCaption = False
             TabOrder = 0
-            object lblPrescription1: TLabel
+            object lblReview1: TLabel
               AlignWithMargins = True
               Left = 31
               Top = 4
@@ -14704,7 +14723,7 @@ object frmHome: TfrmHome
               ParentFont = False
               ExplicitWidth = 165
             end
-            object lblPrescription1Dosage: TLabel
+            object lblReview1Dosage: TLabel
               Left = 31
               Top = 54
               Width = 140
@@ -14717,7 +14736,7 @@ object frmHome: TfrmHome
               Font.Style = []
               ParentFont = False
             end
-            object lblPrescription1DaysUsed: TLabel
+            object lblReview1DaysUsed: TLabel
               Left = 868
               Top = 54
               Width = 75
@@ -14730,7 +14749,7 @@ object frmHome: TfrmHome
               Font.Style = []
               ParentFont = False
             end
-            object lblPrescription1Effectiveness: TLabel
+            object lblReview1Effectiveness: TLabel
               Left = 868
               Top = 110
               Width = 141
@@ -14743,7 +14762,7 @@ object frmHome: TfrmHome
               Font.Style = []
               ParentFont = False
             end
-            object bttPrescription1Save: TBitBtn
+            object bttReview1Save: TBitBtn
               Left = 1015
               Top = 136
               Width = 124
@@ -14759,7 +14778,7 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 0
             end
-            object bttPrescription1Reset: TBitBtn
+            object bttReview1Reset: TBitBtn
               Left = 1015
               Top = 74
               Width = 124
@@ -14769,7 +14788,7 @@ object frmHome: TfrmHome
               NumGlyphs = 2
               TabOrder = 1
             end
-            object redPrescription1Dosage: TRichEdit
+            object redReview1Dosage: TRichEdit
               Left = 31
               Top = 80
               Width = 818
@@ -14786,7 +14805,7 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 2
             end
-            object sedPrescription1DaysUsed: TSpinEdit
+            object sedReview1DaysUsed: TSpinEdit
               Left = 868
               Top = 80
               Width = 129
@@ -14796,7 +14815,7 @@ object frmHome: TfrmHome
               TabOrder = 3
               Value = 0
             end
-            object bttPrescription1Remove: TBitBtn
+            object bttReview1Remove: TBitBtn
               Left = 1015
               Top = 105
               Width = 124
@@ -14812,7 +14831,7 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 4
             end
-            object SpinEdit1: TSpinEdit
+            object sedReview1Effectiveness: TSpinEdit
               Left = 868
               Top = 136
               Width = 129
@@ -15074,7 +15093,7 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             TabOrder = 2
           end
-          object bttRemedyUsageAddAddPrescription: TBitBtn
+          object bttRemedyUsageAddAddReview: TBitBtn
             Left = 1022
             Top = 96
             Width = 124
@@ -15112,8 +15131,9 @@ object frmHome: TfrmHome
       end
     end
     object tsRemedyPendingChanges: TTabSheet
-      Caption = 'Remedy Pending Changes_a'
+      Caption = 'Remedy Pending Changes'
       ImageIndex = 4
+      TabVisible = False
       object pnlRemedyPendingChanges: TPanel
         AlignWithMargins = True
         Left = 3
@@ -15425,7 +15445,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15585,7 +15605,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -15617,8 +15637,9 @@ object frmHome: TfrmHome
       end
     end
     object tsAdmin: TTabSheet
-      Caption = 'Admin_a'
+      Caption = 'Admin'
       ImageIndex = 2
+      TabVisible = False
       object pnlAdmin: TPanel
         AlignWithMargins = True
         Left = 3
@@ -15696,12 +15717,25 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
           end
-          object lblAdminUserEditPrescription: TLabel
+          object lblAdminUserEditReview: TLabel
             Left = 584
             Top = 6
-            Width = 82
+            Width = 52
             Height = 20
-            Caption = 'Prescription'
+            Caption = 'Review:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblAdminUserEditEffectiveness: TLabel
+            Left = 1016
+            Top = 100
+            Width = 91
+            Height = 20
+            Caption = 'Effectiveness:'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -15
@@ -15744,7 +15778,7 @@ object frmHome: TfrmHome
             TitleFont.Name = 'Segoe UI'
             TitleFont.Style = []
           end
-          object lstAdminUserEditPrescription: TListBox
+          object lstAdminUserEditReview: TListBox
             Left = 584
             Top = 32
             Width = 207
@@ -15752,12 +15786,12 @@ object frmHome: TfrmHome
             ItemHeight = 15
             TabOrder = 2
           end
-          object bttAdminUserEditRemovePrescription: TBitBtn
+          object bttAdminUserEditRemoveReview: TBitBtn
             Left = 1016
             Top = 216
             Width = 145
             Height = 25
-            Caption = 'Remove Prescription'
+            Caption = 'Remove Review'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -15880,12 +15914,12 @@ object frmHome: TfrmHome
             Caption = 'Admin Account'
             TabOrder = 11
           end
-          object bttAdminUserEditSavePrescription: TBitBtn
+          object bttAdminUserEditSaveReview: TBitBtn
             Left = 1016
             Top = 185
             Width = 145
             Height = 25
-            Caption = 'Save Prescription'
+            Caption = 'Save Review'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -15895,6 +15929,16 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 12
+          end
+          object sedAdminUserEditEffectiveness: TSpinEdit
+            Left = 1016
+            Top = 126
+            Width = 129
+            Height = 24
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 13
+            Value = 0
           end
         end
         object pnlAdminRemedyEdit: TPanel

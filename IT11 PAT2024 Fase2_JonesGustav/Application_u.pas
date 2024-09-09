@@ -134,35 +134,35 @@ type
     bttRemedyUsageNavigationHome: TBitBtn;
     bttRemedyUsageNavigationNext: TBitBtn;
     bttRemedyUsageNavigationPrevious: TBitBtn;
-    pnlPrescription1: TPanel;
-    lblPrescription1: TLabel;
-    bttPrescription1Save: TBitBtn;
+    pnlReview1: TPanel;
+    lblReview1: TLabel;
+    bttReview1Save: TBitBtn;
     pnlRemedyUsageAdd: TPanel;
-    bttPrescription1Reset: TBitBtn;
-    redPrescription1Dosage: TRichEdit;
-    sedPrescription1DaysUsed: TSpinEdit;
-    lblPrescription1Dosage: TLabel;
-    lblPrescription1DaysUsed: TLabel;
+    bttReview1Reset: TBitBtn;
+    redReview1Dosage: TRichEdit;
+    sedReview1DaysUsed: TSpinEdit;
+    lblReview1Dosage: TLabel;
+    lblReview1DaysUsed: TLabel;
     lblRemedyUsageAddDosage: TLabel;
     redRemedyUsageAddDosage: TRichEdit;
     lblRemedyUsageAddDaysUsed: TLabel;
     sedRemedyUsageAddDaysUsed: TSpinEdit;
     bttRemedyUsageAddReset: TBitBtn;
-    bttRemedyUsageAddAddPrescription: TBitBtn;
+    bttRemedyUsageAddAddReview: TBitBtn;
     lblRemedyUsageUseList: TLabel;
     lblRemedyUsageAddRemedyName: TLabel;
     sedAddRemedyInputsEaseOfUse: TSpinEdit;
     lblAddRemedyInputsEaseOfUse: TLabel;
     bttAdminUserEditRemoveUser: TBitBtn;
-    lstAdminUserEditPrescription: TListBox;
-    bttPrescription1Remove: TBitBtn;
+    lstAdminUserEditReview: TListBox;
+    bttReview1Remove: TBitBtn;
     pnlAdminUserEdit: TPanel;
-    bttAdminUserEditRemovePrescription: TBitBtn;
+    bttAdminUserEditRemoveReview: TBitBtn;
     redAdminUserEditDosage: TRichEdit;
     sedAdminUserEditDaysUsed: TSpinEdit;
     lblAdminUserEditDaysUsed: TLabel;
     lblAdminUserEditDosage: TLabel;
-    lblAdminUserEditPrescription: TLabel;
+    lblAdminUserEditReview: TLabel;
     edtAdminUserEditName: TEdit;
     edtAdminUserEditSurname: TEdit;
     edtAdminUserEditEmail: TEdit;
@@ -180,10 +180,10 @@ type
     sedAdminRemedyEditEaseOfUse: TSpinEdit;
     chkHomeAdmin: TCheckBox;
     chkAdminUserEditAdmin: TCheckBox;
-    bttAdminUserEditSavePrescription: TBitBtn;
+    bttAdminUserEditSaveReview: TBitBtn;
     sedRemedyUsageAddEffectiveness: TSpinEdit;
-    SpinEdit1: TSpinEdit;
-    lblPrescription1Effectiveness: TLabel;
+    sedReview1Effectiveness: TSpinEdit;
+    lblReview1Effectiveness: TLabel;
     lblRemedyUsageAddEffectiveness: TLabel;
     cmbRemedyUsageAddRemedy: TComboBox;
     lblAdminRemedyEditEaseOfUse: TLabel;
@@ -192,10 +192,26 @@ type
     bttAdminNavigationHome: TBitBtn;
     bttAdminNavigationNext: TBitBtn;
     bttAdminNavigationPrevious: TBitBtn;
+    sedAdminUserEditEffectiveness: TSpinEdit;
+    lblAdminUserEditEffectiveness: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure pgcTabsChange(Sender: TObject);
+    procedure btnLogInClick(Sender: TObject);
+    procedure btnSignUpClick(Sender: TObject);
+
+    function CalculateFieldInformation(pFieldName : string; pSerializedChanges : string): string;
+    function GetUserPassword(pUserID : Integer): string;
+    procedure AddRemedy();
+    procedure AddReview();
+
   private
+  var
+    iUserID: Integer;
+    bUserAdmin : Boolean;
+
+    arrPendingChangeRemedyName : array[1..150] of string;
+    arrPendingChangeRemedyInformation : array[1..150] of string;
   public
   var
     bDBInit: Boolean;
@@ -207,6 +223,84 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmHome.AddRemedy;
+begin
+//
+end;
+
+procedure TfrmHome.AddReview;
+begin
+//
+end;
+
+procedure TfrmHome.btnLogInClick(Sender: TObject);
+var
+  bFound, bLogIn: Boolean;
+  iTableIndex: Integer;
+begin
+  bFound := False;
+  bLogIn := False;
+  iTableIndex := dmBoereraad.tblUser.RecNo;
+
+  while not(dmBoereraad.tblUser.Eof) and not(bFound) do
+  begin
+    if (dmBoereraad.tblUser['Email'] = edtLogInEmail.Text) then
+    begin
+      bFound := True;
+
+      if (dmBoereraad.tblUser['Password'] = edtLogInPassword.Text) then
+      begin
+        bLogIn := True;
+        iUserID := dmBoereraad.tblUser['ID'];
+        bUserAdmin := dmBoereraad.tblUser['IsAdmin'];
+      end
+
+    end;
+
+    dmBoereraad.tblUser.Next;
+  end;
+
+  if not bFound then
+  begin
+    ShowMessage('Login information incorrect try again');
+  end
+  else if not (bLogIn) then
+  begin
+    ShowMessage('Incorrect Password for Account Email');
+  end
+  else
+  begin
+    ShowMessage('Login Successful');
+    if bUserAdmin then
+    begin
+      tsAdmin.TabVisible := True;
+      tsRemedyPendingChanges.TabVisible := True;
+    end
+    else
+    begin
+      tsRemedies.TabVisible := True;
+      tsAddRemedy.TabVisible := True;
+      tsRemedyUsage.TabVisible := True;
+    end;
+
+    pgcTabs.TabIndex := pgcTabs.TabIndex + 1;
+  end;
+
+  dmBoereraad.tblUser.RecNo := iTableIndex;
+
+end;
+
+procedure TfrmHome.btnSignUpClick(Sender: TObject);
+begin
+  //
+end;
+
+function TfrmHome.CalculateFieldInformation(pFieldName,
+  pSerializedChanges: string): string;
+begin
+//
+end;
 
 procedure TfrmHome.FormActivate(Sender: TObject);
 begin
@@ -253,22 +347,41 @@ begin
   bDBInit := False;
 end;
 
-procedure TfrmHome.pgcTabsChange(Sender: TObject);
+function TfrmHome.GetUserPassword(pUserID: Integer): string;
 begin
-case pgcTabs.TabIndex of
-  1:
-  begin
-    // List Remedies in DB
-  end;
-  3:
-  begin
-    // List Prescriptions of selected user
-  end;
-  5:
-  begin
-    // Update selected user and remedy information
-  end;
+//
 end;
+
+procedure TfrmHome.pgcTabsChange(Sender: TObject);
+var
+  iTableIndex: Integer;
+begin
+  case pgcTabs.TabIndex of
+    1:
+      begin
+        // List Remedies in DB
+      end;
+    3:
+      begin
+        // List Reviews of selected user
+        iTableIndex := dmBoereraad.tblRemedy.RecNo;
+        cmbRemedyUsageAddRemedy.Items.Clear;
+
+        while not(dmBoereraad.tblRemedy.Eof) do
+        begin
+          cmbRemedyUsageAddRemedy.Items.Add
+            (dmBoereraad.tblRemedy['RemedyName']);
+
+          dmBoereraad.tblRemedy.Next;
+        end;
+
+        dmBoereraad.tblRemedy.RecNo := iTableIndex;
+      end;
+    5:
+      begin
+        // Update selected user and remedy information
+      end;
+  end;
 end;
 
 end.
