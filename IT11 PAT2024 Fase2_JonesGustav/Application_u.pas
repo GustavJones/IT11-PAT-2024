@@ -47,7 +47,6 @@ type
     redRemediesRemedy1Description: TRichEdit;
     imgRemediesRemedy1Image: TImage;
     lblRemediesRemedy1Price: TLabel;
-    chkRemediesRemedy1Natural: TCheckBox;
     tsAdmin: TTabSheet;
     btnRemediesRemedy1PickImage: TButton;
     pnlAdmin: TPanel;
@@ -83,7 +82,6 @@ type
     lblAddRemedyInputsRemedyInfo: TLabel;
     edtAddRemedyInputsPrice: TEdit;
     imgAddRemedyInputsImage: TImage;
-    chkAddRemedyInputsNatural: TCheckBox;
     bttAddRemedyNavigationReset: TBitBtn;
     bttAddRemedyInputsCreateRemedy: TBitBtn;
     btnAddRemedyInputsAddImage: TButton;
@@ -101,7 +99,6 @@ type
     edtRemedyPendingChangesAdditionsInfoName: TEdit;
     edtRemedyPendingChangesAdditionsInfoPrice: TEdit;
     pnlRemedyPendingChangesAdditionsInfo: TPanel;
-    chkRemedyPendingChangesAdditionsInfoNatural: TCheckBox;
     lblPendingChangesAdditionsInfo: TLabel;
     redRemedyPendingChangesAdditionsInfoDescription: TRichEdit;
     bttRemedyPendingChangesAdditionsInfoReset: TBitBtn;
@@ -121,7 +118,6 @@ type
     imgRemedyPendingChangesEditInfoImage: TImage;
     edtRemedyPendingChangesEditInfoName: TEdit;
     edtRemedyPendingChangesEditInfoPrice: TEdit;
-    chkRemedyPendingChangesEditInfoNatural: TCheckBox;
     redRemedyPendingChangesEditInfoDescription: TRichEdit;
     bttRemedyPendingChangesEditInfoReset: TBitBtn;
     bttRemedyPendingChangesEditInfoSaveRemedy: TBitBtn;
@@ -180,7 +176,6 @@ type
     edtAdminRemedyEditName: TEdit;
     bttAdminRemedyEditSaveRemedy: TBitBtn;
     edtAdminRemedyEditPrice: TEdit;
-    chkAdminRemedyEditNatural: TCheckBox;
     lblAdminRemedy: TLabel;
     sedAdminRemedyEditEaseOfUse: TSpinEdit;
     chkHomeAdmin: TCheckBox;

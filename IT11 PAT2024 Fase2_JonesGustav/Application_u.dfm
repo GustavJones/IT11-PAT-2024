@@ -14046,7 +14046,7 @@ object frmHome: TfrmHome
               TabOrder = 1
             end
             object btnRemediesRemedy1RemoveSymptom: TButton
-              Left = 880
+              Left = 877
               Top = 72
               Width = 121
               Height = 25
@@ -14054,7 +14054,7 @@ object frmHome: TfrmHome
               TabOrder = 2
             end
             object btnRemediesRemedy1AddSymptom: TButton
-              Left = 880
+              Left = 877
               Top = 42
               Width = 121
               Height = 24
@@ -14084,21 +14084,13 @@ object frmHome: TfrmHome
               ParentFont = False
               TabOrder = 5
             end
-            object chkRemediesRemedy1Natural: TCheckBox
-              Left = 880
-              Top = 103
-              Width = 121
-              Height = 19
-              Caption = 'Is Natural'
-              TabOrder = 6
-            end
             object btnRemediesRemedy1PickImage: TButton
               Left = 1015
               Top = 72
               Width = 124
               Height = 25
               Caption = 'Update Image'
-              TabOrder = 7
+              TabOrder = 6
             end
             object bttRemediesRemedy1Reset: TBitBtn
               Left = 877
@@ -14108,7 +14100,7 @@ object frmHome: TfrmHome
               Caption = 'Reset'
               Kind = bkRetry
               NumGlyphs = 2
-              TabOrder = 8
+              TabOrder = 7
             end
             object bttRemediesRemedy1Save: TBitBtn
               Left = 1015
@@ -14124,7 +14116,7 @@ object frmHome: TfrmHome
               Kind = bkAll
               NumGlyphs = 2
               ParentFont = False
-              TabOrder = 9
+              TabOrder = 8
             end
           end
         end
@@ -14592,14 +14584,6 @@ object frmHome: TfrmHome
             TabOrder = 6
             TextHint = 'Remedy Price per Dose'
           end
-          object chkAddRemedyInputsNatural: TCheckBox
-            Left = 32
-            Top = 106
-            Width = 121
-            Height = 19
-            Caption = 'Is Natural'
-            TabOrder = 7
-          end
           object bttAddRemedyInputsCreateRemedy: TBitBtn
             Left = 1015
             Top = 504
@@ -14614,7 +14598,7 @@ object frmHome: TfrmHome
             Kind = bkAll
             NumGlyphs = 2
             ParentFont = False
-            TabOrder = 8
+            TabOrder = 7
           end
           object btnAddRemedyInputsAddImage: TButton
             Left = 32
@@ -14622,7 +14606,7 @@ object frmHome: TfrmHome
             Width = 138
             Height = 25
             Caption = 'Add Image'
-            TabOrder = 9
+            TabOrder = 8
           end
           object sedAddRemedyInputsEaseOfUse: TSpinEdit
             Left = 208
@@ -14631,7 +14615,7 @@ object frmHome: TfrmHome
             Height = 24
             MaxValue = 0
             MinValue = 0
-            TabOrder = 10
+            TabOrder = 9
             Value = 0
           end
         end
@@ -15394,14 +15378,6 @@ object frmHome: TfrmHome
               TabOrder = 1
               TextHint = 'Remedy Price per Unit'
             end
-            object chkRemedyPendingChangesAdditionsInfoNatural: TCheckBox
-              Left = 32
-              Top = 128
-              Width = 121
-              Height = 19
-              Caption = 'Is Natural'
-              TabOrder = 2
-            end
             object redRemedyPendingChangesAdditionsInfoDescription: TRichEdit
               Left = 192
               Top = 44
@@ -15416,7 +15392,7 @@ object frmHome: TfrmHome
                 'This is a description of the '
                 'remedy')
               ParentFont = False
-              TabOrder = 3
+              TabOrder = 2
             end
             object bttRemedyPendingChangesAdditionsInfoReset: TBitBtn
               Left = 729
@@ -15426,7 +15402,7 @@ object frmHome: TfrmHome
               Caption = 'Reset'
               Kind = bkRetry
               NumGlyphs = 2
-              TabOrder = 4
+              TabOrder = 3
             end
             object bttRemedyPendingChangesAdditionsInfoAddRemedy: TBitBtn
               Left = 856
@@ -15442,7 +15418,7 @@ object frmHome: TfrmHome
               Kind = bkAll
               NumGlyphs = 2
               ParentFont = False
-              TabOrder = 5
+              TabOrder = 4
             end
             object cltRemedyPendingChangesAdditionsInfoSymptoms: TCheckListBox
               Left = 416
@@ -15450,14 +15426,14 @@ object frmHome: TfrmHome
               Width = 113
               Height = 89
               ItemHeight = 15
-              TabOrder = 6
+              TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
               Left = 545
               Top = 83
               Width = 138
               Height = 23
-              TabOrder = 7
+              TabOrder = 6
               TextHint = 'Add symptom'
             end
             object btnRemedyPendingChangesAdditionsInfoRemoveSymptom: TButton
@@ -15466,7 +15442,7 @@ object frmHome: TfrmHome
               Width = 138
               Height = 25
               Caption = 'Remove Symptom'
-              TabOrder = 8
+              TabOrder = 7
             end
             object btnRemedyPendingChangesAdditionsInfoAddSymptom: TButton
               Left = 545
@@ -15474,7 +15450,7 @@ object frmHome: TfrmHome
               Width = 138
               Height = 24
               Caption = 'Add Symptom'
-              TabOrder = 9
+              TabOrder = 8
             end
           end
         end
@@ -15562,14 +15538,6 @@ object frmHome: TfrmHome
               TabOrder = 1
               TextHint = 'Remedy Price per Unit'
             end
-            object chkRemedyPendingChangesEditInfoNatural: TCheckBox
-              Left = 32
-              Top = 128
-              Width = 121
-              Height = 19
-              Caption = 'Is Natural'
-              TabOrder = 2
-            end
             object redRemedyPendingChangesEditInfoDescription: TRichEdit
               Left = 192
               Top = 44
@@ -15584,7 +15552,7 @@ object frmHome: TfrmHome
                 'This is a description of the '
                 'remedy')
               ParentFont = False
-              TabOrder = 3
+              TabOrder = 2
             end
             object bttRemedyPendingChangesEditInfoReset: TBitBtn
               Left = 729
@@ -15594,7 +15562,7 @@ object frmHome: TfrmHome
               Caption = 'Reset'
               Kind = bkRetry
               NumGlyphs = 2
-              TabOrder = 4
+              TabOrder = 3
             end
             object bttRemedyPendingChangesEditInfoSaveRemedy: TBitBtn
               Left = 856
@@ -15610,7 +15578,7 @@ object frmHome: TfrmHome
               Kind = bkAll
               NumGlyphs = 2
               ParentFont = False
-              TabOrder = 5
+              TabOrder = 4
             end
             object cltRemedyPendingChangesEditInfoSymptoms: TCheckListBox
               Left = 416
@@ -15618,14 +15586,14 @@ object frmHome: TfrmHome
               Width = 113
               Height = 89
               ItemHeight = 15
-              TabOrder = 6
+              TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
               Left = 545
               Top = 83
               Width = 138
               Height = 23
-              TabOrder = 7
+              TabOrder = 6
               TextHint = 'Add symptom'
             end
             object btnRemedyPendingChangesEditInfoRemoveSymptom: TButton
@@ -15634,7 +15602,7 @@ object frmHome: TfrmHome
               Width = 138
               Height = 25
               Caption = 'Remove Symptom'
-              TabOrder = 8
+              TabOrder = 7
             end
             object btnRemedyPendingChangesEditInfoAddSymptom: TButton
               Left = 545
@@ -15642,7 +15610,7 @@ object frmHome: TfrmHome
               Width = 138
               Height = 24
               Caption = 'Add Symptom'
-              TabOrder = 9
+              TabOrder = 8
             end
           end
         end
@@ -16066,14 +16034,6 @@ object frmHome: TfrmHome
             TabOrder = 5
             TextHint = 'Price Per Dose'
           end
-          object chkAdminRemedyEditNatural: TCheckBox
-            Left = 1016
-            Top = 94
-            Width = 145
-            Height = 15
-            Caption = 'Natural'
-            TabOrder = 6
-          end
           object sedAdminRemedyEditEaseOfUse: TSpinEdit
             Left = 1016
             Top = 141
@@ -16081,7 +16041,7 @@ object frmHome: TfrmHome
             Height = 24
             MaxValue = 0
             MinValue = 0
-            TabOrder = 7
+            TabOrder = 6
             Value = 0
           end
         end
