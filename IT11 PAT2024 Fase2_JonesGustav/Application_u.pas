@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, Vcl.Buttons, Vcl.Samples.Spin;
+  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, Vcl.Buttons, Vcl.Samples.Spin;
 
 type
   TfrmHome = class(TForm)
@@ -35,20 +35,8 @@ type
     lblSignUpBirthDay: TLabel;
     tsRemedies: TTabSheet;
     pnlRemedies: TPanel;
-    pnlRemedy1: TPanel;
     lblRemediesTitle: TLabel;
-    lblRemediesRemedy1: TLabel;
-    edtRemediesRemedy1Price: TEdit;
-    cltRemediesRemedy1SymptomUse: TCheckListBox;
-    lblRemediesRemedy1SymptomsUse: TLabel;
-    btnRemediesRemedy1RemoveSymptom: TButton;
-    btnRemediesRemedy1AddSymptom: TButton;
-    edtRemediesRemedy1AddSymptom: TEdit;
-    redRemediesRemedy1Description: TRichEdit;
-    imgRemediesRemedy1Image: TImage;
-    lblRemediesRemedy1Price: TLabel;
     tsAdmin: TTabSheet;
-    btnRemediesRemedy1PickImage: TButton;
     pnlAdmin: TPanel;
     lblAdminUser: TLabel;
     dbgAdminUserEditUsers: TDBGrid;
@@ -58,12 +46,10 @@ type
     sbxRemediesList: TScrollBox;
     tsAddRemedy: TTabSheet;
     pnlRemediesNavigation: TPanel;
-    bttRemediesRemedy1Save: TBitBtn;
     bttRemediesNavigationHelp: TBitBtn;
     bttRemediesNavigationHome: TBitBtn;
     bttRemediesNavigationNext: TBitBtn;
     bttRemediesNavigationPrevious: TBitBtn;
-    bttRemediesRemedy1Reset: TBitBtn;
     pnlAddRemedy: TPanel;
     lblAddRemedyTitle: TLabel;
     pnlAddRemedyNavigation: TPanel;
@@ -195,34 +181,20 @@ type
     sedAdminUserEditEffectiveness: TSpinEdit;
     lblAdminUserEditEffectiveness: TLabel;
     btnHomeLogOut: TButton;
-    Panel1: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Image1: TImage;
-    Label3: TLabel;
-    Edit1: TEdit;
-    CheckListBox1: TCheckListBox;
-    Button1: TButton;
-    Button2: TButton;
-    Edit2: TEdit;
-    RichEdit1: TRichEdit;
-    Button3: TButton;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    Panel2: TPanel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Image2: TImage;
-    Label6: TLabel;
-    Edit3: TEdit;
-    CheckListBox2: TCheckListBox;
-    Button4: TButton;
-    Button5: TButton;
+    pnlTile: TPanel;
+    lblTileTitle: TLabel;
+    lblSymptom: TLabel;
+    imgImage: TImage;
+    lblPrice: TLabel;
+    edtPrice: TEdit;
+    cltSymptoms: TCheckListBox;
+    btnRemoveSymptom: TButton;
+    btnAddSymptom: TButton;
     Edit4: TEdit;
-    RichEdit2: TRichEdit;
-    Button6: TButton;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
+    redDescription: TRichEdit;
+    btnUpdateImage: TButton;
+    bttReset: TBitBtn;
+    bttSave: TBitBtn;
     Panel3: TPanel;
     Label7: TLabel;
     Label8: TLabel;

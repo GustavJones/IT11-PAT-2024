@@ -5,7 +5,8 @@ uses
   Application_u in 'Application_u.pas' {frmHome},
   Vcl.Themes,
   Vcl.Styles,
-  dmBoereraad_u in 'dmBoereraad_u.pas' {dmBoereraad: TDataModule};
+  dmBoereraad_u in 'dmBoereraad_u.pas' {dmBoereraad: TDataModule},
+  RemedyTile_u in 'RemedyTile_u.pas';
 
 {$R *.res}
 
