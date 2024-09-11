@@ -84,7 +84,6 @@ begin
   lblRemedy.Font.Name := 'Segoe UI Semibold';
   lblRemedy.Font.Style := [fsBold];
   lblRemedy.ParentFont := False;
-  lblRemedy.Visible := True;
 
   lblSymptoms.Parent := Self;
   lblSymptoms.Left := 743;
@@ -98,16 +97,88 @@ begin
   lblSymptoms.Font.Name := 'Segoe UI Semibold';
   lblSymptoms.Font.Style := [];
   lblSymptoms.ParentFont := False;
-  lblSymptoms.Visible := True;
 
   imgImage.Parent := Self;
   imgImage.Left := 31;
   imgImage.Top := 42;
   imgImage.Width := 114;
-  imgImage.Height := 11;
+  imgImage.Height := 111;
+  imgImage.AutoSize := False;
+  imgImage.Center := True;
   imgImage.Proportional := True;
   imgImage.Stretch := True;
-  imgImage.Visible := True;
+
+  // Testing
+  imgImage.Picture.LoadFromFile('K:\Delphi\GR 11\IT11-PAT-2024\IT11 PAT2024 Fase2_JonesGustav\style\onion.JPG');
+
+  lblPrice.Parent := Self;
+  lblPrice.Left := 1015;
+  lblPrice.Top := 19;
+  lblPrice.Width := 84;
+  lblPrice.Height := 17;
+  lblPrice.Caption := 'Price per Unit: ';
+  lblPrice.Font.Charset := DEFAULT_CHARSET;
+  lblPrice.Font.Color := clWindowText;
+  lblPrice.Font.Height := -13;
+  lblPrice.Font.Name := 'Segoe UI Semibold';
+  lblPrice.Font.Style := [];
+  lblPrice.ParentFont := False;
+
+  edtPrice.Parent := Self;
+  edtPrice.Left := 1015;
+  edtPrice.Top := 42;
+  edtPrice.Width := 124;
+  edtPrice.Height := 23;
+  edtPrice.TabOrder := 0;
+  edtPrice.TextHint := 'Price per Unit: ';
+
+  cltSymptoms.Parent := Self;
+  cltSymptoms.Left := 743;
+  cltSymptoms.Top := 42;
+  cltSymptoms.Width := 128;
+  cltSymptoms.Height := 79;
+  cltSymptoms.Items.Add('Brusing');
+  cltSymptoms.Items.Add('Pain');
+  cltSymptoms.Items.Add('Muscles');
+  cltSymptoms.TabOrder := 1;
+
+  btnRemoveSymptom.Parent := Self;
+  btnRemoveSymptom.Left := 877;
+  btnRemoveSymptom.Top := 72;
+  btnRemoveSymptom.Width := 121;
+  btnRemoveSymptom.Height := 25;
+  btnRemoveSymptom.Caption := 'Remove Symptom';
+  btnRemoveSymptom.TabOrder := 2;
+
+  btnAddSymptom.Parent := Self;
+  btnAddSymptom.Left := 877;
+  btnAddSymptom.Top := 42;
+  btnAddSymptom.Width := 121;
+  btnAddSymptom.Height := 24;
+  btnAddSymptom.Caption := 'Add Symptom';
+  btnAddSymptom.TabOrder := 3;
+
+  edtSymptom.Parent := Self;
+  edtSymptom.Left := 743;
+  edtSymptom.Top := 127;
+  edtSymptom.Width := 128;
+  edtSymptom.Height := 23;
+  edtSymptom.TabOrder := 4;
+  edtSymptom.TextHint := 'Add Symptom: ';
+
+  redDescription.Parent := Self;
+  redDescription.Left := 160;
+  redDescription.Top := 42;
+  redDescription.Width := 569;
+  redDescription.Height := 111;
+  redDescription.Font.Charset := ANSI_CHARSET;
+  redDescription.Font.Color := 13431400;
+  redDescription.Font.Height := 15;
+  redDescription.Font.Name := 'Segoe UI';
+  redDescription.Font.Style := [fsBold];
+  redDescription.Lines.Add('When applied to skin areas, brusing can be reduced');
+  redDescription.ParentFont := False;
+  redDescription.TabOrder := 5;
 end;
 
 end.
