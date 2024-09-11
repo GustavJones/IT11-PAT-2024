@@ -229,6 +229,8 @@ type
 
     arrPendingChangeRemedyName: array [1 .. 150] of string;
     arrPendingChangeRemedyInformation: array [1 .. 150] of string;
+
+    rtTest : TdynRemedyTile;
   public
   var
     bDBInit: Boolean;
@@ -323,6 +325,7 @@ begin
     end;
 
     pgcTabs.TabIndex := pgcTabs.TabIndex + 1;
+    frmHome.pgcTabsChange(btnLogIn);
   end;
 
   dmBoereraad.tblUser.RecNo := iTableIndex;
@@ -449,6 +452,7 @@ begin
   end;
 
   bDBInit := False;
+  rtTest := TdynRemedyTile.Create(Self);
 end;
 
 function TfrmHome.GetUserPassword(pUserID: Integer): string;
@@ -465,6 +469,7 @@ begin
     1:
       begin
         // List Remedies in DB
+        rtTest.Init(sbxRemediesList);
       end;
     3:
       begin
