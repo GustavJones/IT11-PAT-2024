@@ -86,6 +86,7 @@ begin
   lblRemedy.ParentFont := False;
   lblRemedy.Visible := True;
 
+  lblSymptoms.Parent := Self;
   lblSymptoms.Left := 743;
   lblSymptoms.Top := 16;
   lblSymptoms.Width := 128;
@@ -99,6 +100,7 @@ begin
   lblSymptoms.ParentFont := False;
   lblSymptoms.Visible := True;
 
+  imgImage.Parent := Self;
   imgImage.Left := 31;
   imgImage.Top := 42;
   imgImage.Width := 114;
