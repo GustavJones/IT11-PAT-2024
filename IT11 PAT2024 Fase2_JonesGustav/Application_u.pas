@@ -231,6 +231,7 @@ type
     arrPendingChangeRemedyInformation: array [1 .. 150] of string;
 
     rtTest : TdynRemedyTile;
+    rtTest2 : TdynRemedyTile;
   public
   var
     bDBInit: Boolean;
@@ -453,6 +454,7 @@ begin
 
   bDBInit := False;
   rtTest := TdynRemedyTile.Create(Self);
+  rtTest2 := TdynRemedyTile.Create(self);
 end;
 
 function TfrmHome.GetUserPassword(pUserID: Integer): string;
@@ -470,6 +472,7 @@ begin
       begin
         // List Remedies in DB
         rtTest.Init(sbxRemediesList);
+        rtTest2.Init(sbxRemediesList);
       end;
     3:
       begin

@@ -1,6 +1,6 @@
 object frmHome: TfrmHome
-  Left = 145
-  Top = 74
+  Left = 131
+  Top = 44
   BorderStyle = bsDialog
   Caption = 'Boereraad'
   ClientHeight = 644
@@ -14046,7 +14046,7 @@ object frmHome: TfrmHome
             object edtPrice: TEdit
               Left = 1015
               Top = 42
-              Width = 124
+              Width = 114
               Height = 23
               TabOrder = 0
               TextHint = 'Price per Unit'
@@ -14105,7 +14105,7 @@ object frmHome: TfrmHome
             object btnUpdateImage: TButton
               Left = 1015
               Top = 72
-              Width = 124
+              Width = 114
               Height = 25
               Caption = 'Update Image'
               TabOrder = 6
@@ -14123,7 +14123,7 @@ object frmHome: TfrmHome
             object bttSave: TBitBtn
               Left = 1015
               Top = 128
-              Width = 124
+              Width = 114
               Height = 25
               Caption = 'Save Updates'
               Font.Charset = DEFAULT_CHARSET

@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
-  Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics,
+  Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics, Vcl.Dialogs, Vcl.ExtDlgs,
   Winapi.Windows;
 
 type
@@ -26,6 +26,9 @@ type
     constructor Create(pOwner: TComponent); override;
 
   private
+    procedure AddSymptom(pSender : TObject);
+    procedure RemoveSymptom(pSender : TObject);
+    procedure UpdateImage(pSender : TObject);
 
   public
     procedure Init(pParent: TWinControl);
@@ -34,6 +37,24 @@ type
 implementation
 
 { TdynRemedyTile }
+
+procedure TdynRemedyTile.AddSymptom(pSender: TObject);
+var
+  sSymptom : String;
+begin
+  if (edtSymptom.Text = '') then
+  begin
+    ShowMessage('Please enter a symptom');
+    edtSymptom.SetFocus;
+  end
+  else
+  begin
+    sSymptom := edtSymptom.Text;
+
+    cltSymptoms.Items.Add(sSymptom);
+    Showmessage('Symptom Added');
+  end;
+end;
 
 constructor TdynRemedyTile.Create(pOwner: TComponent);
 begin
@@ -52,10 +73,14 @@ begin
   redDescription := TRichEdit.Create(Self);
   cltSymptoms := TCheckListBox.Create(Self);
   imgImage := TImage.Create(Self);
+
+  Self.Visible := False;
 end;
 
 procedure TdynRemedyTile.Init(pParent: TWinControl);
 begin
+  Self.Visible := True;
+
   Self.Parent := pParent;
   Self.AlignWithMargins := True;
   Self.Left := 3;
@@ -149,6 +174,7 @@ begin
   btnRemoveSymptom.Height := 25;
   btnRemoveSymptom.Caption := 'Remove Symptom';
   btnRemoveSymptom.TabOrder := 2;
+  btnRemoveSymptom.OnClick := RemoveSymptom;
 
   btnAddSymptom.Parent := Self;
   btnAddSymptom.Left := 877;
@@ -157,6 +183,7 @@ begin
   btnAddSymptom.Height := 24;
   btnAddSymptom.Caption := 'Add Symptom';
   btnAddSymptom.TabOrder := 3;
+  btnAddSymptom.OnClick := AddSymptom;
 
   edtSymptom.Parent := Self;
   edtSymptom.Left := 743;
@@ -179,6 +206,74 @@ begin
   redDescription.Lines.Add('When applied to skin areas, brusing can be reduced');
   redDescription.ParentFont := False;
   redDescription.TabOrder := 5;
+
+  btnUpdateImage.Parent := Self;
+  btnUpdateImage.Left := 1015;
+  btnUpdateImage.Top := 72;
+  btnUpdateImage.Width := 124;
+  btnUpdateImage.Height := 25;
+  btnUpdateImage.Caption := 'Update Image';
+  btnUpdateImage.TabOrder := 6;
+  btnUpdateImage.OnClick := UpdateImage;
+
+  bttReset.Parent := Self;
+  bttReset.Left := 877;
+  bttReset.Top := 128;
+  bttReset.Width := 124;
+  bttReset.Height := 25;
+  bttReset.Kind := bkRetry;
+  bttReset.Caption := 'Reset';
+  bttReset.NumGlyphs := 2;
+  bttReset.TabOrder := 7;
+
+  bttSave.Parent := Self;
+  bttSave.Left := 1015;
+  bttSave.Top := 128;
+  bttSave.Width := 124;
+  bttSave.Height := 25;
+  bttSave.Kind := bkAll;
+  bttSave.Caption := 'Save Updates';
+  bttSave.Font.Charset := DEFAULT_CHARSET;
+  bttSave.Font.Color := clWindowText;
+  bttSave.Font.Height := -12;
+  bttSave.Font.Name := 'Segoe UI';
+  bttSave.Font.Style := [];
+  bttSave.NumGlyphs := 2;
+  bttSave.ParentFont := False;
+  bttSave.TabOrder := 8;
+end;
+
+procedure TdynRemedyTile.RemoveSymptom(pSender: TObject);
+var
+  bEmpty : Boolean;
+begin
+// TODO
+
+//  for i := 1 to cltSymptoms.Items do
+
+
+end;
+
+procedure TdynRemedyTile.UpdateImage(pSender: TObject);
+var
+  dlgImageSelect : TOpenPictureDialog;
+begin
+  dlgImageSelect := TOpenPictureDialog.Create(Self);
+  dlgImageSelect.Execute;
+
+  if not FileExists(dlgImageSelect.FileName) then
+  begin
+    ShowMessage('File not found. Please try again!');
+  end
+  else
+  begin
+    imgImage.Picture.LoadFromFile(dlgImageSelect.FileName);
+
+    // TODO
+    // Store image in file
+  end;
+
+  dlgImageSelect.Destroy;
 end;
 
 end.
