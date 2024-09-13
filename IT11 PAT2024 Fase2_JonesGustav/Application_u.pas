@@ -463,27 +463,58 @@ begin
 end;
 
 procedure TfrmHome.LoadRemediesFromDB;
+const
+  sDELIMITER = ',';
 var
   i : Integer;
+  iDelimiter : Integer;
   iDBIndex : Integer;
+  sSymptomsStr : String;
+  sSymptom : String;
   rRemedy : TRemedy;
 begin
+  rRemedy := TRemedy.Create;
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
   while not (dmBoereraad.tblRemedy.Eof) do
   begin
-    rRemedy.Create;
     rRemedy.iID := dmBoereraad.tblRemedy['ID'];
     rRemedy.sName := dmBoereraad.tblRemedy['RemedyName'];
     rRemedy.rPrice := dmBoereraad.tblRemedy['PricePerDose'];
     rRemedy.sDescription := dmBoereraad.tblRemedy['Description'];
     rRemedy.iEaseOfUse := dmBoereraad.tblRemedy['EaseOfUse'];
 
+    sSymptomsStr := dmBoereraad.tblRemedy['SymptomUse'];
+
     // TODO Symptoms
+    i := 0;
+    while (i <= Length(sSymptomsStr)) do
+    begin
+      iDelimiter := Pos(sDELIMITER, sSymptomsStr, i + 1);
+
+      if iDelimiter < 0 then
+      begin
+
+      end
+      else
+      begin
+
+      end;
+
+      sSymptom := Copy(sSymptomsStr, i, iDelimiter - 1);
+      SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
+      rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] := sSymptom;
+
+      i := iDelimiter + Length(sDELIMITER);
+    end;
+
+    rRemedy.Print;
 
     dmBoereraad.tblRemedy.Next;
   end;
+
+  rRemedy.Destroy;
 
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
