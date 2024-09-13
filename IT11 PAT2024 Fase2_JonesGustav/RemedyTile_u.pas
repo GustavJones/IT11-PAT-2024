@@ -245,13 +245,33 @@ end;
 
 procedure TdynRemedyTile.RemoveSymptom(pSender: TObject);
 var
-  bEmpty : Boolean;
+  bChecked : Boolean;
+  i, iEnd: Integer;
 begin
-// TODO
+  // Validation
+  bChecked := False;
 
-//  for i := 1 to cltSymptoms.Items do
+  i := 1;
+  iEnd := cltSymptoms.Items.Count;
+  for i := 1 to cltSymptoms.Items.Count do
+  begin
+    ShowMessage(cltSymptoms.Items[i]);
+    if cltSymptoms.Checked[i - 1] then
+    begin
+      bChecked := True;
+      cltSymptoms.Items.Delete(i);
+    end
+  end;
 
-
+  if not bChecked then
+  begin
+    ShowMessage('Please select an item from the symptom list');
+    cltSymptoms.SetFocus;
+  end
+  else
+  begin
+    Showmessage('Removed symptoms');
+  end;
 end;
 
 procedure TdynRemedyTile.UpdateImage(pSender: TObject);
