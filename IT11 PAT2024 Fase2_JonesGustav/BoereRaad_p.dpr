@@ -8,7 +8,8 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   dmBoereraad_u in 'dmBoereraad_u.pas' {dmBoereraad: TDataModule},
-  RemedyTile_u in 'RemedyTile_u.pas';
+  RemedyTile_u in 'RemedyTile_u.pas',
+  Remedy_u in 'Remedy_u.pas';
 
 {$R *.res}
 

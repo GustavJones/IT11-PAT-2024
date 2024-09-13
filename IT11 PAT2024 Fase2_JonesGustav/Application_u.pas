@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, Vcl.Buttons, Vcl.Samples.Spin;
+  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, Remedy_u,
+  Vcl.Buttons, Vcl.Samples.Spin;
 
 type
   TfrmHome = class(TForm)
@@ -215,6 +216,7 @@ type
     function CalculateFieldInformation(pFieldName: string;
       pSerializedChanges: string): string;
     function GetUserPassword(pUserID: Integer): string;
+    procedure LoadRemediesFromDB;
     procedure AddRemedy();
     procedure AddReview();
     procedure btnHomeLogOutClick(Sender: TObject);
@@ -230,8 +232,7 @@ type
     arrPendingChangeRemedyName: array [1 .. 150] of string;
     arrPendingChangeRemedyInformation: array [1 .. 150] of string;
 
-    rtTest : TdynRemedyTile;
-    rtTest2 : TdynRemedyTile;
+    arrRemedyTiles : array of TdynRemedyTile;
   public
   var
     bDBInit: Boolean;
@@ -453,14 +454,38 @@ begin
   end;
 
   bDBInit := False;
-  rtTest := TdynRemedyTile.Create(Self);
-  rtTest2 := TdynRemedyTile.Create(self);
 end;
 
 function TfrmHome.GetUserPassword(pUserID: Integer): string;
 begin
 
   //
+end;
+
+procedure TfrmHome.LoadRemediesFromDB;
+var
+  i : Integer;
+  iDBIndex : Integer;
+  rRemedy : TRemedy;
+begin
+  iDBIndex := dmBoereraad.tblRemedy.RecNo;
+
+  dmBoereraad.tblRemedy.First;
+  while not (dmBoereraad.tblRemedy.Eof) do
+  begin
+    rRemedy.Create;
+    rRemedy.iID := dmBoereraad.tblRemedy['ID'];
+    rRemedy.sName := dmBoereraad.tblRemedy['RemedyName'];
+    rRemedy.rPrice := dmBoereraad.tblRemedy['PricePerDose'];
+    rRemedy.sDescription := dmBoereraad.tblRemedy['Description'];
+    rRemedy.iEaseOfUse := dmBoereraad.tblRemedy['EaseOfUse'];
+
+    // TODO Symptoms
+
+    dmBoereraad.tblRemedy.Next;
+  end;
+
+  dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
 procedure TfrmHome.pgcTabsChange(Sender: TObject);
@@ -471,8 +496,7 @@ begin
     1:
       begin
         // List Remedies in DB
-        rtTest.Init(sbxRemediesList);
-        rtTest2.Init(sbxRemediesList);
+        LoadRemediesFromDB;
       end;
     3:
       begin
