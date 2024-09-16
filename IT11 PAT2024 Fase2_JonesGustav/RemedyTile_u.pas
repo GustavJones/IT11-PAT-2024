@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
   Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics, Vcl.Dialogs, Vcl.ExtDlgs,
-  Winapi.Windows;
+  Winapi.Windows, Remedy_u;
 
 type
   TdynRemedyTile = class(TPanel)
@@ -26,12 +26,17 @@ type
     constructor Create(pOwner: TComponent); override;
 
   private
+    var
+      rRemedy : TRemedy;
+
     procedure AddSymptom(pSender : TObject);
     procedure RemoveSymptom(pSender : TObject);
     procedure UpdateImage(pSender : TObject);
+    procedure UpdateRemedy;
 
   public
-    procedure Init(pParent: TWinControl);
+    procedure Init(pParent: TWinControl) overload;
+    procedure Init(pParent: TWinControl; pRemedy : TRemedy) overload;
   end;
 
 implementation
@@ -77,6 +82,22 @@ begin
   Self.Visible := False;
 end;
 
+procedure TdynRemedyTile.Init(pParent: TWinControl; pRemedy: TRemedy);
+var
+  sSymptom : String;
+begin
+ Init(pParent);
+ // TODO
+
+ lblRemedy.Caption := pRemedy.sName;
+ redDescription.Lines.Add(pRemedy.sDescription);
+
+ for sSymptom in pRemedy.arrSymptoms do
+ begin
+  cltSymptoms.Items.Add(sSymptom);
+ end;
+end;
+
 procedure TdynRemedyTile.Init(pParent: TWinControl);
 begin
   Self.Visible := True;
@@ -102,7 +123,7 @@ begin
   lblRemedy.Margins.Left := 30;
   lblRemedy.Margins.Right := 30;
   lblRemedy.Align := alTop;
-  lblRemedy.Caption := 'Test';
+  lblRemedy.Caption := '';
   lblRemedy.Font.Charset := DEFAULT_CHARSET;
   lblRemedy.Font.Color := clWindowText;
   lblRemedy.Font.Height := -24;
@@ -115,7 +136,7 @@ begin
   lblSymptoms.Top := 16;
   lblSymptoms.Width := 128;
   lblSymptoms.Height := 20;
-  lblSymptoms.Caption := 'User for Symptoms:';
+  lblSymptoms.Caption := 'Uses for Symptoms:';
   lblSymptoms.Font.Charset := DEFAULT_CHARSET;
   lblSymptoms.Font.Color := clWindowText;
   lblSymptoms.Font.Height := -15;
@@ -134,7 +155,7 @@ begin
   imgImage.Stretch := True;
 
   // Testing
-  imgImage.Picture.LoadFromFile('K:\Delphi\GR 11\IT11-PAT-2024\IT11 PAT2024 Fase2_JonesGustav\style\onion.JPG');
+//  imgImage.Picture.LoadFromFile('K:\Delphi\GR 11\IT11-PAT-2024\IT11 PAT2024 Fase2_JonesGustav\style\onion.JPG');
 
   lblPrice.Parent := Self;
   lblPrice.Left := 1015;
@@ -162,9 +183,6 @@ begin
   cltSymptoms.Top := 42;
   cltSymptoms.Width := 128;
   cltSymptoms.Height := 79;
-  cltSymptoms.Items.Add('Brusing');
-  cltSymptoms.Items.Add('Pain');
-  cltSymptoms.Items.Add('Muscles');
   cltSymptoms.TabOrder := 1;
 
   btnRemoveSymptom.Parent := Self;
@@ -203,7 +221,6 @@ begin
   redDescription.Font.Height := 15;
   redDescription.Font.Name := 'Segoe UI';
   redDescription.Font.Style := [fsBold];
-  redDescription.Lines.Add('When applied to skin areas, brusing can be reduced');
   redDescription.ParentFont := False;
   redDescription.TabOrder := 5;
 
@@ -278,6 +295,11 @@ begin
   end;
 
   dlgImageSelect.Destroy;
+end;
+
+procedure TdynRemedyTile.UpdateRemedy;
+begin
+  // TODO
 end;
 
 end.

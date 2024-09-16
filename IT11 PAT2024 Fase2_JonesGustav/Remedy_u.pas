@@ -35,7 +35,7 @@ begin
   ShowMessage('Ease of Use: ' + IntToStr(iEaseOfUse));
 
   sSymptoms := '';
-  for i := 1 to Length(arrSymptoms) do
+  for i := 0 to Length(arrSymptoms) - 1 do
   begin
     sSymptoms := arrSymptoms[i] + ', ';
   end;

@@ -420,6 +420,8 @@ begin
       ShowMessage('Failed to find database');
     end;
   end;
+
+  LoadRemediesFromDB;
 end;
 
 procedure TfrmHome.FormCreate(Sender: TObject);
@@ -464,7 +466,7 @@ end;
 
 procedure TfrmHome.LoadRemediesFromDB;
 const
-  sDELIMITER = ',';
+  sDELIMITER = ', ';
 var
   i : Integer;
   iDelimiter : Integer;
@@ -472,8 +474,10 @@ var
   sSymptomsStr : String;
   sSymptom : String;
   rRemedy : TRemedy;
+  rtRemedyTile : TdynRemedyTile;
 begin
   rRemedy := TRemedy.Create;
+  rtRemedyTile := TdynRemedyTile.Create(Self);
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
@@ -486,30 +490,42 @@ begin
     rRemedy.iEaseOfUse := dmBoereraad.tblRemedy['EaseOfUse'];
 
     sSymptomsStr := dmBoereraad.tblRemedy['SymptomUse'];
+    SetLength(rRemedy.arrSymptoms, 0);
 
-    // TODO Symptoms
+    // Symptom String parsing
     i := 0;
     while (i <= Length(sSymptomsStr)) do
     begin
       iDelimiter := Pos(sDELIMITER, sSymptomsStr, i + 1);
 
-      if iDelimiter < 0 then
+      if iDelimiter <= 0 then
       begin
-
+        sSymptom := Copy(sSymptomsStr, i, Length(sSymptomsStr) - i + 1);
       end
       else
       begin
-
+        sSymptom := Copy(sSymptomsStr, i, iDelimiter - i - 1);
       end;
 
-      sSymptom := Copy(sSymptomsStr, i, iDelimiter - 1);
       SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
       rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] := sSymptom;
 
-      i := iDelimiter + Length(sDELIMITER);
+      if iDelimiter <= 0 then
+      begin
+        i := Length(sSymptomsStr) + 1;
+      end
+      else
+      begin
+        i := iDelimiter + Length(sDELIMITER);
+      end;
     end;
 
-    rRemedy.Print;
+    rtRemedyTile.Init(sbxRemediesList, rRemedy);
+
+    SetLength(arrRemedyTiles, Length(arrRemedyTiles) + 1);
+    arrRemedyTiles[Length(arrRemedyTiles) - 1] := rtRemedyTile;
+
+    rtRemedyTile := TdynRemedyTile.Create(Self);
 
     dmBoereraad.tblRemedy.Next;
   end;
@@ -524,11 +540,6 @@ var
   iTableIndex: Integer;
 begin
   case pgcTabs.TabIndex of
-    1:
-      begin
-        // List Remedies in DB
-        LoadRemediesFromDB;
-      end;
     3:
       begin
         // List Reviews of selected user
