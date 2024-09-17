@@ -8,6 +8,8 @@ type
   TRemedy = class(TObject)
   public
   procedure Print;
+  procedure CreateDBRecord;
+  procedure UpdateDBRecord;
 
   var
     iID : Integer;
@@ -22,6 +24,11 @@ type
 implementation
 
 { TRemedy }
+
+procedure TRemedy.CreateDBRecord;
+begin
+ //
+end;
 
 procedure TRemedy.Print;
 var
@@ -41,6 +48,11 @@ begin
   end;
 
   ShowMessage('Symptoms : ' + sSymptoms);
+end;
+
+procedure TRemedy.UpdateDBRecord;
+begin
+ //
 end;
 
 end.

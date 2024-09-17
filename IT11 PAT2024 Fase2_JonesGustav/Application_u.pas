@@ -207,6 +207,8 @@ type
     SpinEdit1: TSpinEdit;
     BitBtn7: TBitBtn;
     SpinEdit2: TSpinEdit;
+    Label1: TLabel;
+    SpinEdit3: TSpinEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure pgcTabsChange(Sender: TObject);
@@ -223,6 +225,7 @@ type
     procedure NavigationHomeClick(Sender: TObject);
     procedure bttRemedyUsageAddAddReviewClick(Sender: TObject);
     procedure dbgAdminUserEditUsersCellClick(Column: TColumn);
+    procedure bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
 
   private
   var
@@ -337,6 +340,26 @@ end;
 procedure TfrmHome.btnSignUpClick(Sender: TObject);
 begin
   //
+end;
+
+procedure TfrmHome.bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
+begin
+  // TODO
+
+  // Validation
+  if (edtAddRemedyInputsRemedyName.Text = '') then
+  begin
+    ShowMessage('Please enter a remedy name');
+    exit;
+  end;
+
+  if (edtAddRemedyInputsPrice.Text = '') then
+  begin
+    ShowMessage('Please enter a remedy price');
+    exit;
+  end;
+
+
 end;
 
 procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
@@ -456,6 +479,8 @@ begin
   end;
 
   bDBInit := False;
+
+  pgcTabs.ActivePage := tsHome;
 end;
 
 function TfrmHome.GetUserPassword(pUserID: Integer): string;

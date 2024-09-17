@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
-  Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics, Vcl.Dialogs, Vcl.ExtDlgs,
+  Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics, Vcl.Dialogs, Vcl.ExtDlgs, Vcl.Samples.Spin,
   Winapi.Windows, Remedy_u;
 
 type
@@ -18,10 +18,12 @@ type
     edtPrice: TEdit;
     lblRemedy: TLabel;
     lblPrice: TLabel;
+    lblEaseOfUse : TLabel;
     lblSymptoms: TLabel;
     redDescription: TRichEdit;
     cltSymptoms: TCheckListBox;
     imgImage: TImage;
+    sedEaseOfUse : TSpinEdit;
 
     constructor Create(pOwner: TComponent); override;
 
@@ -74,10 +76,12 @@ begin
   edtPrice := TEdit.Create(Self);
   lblRemedy := TLabel.Create(Self);
   lblPrice := TLabel.Create(Self);
+  lblEaseOfUse := TLabel.Create(Self);
   lblSymptoms := TLabel.Create(Self);
   redDescription := TRichEdit.Create(Self);
   cltSymptoms := TCheckListBox.Create(Self);
   imgImage := TImage.Create(Self);
+  sedEaseOfUse := TSpinEdit.Create(Self);
 
   Self.Visible := False;
 end;
@@ -104,7 +108,10 @@ begin
  begin
    iDelimiter := Pos(sDELIMITER, sParseStr, i);
 
-   sLine := Copy(sParseStr, i, iDelimiter - i - 1);
+   if (iDelimiter > 0) then
+    sLine := Copy(sParseStr, i, iDelimiter - i - 1)
+   else
+     sLine := Copy(sParseStr, i, Length(sParseStr) - i);
 
    redDescription.Lines.Add(sLine);
 
@@ -122,6 +129,9 @@ begin
  begin
   cltSymptoms.Items.Add(sSymptom);
  end;
+
+ sedEaseOfUse.Value := pRemedy.iEaseOfUse;
+ edtPrice.Text := FloatToStrF(pRemedy.rPrice, ffCurrency, 10, 2);
 end;
 
 procedure TdynRemedyTile.Init(pParent: TWinControl);
@@ -186,7 +196,7 @@ begin
   lblPrice.Parent := Self;
   lblPrice.Left := 1015;
   lblPrice.Top := 19;
-  lblPrice.Width := 84;
+  lblPrice.Width := 100;
   lblPrice.Height := 17;
   lblPrice.Caption := 'Price per Unit: ';
   lblPrice.Font.Charset := DEFAULT_CHARSET;
@@ -196,10 +206,23 @@ begin
   lblPrice.Font.Style := [];
   lblPrice.ParentFont := False;
 
+  lblEaseOfUse.Parent := Self;
+  lblEaseOfUse.Left := 1015;
+  lblEaseOfUse.Top := 65;
+  lblEaseOfUse.Width := 100;
+  lblEaseOfUse.Height := 17;
+  lblEaseOfUse.Caption := 'Ease Of Use: ';
+  lblEaseOfUse.Font.Charset := DEFAULT_CHARSET;
+  lblEaseOfUse.Font.Color := clWindowText;
+  lblEaseOfUse.Font.Height := -13;
+  lblEaseOfUse.Font.Name := 'Segoe UI Semibold';
+  lblEaseOfUse.Font.Style := [];
+  lblEaseOfUse.ParentFont := False;
+
   edtPrice.Parent := Self;
   edtPrice.Left := 1015;
   edtPrice.Top := 42;
-  edtPrice.Width := 124;
+  edtPrice.Width := 100;
   edtPrice.Height := 23;
   edtPrice.TabOrder := 0;
   edtPrice.TextHint := 'Price per Unit: ';
@@ -213,7 +236,7 @@ begin
 
   btnRemoveSymptom.Parent := Self;
   btnRemoveSymptom.Left := 877;
-  btnRemoveSymptom.Top := 72;
+  btnRemoveSymptom.Top := 65;
   btnRemoveSymptom.Width := 121;
   btnRemoveSymptom.Height := 25;
   btnRemoveSymptom.Caption := 'Remove Symptom';
@@ -251,9 +274,9 @@ begin
   redDescription.TabOrder := 5;
 
   btnUpdateImage.Parent := Self;
-  btnUpdateImage.Left := 1015;
-  btnUpdateImage.Top := 72;
-  btnUpdateImage.Width := 124;
+  btnUpdateImage.Left := 877;
+  btnUpdateImage.Top := 88;
+  btnUpdateImage.Width := 121;
   btnUpdateImage.Height := 25;
   btnUpdateImage.Caption := 'Update Image';
   btnUpdateImage.TabOrder := 6;
@@ -272,7 +295,7 @@ begin
   bttSave.Parent := Self;
   bttSave.Left := 1015;
   bttSave.Top := 128;
-  bttSave.Width := 124;
+  bttSave.Width := 100;
   bttSave.Height := 25;
   bttSave.Kind := bkAll;
   bttSave.Caption := 'Save Updates';
@@ -284,6 +307,16 @@ begin
   bttSave.NumGlyphs := 2;
   bttSave.ParentFont := False;
   bttSave.TabOrder := 8;
+
+  sedEaseOfUse.Parent := Self;
+  sedEaseOfUse.Left := 1015;
+  sedEaseOfUse.Top := 88;
+  sedEaseOfUse.Width := 100;
+  sedEaseOfUse.Height := 24;
+  sedEaseOfUse.MaxValue := 10;
+  sedEaseOfUse.MinValue := 0;
+  sedEaseOfUse.TabOrder := 9;
+  sedEaseOfUse.Value := 0;
 end;
 
 procedure TdynRemedyTile.RemoveSymptom(pSender: TObject);
