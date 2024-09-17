@@ -83,15 +83,41 @@ begin
 end;
 
 procedure TdynRemedyTile.Init(pParent: TWinControl; pRemedy: TRemedy);
+const
+  sDELIMITER = #10;
 var
+  i : Integer;
+  iDelimiter : Integer;
+  
   sSymptom : String;
+  sParseStr : String;
+  sLine : String;
 begin
  Init(pParent);
  // TODO
 
  lblRemedy.Caption := pRemedy.sName;
- redDescription.Lines.Add(pRemedy.sDescription);
+ sParseStr := pRemedy.sDescription;
 
+ i := 1;
+ while (i <= Length(sParseStr)) do
+ begin
+   iDelimiter := Pos(sDELIMITER, sParseStr, i);
+
+   sLine := Copy(sParseStr, i, iDelimiter - i - 1);
+
+   redDescription.Lines.Add(sLine);
+
+   if (iDelimiter > 0) then
+   begin
+     i := iDelimiter + 1;
+   end
+   else
+   begin
+     i := Length(sParseStr) + 1;
+   end;
+ end;
+ 
  for sSymptom in pRemedy.arrSymptoms do
  begin
   cltSymptoms.Items.Add(sSymptom);
