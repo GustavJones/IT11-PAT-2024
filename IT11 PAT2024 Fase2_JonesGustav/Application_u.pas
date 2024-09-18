@@ -299,7 +299,7 @@ begin
         bLogIn := True;
         iUserID := dmBoereraad.tblUser['ID'];
         bUserAdmin := dmBoereraad.tblUser['IsAdmin'];
-      end
+      end;
 
     end;
 
@@ -493,11 +493,7 @@ procedure TfrmHome.LoadRemediesFromDB;
 const
   sDELIMITER = ', ';
 var
-  i : Integer;
-  iDelimiter : Integer;
   iDBIndex : Integer;
-  sSymptomsStr : String;
-  sSymptom : String;
   rRemedy : TRemedy;
   rtRemedyTile : TdynRemedyTile;
 begin
@@ -508,45 +504,10 @@ begin
   dmBoereraad.tblRemedy.First;
   while not (dmBoereraad.tblRemedy.Eof) do
   begin
-    rRemedy.iID := dmBoereraad.tblRemedy['ID'];
-    rRemedy.sName := dmBoereraad.tblRemedy['RemedyName'];
-    rRemedy.rPrice := dmBoereraad.tblRemedy['PricePerDose'];
-    rRemedy.sDescription := dmBoereraad.tblRemedy['Description'];
-    rRemedy.iEaseOfUse := dmBoereraad.tblRemedy['EaseOfUse'];
-
-    sSymptomsStr := dmBoereraad.tblRemedy['SymptomUse'];
-    SetLength(rRemedy.arrSymptoms, 0);
-
-    // Symptom String parsing
-    i := 0;
-    while (i <= Length(sSymptomsStr)) do
-    begin
-      iDelimiter := Pos(sDELIMITER, sSymptomsStr, i + 1);
-
-      if iDelimiter <= 0 then
-      begin
-        sSymptom := Copy(sSymptomsStr, i, Length(sSymptomsStr) - i + 1);
-      end
-      else
-      begin
-        sSymptom := Copy(sSymptomsStr, i, iDelimiter - i - 1);
-      end;
-
-      SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
-      rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] := sSymptom;
-
-      if iDelimiter <= 0 then
-      begin
-        i := Length(sSymptomsStr) + 1;
-      end
-      else
-      begin
-        i := iDelimiter + Length(sDELIMITER);
-      end;
-    end;
-
+    rRemedy.ReadDBRecord(dmBoereraad.tblRemedy['ID']);
     rtRemedyTile.Init(sbxRemediesList, rRemedy);
 
+    // Add to array
     SetLength(arrRemedyTiles, Length(arrRemedyTiles) + 1);
     arrRemedyTiles[Length(arrRemedyTiles) - 1] := rtRemedyTile;
 

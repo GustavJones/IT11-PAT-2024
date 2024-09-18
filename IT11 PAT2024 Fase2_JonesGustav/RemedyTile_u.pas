@@ -28,15 +28,16 @@ type
     constructor Create(pOwner: TComponent); override;
 
   private
-    var
-      rRemedy : TRemedy;
-
     procedure AddSymptom(pSender : TObject);
     procedure RemoveSymptom(pSender : TObject);
     procedure UpdateImage(pSender : TObject);
-    procedure UpdateRemedy;
+    procedure UpdateRemedy(pSender : TObject);
+    procedure ResetRemedy(pSender : TObject);
 
   public
+    var
+      rRemedy : TRemedy;
+
     procedure Init(pParent: TWinControl) overload;
     procedure Init(pParent: TWinControl; pRemedy : TRemedy) overload;
   end;
@@ -59,6 +60,7 @@ begin
     sSymptom := edtSymptom.Text;
 
     cltSymptoms.Items.Add(sSymptom);
+    edtSymptom.Clear;
     Showmessage('Symptom Added');
   end;
 end;
@@ -98,11 +100,14 @@ var
   sLine : String;
 begin
  Init(pParent);
- // TODO
 
  lblRemedy.Caption := pRemedy.sName;
+ sedEaseOfUse.Value := pRemedy.iEaseOfUse;
+ edtPrice.Text := FloatToStrF(pRemedy.rPrice, ffCurrency, 10, 2);
+
  sParseStr := pRemedy.sDescription;
 
+ // Description Line Seperation
  i := 1;
  while (i <= Length(sParseStr)) do
  begin
@@ -111,7 +116,7 @@ begin
    if (iDelimiter > 0) then
     sLine := Copy(sParseStr, i, iDelimiter - i - 1)
    else
-     sLine := Copy(sParseStr, i, Length(sParseStr) - i);
+     sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
 
    redDescription.Lines.Add(sLine);
 
@@ -124,18 +129,22 @@ begin
      i := Length(sParseStr) + 1;
    end;
  end;
- 
+
+ // Symptoms
  for sSymptom in pRemedy.arrSymptoms do
  begin
   cltSymptoms.Items.Add(sSymptom);
  end;
 
- sedEaseOfUse.Value := pRemedy.iEaseOfUse;
- edtPrice.Text := FloatToStrF(pRemedy.rPrice, ffCurrency, 10, 2);
+ // Load Info into rRemedy
+ UpdateRemedy(Self);
+ rRemedy.iID := pRemedy.iID;
 end;
 
 procedure TdynRemedyTile.Init(pParent: TWinControl);
 begin
+  rRemedy := TRemedy.Create;
+
   Self.Visible := True;
 
   Self.Parent := pParent;
@@ -189,9 +198,6 @@ begin
   imgImage.Center := True;
   imgImage.Proportional := True;
   imgImage.Stretch := True;
-
-  // Testing
-//  imgImage.Picture.LoadFromFile('K:\Delphi\GR 11\IT11-PAT-2024\IT11 PAT2024 Fase2_JonesGustav\style\onion.JPG');
 
   lblPrice.Parent := Self;
   lblPrice.Left := 1015;
@@ -291,6 +297,7 @@ begin
   bttReset.Caption := 'Reset';
   bttReset.NumGlyphs := 2;
   bttReset.TabOrder := 7;
+  bttReset.OnClick := ResetRemedy;
 
   bttSave.Parent := Self;
   bttSave.Left := 1015;
@@ -307,6 +314,7 @@ begin
   bttSave.NumGlyphs := 2;
   bttSave.ParentFont := False;
   bttSave.TabOrder := 8;
+  bttSave.OnClick := UpdateRemedy;
 
   sedEaseOfUse.Parent := Self;
   sedEaseOfUse.Left := 1015;
@@ -334,6 +342,57 @@ end;
 
 end;
 
+procedure TdynRemedyTile.ResetRemedy(pSender: TObject);
+const
+  sDELIMITER = #10;
+var
+  i : Integer;
+  iDelimiter : Integer;
+
+  sSymptom : String;
+  sParseStr : String;
+  sLine : String;
+begin
+  // TODO
+  redDescription.Lines.Clear;
+  cltSymptoms.Items.Clear;
+
+  lblRemedy.Caption := rRemedy.sName;
+ sedEaseOfUse.Value := rRemedy.iEaseOfUse;
+ edtPrice.Text := FloatToStrF(rRemedy.rPrice, ffCurrency, 10, 2);
+
+ sParseStr := rRemedy.sDescription;
+
+ // Description Line Seperation
+ i := 1;
+ while (i <= Length(sParseStr)) do
+ begin
+   iDelimiter := Pos(sDELIMITER, sParseStr, i);
+
+   if (iDelimiter > 0) then
+    sLine := Copy(sParseStr, i, iDelimiter - i - 1)
+   else
+     sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
+
+   redDescription.Lines.Add(sLine);
+
+   if (iDelimiter > 0) then
+   begin
+     i := iDelimiter + 1;
+   end
+   else
+   begin
+     i := Length(sParseStr) + 1;
+   end;
+ end;
+
+ // Symptoms
+ for sSymptom in rRemedy.arrSymptoms do
+ begin
+  cltSymptoms.Items.Add(sSymptom);
+ end;
+end;
+
 procedure TdynRemedyTile.UpdateImage(pSender: TObject);
 var
   dlgImageSelect : TOpenPictureDialog;
@@ -357,8 +416,37 @@ begin
 end;
 
 procedure TdynRemedyTile.UpdateRemedy;
+var
+  i: Integer;
+  sPrice : String;
 begin
-  // TODO
+  rRemedy.sName := lblRemedy.Caption;
+  rRemedy.iEaseOfUse := sedEaseOfUse.Value;
+
+  // Price
+  sPrice := edtPrice.Text;
+  Delete(sPrice, 1, 1);
+  rRemedy.rPrice := StrToFloat(sPrice);
+
+  // Symptoms
+  SetLength(rRemedy.arrSymptoms, 0);
+  for i := 0 to cltSymptoms.Items.Count - 1 do
+  begin
+    SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
+    rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] := cltSymptoms.Items[i];
+  end;
+
+  // Description
+  rRemedy.sDescription := '';
+  for i := 0 to redDescription.Lines.Count - 1 do
+  begin
+    rRemedy.sDescription := rRemedy.sDescription + redDescription.Lines[i] + #10;
+  end;
+
+  if (rRemedy.sDescription[Length(rRemedy.sDescription)] = #10) then
+  begin
+    Delete(rRemedy.sDescription, Length(rRemedy.sDescription), 1);
+  end;
 end;
 
 end.
