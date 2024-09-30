@@ -26,11 +26,11 @@ implementation
 
 { TRemedy }
 
+// TODO
 procedure TRemedy.CreateDBRecord;
 var
   iDBIndex : Integer;
 begin
-  // TODO
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.Last;
@@ -127,9 +127,9 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
+// TODO
 procedure TRemedy.UpdateDBRecord;
 begin
-  // TODO
 end;
 
 end.

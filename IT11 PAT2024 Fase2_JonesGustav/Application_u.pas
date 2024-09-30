@@ -337,9 +337,66 @@ begin
 
 end;
 
+// TODO
 procedure TfrmHome.btnSignUpClick(Sender: TObject);
+const
+  iUSER_NAME_FIELD_SIZE = 40;
+  iUSER_SURNAME_FIELD_SIZE = 70;
+  iUSER_EMAIL_FIELD_SIZE = 50;
+  iUSER_PASSWORD_FIELD_SIZE = 30;
 begin
-  //
+  // Validation
+  // Presence check
+  if edtSignUpName.Text = '' then
+  begin
+    ShowMessage('Please enter your name');
+    exit;
+  end;
+
+  if edtSignUpSurname.Text = '' then
+  begin
+    ShowMessage('Please enter your surname');
+    exit;
+  end;
+
+  if edtSignUpPassword.Text = '' then
+  begin
+    ShowMessage('Please enter your password');
+    exit;
+  end;
+
+  if edtSignUpEmail.Text = '' then
+  begin
+    ShowMessage('Please enter your email');
+    exit;
+  end;
+
+  // Length Check
+  if Length(edtSignUpName.Text) > iUSER_NAME_FIELD_SIZE then
+  begin
+    ShowMessage('Name must be smaller than ' + IntToStr(iUSER_NAME_FIELD_SIZE) + ' characters');
+    exit;
+  end;
+
+  if Length(edtSignUpSurname.Text) > iUSER_SURNAME_FIELD_SIZE then
+  begin
+    ShowMessage('Surname must be smaller than ' + IntToStr(iUSER_SURNAME_FIELD_SIZE) + ' characters');
+    exit;
+  end;
+
+  if Length(edtSignUpPassword.Text) > iUSER_PASSWORD_FIELD_SIZE then
+  begin
+    ShowMessage('Password must be smaller than ' + IntToStr(iUSER_PASSWORD_FIELD_SIZE) + ' characters');
+    exit;
+  end;
+
+  if Length(edtSignUpEmail.Text) > iUSER_EMAIL_FIELD_SIZE then
+  begin
+    ShowMessage('Email must be smaller than ' + IntToStr(iUSER_EMAIL_FIELD_SIZE) + ' characters');
+    exit;
+  end;
+
+  // Add to DB
 end;
 
 procedure TfrmHome.bttAddRemedyInputsCreateRemedyClick(Sender: TObject);

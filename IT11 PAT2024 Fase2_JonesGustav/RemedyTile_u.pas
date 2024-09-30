@@ -4,8 +4,9 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
-  Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics, Vcl.Dialogs, Vcl.ExtDlgs, Vcl.Samples.Spin,
-  Winapi.Windows, Remedy_u;
+  Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics,
+  Vcl.Dialogs, Vcl.ExtDlgs, Vcl.Samples.Spin, Vcl.Imaging.jpeg,
+  Winapi.Windows, Remedy_u, Core_u;
 
 type
   TdynRemedyTile = class(TPanel)
@@ -18,52 +19,33 @@ type
     edtPrice: TEdit;
     lblRemedy: TLabel;
     lblPrice: TLabel;
-    lblEaseOfUse : TLabel;
+    lblEaseOfUse: TLabel;
     lblSymptoms: TLabel;
     redDescription: TRichEdit;
     cltSymptoms: TCheckListBox;
     imgImage: TImage;
-    sedEaseOfUse : TSpinEdit;
+    sedEaseOfUse: TSpinEdit;
 
     constructor Create(pOwner: TComponent); override;
 
   private
-    procedure AddSymptom(pSender : TObject);
-    procedure RemoveSymptom(pSender : TObject);
-    procedure UpdateImage(pSender : TObject);
-    procedure UpdateRemedy(pSender : TObject);
-    procedure ResetRemedy(pSender : TObject);
+    procedure AddSymptom(pSender: TObject);
+    procedure RemoveSymptom(pSender: TObject);
+    procedure UpdateImage(pSender: TObject);
+    procedure UpdateRemedy(pSender: TObject);
+    procedure ResetRemedy(pSender: TObject);
 
   public
-    var
-      rRemedy : TRemedy;
+  var
+    rRemedy: TRemedy;
 
-    procedure Init(pParent: TWinControl) overload;
-    procedure Init(pParent: TWinControl; pRemedy : TRemedy) overload;
+    procedure Init(pParent: TWinControl)overload;
+    procedure Init(pParent: TWinControl; pRemedy: TRemedy)overload;
   end;
 
 implementation
 
 { TdynRemedyTile }
-
-procedure TdynRemedyTile.AddSymptom(pSender: TObject);
-var
-  sSymptom : String;
-begin
-  if (edtSymptom.Text = '') then
-  begin
-    ShowMessage('Please enter a symptom');
-    edtSymptom.SetFocus;
-  end
-  else
-  begin
-    sSymptom := edtSymptom.Text;
-
-    cltSymptoms.Items.Add(sSymptom);
-    edtSymptom.Clear;
-    Showmessage('Symptom Added');
-  end;
-end;
 
 constructor TdynRemedyTile.Create(pOwner: TComponent);
 begin
@@ -88,57 +70,76 @@ begin
   Self.Visible := False;
 end;
 
+procedure TdynRemedyTile.AddSymptom(pSender: TObject);
+var
+  sSymptom: String;
+begin
+  if (edtSymptom.Text = '') then
+  begin
+    ShowMessage('Please enter a symptom');
+    edtSymptom.SetFocus;
+  end
+  else
+  begin
+    sSymptom := edtSymptom.Text;
+
+    cltSymptoms.Items.Add(sSymptom);
+    edtSymptom.Clear;
+    ShowMessage('Symptom Added');
+  end;
+end;
+
 procedure TdynRemedyTile.Init(pParent: TWinControl; pRemedy: TRemedy);
 const
   sDELIMITER = #10;
 var
-  i : Integer;
-  iDelimiter : Integer;
-  
-  sSymptom : String;
-  sParseStr : String;
-  sLine : String;
+  i: Integer;
+  iDelimiter: Integer;
+
+  sSymptom: String;
+  sParseStr: String;
+  sLine: String;
 begin
- Init(pParent);
+  Init(pParent);
 
- lblRemedy.Caption := pRemedy.sName;
- sedEaseOfUse.Value := pRemedy.iEaseOfUse;
- edtPrice.Text := FloatToStrF(pRemedy.rPrice, ffCurrency, 10, 2);
+  lblRemedy.Caption := pRemedy.sName;
+  sedEaseOfUse.Value := pRemedy.iEaseOfUse;
+  edtPrice.Text := FloatToStrF(pRemedy.rPrice, ffCurrency, 10, 2);
 
- sParseStr := pRemedy.sDescription;
+  sParseStr := pRemedy.sDescription;
 
- // Description Line Seperation
- i := 1;
- while (i <= Length(sParseStr)) do
- begin
-   iDelimiter := Pos(sDELIMITER, sParseStr, i);
+  // Description Line Seperation
+  i := 1;
+  while (i <= Length(sParseStr)) do
+  begin
+    iDelimiter := Pos(sDELIMITER, sParseStr, i);
 
-   if (iDelimiter > 0) then
-    sLine := Copy(sParseStr, i, iDelimiter - i - 1)
-   else
-     sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
+    if (iDelimiter > 0) then
+      sLine := Copy(sParseStr, i, iDelimiter - i - 1)
+    else
+      sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
 
-   redDescription.Lines.Add(sLine);
+    redDescription.Lines.Add(sLine);
 
-   if (iDelimiter > 0) then
-   begin
-     i := iDelimiter + 1;
-   end
-   else
-   begin
-     i := Length(sParseStr) + 1;
-   end;
- end;
+    if (iDelimiter > 0) then
+    begin
+      i := iDelimiter + 1;
+    end
+    else
+    begin
+      i := Length(sParseStr) + 1;
+    end;
+  end;
 
- // Symptoms
- for sSymptom in pRemedy.arrSymptoms do
- begin
-  cltSymptoms.Items.Add(sSymptom);
- end;
+  // Symptoms
+  for sSymptom in pRemedy.arrSymptoms do
+  begin
+    cltSymptoms.Items.Add(sSymptom);
+  end;
 
- // Load Info into rRemedy
- UpdateRemedy(Self);
- rRemedy.iID := pRemedy.iID;
+  // Load Info into rRemedy
+  UpdateRemedy(Self);
+  rRemedy.iID := pRemedy.iID;
 end;
 
 procedure TdynRemedyTile.Init(pParent: TWinControl);
@@ -331,14 +332,14 @@ procedure TdynRemedyTile.RemoveSymptom(pSender: TObject);
 var
   i: Integer;
 begin
-// Remove checked Symptoms from checklist
-for i := cltSymptoms.Items.Count downto 1 do
-begin
-  if cltSymptoms.Checked[i - 1] then
+  // Remove checked Symptoms from checklist
+  for i := cltSymptoms.Items.Count downto 1 do
   begin
-    cltSymptoms.Items.Delete(i - 1);
+    if cltSymptoms.Checked[i - 1] then
+    begin
+      cltSymptoms.Items.Delete(i - 1);
+    end;
   end;
-end;
 
 end;
 
@@ -346,58 +347,63 @@ procedure TdynRemedyTile.ResetRemedy(pSender: TObject);
 const
   sDELIMITER = #10;
 var
-  i : Integer;
-  iDelimiter : Integer;
+  i: Integer;
+  iDelimiter: Integer;
 
-  sSymptom : String;
-  sParseStr : String;
-  sLine : String;
+  sSymptom: String;
+  sParseStr: String;
+  sLine: String;
 begin
   // TODO
   redDescription.Lines.Clear;
   cltSymptoms.Items.Clear;
 
   lblRemedy.Caption := rRemedy.sName;
- sedEaseOfUse.Value := rRemedy.iEaseOfUse;
- edtPrice.Text := FloatToStrF(rRemedy.rPrice, ffCurrency, 10, 2);
+  sedEaseOfUse.Value := rRemedy.iEaseOfUse;
+  edtPrice.Text := FloatToStrF(rRemedy.rPrice, ffCurrency, 10, 2);
 
- sParseStr := rRemedy.sDescription;
+  sParseStr := rRemedy.sDescription;
 
- // Description Line Seperation
- i := 1;
- while (i <= Length(sParseStr)) do
- begin
-   iDelimiter := Pos(sDELIMITER, sParseStr, i);
+  // Description Line Seperation
+  i := 1;
+  while (i <= Length(sParseStr)) do
+  begin
+    iDelimiter := Pos(sDELIMITER, sParseStr, i);
 
-   if (iDelimiter > 0) then
-    sLine := Copy(sParseStr, i, iDelimiter - i - 1)
-   else
-     sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
+    if (iDelimiter > 0) then
+      sLine := Copy(sParseStr, i, iDelimiter - i - 1)
+    else
+      sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
 
-   redDescription.Lines.Add(sLine);
+    redDescription.Lines.Add(sLine);
 
-   if (iDelimiter > 0) then
-   begin
-     i := iDelimiter + 1;
-   end
-   else
-   begin
-     i := Length(sParseStr) + 1;
-   end;
- end;
+    if (iDelimiter > 0) then
+    begin
+      i := iDelimiter + 1;
+    end
+    else
+    begin
+      i := Length(sParseStr) + 1;
+    end;
+  end;
 
- // Symptoms
- for sSymptom in rRemedy.arrSymptoms do
- begin
-  cltSymptoms.Items.Add(sSymptom);
- end;
+  // Symptoms
+  for sSymptom in rRemedy.arrSymptoms do
+  begin
+    cltSymptoms.Items.Add(sSymptom);
+  end;
+
+  // Image
+  if FileExists(cProgramCore.GetImageDirectory + IntToStr(rRemedy.iID) + '.jpg') then
+    imgImage.Picture.LoadFromFile(cProgramCore.GetImageDirectory + IntToStr(rRemedy.iID) + '.jpg');
 end;
 
 procedure TdynRemedyTile.UpdateImage(pSender: TObject);
 var
-  dlgImageSelect : TOpenPictureDialog;
+  dlgImageSelect: TOpenPictureDialog;
 begin
   dlgImageSelect := TOpenPictureDialog.Create(Self);
+  dlgImageSelect.Filter := 'JPEG Images (*.jpg, *.jpeg)|*.JPG;*.JPEG';
   dlgImageSelect.Execute;
 
   if not FileExists(dlgImageSelect.FileName) then
@@ -408,8 +414,15 @@ begin
   begin
     imgImage.Picture.LoadFromFile(dlgImageSelect.FileName);
 
-    // TODO
+    // Create image directory
+    if not System.SysUtils.DirectoryExists(cProgramCore.GetImageDirectory) then
+    begin
+      ShowMessage(cProgramCore.GetImageDirectory + ' not found. Creating new directory');
+      System.SysUtils.CreateDir(cProgramCore.GetImageDirectory);
+    end;
+
     // Store image in file
+    imgImage.Picture.SaveToFile(cProgramCore.GetImageDirectory + IntToStr(rRemedy.iID) + '.jpg');
   end;
 
   dlgImageSelect.Destroy;
@@ -418,7 +431,7 @@ end;
 procedure TdynRemedyTile.UpdateRemedy;
 var
   i: Integer;
-  sPrice : String;
+  sPrice: String;
 begin
   rRemedy.sName := lblRemedy.Caption;
   rRemedy.iEaseOfUse := sedEaseOfUse.Value;
@@ -433,14 +446,16 @@ begin
   for i := 0 to cltSymptoms.Items.Count - 1 do
   begin
     SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
-    rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] := cltSymptoms.Items[i];
+    rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] :=
+      cltSymptoms.Items[i];
   end;
 
   // Description
   rRemedy.sDescription := '';
   for i := 0 to redDescription.Lines.Count - 1 do
   begin
-    rRemedy.sDescription := rRemedy.sDescription + redDescription.Lines[i] + #10;
+    rRemedy.sDescription := rRemedy.sDescription + redDescription.Lines
+      [i] + #10;
   end;
 
   if (rRemedy.sDescription[Length(rRemedy.sDescription)] = #10) then

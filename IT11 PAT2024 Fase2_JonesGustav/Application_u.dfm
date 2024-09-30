@@ -24,6 +24,8 @@ object frmHome: TfrmHome
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
+    ExplicitWidth = 1173
+    ExplicitHeight = 643
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -13281,6 +13283,8 @@ object frmHome: TfrmHome
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seBorder]
+        ExplicitWidth = 565
+        ExplicitHeight = 393
         object lblDescription: TLabel
           AlignWithMargins = True
           Left = 3
@@ -13312,6 +13316,7 @@ object frmHome: TfrmHome
           Align = alLeft
           ShowCaption = False
           TabOrder = 0
+          ExplicitHeight = 288
           object lblLogIn: TLabel
             AlignWithMargins = True
             Left = 1
@@ -13346,6 +13351,7 @@ object frmHome: TfrmHome
             Caption = 'Log In'
             TabOrder = 1
             OnClick = btnLogInClick
+            ExplicitTop = 247
           end
           object pnlHomeLoginFields: TPanel
             AlignWithMargins = True
@@ -13390,6 +13396,7 @@ object frmHome: TfrmHome
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              PasswordChar = '*'
               TabOrder = 0
               Text = 'meth@life!'
               TextHint = 'Password'
@@ -13409,6 +13416,8 @@ object frmHome: TfrmHome
           Align = alRight
           ShowCaption = False
           TabOrder = 1
+          ExplicitLeft = 246
+          ExplicitHeight = 288
           object lblSignUp: TLabel
             AlignWithMargins = True
             Left = 1
@@ -13443,6 +13452,7 @@ object frmHome: TfrmHome
             Caption = 'Sign Up'
             TabOrder = 6
             OnClick = btnSignUpClick
+            ExplicitTop = 247
           end
           object edtSignUpEmail: TEdit
             AlignWithMargins = True
@@ -13477,6 +13487,7 @@ object frmHome: TfrmHome
             Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
+            PasswordChar = '*'
             TabOrder = 3
             TextHint = 'Password'
           end
@@ -13533,6 +13544,7 @@ object frmHome: TfrmHome
               'Female')
             Constraints.MaxHeight = 72
             TabOrder = 4
+            ExplicitHeight = 61
           end
           object pnlHomeSignUpBirthDate: TPanel
             AlignWithMargins = True
@@ -13547,6 +13559,7 @@ object frmHome: TfrmHome
             Align = alRight
             BevelOuter = bvNone
             TabOrder = 5
+            ExplicitHeight = 46
             object lblSignUpBirthDay: TLabel
               AlignWithMargins = True
               Left = 0
@@ -13602,6 +13615,7 @@ object frmHome: TfrmHome
           AutoSize = True
           BevelOuter = bvNone
           TabOrder = 2
+          ExplicitWidth = 555
           object imgIcon: TImage
             Left = 230
             Top = 0
@@ -14069,7 +14083,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 15
+              ItemHeight = 17
               Items.Strings = (
                 'Brusing'
                 'Pain'
@@ -14594,7 +14608,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 15
+            ItemHeight = 17
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -22554,7 +22568,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -29645,7 +29659,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
