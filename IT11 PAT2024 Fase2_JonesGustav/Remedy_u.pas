@@ -14,20 +14,26 @@ type
     procedure CreatePendingChange;
     procedure ApplyPendingChange;
 
+    function GetID: Integer;
+
   var
-    iID: Integer;
     iEaseOfUse: Integer;
     sName: String;
     sDescription: String;
     rPrice: Real;
 
     arrSymptoms: array of string;
+
+  private
+  var
+    iID: Integer;
   end;
 
 implementation
 
 { TRemedy }
 
+// TODO
 procedure TRemedy.ApplyPendingChange;
 begin
 
@@ -54,9 +60,15 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
+// TODO
 procedure TRemedy.CreatePendingChange;
 begin
 
+end;
+
+function TRemedy.GetID: Integer;
+begin
+  result := iID;
 end;
 
 procedure TRemedy.Print;
@@ -88,12 +100,16 @@ var
   iDBIndex: Integer;
   sSymptomsStr: String;
   sSymptom: String;
+
+  bFound : Boolean;
 begin
+  bFound := False;
+
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
 
-  while not(dmBoereraad.tblRemedy.Eof) do
+  while (not(dmBoereraad.tblRemedy.Eof)) and (not (bFound)) do
   begin
     if (dmBoereraad.tblRemedy['ID'] = pID) then
     begin

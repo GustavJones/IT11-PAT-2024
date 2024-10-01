@@ -138,12 +138,11 @@ begin
   end;
 
   // Image
-  if FileExists(cProgramCore.GetImageDirectory + IntToStr(pRemedy.iID) + '.jpg') then
-    imgImage.Picture.LoadFromFile(cProgramCore.GetImageDirectory + IntToStr(pRemedy.iID) + '.jpg');
+  if FileExists(cProgramCore.GetImageDirectory + IntToStr(pRemedy.GetID) + '.jpg') then
+    imgImage.Picture.LoadFromFile(cProgramCore.GetImageDirectory + IntToStr(pRemedy.GetID) + '.jpg');
 
   // Load Info into rRemedy
-  UpdateRemedy(Self);
-  rRemedy.iID := pRemedy.iID;
+  rRemedy := pRemedy;
 end;
 
 procedure TdynRemedyTile.Init(pParent: TWinControl);
@@ -397,8 +396,8 @@ begin
   end;
 
   // Image
-  if FileExists(cProgramCore.GetImageDirectory + IntToStr(rRemedy.iID) + '.jpg') then
-    imgImage.Picture.LoadFromFile(cProgramCore.GetImageDirectory + IntToStr(rRemedy.iID) + '.jpg');
+  if FileExists(cProgramCore.GetImageDirectory + IntToStr(rRemedy.GetID) + '.jpg') then
+    imgImage.Picture.LoadFromFile(cProgramCore.GetImageDirectory + IntToStr(rRemedy.GetID) + '.jpg');
 end;
 
 procedure TdynRemedyTile.UpdateImage(pSender: TObject);
@@ -425,7 +424,7 @@ begin
     end;
 
     // Store image in file
-    imgImage.Picture.SaveToFile(cProgramCore.GetImageDirectory + IntToStr(rRemedy.iID) + '.jpg');
+    imgImage.Picture.SaveToFile(cProgramCore.GetImageDirectory + IntToStr(rRemedy.GetID) + '.jpg');
   end;
 
   dlgImageSelect.Destroy;

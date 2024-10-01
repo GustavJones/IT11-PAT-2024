@@ -209,9 +209,6 @@ Coordinates=337,892,150,58
 [lblAdminUser]
 Coordinates=702,416,91,58
 
-[chkHomeAdmin]
-Coordinates=1188,10,114,58
-
 [bttAddRemedyNavigationPrevious]
 Coordinates=100,1028,210,58
 
@@ -229,9 +226,6 @@ Coordinates=2660,1002,156,36
 
 [lblAdminUserEditDosage]
 Coordinates=264,620,158,58
-
-[rgpGender]
-Coordinates=1607,620,76,58
 
 [sedAdminRemedyEditEaseOfUse]
 Coordinates=127,1096,207,58
@@ -604,4 +598,10 @@ Coordinates=522,484,56,58
 
 []
 Coordinates=1517,904,91,36
+
+[rgpSignUpGender]
+Coordinates=1607,620,76,58
+
+[chkSignUpAdmin]
+Coordinates=1188,10,114,58
 

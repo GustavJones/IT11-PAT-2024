@@ -31,7 +31,7 @@ type
     edtSignUpPassword: TEdit;
     edtSignUpSurname: TEdit;
     edtSignUpName: TEdit;
-    rgpGender: TRadioGroup;
+    rgpSignUpGender: TRadioGroup;
     dtpSignUpBirthDate: TDateTimePicker;
     lblSignUpBirthDay: TLabel;
     tsRemedies: TTabSheet;
@@ -165,7 +165,7 @@ type
     edtAdminRemedyEditPrice: TEdit;
     lblAdminRemedy: TLabel;
     sedAdminRemedyEditEaseOfUse: TSpinEdit;
-    chkHomeAdmin: TCheckBox;
+    chkSignUpAdmin: TCheckBox;
     chkAdminUserEditAdmin: TCheckBox;
     bttAdminUserEditSaveReview: TBitBtn;
     sedRemedyUsageAddEffectiveness: TSpinEdit;
@@ -217,8 +217,8 @@ type
 
     function CalculateFieldInformation(pFieldName: string;
       pSerializedChanges: string): string;
-    function GetUserPassword(pUserID: Integer): string;
-    procedure LoadRemediesFromDB;
+    function GetUserPasswordFromDB(pUserID: Integer): string;
+    procedure LoadRemediesFromDBToScrollbox;
     procedure AddRemedy();
     procedure AddReview();
     procedure btnHomeLogOutClick(Sender: TObject);
@@ -337,13 +337,14 @@ begin
 
 end;
 
-// TODO
 procedure TfrmHome.btnSignUpClick(Sender: TObject);
 const
   iUSER_NAME_FIELD_SIZE = 40;
   iUSER_SURNAME_FIELD_SIZE = 70;
   iUSER_EMAIL_FIELD_SIZE = 50;
   iUSER_PASSWORD_FIELD_SIZE = 30;
+var
+  iDBIndex : Integer;
 begin
   // Validation
   // Presence check
@@ -397,6 +398,26 @@ begin
   end;
 
   // Add to DB
+  iDBIndex := dmBoereraad.tblUser.RecNo;
+
+  dmBoereraad.tblUser.Last;
+  dmBoereraad.tblUser.Append;
+
+  dmBoereraad.tblUser['UserName'] := edtSignUpName.Text;
+  dmBoereraad.tblUser['UserSurname'] := edtSignUpSurname.Text;
+  dmBoereraad.tblUser['Email'] := edtSignUpEmail.Text;
+  dmBoereraad.tblUser['Password'] := edtSignUpPassword.Text;
+  dmBoereraad.tblUser['BirthDate'] := dtpSignUpBirthDate.Date;
+
+  case rgpSignUpGender.ItemIndex of
+    0:
+      dmBoereraad.tblUser['IsMale'] := True;
+    1:
+      dmBoereraad.tblUser['IsMale'] := False;
+  end;
+
+  dmBoereraad.tblUser['IsAdmin'] := chkSignUpAdmin.Checked;
+  dmBoereraad.tblUser.Post;
 end;
 
 procedure TfrmHome.bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
@@ -501,7 +522,7 @@ begin
     end;
   end;
 
-  LoadRemediesFromDB;
+  LoadRemediesFromDBToScrollbox;
 end;
 
 procedure TfrmHome.FormCreate(Sender: TObject);
@@ -540,13 +561,35 @@ begin
   pgcTabs.ActivePage := tsHome;
 end;
 
-function TfrmHome.GetUserPassword(pUserID: Integer): string;
-begin
+function TfrmHome.GetUserPasswordFromDB(pUserID: Integer): string;
+var
+  iDBIndex : Integer;
+  bFound : Boolean;
 
-  //
+  sPassword : String;
+begin
+  bFound := False;
+  iDBIndex := dmBoereraad.tblUser.RecNo;
+
+  dmBoereraad.tblUser.First;
+  while (not (dmBoereraad.tblUser.Eof)) and (not (bFound)) do
+  begin
+    if (dmBoereraad.tblUser['ID'] = pUserID) then
+    begin
+      sPassword := dmBoereraad.tblUser['Password'];
+
+      bFound := True;
+    end;
+
+    dmBoereraad.tblUser.Next;
+  end;
+
+  dmBoereraad.tblUser.RecNo := iDBIndex;
+
+  result := sPassword;
 end;
 
-procedure TfrmHome.LoadRemediesFromDB;
+procedure TfrmHome.LoadRemediesFromDBToScrollbox;
 const
   sDELIMITER = ', ';
 var
@@ -578,6 +621,7 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
+// TODO
 procedure TfrmHome.pgcTabsChange(Sender: TObject);
 var
   iTableIndex: Integer;
