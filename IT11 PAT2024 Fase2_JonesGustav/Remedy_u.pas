@@ -37,7 +37,6 @@ begin
   dmBoereraad.tblRemedy.Append;
   dmBoereraad.tblRemedy['RemedyName'] := sName;
   dmBoereraad.tblRemedy['Description'] := sDescription;
-  dmBoereraad.tblRemedy['ID'] := iID;
   dmBoereraad.tblRemedy['EaseOfUse'] := iEaseOfUse;
   dmBoereraad.tblRemedy['PricePerDose'] := rPrice;
   dmBoereraad.tblRemedy.Post;

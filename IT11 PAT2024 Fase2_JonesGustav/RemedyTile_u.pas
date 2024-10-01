@@ -137,6 +137,10 @@ begin
     cltSymptoms.Items.Add(sSymptom);
   end;
 
+  // Image
+  if FileExists(cProgramCore.GetImageDirectory + IntToStr(pRemedy.iID) + '.jpg') then
+    imgImage.Picture.LoadFromFile(cProgramCore.GetImageDirectory + IntToStr(pRemedy.iID) + '.jpg');
+
   // Load Info into rRemedy
   UpdateRemedy(Self);
   rRemedy.iID := pRemedy.iID;
@@ -354,7 +358,6 @@ var
   sParseStr: String;
   sLine: String;
 begin
-  // TODO
   redDescription.Lines.Clear;
   cltSymptoms.Items.Clear;
 
