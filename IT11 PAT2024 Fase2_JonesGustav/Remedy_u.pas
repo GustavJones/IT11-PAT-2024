@@ -7,46 +7,61 @@ uses System.SysUtils, Vcl.Dialogs, dmBoereraad_u;
 type
   TRemedy = class(TObject)
   public
-  procedure Print;
-  procedure CreateDBRecord;
-  procedure UpdateDBRecord;
-  procedure ReadDBRecord(pID : Integer);
+    procedure Print;
+    procedure CreateDBRecord;
+    procedure UpdateDBRecord;
+    procedure ReadDBRecord(pID: Integer);
+    procedure CreatePendingChange;
+    procedure ApplyPendingChange;
 
   var
-    iID : Integer;
-    iEaseOfUse : Integer;
-    sName : String;
-    sDescription : String;
-    rPrice : Real;
+    iID: Integer;
+    iEaseOfUse: Integer;
+    sName: String;
+    sDescription: String;
+    rPrice: Real;
 
-    arrSymptoms : array of string;
+    arrSymptoms: array of string;
   end;
 
 implementation
 
 { TRemedy }
 
-// TODO
+procedure TRemedy.ApplyPendingChange;
+begin
+
+end;
+
 procedure TRemedy.CreateDBRecord;
+const
+  sSEPERATOR = ', ';
 var
-  iDBIndex : Integer;
+  iDBIndex: Integer;
+  i: Integer;
+
+  sSymptomsStr: String;
 begin
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.Last;
   dmBoereraad.tblRemedy.Append;
-  dmBoereraad.tblRemedy['RemedyName'] := sName;
-  dmBoereraad.tblRemedy['Description'] := sDescription;
-  dmBoereraad.tblRemedy['EaseOfUse'] := iEaseOfUse;
-  dmBoereraad.tblRemedy['PricePerDose'] := rPrice;
   dmBoereraad.tblRemedy.Post;
+
+  iID := dmBoereraad.tblRemedy['ID'];
+  UpdateDBRecord;
 
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
+procedure TRemedy.CreatePendingChange;
+begin
+
+end;
+
 procedure TRemedy.Print;
 var
-  sSymptoms : String;
+  sSymptoms: String;
   i: Integer;
 begin
   ShowMessage('ID: ' + IntToStr(iID));
@@ -68,17 +83,17 @@ procedure TRemedy.ReadDBRecord(pID: Integer);
 const
   sDELIMITER = ', ';
 var
-  i : Integer;
-  iDelimiter : Integer;
-  iDBIndex : Integer;
-  sSymptomsStr : String;
-  sSymptom : String;
+  i: Integer;
+  iDelimiter: Integer;
+  iDBIndex: Integer;
+  sSymptomsStr: String;
+  sSymptom: String;
 begin
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
 
-  while not (dmBoereraad.tblRemedy.Eof) do
+  while not(dmBoereraad.tblRemedy.Eof) do
   begin
     if (dmBoereraad.tblRemedy['ID'] = pID) then
     begin
@@ -126,9 +141,50 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-// TODO
 procedure TRemedy.UpdateDBRecord;
+const
+  sSEPERATOR = ', ';
+var
+  iDBIndex: Integer;
+  bFound: Boolean;
+  i: Integer;
+
+  sSymptomsStr: String;
+
 begin
+  iDBIndex := dmBoereraad.tblRemedy.RecNo;
+
+  dmBoereraad.tblRemedy.First;
+  while (not(dmBoereraad.tblRemedy.Eof)) and (not(bFound)) do
+  begin
+    sSymptomsStr := '';
+
+    if (dmBoereraad.tblRemedy['ID'] = iID) then
+    begin
+      dmBoereraad.tblRemedy.Edit;
+      dmBoereraad.tblRemedy['RemedyName'] := sName;
+      dmBoereraad.tblRemedy['Description'] := sDescription;
+      dmBoereraad.tblRemedy['EaseOfUse'] := iEaseOfUse;
+      dmBoereraad.tblRemedy['PricePerDose'] := rPrice;
+
+      // Symptoms
+      for i := 0 to Length(arrSymptoms) do
+      begin
+        sSymptomsStr := sSymptomsStr + arrSymptoms[i] + sSEPERATOR;
+      end;
+
+      Delete(sSymptomsStr, Length(sSymptomsStr) - Length(sSEPERATOR) + 1,
+        Length(sSEPERATOR));
+      dmBoereraad.tblRemedy['SymptomUse'] := sSymptomsStr;
+      dmBoereraad.tblRemedy.Post;
+
+      bFound := True;
+    end;
+
+    dmBoereraad.tblRemedy.Next;
+  end;
+
+  dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
 end.
