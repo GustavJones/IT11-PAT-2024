@@ -30,7 +30,6 @@ implementation
 
 {$R *.dfm}
 
-{ TDataModule1 }
 
 function TdmBoereraad.InitialiseDatabase() : Boolean;
 begin

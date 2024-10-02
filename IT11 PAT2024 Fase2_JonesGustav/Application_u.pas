@@ -248,11 +248,13 @@ implementation
 
 {$R *.dfm}
 
+// TODO
 procedure TfrmHome.AddRemedy;
 begin
   //
 end;
 
+// TODO
 procedure TfrmHome.AddReview;
 begin
   //
@@ -421,9 +423,11 @@ begin
 end;
 
 procedure TfrmHome.bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
+var
+  rRemedy : TRemedy;
+  sPrice : String;
+  i : Integer;
 begin
-  // TODO
-
   // Validation
   if (edtAddRemedyInputsRemedyName.Text = '') then
   begin
@@ -438,6 +442,41 @@ begin
   end;
 
 
+  // Read Inputs
+  rRemedy := TRemedy.Create;
+
+  rRemedy.sName := edtAddRemedyInputsRemedyName.Text;
+  rRemedy.iEaseOfUse := sedAddRemedyInputsEaseOfUse.Value;
+
+  // Price
+  sPrice := edtPrice.Text;
+  Delete(sPrice, 1, 1);
+  rRemedy.rPrice := StrToFloat(sPrice);
+
+  // Symptoms
+  SetLength(rRemedy.arrSymptoms, 0);
+  for i := 0 to cltAddRemedyInputsSymptoms.Items.Count - 1 do
+  begin
+    SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
+    rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] :=
+      cltAddRemedyInputsSymptoms.Items[i];
+  end;
+
+  // Description
+  rRemedy.sDescription := '';
+  for i := 0 to redAddRemedyInputsDescription.Lines.Count - 1 do
+  begin
+    rRemedy.sDescription := rRemedy.sDescription + redAddRemedyInputsDescription.Lines[i] + #10;
+  end;
+
+  if (rRemedy.sDescription[Length(rRemedy.sDescription)] = #10) then
+  begin
+    Delete(rRemedy.sDescription, Length(rRemedy.sDescription), 1);
+  end;
+
+  rRemedy.CreatePendingChange;
+
+  rRemedy.Destroy;
 end;
 
 procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
@@ -491,6 +530,7 @@ begin
   pgcTabs.TabIndex := 0;
 end;
 
+// TODO
 function TfrmHome.CalculateFieldInformation(pFieldName, pSerializedChanges
   : string): string;
 begin
@@ -623,11 +663,18 @@ end;
 
 // TODO
 procedure TfrmHome.pgcTabsChange(Sender: TObject);
+const
+  iHOME_PAGE_INDEX = 0;
+  iREMEDIES_PAGE_INDEX = 1;
+  iADD_REMEDY_PAGE_INDEX = 2;
+  iREMEDY_REVIEWS_PAGE_INDEX = 3;
+  iPENDING_CHANGES_PAGE_INDEX = 4;
+  iADMIN_PAGE_INDEX = 5;
 var
   iTableIndex: Integer;
 begin
   case pgcTabs.TabIndex of
-    3:
+    iREMEDY_REVIEWS_PAGE_INDEX:
       begin
         // List Reviews of selected user
         iTableIndex := dmBoereraad.tblRemedy.RecNo;
@@ -643,10 +690,9 @@ begin
 
         dmBoereraad.tblRemedy.RecNo := iTableIndex;
       end;
-    5:
+    iADMIN_PAGE_INDEX:
       begin
         // Update selected user and remedy information
-
       end;
   end;
 end;

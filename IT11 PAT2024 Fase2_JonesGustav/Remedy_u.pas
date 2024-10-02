@@ -2,7 +2,7 @@ unit Remedy_u;
 
 interface
 
-uses System.SysUtils, Vcl.Dialogs, dmBoereraad_u;
+uses System.SysUtils, Vcl.Dialogs, dmBoereraad_u, Core_u;
 
 type
   TRemedy = class(TObject)
@@ -62,7 +62,14 @@ end;
 
 // TODO
 procedure TRemedy.CreatePendingChange;
+var
+  tFile : TextFile;
 begin
+  if FileExists(cProgramCore.GetPendingChangesDirectory + sName + '.txt') then
+  begin
+    raise Exception.Create('Change already exists');
+  end;
+
 
 end;
 

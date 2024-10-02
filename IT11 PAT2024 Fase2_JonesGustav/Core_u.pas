@@ -13,6 +13,7 @@ type
     procedure CoreInit();
     function GetDataDirectory(): String;
     function GetImageDirectory(): String;
+    function GetPendingChangesDirectory(): String;
     class procedure CreateFile(pFilepath: string);
     class procedure CopyFile(pFileToCopy: string; pFileOutput: string);
 
@@ -22,6 +23,7 @@ type
 
   const
     sIMAGE_DIRECTORY = 'images';
+    sPENDING_CHANGES_DIRECTORY = 'changes';
 
   end;
 
@@ -83,6 +85,11 @@ end;
 function TCore.GetImageDirectory: String;
 begin
   result := GetDataDirectory + sIMAGE_DIRECTORY + '\';
+end;
+
+function TCore.GetPendingChangesDirectory: String;
+begin
+  result := GetDataDirectory + sPENDING_CHANGES_DIRECTORY + '\';
 end;
 
 end.
