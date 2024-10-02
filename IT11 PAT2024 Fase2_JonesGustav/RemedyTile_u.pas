@@ -89,6 +89,7 @@ begin
   end;
 end;
 
+// TODO
 procedure TdynRemedyTile.Init(pParent: TWinControl; pRemedy: TRemedy);
 const
   sDELIMITER = #10;
@@ -142,6 +143,8 @@ begin
     imgImage.Picture.LoadFromFile(cProgramCore.GetImageDirectory + IntToStr(pRemedy.GetID) + '.jpg');
 
   // Load Info into rRemedy
+
+  raise Exception.Create('Bug here, Shallow copy bug, Write better constructor for TRemedy');
   rRemedy := pRemedy;
 end;
 

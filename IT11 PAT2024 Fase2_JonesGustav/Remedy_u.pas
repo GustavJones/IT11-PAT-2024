@@ -69,8 +69,6 @@ begin
   begin
     raise Exception.Create('Change already exists');
   end;
-
-
 end;
 
 function TRemedy.GetID: Integer;
