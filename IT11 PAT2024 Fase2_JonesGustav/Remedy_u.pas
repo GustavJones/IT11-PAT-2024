@@ -7,6 +7,8 @@ uses System.SysUtils, Vcl.Dialogs, dmBoereraad_u, Core_u;
 type
   TRemedy = class(TObject)
   public
+    procedure Assign(pRemedy : TRemedy);
+
     procedure Print;
     procedure CreateDBRecord;
     procedure UpdateDBRecord;

@@ -20,7 +20,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1177
     Height = 644
-    ActivePage = tsAddRemedy
+    ActivePage = tsHome
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
