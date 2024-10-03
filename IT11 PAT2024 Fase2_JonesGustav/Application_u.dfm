@@ -1,6 +1,6 @@
 object frmHome: TfrmHome
-  Left = 123
-  Top = 83
+  Left = 116
+  Top = 44
   BorderStyle = bsDialog
   Caption = 'Boereraad'
   ClientHeight = 644

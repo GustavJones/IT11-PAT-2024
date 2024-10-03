@@ -143,9 +143,7 @@ begin
     imgImage.Picture.LoadFromFile(cProgramCore.GetImageDirectory + IntToStr(pRemedy.GetID) + '.jpg');
 
   // Load Info into rRemedy
-
-  raise Exception.Create('Bug here, Shallow copy bug, Write better constructor for TRemedy');
-  rRemedy := pRemedy;
+  rRemedy.Assign(pRemedy);
 end;
 
 procedure TdynRemedyTile.Init(pParent: TWinControl);

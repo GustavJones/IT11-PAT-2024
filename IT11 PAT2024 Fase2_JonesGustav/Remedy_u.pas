@@ -41,6 +41,24 @@ begin
 
 end;
 
+procedure TRemedy.Assign(pRemedy: TRemedy);
+var
+  i: Integer;
+begin
+  iID := pRemedy.GetID;
+  iEaseOfUse := pRemedy.iEaseOfUse;
+  sName := pRemedy.sName;
+  sDescription := pRemedy.sDescription;
+  rPrice := pRemedy.rPrice;
+
+  SetLength(arrSymptoms, Length(pRemedy.arrSymptoms));
+
+  for i := 0 to Length(pRemedy.arrSymptoms) - 1 do
+  begin
+    arrSymptoms[i] := pRemedy.arrSymptoms[i];
+  end;
+end;
+
 procedure TRemedy.CreateDBRecord;
 const
   sSEPERATOR = ', ';
