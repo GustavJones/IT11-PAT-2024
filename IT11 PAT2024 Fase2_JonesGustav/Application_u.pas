@@ -250,8 +250,46 @@ implementation
 
 // TODO
 procedure TfrmHome.AddRemedy;
+var
+  rRemedy : TRemedy;
+  sPrice : String;
+  i : Integer;
 begin
-  //
+  // Read Inputs
+  rRemedy := TRemedy.Create;
+
+  rRemedy.sName := edtAddRemedyInputsRemedyName.Text;
+  rRemedy.iEaseOfUse := sedAddRemedyInputsEaseOfUse.Value;
+
+  // Price
+  sPrice := edtPrice.Text;
+  Delete(sPrice, 1, 1);
+  rRemedy.rPrice := StrToFloat(sPrice);
+
+  // Symptoms
+  SetLength(rRemedy.arrSymptoms, 0);
+  for i := 0 to cltAddRemedyInputsSymptoms.Items.Count - 1 do
+  begin
+    SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
+    rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] :=
+      cltAddRemedyInputsSymptoms.Items[i];
+  end;
+
+  // Description
+  rRemedy.sDescription := '';
+  for i := 0 to redAddRemedyInputsDescription.Lines.Count - 1 do
+  begin
+    rRemedy.sDescription := rRemedy.sDescription + redAddRemedyInputsDescription.Lines[i] + #10;
+  end;
+
+  if (rRemedy.sDescription[Length(rRemedy.sDescription)] = #10) then
+  begin
+    Delete(rRemedy.sDescription, Length(rRemedy.sDescription), 1);
+  end;
+
+  rRemedy.CreatePendingChange;
+
+  rRemedy.Destroy;
 end;
 
 // TODO
@@ -423,10 +461,6 @@ begin
 end;
 
 procedure TfrmHome.bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
-var
-  rRemedy : TRemedy;
-  sPrice : String;
-  i : Integer;
 begin
   // Validation
   if (edtAddRemedyInputsRemedyName.Text = '') then
@@ -442,41 +476,7 @@ begin
   end;
 
 
-  // Read Inputs
-  rRemedy := TRemedy.Create;
-
-  rRemedy.sName := edtAddRemedyInputsRemedyName.Text;
-  rRemedy.iEaseOfUse := sedAddRemedyInputsEaseOfUse.Value;
-
-  // Price
-  sPrice := edtPrice.Text;
-  Delete(sPrice, 1, 1);
-  rRemedy.rPrice := StrToFloat(sPrice);
-
-  // Symptoms
-  SetLength(rRemedy.arrSymptoms, 0);
-  for i := 0 to cltAddRemedyInputsSymptoms.Items.Count - 1 do
-  begin
-    SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
-    rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] :=
-      cltAddRemedyInputsSymptoms.Items[i];
-  end;
-
-  // Description
-  rRemedy.sDescription := '';
-  for i := 0 to redAddRemedyInputsDescription.Lines.Count - 1 do
-  begin
-    rRemedy.sDescription := rRemedy.sDescription + redAddRemedyInputsDescription.Lines[i] + #10;
-  end;
-
-  if (rRemedy.sDescription[Length(rRemedy.sDescription)] = #10) then
-  begin
-    Delete(rRemedy.sDescription, Length(rRemedy.sDescription), 1);
-  end;
-
-  rRemedy.CreatePendingChange;
-
-  rRemedy.Destroy;
+  AddRemedy;
 end;
 
 procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);

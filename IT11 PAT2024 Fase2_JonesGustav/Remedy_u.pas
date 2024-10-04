@@ -80,15 +80,33 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-// TODO
+// TODO CURRENT
 procedure TRemedy.CreatePendingChange;
 var
   tFile : TextFile;
+  sFileName : string;
+  sLine : string;
 begin
-  if FileExists(cProgramCore.GetPendingChangesDirectory + sName + '.txt') then
+  sFileName := cProgramCore.GetPendingChangesDirectory + 'Changes.txt';
+
+  // Create Change Line
+  sLine := sName + '#';
+  sLine := sLine + FloatToStrF(rPrice, ffFixed, 10, 2) + '#';
+  sLine := sLine + IntToStr(iEaseOfUse) + '#';
+  sLine := sLine + sDescription + '#';
+
+  if not FileExists(sFileName) then
   begin
-    raise Exception.Create('Change already exists');
+    cProgramCore.CreateFile(sFileName);
   end;
+
+  AssignFile(tFile, sFileName);
+  Append(tFile);
+
+  Writeln(tFile, sName);
+
+
+  CloseFile(tFile);
 end;
 
 function TRemedy.GetID: Integer;

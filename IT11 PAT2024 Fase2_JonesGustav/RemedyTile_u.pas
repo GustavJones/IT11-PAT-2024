@@ -89,7 +89,6 @@ begin
   end;
 end;
 
-// TODO
 procedure TdynRemedyTile.Init(pParent: TWinControl; pRemedy: TRemedy);
 const
   sDELIMITER = #10;
@@ -360,6 +359,8 @@ var
 begin
   redDescription.Lines.Clear;
   cltSymptoms.Items.Clear;
+
+  rRemedy.ReadDBRecord(rRemedy.GetID);
 
   lblRemedy.Caption := rRemedy.sName;
   sedEaseOfUse.Value := rRemedy.iEaseOfUse;
