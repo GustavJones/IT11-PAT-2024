@@ -3,7 +3,7 @@ unit Core_u;
 interface
 
 uses
-  System.SysUtils;
+  System.SysUtils, System.IOUtils;
 
 type
   TCore = class(TObject)
@@ -15,7 +15,9 @@ type
     function GetImageDirectory(): String;
     function GetPendingChangesDirectory(): String;
     class procedure CreateFile(pFilepath: string);
+    class procedure CreateDir(pPath: string);
     class procedure CopyFile(pFileToCopy: string; pFileOutput: string);
+    class function ReadDir(pPath: string; pSeperator: string = #9): string;
 
   private
   var
@@ -34,8 +36,8 @@ implementation
 
 class procedure TCore.CopyFile(pFileToCopy, pFileOutput: string);
 var
-  bByte : Byte;
-  tInputFile, tOutputFile : file;
+  bByte: Byte;
+  tInputFile, tOutputFile: file;
 begin
   AssignFile(tInputFile, pFileToCopy);
   AssignFile(tOutputFile, pFileOutput);
@@ -43,7 +45,7 @@ begin
   Reset(tInputFile, 1);
   Rewrite(tOutputFile, 1);
 
-  while not (Eof(tInputFile)) do
+  while not(Eof(tInputFile)) do
   begin
     BlockRead(tInputFile, bByte, 1);
     BlockWrite(tOutputFile, bByte, 1);
@@ -64,9 +66,18 @@ begin
   CoreInit;
 end;
 
+class procedure TCore.CreateDir(pPath: string);
+begin
+  // Create directory
+  if not System.SysUtils.DirectoryExists(pPath) then
+  begin
+    System.SysUtils.CreateDir(pPath);
+  end;
+end;
+
 class procedure TCore.CreateFile(pFilepath: string);
 var
-  tFile : TextFile;
+  tFile: TextFile;
 begin
   if not System.SysUtils.FileExists(pFilepath) then
   begin
@@ -90,6 +101,38 @@ end;
 function TCore.GetPendingChangesDirectory: String;
 begin
   result := GetDataDirectory + sPENDING_CHANGES_DIRECTORY + '\';
+end;
+
+class function TCore.ReadDir(pPath: string; pSeperator: string = #9): string;
+var
+  sOutput: string;
+  sFileName: string;
+  iPathIndex: Integer;
+begin
+  sOutput := '';
+
+  for var f in System.IOUtils.TDirectory.GetFiles(pPath) do
+  begin
+    sFileName := f;
+    iPathIndex := Pos(pPath, sFileName);
+
+    if iPathIndex > 0 then
+    begin
+      Delete(sFileName, 1, (iPathIndex + Length(pPath) - 1));
+    end;
+
+    sOutput := sOutput + sFileName + pSeperator;
+  end;
+
+  if Length(sOutput) > 0 then
+  begin
+    if sOutput[Length(sOutput)] = pSeperator then
+    begin
+      Delete(sOutput, Length(sOutput), 1);
+    end;
+  end;
+
+  result := sOutput;
 end;
 
 end.

@@ -7,15 +7,18 @@ uses System.SysUtils, Vcl.Dialogs, dmBoereraad_u, Core_u;
 type
   TRemedy = class(TObject)
   public
-    procedure Assign(pRemedy : TRemedy);
+    constructor Create;
+    procedure Assign(pRemedy : TRemedy); overload;
+    procedure Assign(pName : string; pString : string); overload;
 
     procedure Print;
     procedure CreateDBRecord;
     procedure UpdateDBRecord;
     procedure ReadDBRecord(pID: Integer);
-    procedure CreatePendingChange;
-    procedure ApplyPendingChange;
-
+    function CreatePendingChange : string;
+    procedure WritePendingChange(pChanges : string);
+    function GetPendingChange : string; overload;
+    function GetPendingChange(pName : string) : string; overload;
     function GetID: Integer;
 
   var
@@ -27,6 +30,13 @@ type
     arrSymptoms: array of string;
 
   private
+  function CalculateFieldInformation(pFieldName: string; pSerializedChanges: string): string;
+
+  const
+    sSYMPTOM_SEPERATOR = ',';
+    sNEWLINE_SEPERATOR = #9;
+    sFIELD_SEPERATOR = #10;
+
   var
     iID: Integer;
   end;
@@ -35,10 +45,9 @@ implementation
 
 { TRemedy }
 
-// TODO
-procedure TRemedy.ApplyPendingChange;
+function TRemedy.GetPendingChange : string;
 begin
-
+  Result := GetPendingChange(sName);
 end;
 
 procedure TRemedy.Assign(pRemedy: TRemedy);
@@ -57,6 +66,87 @@ begin
   begin
     arrSymptoms[i] := pRemedy.arrSymptoms[i];
   end;
+end;
+
+// TODO TESTING
+procedure TRemedy.Assign(pName : string; pString : string);
+var
+  sSymptomsStr, sSymptom, sModifiedDescription : string;
+  i, iSymptomSeperatorIndex : Integer;
+begin
+  sName := pName;
+  iID := StrToInt(CalculateFieldInformation('ID', pString));
+  rPrice := StrToFloat(CalculateFieldInformation('Price', pString));
+  iEaseOfUse := StrToInt(CalculateFieldInformation('EaseOfUse', pString));
+
+  // Symptoms
+  sSymptomsStr := CalculateFieldInformation('Symptoms', pString);
+
+  i := 1;
+  while i > 0 do
+  begin
+    if i <> 1 then
+    begin
+      Inc(i);
+    end;
+
+    iSymptomSeperatorIndex := Pos(sSYMPTOM_SEPERATOR, sSymptomsStr, i);
+
+    if iSymptomSeperatorIndex > 0 then
+    begin
+      sSymptom := Copy(sSymptomsStr, i, iSymptomSeperatorIndex - i);
+    end
+    else
+    begin
+      sSymptom := Copy(sSymptomsStr, i, Length(sSymptomsStr) - i + 1);
+    end;
+
+    SetLength(arrSymptoms, Length(arrSymptoms) + 1);
+    arrSymptoms[Length(arrSymptoms) - 1] := sSymptom;
+
+    i := iSymptomSeperatorIndex;
+  end;
+
+  // Description
+  sModifiedDescription := CalculateFieldInformation('Description', pString);
+
+  for i := 1 to Length(sModifiedDescription) do
+  begin
+    if sModifiedDescription[i] = sNEWLINE_SEPERATOR then
+    begin
+      sModifiedDescription[i] := #10;
+    end;
+  end;
+
+  sDescription := sModifiedDescription;
+end;
+
+function TRemedy.CalculateFieldInformation(pFieldName,
+  pSerializedChanges: string): string;
+var
+  iFieldIndex, iFieldSeperatorIndex : Integer;
+  sOutput : string;
+begin
+  iFieldIndex := Pos(pFieldName, pSerializedChanges);
+
+  if iFieldIndex > 0 then
+  begin
+    iFieldSeperatorIndex := Pos(sFIELD_SEPERATOR, pSerializedChanges, iFieldIndex);
+
+    sOutput := Copy(pSerializedChanges, iFieldIndex + Length(pFieldName) + 1, iFieldSeperatorIndex - (iFieldIndex + Length(pFieldName) + 1));
+    result := sOutput;
+    exit;
+  end
+  else
+  begin
+    result := '';
+    exit;
+  end;
+end;
+
+constructor TRemedy.Create;
+begin
+  iID := -1;
 end;
 
 procedure TRemedy.CreateDBRecord;
@@ -80,38 +170,90 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-// TODO CURRENT
-procedure TRemedy.CreatePendingChange;
+function TRemedy.CreatePendingChange : string;
 var
-  tFile : TextFile;
-  sFileName : string;
-  sLine : string;
+  sSymptoms, sModifiedDescription : string;
+  sOutput : string;
+  i : Integer;
 begin
-  sFileName := cProgramCore.GetPendingChangesDirectory + 'Changes.txt';
+  sOutput := '';
+  sSymptoms := '';
+  sModifiedDescription := '';
 
-  // Create Change Line
-  sLine := sName + '#';
-  sLine := sLine + FloatToStrF(rPrice, ffFixed, 10, 2) + '#';
-  sLine := sLine + IntToStr(iEaseOfUse) + '#';
-  sLine := sLine + sDescription + '#';
+  sOutput := sOutput + 'ID:' + IntToStr(iID) + sFIELD_SEPERATOR;
+  sOutput := sOutput + 'Price:' + FloatToStrF(rPrice, ffFixed, 10, 2) + sFIELD_SEPERATOR;
+  sOutput := sOutput + 'EaseOfUse:' + IntToStr(iEaseOfUse) + sFIELD_SEPERATOR;
 
-  if not FileExists(sFileName) then
+  for i := 0 to Length(arrSymptoms) - 1 do
   begin
-    cProgramCore.CreateFile(sFileName);
+    sSymptoms := sSymptoms + arrSymptoms[i] + sSYMPTOM_SEPERATOR;
   end;
 
-  AssignFile(tFile, sFileName);
-  Append(tFile);
+  if sSymptoms[Length(sSymptoms)] = sSYMPTOM_SEPERATOR then
+  begin
+    Delete(sSymptoms, Length(sSymptoms), 1);
+  end;
 
-  Writeln(tFile, sName);
+  sOutput := sOutput + 'Symptoms:' + sSymptoms + sFIELD_SEPERATOR;
 
+  for i := 1 to Length(sDescription) do
+  begin
+    if sDescription[i] = #10 then
+    begin
+      sModifiedDescription := sModifiedDescription + sNEWLINE_SEPERATOR;
+    end
+    else
+    begin
+      sModifiedDescription := sModifiedDescription + sDescription[i];
+    end;
+  end;
 
-  CloseFile(tFile);
+  sOutput := sOutput + 'Description:' + sModifiedDescription + sFIELD_SEPERATOR;
+  Result := sOutput;
 end;
 
 function TRemedy.GetID: Integer;
 begin
   result := iID;
+end;
+
+function TRemedy.GetPendingChange(pName: string): string;
+var
+  tFile : TextFile;
+  sDirPath : string;
+  sFileName : string;
+  sSymptoms, sModifiedDescription : string;
+  sLine, sOutput : string;
+  i : Integer;
+begin
+  sOutput := '';
+  sSymptoms := '';
+  sModifiedDescription := '';
+
+  sDirPath := cProgramCore.GetPendingChangesDirectory;
+  sFileName := sDirPath + pName + '.txt';
+
+  if FileExists(sFileName) then
+  begin
+    AssignFile(tFile, sFileName);
+    Reset(tFile);
+
+    while not (Eof(tFile)) do
+    begin
+      Readln(tFile, sLine);
+      sOutput := sOutput + sLine + #10;
+    end;
+
+    CloseFile(tFile);
+
+    result := sOutput;
+    exit;
+  end
+  else
+  begin
+    result := '';
+    exit;
+  end;
 end;
 
 procedure TRemedy.Print;
@@ -244,6 +386,24 @@ begin
   end;
 
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
+end;
+
+procedure TRemedy.WritePendingChange(pChanges : string);
+var
+  tFile : TextFile;
+  sDirPath : string;
+  sFileName : string;
+begin
+  sDirPath := cProgramCore.GetPendingChangesDirectory;
+  sFileName := sDirPath + sName + '.txt';
+
+  TCore.CreateDir(sDirPath);
+  TCore.CreateFile(sFileName);
+
+  AssignFile(tFile, sFileName);
+  Append(tFile);
+  Write(tFile, pChanges);
+  CloseFile(tFile);
 end;
 
 end.

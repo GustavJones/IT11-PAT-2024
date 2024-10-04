@@ -422,7 +422,7 @@ begin
     if not System.SysUtils.DirectoryExists(cProgramCore.GetImageDirectory) then
     begin
       ShowMessage(cProgramCore.GetImageDirectory + ' not found. Creating new directory');
-      System.SysUtils.CreateDir(cProgramCore.GetImageDirectory);
+      TCore.CreateDir(cProgramCore.GetImageDirectory);
     end;
 
     // Store image in file
@@ -436,36 +436,83 @@ procedure TdynRemedyTile.UpdateRemedy;
 var
   i: Integer;
   sPrice: String;
+  rTempRemedy : TRemedy;
+  bEdit : Boolean;
 begin
-  rRemedy.sName := lblRemedy.Caption;
-  rRemedy.iEaseOfUse := sedEaseOfUse.Value;
+  bEdit := False;
+  rTempRemedy := TRemedy.Create;
+
+  // Ease of use
+  rTempRemedy.iEaseOfUse := sedEaseOfUse.Value;
 
   // Price
   sPrice := edtPrice.Text;
   Delete(sPrice, 1, 1);
-  rRemedy.rPrice := StrToFloat(sPrice);
+  rTempRemedy.rPrice := StrToFloat(sPrice);
 
   // Symptoms
-  SetLength(rRemedy.arrSymptoms, 0);
+  SetLength(rTempRemedy.arrSymptoms, 0);
   for i := 0 to cltSymptoms.Items.Count - 1 do
   begin
-    SetLength(rRemedy.arrSymptoms, Length(rRemedy.arrSymptoms) + 1);
-    rRemedy.arrSymptoms[Length(rRemedy.arrSymptoms) - 1] :=
+    SetLength(rTempRemedy.arrSymptoms, Length(rTempRemedy.arrSymptoms) + 1);
+    rTempRemedy.arrSymptoms[Length(rTempRemedy.arrSymptoms) - 1] :=
       cltSymptoms.Items[i];
   end;
 
   // Description
-  rRemedy.sDescription := '';
+  rTempRemedy.sDescription := '';
   for i := 0 to redDescription.Lines.Count - 1 do
   begin
-    rRemedy.sDescription := rRemedy.sDescription + redDescription.Lines
+    rTempRemedy.sDescription := rTempRemedy.sDescription + redDescription.Lines
       [i] + #10;
   end;
 
-  if (rRemedy.sDescription[Length(rRemedy.sDescription)] = #10) then
+  if (rTempRemedy.sDescription[Length(rTempRemedy.sDescription)] = #10) then
   begin
-    Delete(rRemedy.sDescription, Length(rRemedy.sDescription), 1);
+    Delete(rTempRemedy.sDescription, Length(rTempRemedy.sDescription), 1);
   end;
+
+  // Create pending change
+  // Ease of use
+  if not (rTempRemedy.iEaseOfUse = rRemedy.iEaseOfUse) then
+  begin
+    rRemedy.iEaseOfUse := rTempRemedy.iEaseOfUse;
+    bEdit := True;
+  end;
+
+  // Price
+  if not (rTempRemedy.rPrice = rRemedy.rPrice) then
+  begin
+    rRemedy.rPrice := rTempRemedy.rPrice;
+    bEdit := True;
+  end;
+
+  // Symptoms
+  if not (Length(rTempRemedy.arrSymptoms) = Length(rRemedy.arrSymptoms)) then
+  begin
+    SetLength(rRemedy.arrSymptoms, Length(rTempRemedy.arrSymptoms));
+    for i := 0 to Length(rTempRemedy.arrSymptoms) - 1 do
+    begin
+      rRemedy.arrSymptoms[i] := rTempRemedy.arrSymptoms[i];
+    end;
+
+    bEdit := True;
+  end;
+
+  // Description
+  if not (rTempRemedy.sDescription = rRemedy.sDescription) then
+  begin
+    rRemedy.sDescription := rTempRemedy.sDescription;
+    bEdit := True;
+  end;
+
+  if bEdit then
+  begin
+    rRemedy.WritePendingChange(rRemedy.CreatePendingChange);
+    ShowMessage('Created remedy update request');
+  end;
+
+  rTempRemedy.Destroy;
 end;
 
 end.

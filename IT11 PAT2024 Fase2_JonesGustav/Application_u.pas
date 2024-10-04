@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, Remedy_u,
+  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, Remedy_u, Core_u,
   Vcl.Buttons, Vcl.Samples.Spin;
 
 type
@@ -215,8 +215,6 @@ type
     procedure btnLogInClick(Sender: TObject);
     procedure btnSignUpClick(Sender: TObject);
 
-    function CalculateFieldInformation(pFieldName: string;
-      pSerializedChanges: string): string;
     function GetUserPasswordFromDB(pUserID: Integer): string;
     procedure LoadRemediesFromDBToScrollbox;
     procedure AddRemedy();
@@ -226,16 +224,19 @@ type
     procedure bttRemedyUsageAddAddReviewClick(Sender: TObject);
     procedure dbgAdminUserEditUsersCellClick(Column: TColumn);
     procedure bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
+    procedure btnAddRemedyInputsAddSymptomClick(Sender: TObject);
+    procedure btnAddRemedyInputsRemoveSymptomClick(Sender: TObject);
+    procedure lstRemedyPendingChangesAdditionsRemediesListClick
+      (Sender: TObject);
 
   private
   var
     iUserID: Integer;
     bUserAdmin: Boolean;
+    arrRemedyTiles: array of TdynRemedyTile;
 
     arrPendingChangeRemedyName: array [1 .. 150] of string;
     arrPendingChangeRemedyInformation: array [1 .. 150] of string;
-
-    arrRemedyTiles : array of TdynRemedyTile;
   public
   var
     bDBInit: Boolean;
@@ -248,12 +249,11 @@ implementation
 
 {$R *.dfm}
 
-// TODO
 procedure TfrmHome.AddRemedy;
 var
-  rRemedy : TRemedy;
-  sPrice : String;
-  i : Integer;
+  rRemedy: TRemedy;
+  sPrice: String;
+  i: Integer;
 begin
   // Read Inputs
   rRemedy := TRemedy.Create;
@@ -262,8 +262,13 @@ begin
   rRemedy.iEaseOfUse := sedAddRemedyInputsEaseOfUse.Value;
 
   // Price
-  sPrice := edtPrice.Text;
-  Delete(sPrice, 1, 1);
+  sPrice := edtAddRemedyInputsPrice.Text;
+
+  if sPrice[1] = 'R' then
+  begin
+    Delete(sPrice, 1, 1);
+  end;
+
   rRemedy.rPrice := StrToFloat(sPrice);
 
   // Symptoms
@@ -279,7 +284,8 @@ begin
   rRemedy.sDescription := '';
   for i := 0 to redAddRemedyInputsDescription.Lines.Count - 1 do
   begin
-    rRemedy.sDescription := rRemedy.sDescription + redAddRemedyInputsDescription.Lines[i] + #10;
+    rRemedy.sDescription := rRemedy.sDescription +
+      redAddRemedyInputsDescription.Lines[i] + #10;
   end;
 
   if (rRemedy.sDescription[Length(rRemedy.sDescription)] = #10) then
@@ -287,8 +293,7 @@ begin
     Delete(rRemedy.sDescription, Length(rRemedy.sDescription), 1);
   end;
 
-  rRemedy.CreatePendingChange;
-
+  rRemedy.WritePendingChange(rRemedy.CreatePendingChange);
   rRemedy.Destroy;
 end;
 
@@ -296,6 +301,39 @@ end;
 procedure TfrmHome.AddReview;
 begin
   //
+end;
+
+procedure TfrmHome.btnAddRemedyInputsAddSymptomClick(Sender: TObject);
+var
+  sSymptom: string;
+begin
+  if (edtAddRemedyInputsAddSymptom.Text = '') then
+  begin
+    ShowMessage('Please enter a symptom');
+    edtAddRemedyInputsAddSymptom.SetFocus;
+  end
+  else
+  begin
+    sSymptom := edtAddRemedyInputsAddSymptom.Text;
+
+    cltAddRemedyInputsSymptoms.Items.Add(sSymptom);
+    edtAddRemedyInputsAddSymptom.Clear;
+    ShowMessage('Symptom Added');
+  end;
+end;
+
+procedure TfrmHome.btnAddRemedyInputsRemoveSymptomClick(Sender: TObject);
+var
+  i: Integer;
+begin
+  // Remove checked Symptoms from checklist
+  for i := cltAddRemedyInputsSymptoms.Items.Count downto 1 do
+  begin
+    if cltAddRemedyInputsSymptoms.Checked[i - 1] then
+    begin
+      cltAddRemedyInputsSymptoms.Items.Delete(i - 1);
+    end;
+  end;
 end;
 
 procedure TfrmHome.btnHomeLogOutClick(Sender: TObject);
@@ -327,6 +365,12 @@ begin
   bFound := False;
   bLogIn := False;
   iTableIndex := dmBoereraad.tblUser.RecNo;
+
+  if iUserID <> 0 then
+  begin
+    ShowMessage('Please log out before trying to log in with another account');
+    exit;
+  end;
 
   while not(dmBoereraad.tblUser.Eof) and not(bFound) do
   begin
@@ -384,7 +428,7 @@ const
   iUSER_EMAIL_FIELD_SIZE = 50;
   iUSER_PASSWORD_FIELD_SIZE = 30;
 var
-  iDBIndex : Integer;
+  iDBIndex: Integer;
 begin
   // Validation
   // Presence check
@@ -415,25 +459,29 @@ begin
   // Length Check
   if Length(edtSignUpName.Text) > iUSER_NAME_FIELD_SIZE then
   begin
-    ShowMessage('Name must be smaller than ' + IntToStr(iUSER_NAME_FIELD_SIZE) + ' characters');
+    ShowMessage('Name must be smaller than ' + IntToStr(iUSER_NAME_FIELD_SIZE) +
+      ' characters');
     exit;
   end;
 
   if Length(edtSignUpSurname.Text) > iUSER_SURNAME_FIELD_SIZE then
   begin
-    ShowMessage('Surname must be smaller than ' + IntToStr(iUSER_SURNAME_FIELD_SIZE) + ' characters');
+    ShowMessage('Surname must be smaller than ' +
+      IntToStr(iUSER_SURNAME_FIELD_SIZE) + ' characters');
     exit;
   end;
 
   if Length(edtSignUpPassword.Text) > iUSER_PASSWORD_FIELD_SIZE then
   begin
-    ShowMessage('Password must be smaller than ' + IntToStr(iUSER_PASSWORD_FIELD_SIZE) + ' characters');
+    ShowMessage('Password must be smaller than ' +
+      IntToStr(iUSER_PASSWORD_FIELD_SIZE) + ' characters');
     exit;
   end;
 
   if Length(edtSignUpEmail.Text) > iUSER_EMAIL_FIELD_SIZE then
   begin
-    ShowMessage('Email must be smaller than ' + IntToStr(iUSER_EMAIL_FIELD_SIZE) + ' characters');
+    ShowMessage('Email must be smaller than ' + IntToStr(iUSER_EMAIL_FIELD_SIZE)
+      + ' characters');
     exit;
   end;
 
@@ -475,7 +523,6 @@ begin
     exit;
   end;
 
-
   AddRemedy;
 end;
 
@@ -495,7 +542,8 @@ begin
 
   for i := 1 to redRemedyUsageAddDosage.Lines.Count do
   begin
-    sDosageInformation := sDosageInformation + '#' + redRemedyUsageAddDosage.Lines[i];
+    sDosageInformation := sDosageInformation + '#' +
+      redRemedyUsageAddDosage.Lines[i];
   end;
 
   iEffectiveness := sedRemedyUsageAddEffectiveness.Value;
@@ -530,13 +578,6 @@ begin
   pgcTabs.TabIndex := 0;
 end;
 
-// TODO
-function TfrmHome.CalculateFieldInformation(pFieldName, pSerializedChanges
-  : string): string;
-begin
-  //
-end;
-
 procedure TfrmHome.dbgAdminUserEditUsersCellClick(Column: TColumn);
 begin
   dmBoereraad.tblReview.First;
@@ -559,6 +600,10 @@ begin
     if not(dmBoereraad.InitialiseDatabase) then
     begin
       ShowMessage('Failed to find database');
+    end
+    else
+    begin
+      bDBInit := True;
     end;
   end;
 
@@ -603,16 +648,16 @@ end;
 
 function TfrmHome.GetUserPasswordFromDB(pUserID: Integer): string;
 var
-  iDBIndex : Integer;
-  bFound : Boolean;
+  iDBIndex: Integer;
+  bFound: Boolean;
 
-  sPassword : String;
+  sPassword: String;
 begin
   bFound := False;
   iDBIndex := dmBoereraad.tblUser.RecNo;
 
   dmBoereraad.tblUser.First;
-  while (not (dmBoereraad.tblUser.Eof)) and (not (bFound)) do
+  while (not(dmBoereraad.tblUser.Eof)) and (not(bFound)) do
   begin
     if (dmBoereraad.tblUser['ID'] = pUserID) then
     begin
@@ -633,16 +678,16 @@ procedure TfrmHome.LoadRemediesFromDBToScrollbox;
 const
   sDELIMITER = ', ';
 var
-  iDBIndex : Integer;
-  rRemedy : TRemedy;
-  rtRemedyTile : TdynRemedyTile;
+  iDBIndex: Integer;
+  rRemedy: TRemedy;
+  rtRemedyTile: TdynRemedyTile;
 begin
   rRemedy := TRemedy.Create;
   rtRemedyTile := TdynRemedyTile.Create(Self);
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
-  while not (dmBoereraad.tblRemedy.Eof) do
+  while not(dmBoereraad.tblRemedy.Eof) do
   begin
     rRemedy.ReadDBRecord(dmBoereraad.tblRemedy['ID']);
     rtRemedyTile.Init(sbxRemediesList, rRemedy);
@@ -662,6 +707,13 @@ begin
 end;
 
 // TODO
+procedure TfrmHome.lstRemedyPendingChangesAdditionsRemediesListClick
+  (Sender: TObject);
+begin
+
+end;
+
+// TODO
 procedure TfrmHome.pgcTabsChange(Sender: TObject);
 const
   iHOME_PAGE_INDEX = 0;
@@ -672,8 +724,12 @@ const
   iADMIN_PAGE_INDEX = 5;
 var
   iTableIndex: Integer;
+  sDirContents: String;
+  rPendingRemedy : TRemedy;
+  sRemedyName : string;
+  i, iSeperator, iExtensionIndex : Integer;
 begin
-  case pgcTabs.TabIndex of
+  case pgcTabs.ActivePageIndex of
     iREMEDY_REVIEWS_PAGE_INDEX:
       begin
         // List Reviews of selected user
@@ -690,9 +746,52 @@ begin
 
         dmBoereraad.tblRemedy.RecNo := iTableIndex;
       end;
-    iADMIN_PAGE_INDEX:
+    iPENDING_CHANGES_PAGE_INDEX:
       begin
-        // Update selected user and remedy information
+        i := 1;
+        rPendingRemedy := TRemedy.Create;
+        sDirContents := TCore.ReadDir(cProgramCore.GetPendingChangesDirectory);
+
+        while (i <= Length(sDirContents)) and (i > 0) do
+        begin
+          if i <> 1 then
+          begin
+            Inc(i);
+          end;
+
+          iSeperator := Pos(#9, sDirContents, i);
+
+          if iSeperator > 0 then
+          begin
+            sRemedyName := Copy(sDirContents, i, iSeperator - i);
+          end
+          else
+          begin
+            sRemedyName := Copy(sDirContents, i, Length(sDirContents) - i + 1);
+          end;
+
+          iExtensionIndex := Pos('.txt', sRemedyName);
+          if iExtensionIndex > 0 then
+          begin
+            Delete(sRemedyName, iExtensionIndex, 4);
+          end;
+
+          rPendingRemedy.Assign(sRemedyName, rPendingRemedy.GetPendingChange(sRemedyName));
+
+          if rPendingRemedy.GetID < 0 then
+          begin
+            lstRemedyPendingChangesAdditionsRemediesList.Items.Add(rPendingRemedy.sName);
+          end
+          else
+          begin
+            lstRemedyPendingChangesEditRemediesList.Items.Add(rPendingRemedy.sName);
+          end;
+
+          i := iSeperator;
+        end;
+        
+
+        rPendingRemedy.Destroy;
       end;
   end;
 end;
