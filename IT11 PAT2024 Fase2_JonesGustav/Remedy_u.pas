@@ -16,10 +16,15 @@ type
     procedure UpdateDBRecord;
     procedure ReadDBRecord(pID: Integer);
     function CreatePendingChange : string;
-    procedure WritePendingChange(pChanges : string);
-    function GetPendingChange : string; overload;
-    function GetPendingChange(pName : string) : string; overload;
+
+    class procedure WritePendingChange(pName : string; pChanges : string); overload;
+    procedure WritePendingChange(pChanges : string); overload;
+
+    function ReadPendingChange : string; overload;
+    class function ReadPendingChange(pName : string) : string; overload;
     function GetID: Integer;
+
+    class function CalculateFieldInformation(pFieldName: string; pSerializedChanges: string): string;
 
   var
     iEaseOfUse: Integer;
@@ -30,7 +35,6 @@ type
     arrSymptoms: array of string;
 
   private
-  function CalculateFieldInformation(pFieldName: string; pSerializedChanges: string): string;
 
   const
     sSYMPTOM_SEPERATOR = ',';
@@ -45,9 +49,9 @@ implementation
 
 { TRemedy }
 
-function TRemedy.GetPendingChange : string;
+function TRemedy.ReadPendingChange : string;
 begin
-  Result := GetPendingChange(sName);
+  Result := TRemedy.ReadPendingChange(sName);
 end;
 
 procedure TRemedy.Assign(pRemedy: TRemedy);
@@ -121,7 +125,7 @@ begin
   sDescription := sModifiedDescription;
 end;
 
-function TRemedy.CalculateFieldInformation(pFieldName,
+class function TRemedy.CalculateFieldInformation(pFieldName,
   pSerializedChanges: string): string;
 var
   iFieldIndex, iFieldSeperatorIndex : Integer;
@@ -162,6 +166,10 @@ begin
 
   dmBoereraad.tblRemedy.Last;
   dmBoereraad.tblRemedy.Append;
+  dmBoereraad.tblRemedy['RemedyName'] := '';
+  dmBoereraad.tblRemedy['Description'] := '';
+  dmBoereraad.tblRemedy['EaseOfUse'] := 0;
+  dmBoereraad.tblRemedy['PricePerDose'] := 0.0;
   dmBoereraad.tblRemedy.Post;
 
   iID := dmBoereraad.tblRemedy['ID'];
@@ -217,7 +225,7 @@ begin
   result := iID;
 end;
 
-function TRemedy.GetPendingChange(pName: string): string;
+class function TRemedy.ReadPendingChange(pName : string) : string;
 var
   tFile : TextFile;
   sDirPath : string;
@@ -369,7 +377,7 @@ begin
       dmBoereraad.tblRemedy['PricePerDose'] := rPrice;
 
       // Symptoms
-      for i := 0 to Length(arrSymptoms) do
+      for i := 0 to Length(arrSymptoms) - 1 do
       begin
         sSymptomsStr := sSymptomsStr + arrSymptoms[i] + sSEPERATOR;
       end;
@@ -388,22 +396,27 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-procedure TRemedy.WritePendingChange(pChanges : string);
+class procedure TRemedy.WritePendingChange(pName, pChanges: string);
 var
   tFile : TextFile;
   sDirPath : string;
   sFileName : string;
 begin
   sDirPath := cProgramCore.GetPendingChangesDirectory;
-  sFileName := sDirPath + sName + '.txt';
+  sFileName := sDirPath + pName + '.txt';
 
   TCore.CreateDir(sDirPath);
   TCore.CreateFile(sFileName);
 
   AssignFile(tFile, sFileName);
-  Append(tFile);
+  Rewrite(tFile);
   Write(tFile, pChanges);
   CloseFile(tFile);
+end;
+
+procedure TRemedy.WritePendingChange(pChanges : string);
+begin
+  WritePendingChange(sName, pChanges);
 end;
 
 end.

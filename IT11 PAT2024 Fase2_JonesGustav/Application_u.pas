@@ -209,16 +209,16 @@ type
     SpinEdit2: TSpinEdit;
     Label1: TLabel;
     SpinEdit3: TSpinEdit;
+    sedRemedyPendingChangesAdditionsInfoEaseOfUse: TSpinEdit;
+    lblRemedyPendingChangesAdditionsInfoEaseOfUse: TLabel;
+    lblRemedyPendingChangesEditInfoEaseOfUse: TLabel;
+    sedRemedyPendingChangesEditInfoEaseOfUse: TSpinEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure pgcTabsChange(Sender: TObject);
     procedure btnLogInClick(Sender: TObject);
     procedure btnSignUpClick(Sender: TObject);
 
-    function GetUserPasswordFromDB(pUserID: Integer): string;
-    procedure LoadRemediesFromDBToScrollbox;
-    procedure AddRemedy();
-    procedure AddReview();
     procedure btnHomeLogOutClick(Sender: TObject);
     procedure NavigationHomeClick(Sender: TObject);
     procedure bttRemedyUsageAddAddReviewClick(Sender: TObject);
@@ -228,15 +228,42 @@ type
     procedure btnAddRemedyInputsRemoveSymptomClick(Sender: TObject);
     procedure lstRemedyPendingChangesAdditionsRemediesListClick
       (Sender: TObject);
+    procedure btnRemedyPendingChangesAdditionsInfoAddSymptomClick
+      (Sender: TObject);
+    procedure btnRemedyPendingChangesAdditionsInfoRemoveSymptomClick
+      (Sender: TObject);
+    procedure bttRemedyPendingChangesAdditionsInfoResetClick(Sender: TObject);
+    procedure bttRemedyPendingChangesAdditionsInfoAddRemedyClick
+      (Sender: TObject);
+    procedure lstRemedyPendingChangesEditRemediesListClick(Sender: TObject);
+    procedure bttRemedyPendingChangesEditInfoResetClick(Sender: TObject);
+    procedure btnRemedyPendingChangesEditInfoAddSymptomClick(Sender: TObject);
+    procedure btnRemedyPendingChangesEditInfoRemoveSymptomClick
+      (Sender: TObject);
+    procedure bttRemedyPendingChangesEditInfoSaveRemedyClick(Sender: TObject);
 
   private
+    function GetUserPasswordFromDB(pUserID: Integer): string;
+    procedure LoadRemediesFromDBToScrollbox;
+    procedure LoadPendingChangesFromTFToArr;
+    procedure AddRemedy();
+    procedure AddReview();
+    procedure SetupPages();
+
+  const
+    iMAX_PENDING_CHANGES = 150;
+
   var
     iUserID: Integer;
     bUserAdmin: Boolean;
     arrRemedyTiles: array of TdynRemedyTile;
 
-    arrPendingChangeRemedyName: array [1 .. 150] of string;
-    arrPendingChangeRemedyInformation: array [1 .. 150] of string;
+    arrPendingChangeRemedyName: array [1 .. iMAX_PENDING_CHANGES] of string;
+    arrPendingChangeRemedyInformation: array [1 .. iMAX_PENDING_CHANGES]
+      of string;
+    iPendingChangeCount: Integer;
+    iAdditionsSelectedIndex: Integer;
+    iEditSelectedIndex: Integer;
   public
   var
     bDBInit: Boolean;
@@ -294,6 +321,7 @@ begin
   end;
 
   rRemedy.WritePendingChange(rRemedy.CreatePendingChange);
+  ShowMessage('Created Remedy create request');
   rRemedy.Destroy;
 end;
 
@@ -359,32 +387,40 @@ end;
 
 procedure TfrmHome.btnLogInClick(Sender: TObject);
 var
-  bFound, bLogIn: Boolean;
+  bFound : Boolean;
   iTableIndex: Integer;
+  sEmail : string;
+  sPassword : string;
 begin
   bFound := False;
-  bLogIn := False;
   iTableIndex := dmBoereraad.tblUser.RecNo;
 
-  if iUserID <> 0 then
+  if iUserID > 0 then
   begin
     ShowMessage('Please log out before trying to log in with another account');
     exit;
   end;
 
-  while not(dmBoereraad.tblUser.Eof) and not(bFound) do
+  sEmail := edtLogInEmail.Text;
+  sPassword := edtLogInPassword.Text;
+
+  // Get User ID
+  dmBoereraad.tblUser.First;
+  while (not dmBoereraad.tblUser.Eof) and (not bFound) do
   begin
-    if (dmBoereraad.tblUser['Email'] = edtLogInEmail.Text) then
+    if dmBoereraad.tblUser['Email'] = sEmail then
     begin
       bFound := True;
-
-      if (dmBoereraad.tblUser['Password'] = edtLogInPassword.Text) then
+      iUserID := dmBoereraad.tblUser['ID'];
+      if dmBoereraad.tblUser['IsAdmin'] then
       begin
-        bLogIn := True;
-        iUserID := dmBoereraad.tblUser['ID'];
-        bUserAdmin := dmBoereraad.tblUser['IsAdmin'];
+        bUserAdmin := True;
+      end
+      else
+      begin
+        bUserAdmin := False;
       end;
-
+      
     end;
 
     dmBoereraad.tblUser.Next;
@@ -392,33 +428,99 @@ begin
 
   if not bFound then
   begin
-    ShowMessage('Login information incorrect try again');
-  end
-  else if not(bLogIn) then
+    ShowMessage('User email account not found. Please sign up');
+    edtLogInEmail.SetFocus;
+    dmBoereraad.tblUser.RecNo := iTableIndex;
+    exit;
+  end;
+
+  if not (GetUserPasswordFromDB(iUserID) = sPassword) then
   begin
-    ShowMessage('Incorrect Password for Account Email');
+    ShowMessage('Incorrect password. Try again');
+    iUserID := -1;
+    edtLogInPassword.SetFocus;
+    dmBoereraad.tblUser.RecNo := iTableIndex;
+    exit;
+  end;
+
+  ShowMessage('Login Successful');
+  SetupPages;
+
+  pgcTabs.TabIndex := pgcTabs.TabIndex + 1;
+  frmHome.pgcTabsChange(btnLogIn);
+
+  dmBoereraad.tblUser.RecNo := iTableIndex;
+end;
+
+procedure TfrmHome.btnRemedyPendingChangesAdditionsInfoAddSymptomClick
+  (Sender: TObject);
+var
+  sSymptom: String;
+begin
+  if (edtRemedyPendingChangesAdditionsInfoSymptomName.Text = '') then
+  begin
+    ShowMessage('Please enter a symptom');
+    edtRemedyPendingChangesAdditionsInfoSymptomName.SetFocus;
   end
   else
   begin
-    ShowMessage('Login Successful');
-    if bUserAdmin then
-    begin
-      tsAdmin.TabVisible := True;
-      tsRemedyPendingChanges.TabVisible := True;
-    end
-    else
-    begin
-      tsRemedies.TabVisible := True;
-      tsAddRemedy.TabVisible := True;
-      tsRemedyUsage.TabVisible := True;
-    end;
+    sSymptom := edtRemedyPendingChangesAdditionsInfoSymptomName.Text;
 
-    pgcTabs.TabIndex := pgcTabs.TabIndex + 1;
-    frmHome.pgcTabsChange(btnLogIn);
+    cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Add(sSymptom);
+    edtRemedyPendingChangesAdditionsInfoSymptomName.Clear;
+    ShowMessage('Symptom Added');
+  end;
+end;
+
+procedure TfrmHome.btnRemedyPendingChangesAdditionsInfoRemoveSymptomClick
+  (Sender: TObject);
+var
+  i: Integer;
+begin
+  // Remove checked Symptoms from checklist
+  for i := cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Count downto 1 do
+  begin
+    if cltRemedyPendingChangesAdditionsInfoSymptoms.Checked[i - 1] then
+    begin
+      cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Delete(i - 1);
+    end;
   end;
 
-  dmBoereraad.tblUser.RecNo := iTableIndex;
+end;
 
+procedure TfrmHome.btnRemedyPendingChangesEditInfoAddSymptomClick
+  (Sender: TObject);
+var
+  sSymptom: String;
+begin
+  if (edtRemedyPendingChangesEditInfoSymptomName.Text = '') then
+  begin
+    ShowMessage('Please enter a symptom');
+    edtRemedyPendingChangesEditInfoSymptomName.SetFocus;
+  end
+  else
+  begin
+    sSymptom := edtRemedyPendingChangesEditInfoSymptomName.Text;
+
+    cltRemedyPendingChangesEditInfoSymptoms.Items.Add(sSymptom);
+    edtRemedyPendingChangesEditInfoSymptomName.Clear;
+    ShowMessage('Symptom Added');
+  end;
+end;
+
+procedure TfrmHome.btnRemedyPendingChangesEditInfoRemoveSymptomClick
+  (Sender: TObject);
+var
+  i: Integer;
+begin
+  // Remove checked Symptoms from checklist
+  for i := cltRemedyPendingChangesEditInfoSymptoms.Items.Count downto 1 do
+  begin
+    if cltRemedyPendingChangesEditInfoSymptoms.Checked[i - 1] then
+    begin
+      cltRemedyPendingChangesEditInfoSymptoms.Items.Delete(i - 1);
+    end;
+  end;
 end;
 
 procedure TfrmHome.btnSignUpClick(Sender: TObject);
@@ -526,6 +628,289 @@ begin
   AddRemedy;
 end;
 
+procedure TfrmHome.bttRemedyPendingChangesAdditionsInfoAddRemedyClick
+  (Sender: TObject);
+var
+  rCreateRemedy: TRemedy;
+  sPrice: string;
+  i: Integer;
+begin
+  rCreateRemedy := TRemedy.Create;
+  rCreateRemedy.sName := edtRemedyPendingChangesAdditionsInfoName.Text;
+  rCreateRemedy.iEaseOfUse :=
+    sedRemedyPendingChangesAdditionsInfoEaseOfUse.Value;
+
+  // Desciption
+  for i := 0 to redRemedyPendingChangesAdditionsInfoDescription.Lines.
+    Count - 1 do
+  begin
+    rCreateRemedy.sDescription := rCreateRemedy.sDescription +
+      redRemedyPendingChangesAdditionsInfoDescription.Lines[i] + #10;
+  end;
+
+  // Price
+  sPrice := edtRemedyPendingChangesAdditionsInfoPrice.Text;
+
+  if sPrice[1] = 'R' then
+  begin
+    Delete(sPrice, 1, 1);
+  end;
+
+  rCreateRemedy.rPrice := StrToFloat(sPrice);
+
+  // Symptoms
+  SetLength(rCreateRemedy.arrSymptoms,
+    cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Count);
+  for i := 0 to cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Count - 1 do
+  begin
+    rCreateRemedy.arrSymptoms[i] :=
+      cltRemedyPendingChangesAdditionsInfoSymptoms.Items[i];
+  end;
+
+  rCreateRemedy.CreateDBRecord;
+  TCore.DeleteFile(cProgramCore.GetPendingChangesDirectory + rCreateRemedy.sName
+    + '.txt');
+
+  pgcTabsChange(self);
+
+  ShowMessage('Remedy Created');
+  rCreateRemedy.Destroy;
+end;
+
+procedure TfrmHome.bttRemedyPendingChangesAdditionsInfoResetClick
+  (Sender: TObject);
+const
+  sDESCRIPTION_DELIMITER = #9;
+  sSYMPTOM_DELIMITER = ',';
+var
+  sRemedyName, sRemedyInfo: string;
+  sSymptoms, sDescription, sLine: string;
+  i, iDelimiter: Integer;
+begin
+  if iAdditionsSelectedIndex < 0 then
+  begin
+    edtRemedyPendingChangesAdditionsInfoName.Text := '';
+    edtRemedyPendingChangesAdditionsInfoPrice.Text := '';
+    sedRemedyPendingChangesAdditionsInfoEaseOfUse.Value := 0;
+    redRemedyPendingChangesAdditionsInfoDescription.Lines.Clear;
+    cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Clear;
+    imgRemedyPendingChangesAdditionsInfoImage.Visible := False;
+
+    exit;
+  end;
+
+  sRemedyName := arrPendingChangeRemedyName[iAdditionsSelectedIndex];
+  sRemedyInfo := arrPendingChangeRemedyInformation[iAdditionsSelectedIndex];
+
+  edtRemedyPendingChangesAdditionsInfoName.Text := sRemedyName;
+  edtRemedyPendingChangesAdditionsInfoPrice.Text :=
+    'R' + TRemedy.CalculateFieldInformation('Price', sRemedyInfo);
+  sedRemedyPendingChangesAdditionsInfoEaseOfUse.Value :=
+    StrToInt(TRemedy.CalculateFieldInformation('EaseOfUse', sRemedyInfo));
+
+  // Description
+  sDescription := TRemedy.CalculateFieldInformation('Description', sRemedyInfo);
+  redRemedyPendingChangesAdditionsInfoDescription.Lines.Clear;
+  i := 1;
+  while (i <= Length(sDescription)) do
+  begin
+    iDelimiter := Pos(sDESCRIPTION_DELIMITER, sDescription, i);
+
+    if (iDelimiter > 0) then
+      sLine := Copy(sDescription, i, iDelimiter - i)
+    else
+      sLine := Copy(sDescription, i, Length(sDescription) - i + 1);
+
+    redRemedyPendingChangesAdditionsInfoDescription.Lines.Add(sLine);
+
+    if (iDelimiter > 0) then
+    begin
+      i := iDelimiter + 1;
+    end
+    else
+    begin
+      i := Length(sDescription) + 1;
+    end;
+  end;
+
+  // Symptoms
+  sSymptoms := TRemedy.CalculateFieldInformation('Symptoms', sRemedyInfo);
+  cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Clear;
+  i := 1;
+  while i > 0 do
+  begin
+    iDelimiter := Pos(sSYMPTOM_DELIMITER, sSymptoms, i);
+
+    if iDelimiter > 0 then
+    begin
+      sLine := Copy(sSymptoms, i, iDelimiter - i);
+    end
+    else
+    begin
+      sLine := Copy(sSymptoms, i, Length(sSymptoms) - i + 1);
+    end;
+
+    cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Add(sLine);
+
+    if (iDelimiter > 0) then
+    begin
+      i := iDelimiter + 1;
+    end
+    else
+    begin
+      i := iDelimiter;
+    end;
+  end;
+
+  if FileExists(cProgramCore.GetImageDirectory + sRemedyName + '.jpg') then
+  begin
+    imgRemedyPendingChangesAdditionsInfoImage.Picture.LoadFromFile
+      (cProgramCore.GetImageDirectory + sRemedyName + '.jpg');
+    imgRemedyPendingChangesAdditionsInfoImage.Visible := True;
+  end;
+end;
+
+procedure TfrmHome.bttRemedyPendingChangesEditInfoResetClick(Sender: TObject);
+const
+  sDESCRIPTION_DELIMITER = #9;
+  sSYMPTOM_DELIMITER = ',';
+var
+  sRemedyName, sRemedyInfo: string;
+  sSymptoms, sDescription, sLine: string;
+  i, iDelimiter: Integer;
+begin
+  if iEditSelectedIndex < 0 then
+  begin
+    edtRemedyPendingChangesEditInfoName.Text := '';
+    edtRemedyPendingChangesEditInfoPrice.Text := '';
+    sedRemedyPendingChangesEditInfoEaseOfUse.Value := 0;
+    redRemedyPendingChangesEditInfoDescription.Lines.Clear;
+    cltRemedyPendingChangesEditInfoSymptoms.Items.Clear;
+    imgRemedyPendingChangesEditInfoImage.Visible := False;
+
+    exit;
+  end;
+
+  sRemedyName := arrPendingChangeRemedyName[iEditSelectedIndex];
+  sRemedyInfo := arrPendingChangeRemedyInformation[iEditSelectedIndex];
+
+  edtRemedyPendingChangesEditInfoName.Text := sRemedyName;
+  edtRemedyPendingChangesEditInfoPrice.Text :=
+    'R' + TRemedy.CalculateFieldInformation('Price', sRemedyInfo);
+  sedRemedyPendingChangesEditInfoEaseOfUse.Value :=
+    StrToInt(TRemedy.CalculateFieldInformation('EaseOfUse', sRemedyInfo));
+
+  // Description
+  sDescription := TRemedy.CalculateFieldInformation('Description', sRemedyInfo);
+  redRemedyPendingChangesEditInfoDescription.Lines.Clear;
+  i := 1;
+  while (i <= Length(sDescription)) do
+  begin
+    iDelimiter := Pos(sDESCRIPTION_DELIMITER, sDescription, i);
+
+    if (iDelimiter > 0) then
+      sLine := Copy(sDescription, i, iDelimiter - i)
+    else
+      sLine := Copy(sDescription, i, Length(sDescription) - i + 1);
+
+    redRemedyPendingChangesEditInfoDescription.Lines.Add(sLine);
+
+    if (iDelimiter > 0) then
+    begin
+      i := iDelimiter + 1;
+    end
+    else
+    begin
+      i := Length(sDescription) + 1;
+    end;
+  end;
+
+  // Symptoms
+  sSymptoms := TRemedy.CalculateFieldInformation('Symptoms', sRemedyInfo);
+  cltRemedyPendingChangesEditInfoSymptoms.Items.Clear;
+  i := 1;
+  while i > 0 do
+  begin
+    iDelimiter := Pos(sSYMPTOM_DELIMITER, sSymptoms, i);
+
+    if iDelimiter > 0 then
+    begin
+      sLine := Copy(sSymptoms, i, iDelimiter - i);
+    end
+    else
+    begin
+      sLine := Copy(sSymptoms, i, Length(sSymptoms) - i + 1);
+    end;
+
+    cltRemedyPendingChangesEditInfoSymptoms.Items.Add(sLine);
+
+    if (iDelimiter > 0) then
+    begin
+      i := iDelimiter + 1;
+    end
+    else
+    begin
+      i := iDelimiter;
+    end;
+  end;
+
+  if FileExists(cProgramCore.GetImageDirectory + sRemedyName + '.jpg') then
+  begin
+    imgRemedyPendingChangesEditInfoImage.Picture.LoadFromFile
+      (cProgramCore.GetImageDirectory + sRemedyName + '.jpg');
+    imgRemedyPendingChangesEditInfoImage.Visible := True;
+  end;
+end;
+
+procedure TfrmHome.bttRemedyPendingChangesEditInfoSaveRemedyClick
+  (Sender: TObject);
+var
+  rEditRemedy: TRemedy;
+  sPrice: string;
+  i: Integer;
+begin
+  rEditRemedy := TRemedy.Create;
+  rEditRemedy.Assign(arrPendingChangeRemedyName[iEditSelectedIndex],
+    arrPendingChangeRemedyInformation[iEditSelectedIndex]);
+  rEditRemedy.sName := edtRemedyPendingChangesEditInfoName.Text;
+  rEditRemedy.iEaseOfUse := sedRemedyPendingChangesEditInfoEaseOfUse.Value;
+
+  // Desciption
+  for i := 0 to redRemedyPendingChangesEditInfoDescription.Lines.Count - 1 do
+  begin
+    rEditRemedy.sDescription := rEditRemedy.sDescription +
+      redRemedyPendingChangesEditInfoDescription.Lines[i] + #10;
+  end;
+
+  // Price
+  sPrice := edtRemedyPendingChangesEditInfoPrice.Text;
+
+  if sPrice[1] = 'R' then
+  begin
+    Delete(sPrice, 1, 1);
+  end;
+
+  rEditRemedy.rPrice := StrToFloat(sPrice);
+
+  // Symptoms
+  SetLength(rEditRemedy.arrSymptoms,
+    cltRemedyPendingChangesEditInfoSymptoms.Items.Count);
+  for i := 0 to cltRemedyPendingChangesEditInfoSymptoms.Items.Count - 1 do
+  begin
+    rEditRemedy.arrSymptoms[i] :=
+      cltRemedyPendingChangesEditInfoSymptoms.Items[i];
+  end;
+
+  rEditRemedy.UpdateDBRecord;
+  TCore.DeleteFile(cProgramCore.GetPendingChangesDirectory + rEditRemedy.sName
+    + '.txt');
+
+  pgcTabsChange(self);
+
+  ShowMessage('Remedy Created');
+  rEditRemedy.Destroy;
+end;
+
 procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
 var
   iTableIndex: Integer;
@@ -608,6 +993,7 @@ begin
   end;
 
   LoadRemediesFromDBToScrollbox;
+  iPendingChangeCount := 0;
 end;
 
 procedure TfrmHome.FormCreate(Sender: TObject);
@@ -642,7 +1028,6 @@ begin
   end;
 
   bDBInit := False;
-
   pgcTabs.ActivePage := tsHome;
 end;
 
@@ -674,6 +1059,63 @@ begin
   result := sPassword;
 end;
 
+procedure TfrmHome.LoadPendingChangesFromTFToArr;
+var
+  sDirContents: String;
+  rPendingRemedy: TRemedy;
+  sRemedyName, sRemedyInfo: string;
+  i, iSeperator, iExtensionIndex: Integer;
+  bMaxChanges: Boolean;
+begin
+  iPendingChangeCount := 0;
+  bMaxChanges := False;
+  i := 1;
+  rPendingRemedy := TRemedy.Create;
+  sDirContents := TCore.ReadDir(cProgramCore.GetPendingChangesDirectory);
+
+  while (i <= Length(sDirContents)) and (i > 0) and not(bMaxChanges) do
+  begin
+    if i <> 1 then
+    begin
+      Inc(i);
+    end;
+
+    iSeperator := Pos(#9, sDirContents, i);
+
+    if iSeperator > 0 then
+    begin
+      sRemedyName := Copy(sDirContents, i, iSeperator - i);
+    end
+    else
+    begin
+      sRemedyName := Copy(sDirContents, i, Length(sDirContents) - i + 1);
+    end;
+
+    iExtensionIndex := Pos('.txt', sRemedyName);
+    if iExtensionIndex > 0 then
+    begin
+      Delete(sRemedyName, iExtensionIndex, 4);
+    end;
+
+    sRemedyInfo := TRemedy.ReadPendingChange(sRemedyName);
+
+    if iPendingChangeCount < iMAX_PENDING_CHANGES then
+    begin
+      Inc(iPendingChangeCount);
+      arrPendingChangeRemedyName[iPendingChangeCount] := sRemedyName;
+      arrPendingChangeRemedyInformation[iPendingChangeCount] := sRemedyInfo;
+    end
+    else
+    begin
+      bMaxChanges := True;
+    end;
+
+    i := iSeperator;
+  end;
+
+  rPendingRemedy.Destroy;
+end;
+
 procedure TfrmHome.LoadRemediesFromDBToScrollbox;
 const
   sDELIMITER = ', ';
@@ -683,7 +1125,7 @@ var
   rtRemedyTile: TdynRemedyTile;
 begin
   rRemedy := TRemedy.Create;
-  rtRemedyTile := TdynRemedyTile.Create(Self);
+  rtRemedyTile := TdynRemedyTile.Create(self);
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
@@ -696,7 +1138,7 @@ begin
     SetLength(arrRemedyTiles, Length(arrRemedyTiles) + 1);
     arrRemedyTiles[Length(arrRemedyTiles) - 1] := rtRemedyTile;
 
-    rtRemedyTile := TdynRemedyTile.Create(Self);
+    rtRemedyTile := TdynRemedyTile.Create(self);
 
     dmBoereraad.tblRemedy.Next;
   end;
@@ -706,11 +1148,56 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-// TODO
 procedure TfrmHome.lstRemedyPendingChangesAdditionsRemediesListClick
   (Sender: TObject);
+var
+  iIndex: Integer;
+  i: Integer;
 begin
+  iIndex := 0;
 
+  for i := 1 to iPendingChangeCount do
+  begin
+    if StrToInt(TRemedy.CalculateFieldInformation('ID',
+      arrPendingChangeRemedyInformation[i])) < 0 then
+    begin
+      Inc(iIndex);
+    end;
+
+    if iIndex = lstRemedyPendingChangesAdditionsRemediesList.ItemIndex + 1 then
+    begin
+      iAdditionsSelectedIndex := i;
+      Inc(iIndex);
+    end;
+  end;
+
+  bttRemedyPendingChangesAdditionsInfoResetClick(self);
+end;
+
+procedure TfrmHome.lstRemedyPendingChangesEditRemediesListClick
+  (Sender: TObject);
+var
+  iIndex: Integer;
+  i: Integer;
+begin
+  iIndex := 0;
+
+  for i := 1 to iPendingChangeCount do
+  begin
+    if StrToInt(TRemedy.CalculateFieldInformation('ID',
+      arrPendingChangeRemedyInformation[i])) >= 0 then
+    begin
+      Inc(iIndex);
+    end;
+
+    if iIndex = lstRemedyPendingChangesEditRemediesList.ItemIndex + 1 then
+    begin
+      iEditSelectedIndex := i;
+      Inc(iIndex);
+    end;
+  end;
+
+  bttRemedyPendingChangesEditInfoResetClick(self);
 end;
 
 // TODO
@@ -724,10 +1211,7 @@ const
   iADMIN_PAGE_INDEX = 5;
 var
   iTableIndex: Integer;
-  sDirContents: String;
-  rPendingRemedy : TRemedy;
-  sRemedyName : string;
-  i, iSeperator, iExtensionIndex : Integer;
+  i: Integer;
 begin
   case pgcTabs.ActivePageIndex of
     iREMEDY_REVIEWS_PAGE_INDEX:
@@ -748,51 +1232,45 @@ begin
       end;
     iPENDING_CHANGES_PAGE_INDEX:
       begin
-        i := 1;
-        rPendingRemedy := TRemedy.Create;
-        sDirContents := TCore.ReadDir(cProgramCore.GetPendingChangesDirectory);
+        iAdditionsSelectedIndex := -1;
+        iEditSelectedIndex := -1;
 
-        while (i <= Length(sDirContents)) and (i > 0) do
+        LoadPendingChangesFromTFToArr;
+
+        lstRemedyPendingChangesAdditionsRemediesList.Items.Clear;
+        lstRemedyPendingChangesEditRemediesList.Items.Clear;
+        for i := 1 to iPendingChangeCount do
         begin
-          if i <> 1 then
+          if StrToInt(TRemedy.CalculateFieldInformation('ID',
+            arrPendingChangeRemedyInformation[i])) < 0 then
           begin
-            Inc(i);
-          end;
-
-          iSeperator := Pos(#9, sDirContents, i);
-
-          if iSeperator > 0 then
-          begin
-            sRemedyName := Copy(sDirContents, i, iSeperator - i);
+            lstRemedyPendingChangesAdditionsRemediesList.Items.Add
+              (arrPendingChangeRemedyName[i]);
           end
           else
           begin
-            sRemedyName := Copy(sDirContents, i, Length(sDirContents) - i + 1);
+            lstRemedyPendingChangesEditRemediesList.Items.Add
+              (arrPendingChangeRemedyName[i]);
           end;
-
-          iExtensionIndex := Pos('.txt', sRemedyName);
-          if iExtensionIndex > 0 then
-          begin
-            Delete(sRemedyName, iExtensionIndex, 4);
-          end;
-
-          rPendingRemedy.Assign(sRemedyName, rPendingRemedy.GetPendingChange(sRemedyName));
-
-          if rPendingRemedy.GetID < 0 then
-          begin
-            lstRemedyPendingChangesAdditionsRemediesList.Items.Add(rPendingRemedy.sName);
-          end
-          else
-          begin
-            lstRemedyPendingChangesEditRemediesList.Items.Add(rPendingRemedy.sName);
-          end;
-
-          i := iSeperator;
         end;
-        
 
-        rPendingRemedy.Destroy;
+        bttRemedyPendingChangesAdditionsInfoResetClick(self);
       end;
+  end;
+end;
+
+procedure TfrmHome.SetupPages;
+begin
+  if bUserAdmin then
+  begin
+    tsAdmin.TabVisible := True;
+    tsRemedyPendingChanges.TabVisible := True;
+  end
+  else
+  begin
+    tsRemedies.TabVisible := True;
+    tsAddRemedy.TabVisible := True;
+    tsRemedyUsage.TabVisible := True;
   end;
 end;
 

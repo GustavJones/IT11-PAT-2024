@@ -115,7 +115,7 @@ begin
     iDelimiter := Pos(sDELIMITER, sParseStr, i);
 
     if (iDelimiter > 0) then
-      sLine := Copy(sParseStr, i, iDelimiter - i - 1)
+      sLine := Copy(sParseStr, i, iDelimiter - i)
     else
       sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
 
@@ -375,7 +375,7 @@ begin
     iDelimiter := Pos(sDELIMITER, sParseStr, i);
 
     if (iDelimiter > 0) then
-      sLine := Copy(sParseStr, i, iDelimiter - i - 1)
+      sLine := Copy(sParseStr, i, iDelimiter - i)
     else
       sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
 
@@ -467,11 +467,6 @@ begin
       [i] + #10;
   end;
 
-  if (rTempRemedy.sDescription[Length(rTempRemedy.sDescription)] = #10) then
-  begin
-    Delete(rTempRemedy.sDescription, Length(rTempRemedy.sDescription), 1);
-  end;
-
   // Create pending change
   // Ease of use
   if not (rTempRemedy.iEaseOfUse = rRemedy.iEaseOfUse) then
@@ -510,6 +505,10 @@ begin
   begin
     rRemedy.WritePendingChange(rRemedy.CreatePendingChange);
     ShowMessage('Created remedy update request');
+  end
+  else
+  begin
+    ShowMessage('Remedy is unchanged');
   end;
 
   rTempRemedy.Destroy;

@@ -15,9 +15,11 @@ type
     function GetImageDirectory(): String;
     function GetPendingChangesDirectory(): String;
     class procedure CreateFile(pFilepath: string);
+    class procedure DeleteFile(pFilepath: string);
     class procedure CreateDir(pPath: string);
     class procedure CopyFile(pFileToCopy: string; pFileOutput: string);
     class function ReadDir(pPath: string; pSeperator: string = #9): string;
+    class procedure RenameFile(pOldPath : string; pNewPath : string);
 
   private
   var
@@ -88,6 +90,11 @@ begin
   end;
 end;
 
+class procedure TCore.DeleteFile(pFilepath: string);
+begin
+  System.SysUtils.DeleteFile(pFilepath);
+end;
+
 function TCore.GetDataDirectory: String;
 begin
   result := sDATA_DIRECTORY + '\';
@@ -133,6 +140,11 @@ begin
   end;
 
   result := sOutput;
+end;
+
+class procedure TCore.RenameFile(pOldPath, pNewPath: string);
+begin
+  System.SysUtils.RenameFile(pOldPath, pNewPath);
 end;
 
 end.
