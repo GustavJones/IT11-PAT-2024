@@ -20,7 +20,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1177
     Height = 644
-    ActivePage = tsRemedyPendingChanges
+    ActivePage = tsAdmin
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
@@ -15328,6 +15328,8 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
+        ExplicitWidth = 1159
+        ExplicitHeight = 607
         object lblRemedyPendingChanges: TLabel
           Left = 1
           Top = 1
@@ -15353,6 +15355,8 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 0
+          ExplicitTop = 564
+          ExplicitWidth = 1153
           object bttRemedyPendingChangesNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15508,6 +15512,7 @@ object frmHome: TfrmHome
           Align = alTop
           ShowCaption = False
           TabOrder = 1
+          ExplicitWidth = 1147
           object lblRemedyPendingChangesAdditions: TLabel
             Left = 16
             Top = 15
@@ -15646,7 +15651,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15696,6 +15701,8 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
+          ExplicitTop = 305
+          ExplicitWidth = 1147
           object lblRemedyPendingChangesEdit: TLabel
             Left = 16
             Top = 15
@@ -15834,7 +15841,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -15891,8 +15898,6 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1159
-        ExplicitHeight = 607
         object lblAdminUser: TLabel
           Left = 1
           Top = 1
@@ -15934,7 +15939,6 @@ object frmHome: TfrmHome
           Height = 264
           Align = alTop
           TabOrder = 0
-          ExplicitWidth = 1153
           object lblAdminUserEditDaysUsed: TLabel
             Left = 1016
             Top = 35
@@ -16193,7 +16197,6 @@ object frmHome: TfrmHome
           Height = 232
           Align = alTop
           TabOrder = 1
-          ExplicitWidth = 1153
           object lblAdminRemedyEditDescription: TLabel
             Left = 424
             Top = 6
@@ -16343,8 +16346,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
-          ExplicitTop = 564
-          ExplicitWidth = 1153
           object bttAdminNavigationHelp: TBitBtn
             Left = 86
             Top = 6

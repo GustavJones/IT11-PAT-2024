@@ -249,6 +249,7 @@ type
     procedure AddRemedy();
     procedure AddReview();
     procedure SetupPages();
+    function GetRemedyName(pID : Integer) : string;
 
   const
     iMAX_PENDING_CHANGES = 150;
@@ -963,19 +964,30 @@ begin
   pgcTabs.TabIndex := 0;
 end;
 
+// TODO
 procedure TfrmHome.dbgAdminUserEditUsersCellClick(Column: TColumn);
 begin
+  // Review List
   dmBoereraad.tblReview.First;
 
+  lstAdminUserEditReview.Items.Clear;
   while not(dmBoereraad.tblReview.Eof) do
   begin
     if dmBoereraad.tblReview['UserID'] = dmBoereraad.tblUser['ID'] then
     begin
-      lstAdminUserEditReview.Items.Add(dmBoereraad.tblReview['RemedyID'])
+      lstAdminUserEditReview.Items.Add(GetRemedyName(dmBoereraad.tblReview['RemedyID']));
     end;
 
     dmBoereraad.tblReview.Next;
   end;
+
+  // User Edit
+  edtAdminUserEditName.Text := dmBoereraad.tblUser['UserName'];
+  edtAdminUserEditSurname.Text := dmBoereraad.tblUser['UserSurname'];
+  edtAdminUserEditEmail.Text := dmBoereraad.tblUser['Email'];
+
+  chkAdminUserEditIsMale.Checked := dmBoereraad.tblUser['IsMale'];
+  chkAdminUserEditAdmin.Checked := dmBoereraad.tblUser['IsAdmin'];
 end;
 
 procedure TfrmHome.FormActivate(Sender: TObject);
@@ -1029,6 +1041,31 @@ begin
 
   bDBInit := False;
   pgcTabs.ActivePage := tsHome;
+end;
+
+function TfrmHome.GetRemedyName(pID: Integer): string;
+var
+  iDBIndex : Integer;
+  bFound : Boolean;
+  sOutput : string;
+begin
+  bFound := False;
+  iDBIndex := dmBoereraad.tblRemedy.RecNo;
+
+  dmBoereraad.tblRemedy.First;
+  while not (dmBoereraad.tblRemedy.Eof) and not (bFound) do
+  begin
+    if dmBoereraad.tblRemedy['ID'] = pID then
+    begin
+      sOutput := dmBoereraad.tblRemedy['RemedyName'];
+      bFound := True;
+    end;
+
+    dmBoereraad.tblRemedy.Next;
+  end;
+
+  dmBoereraad.tblRemedy.RecNo := iDBIndex;
+  result := sOutput;
 end;
 
 function TfrmHome.GetUserPasswordFromDB(pUserID: Integer): string;
@@ -1255,6 +1292,7 @@ begin
         end;
 
         bttRemedyPendingChangesAdditionsInfoResetClick(self);
+        bttRemedyPendingChangesEditInfoResetClick(self);
       end;
   end;
 end;
