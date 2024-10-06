@@ -467,6 +467,9 @@ begin
       [i] + #10;
   end;
 
+  if rTempRemedy.sDescription[Length(rTempRemedy.sDescription)] = #10 then
+    Delete(rTempRemedy.sDescription, Length(rTempRemedy.sDescription), 1);
+
   // Create pending change
   // Ease of use
   if not (rTempRemedy.iEaseOfUse = rRemedy.iEaseOfUse) then

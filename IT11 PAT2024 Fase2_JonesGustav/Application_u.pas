@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
   Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, Remedy_u, Core_u,
-  Vcl.Buttons, Vcl.Samples.Spin;
+  Vcl.Buttons, Vcl.Samples.Spin, Vcl.ExtDlgs;
 
 type
   TfrmHome = class(TForm)
@@ -196,23 +196,15 @@ type
     btnUpdateImage: TButton;
     bttReset: TBitBtn;
     bttSave: TBitBtn;
-    Panel3: TPanel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    BitBtn5: TBitBtn;
-    BitBtn6: TBitBtn;
-    RichEdit3: TRichEdit;
-    SpinEdit1: TSpinEdit;
-    BitBtn7: TBitBtn;
-    SpinEdit2: TSpinEdit;
     Label1: TLabel;
     SpinEdit3: TSpinEdit;
     sedRemedyPendingChangesAdditionsInfoEaseOfUse: TSpinEdit;
     lblRemedyPendingChangesAdditionsInfoEaseOfUse: TLabel;
     lblRemedyPendingChangesEditInfoEaseOfUse: TLabel;
     sedRemedyPendingChangesEditInfoEaseOfUse: TSpinEdit;
+    edtAdminUserEditPassword: TEdit;
+    sedAdminUserEditID: TSpinEdit;
+    lblAdminUserEditID: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure pgcTabsChange(Sender: TObject);
@@ -241,6 +233,8 @@ type
     procedure btnRemedyPendingChangesEditInfoRemoveSymptomClick
       (Sender: TObject);
     procedure bttRemedyPendingChangesEditInfoSaveRemedyClick(Sender: TObject);
+    procedure bttAdminUserEditSaveUserClick(Sender: TObject);
+    procedure btnAddRemedyInputsAddImageClick(Sender: TObject);
 
   private
     function GetUserPasswordFromDB(pUserID: Integer): string;
@@ -249,7 +243,7 @@ type
     procedure AddRemedy();
     procedure AddReview();
     procedure SetupPages();
-    function GetRemedyName(pID : Integer) : string;
+    function GetRemedyName(pID: Integer): string;
 
   const
     iMAX_PENDING_CHANGES = 150;
@@ -332,6 +326,26 @@ begin
   //
 end;
 
+procedure TfrmHome.btnAddRemedyInputsAddImageClick(Sender: TObject);
+var
+  dlgImageSelect: TOpenPictureDialog;
+begin
+  dlgImageSelect := TOpenPictureDialog.Create(Self);
+  dlgImageSelect.Filter := 'JPEG Images (*.jpg, *.jpeg)|*.JPG;*.JPEG';
+  dlgImageSelect.Execute;
+
+  if not FileExists(dlgImageSelect.FileName) then
+  begin
+    ShowMessage('File not found. Please try again!');
+  end
+  else
+  begin
+    imgAddRemedyInputsImage.Picture.LoadFromFile(dlgImageSelect.FileName);
+  end;
+
+  dlgImageSelect.Destroy;
+end;
+
 procedure TfrmHome.btnAddRemedyInputsAddSymptomClick(Sender: TObject);
 var
   sSymptom: string;
@@ -388,10 +402,10 @@ end;
 
 procedure TfrmHome.btnLogInClick(Sender: TObject);
 var
-  bFound : Boolean;
+  bFound: Boolean;
   iTableIndex: Integer;
-  sEmail : string;
-  sPassword : string;
+  sEmail: string;
+  sPassword: string;
 begin
   bFound := False;
   iTableIndex := dmBoereraad.tblUser.RecNo;
@@ -421,7 +435,7 @@ begin
       begin
         bUserAdmin := False;
       end;
-      
+
     end;
 
     dmBoereraad.tblUser.Next;
@@ -435,7 +449,7 @@ begin
     exit;
   end;
 
-  if not (GetUserPasswordFromDB(iUserID) = sPassword) then
+  if not(GetUserPasswordFromDB(iUserID) = sPassword) then
   begin
     ShowMessage('Incorrect password. Try again');
     iUserID := -1;
@@ -629,6 +643,40 @@ begin
   AddRemedy;
 end;
 
+procedure TfrmHome.bttAdminUserEditSaveUserClick(Sender: TObject);
+var
+  bFound: Boolean;
+  iDBIndex: Integer;
+  i: Integer;
+begin
+  bFound := False;
+  iDBIndex := dmBoereraad.tblUser.RecNo;
+
+  dmBoereraad.tblUser.First;
+  while not(dmBoereraad.tblUser.Eof) and not(bFound) do
+  begin
+    if dmBoereraad.tblUser['ID'] = sedAdminUserEditID.Value then
+    begin
+      bFound := True;
+    end;
+
+    dmBoereraad.tblUser.Next;
+  end;
+
+  dmBoereraad.tblUser.Prior;
+
+  dmBoereraad.tblUser.Edit;
+  dmBoereraad.tblUser['UserName'] := edtAdminUserEditName.Text;
+  dmBoereraad.tblUser['UserSurname'] := edtAdminUserEditSurname.Text;
+  dmBoereraad.tblUser['IsAdmin'] := chkAdminUserEditAdmin.Checked;
+  dmBoereraad.tblUser['IsMale'] := chkAdminUserEditIsMale.Checked;
+  dmBoereraad.tblUser['Email'] := edtAdminUserEditEmail.Text;
+  dmBoereraad.tblUser['Password'] := edtAdminUserEditPassword.Text;
+  dmBoereraad.tblUser.Post;
+
+  dmBoereraad.tblUser.RecNo := iDBIndex;
+end;
+
 procedure TfrmHome.bttRemedyPendingChangesAdditionsInfoAddRemedyClick
   (Sender: TObject);
 var
@@ -672,7 +720,7 @@ begin
   TCore.DeleteFile(cProgramCore.GetPendingChangesDirectory + rCreateRemedy.sName
     + '.txt');
 
-  pgcTabsChange(self);
+  pgcTabsChange(Self);
 
   ShowMessage('Remedy Created');
   rCreateRemedy.Destroy;
@@ -863,6 +911,7 @@ begin
   end;
 end;
 
+// TODO Bug Description duplication on pending change add
 procedure TfrmHome.bttRemedyPendingChangesEditInfoSaveRemedyClick
   (Sender: TObject);
 var
@@ -906,7 +955,7 @@ begin
   TCore.DeleteFile(cProgramCore.GetPendingChangesDirectory + rEditRemedy.sName
     + '.txt');
 
-  pgcTabsChange(self);
+  pgcTabsChange(Self);
 
   ShowMessage('Remedy Created');
   rEditRemedy.Destroy;
@@ -964,9 +1013,12 @@ begin
   pgcTabs.TabIndex := 0;
 end;
 
-// TODO
 procedure TfrmHome.dbgAdminUserEditUsersCellClick(Column: TColumn);
+var
+  iDBIndex: Integer;
 begin
+  iDBIndex := dmBoereraad.tblReview.RecNo;
+
   // Review List
   dmBoereraad.tblReview.First;
 
@@ -975,19 +1027,24 @@ begin
   begin
     if dmBoereraad.tblReview['UserID'] = dmBoereraad.tblUser['ID'] then
     begin
-      lstAdminUserEditReview.Items.Add(GetRemedyName(dmBoereraad.tblReview['RemedyID']));
+      lstAdminUserEditReview.Items.Add
+        (GetRemedyName(dmBoereraad.tblReview['RemedyID']));
     end;
 
     dmBoereraad.tblReview.Next;
   end;
 
   // User Edit
+  sedAdminUserEditID.Value := dmBoereraad.tblUser['ID'];
   edtAdminUserEditName.Text := dmBoereraad.tblUser['UserName'];
   edtAdminUserEditSurname.Text := dmBoereraad.tblUser['UserSurname'];
   edtAdminUserEditEmail.Text := dmBoereraad.tblUser['Email'];
+  edtAdminUserEditPassword.Text := dmBoereraad.tblUser['Password'];
 
   chkAdminUserEditIsMale.Checked := dmBoereraad.tblUser['IsMale'];
   chkAdminUserEditAdmin.Checked := dmBoereraad.tblUser['IsAdmin'];
+
+  dmBoereraad.tblReview.RecNo := iDBIndex;
 end;
 
 procedure TfrmHome.FormActivate(Sender: TObject);
@@ -1045,15 +1102,15 @@ end;
 
 function TfrmHome.GetRemedyName(pID: Integer): string;
 var
-  iDBIndex : Integer;
-  bFound : Boolean;
-  sOutput : string;
+  iDBIndex: Integer;
+  bFound: Boolean;
+  sOutput: string;
 begin
   bFound := False;
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
-  while not (dmBoereraad.tblRemedy.Eof) and not (bFound) do
+  while not(dmBoereraad.tblRemedy.Eof) and not(bFound) do
   begin
     if dmBoereraad.tblRemedy['ID'] = pID then
     begin
@@ -1162,7 +1219,7 @@ var
   rtRemedyTile: TdynRemedyTile;
 begin
   rRemedy := TRemedy.Create;
-  rtRemedyTile := TdynRemedyTile.Create(self);
+  rtRemedyTile := TdynRemedyTile.Create(Self);
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
@@ -1175,7 +1232,7 @@ begin
     SetLength(arrRemedyTiles, Length(arrRemedyTiles) + 1);
     arrRemedyTiles[Length(arrRemedyTiles) - 1] := rtRemedyTile;
 
-    rtRemedyTile := TdynRemedyTile.Create(self);
+    rtRemedyTile := TdynRemedyTile.Create(Self);
 
     dmBoereraad.tblRemedy.Next;
   end;
@@ -1208,7 +1265,7 @@ begin
     end;
   end;
 
-  bttRemedyPendingChangesAdditionsInfoResetClick(self);
+  bttRemedyPendingChangesAdditionsInfoResetClick(Self);
 end;
 
 procedure TfrmHome.lstRemedyPendingChangesEditRemediesListClick
@@ -1234,7 +1291,7 @@ begin
     end;
   end;
 
-  bttRemedyPendingChangesEditInfoResetClick(self);
+  bttRemedyPendingChangesEditInfoResetClick(Self);
 end;
 
 // TODO
@@ -1291,8 +1348,8 @@ begin
           end;
         end;
 
-        bttRemedyPendingChangesAdditionsInfoResetClick(self);
-        bttRemedyPendingChangesEditInfoResetClick(self);
+        bttRemedyPendingChangesAdditionsInfoResetClick(Self);
+        bttRemedyPendingChangesEditInfoResetClick(Self);
       end;
   end;
 end;

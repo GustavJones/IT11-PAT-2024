@@ -1,7 +1,4 @@
-﻿[SpinEdit1]
-Coordinates=924,1096,70,58
-
-[lblPendingChangesAdditionsInfo]
+﻿[lblPendingChangesAdditionsInfo]
 Coordinates=10,552,201,58
 
 [lblSymptom]
@@ -113,9 +110,6 @@ Coordinates=507,1096,208,58
 [lblLogIn]
 Coordinates=10,620,60,58
 
-[Label9]
-Coordinates=647,212,53,58
-
 [btnAddRemedyInputsAddSymptom]
 Coordinates=1182,348,214,58
 
@@ -179,26 +173,17 @@ Coordinates=823,280,252,58
 [edtAddRemedyInputsPrice]
 Coordinates=1750,552,167,58
 
-[BitBtn5]
-Coordinates=588,484,56,58
-
 [sedRemedyUsageAddDaysUsed]
 Coordinates=1527,416,201,58
 
 [redAddRemedyInputsDescription]
 Coordinates=224,1210,203,36
 
-[Label8]
-Coordinates=1332,484,53,58
-
 [pnlRemedies]
 Coordinates=778,756,89,58
 
 [btnRemedyPendingChangesEditInfoRemoveSymptom]
 Coordinates=129,212,324,58
-
-[Label10]
-Coordinates=1689,892,60,58
 
 [btnAddRemedyInputsAddImage]
 Coordinates=1176,824,196,58
@@ -359,12 +344,6 @@ Coordinates=1043,1164,139,36
 [btnRemedyPendingChangesAdditionsInfoRemoveSymptom]
 Coordinates=1466,960,354,58
 
-[Label7]
-Coordinates=1226,756,53,58
-
-[SpinEdit2]
-Coordinates=1395,484,70,58
-
 [bttAdminNavigationNext]
 Coordinates=803,416,153,58
 
@@ -415,9 +394,6 @@ Coordinates=578,1164,82,36
 
 [bttRemedyPendingChangesNavigationHome]
 Coordinates=1737,756,270,58
-
-[BitBtn7]
-Coordinates=1257,688,56,58
 
 [btnLogIn]
 Coordinates=1830,960,65,58
@@ -533,17 +509,11 @@ Coordinates=705,688,68,58
 [lblAddRemedyTitle]
 Coordinates=827,620,123,58
 
-[Panel3]
-Coordinates=199,620,55,58
-
 [lblAdminUserEditReview]
 Coordinates=1060,756,156,58
 
 [cltRemedyPendingChangesEditInfoSymptoms]
 Coordinates=1328,1096,278,36
-
-[RichEdit3]
-Coordinates=1248,1096,70,36
 
 [bttRemedyUsageAddAddReview]
 Coordinates=1396,620,201,58
@@ -593,11 +563,8 @@ Coordinates=1382,824,231,58
 [dmBoereraad.dsrUser]
 Coordinates=521,808,141,36
 
-[BitBtn6]
-Coordinates=522,484,56,58
-
 []
-Coordinates=1517,904,91,36
+Coordinates=199,620,55,58
 
 [rgpSignUpGender]
 Coordinates=1607,620,76,58

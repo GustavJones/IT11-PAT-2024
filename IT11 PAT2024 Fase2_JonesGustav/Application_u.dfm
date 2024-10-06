@@ -3,8 +3,8 @@ object frmHome: TfrmHome
   Top = 44
   BorderStyle = bsDialog
   Caption = 'Boereraad'
-  ClientHeight = 644
-  ClientWidth = 1177
+  ClientHeight = 643
+  ClientWidth = 1173
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,21 +18,21 @@ object frmHome: TfrmHome
   object pgcTabs: TPageControl
     Left = 0
     Top = 0
-    Width = 1177
-    Height = 644
-    ActivePage = tsAdmin
+    Width = 1173
+    Height = 643
+    ActivePage = tsRemedyPendingChanges
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
-    ExplicitWidth = 1173
-    ExplicitHeight = 643
+    ExplicitWidth = 1169
+    ExplicitHeight = 642
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
         Left = 0
         Top = 0
-        Width = 1169
-        Height = 614
+        Width = 1165
+        Height = 613
         Align = alClient
         Center = True
         Picture.Data = {
@@ -13267,8 +13267,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 300
         Top = 110
-        Width = 569
-        Height = 394
+        Width = 565
+        Height = 393
         Margins.Left = 300
         Margins.Top = 110
         Margins.Right = 300
@@ -13287,7 +13287,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 57
-          Width = 559
+          Width = 555
           Height = 23
           Align = alTop
           Alignment = taCenter
@@ -13306,7 +13306,7 @@ object frmHome: TfrmHome
           Left = 10
           Top = 91
           Width = 255
-          Height = 289
+          Height = 288
           Margins.Left = 10
           Margins.Top = 8
           Margins.Right = 10
@@ -13338,7 +13338,7 @@ object frmHome: TfrmHome
           object btnLogIn: TButton
             AlignWithMargins = True
             Left = 81
-            Top = 248
+            Top = 247
             Width = 93
             Height = 25
             Margins.Left = 80
@@ -13401,10 +13401,10 @@ object frmHome: TfrmHome
         end
         object pnlSignUp: TPanel
           AlignWithMargins = True
-          Left = 250
+          Left = 246
           Top = 91
           Width = 305
-          Height = 289
+          Height = 288
           Margins.Left = 10
           Margins.Top = 8
           Margins.Right = 10
@@ -13436,7 +13436,7 @@ object frmHome: TfrmHome
           object btnSignUp: TButton
             AlignWithMargins = True
             Left = 101
-            Top = 248
+            Top = 247
             Width = 103
             Height = 25
             Margins.Left = 100
@@ -13525,7 +13525,7 @@ object frmHome: TfrmHome
             Left = 51
             Top = 173
             Width = 89
-            Height = 62
+            Height = 61
             Margins.Left = 50
             Margins.Top = 10
             Margins.Right = 5
@@ -13543,7 +13543,7 @@ object frmHome: TfrmHome
             Left = 145
             Top = 168
             Width = 109
-            Height = 47
+            Height = 46
             Margins.Left = 5
             Margins.Top = 5
             Margins.Right = 50
@@ -13600,7 +13600,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 559
+          Width = 555
           Height = 48
           Align = alTop
           AutoSize = True
@@ -13953,8 +13953,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1163
-        Height = 608
+        Width = 1159
+        Height = 607
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -13962,7 +13962,7 @@ object frmHome: TfrmHome
         object lblRemediesTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1157
+          Width = 1153
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -13980,15 +13980,15 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1151
-          Height = 526
+          Width = 1147
+          Height = 525
           Align = alClient
           TabOrder = 0
           object pnlTile: TPanel
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 1141
+            Width = 1137
             Height = 173
             Align = alTop
             BorderStyle = bsSingle
@@ -13999,7 +13999,7 @@ object frmHome: TfrmHome
               AlignWithMargins = True
               Left = 31
               Top = 4
-              Width = 1075
+              Width = 1071
               Height = 32
               Margins.Left = 30
               Margins.Right = 30
@@ -14167,8 +14167,8 @@ object frmHome: TfrmHome
         end
         object pnlRemediesNavigation: TPanel
           Left = 1
-          Top = 565
-          Width = 1157
+          Top = 564
+          Width = 1153
           Height = 38
           Align = alBottom
           ShowCaption = False
@@ -14329,8 +14329,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1163
-        Height = 608
+        Width = 1159
+        Height = 607
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -14338,7 +14338,7 @@ object frmHome: TfrmHome
         object lblAddRemedyTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1157
+          Width = 1153
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14354,8 +14354,8 @@ object frmHome: TfrmHome
         end
         object pnlAddRemedyNavigation: TPanel
           Left = 1
-          Top = 565
-          Width = 1157
+          Top = 564
+          Width = 1153
           Height = 38
           Align = alBottom
           ShowCaption = False
@@ -14519,8 +14519,8 @@ object frmHome: TfrmHome
         object pnlAddRemedyInputs: TPanel
           Left = 1
           Top = 33
-          Width = 1157
-          Height = 532
+          Width = 1153
+          Height = 531
           Align = alClient
           ShowCaption = False
           TabOrder = 1
@@ -14659,6 +14659,7 @@ object frmHome: TfrmHome
             Height = 25
             Caption = 'Add Image'
             TabOrder = 8
+            OnClick = btnAddRemedyInputsAddImageClick
           end
           object sedAddRemedyInputsEaseOfUse: TSpinEdit
             Left = 208
@@ -14681,8 +14682,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1163
-        Height = 608
+        Width = 1159
+        Height = 607
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -14690,7 +14691,7 @@ object frmHome: TfrmHome
         object lblRemedyUsageTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1157
+          Width = 1153
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14707,7 +14708,7 @@ object frmHome: TfrmHome
         object lblRemedyUsageUseList: TLabel
           Left = 1
           Top = 172
-          Width = 1157
+          Width = 1153
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14725,25 +14726,26 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 207
-          Width = 1151
-          Height = 355
+          Width = 1147
+          Height = 354
           Align = alClient
           TabOrder = 0
           object pnlReview1: TPanel
             AlignWithMargins = True
             Left = 3
-            Top = 191
-            Width = 1124
+            Top = 3
+            Width = 1120
             Height = 182
             Align = alTop
             BorderStyle = bsSingle
             ShowCaption = False
             TabOrder = 0
+            ExplicitTop = 191
             object lblReview1: TLabel
               AlignWithMargins = True
               Left = 31
               Top = 4
-              Width = 1058
+              Width = 1054
               Height = 32
               Margins.Left = 30
               Margins.Right = 30
@@ -14876,158 +14878,11 @@ object frmHome: TfrmHome
               Value = 0
             end
           end
-          object Panel3: TPanel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 1124
-            Height = 182
-            Align = alTop
-            BorderStyle = bsSingle
-            ShowCaption = False
-            TabOrder = 1
-            object Label7: TLabel
-              AlignWithMargins = True
-              Left = 31
-              Top = 4
-              Width = 1058
-              Height = 32
-              Margins.Left = 30
-              Margins.Right = 30
-              Align = alTop
-              Caption = 'Onion:'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -24
-              Font.Name = 'Segoe UI Semibold'
-              Font.Style = [fsBold]
-              ParentFont = False
-              ExplicitWidth = 72
-            end
-            object Label8: TLabel
-              Left = 31
-              Top = 54
-              Width = 140
-              Height = 20
-              Caption = 'Dosage Information:'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -15
-              Font.Name = 'Segoe UI Semibold'
-              Font.Style = []
-              ParentFont = False
-            end
-            object Label9: TLabel
-              Left = 868
-              Top = 54
-              Width = 75
-              Height = 20
-              Caption = 'Days Used:'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -15
-              Font.Name = 'Segoe UI Semibold'
-              Font.Style = []
-              ParentFont = False
-            end
-            object Label10: TLabel
-              Left = 868
-              Top = 110
-              Width = 141
-              Height = 20
-              Caption = 'Effectiveness: (0 - 10)'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -15
-              Font.Name = 'Segoe UI Semibold'
-              Font.Style = []
-              ParentFont = False
-            end
-            object BitBtn5: TBitBtn
-              Left = 1015
-              Top = 136
-              Width = 124
-              Height = 25
-              Caption = 'Save Updates'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -12
-              Font.Name = 'Segoe UI'
-              Font.Style = []
-              Kind = bkAll
-              NumGlyphs = 2
-              ParentFont = False
-              TabOrder = 0
-            end
-            object BitBtn6: TBitBtn
-              Left = 1015
-              Top = 74
-              Width = 124
-              Height = 25
-              Caption = 'Reset'
-              Kind = bkRetry
-              NumGlyphs = 2
-              TabOrder = 1
-            end
-            object RichEdit3: TRichEdit
-              Left = 31
-              Top = 80
-              Width = 818
-              Height = 81
-              Font.Charset = ANSI_CHARSET
-              Font.Color = 13431400
-              Font.Height = -15
-              Font.Name = 'Segoe UI'
-              Font.Style = [fsBold]
-              Lines.Strings = (
-                
-                  'Apply to the skin once a day for a week to reduce pain and swell' +
-                  'ing')
-              ParentFont = False
-              TabOrder = 2
-            end
-            object SpinEdit1: TSpinEdit
-              Left = 868
-              Top = 80
-              Width = 129
-              Height = 24
-              MaxValue = 0
-              MinValue = 0
-              TabOrder = 3
-              Value = 0
-            end
-            object BitBtn7: TBitBtn
-              Left = 1015
-              Top = 105
-              Width = 124
-              Height = 25
-              Caption = 'Remove'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -12
-              Font.Name = 'Segoe UI'
-              Font.Style = []
-              Kind = bkCancel
-              NumGlyphs = 2
-              ParentFont = False
-              TabOrder = 4
-            end
-            object SpinEdit2: TSpinEdit
-              Left = 868
-              Top = 136
-              Width = 129
-              Height = 24
-              MaxValue = 0
-              MinValue = 0
-              TabOrder = 5
-              Value = 0
-            end
-          end
         end
         object pnlRemedyUsageNavigation: TPanel
           Left = 1
-          Top = 565
-          Width = 1157
+          Top = 564
+          Width = 1153
           Height = 38
           Align = alBottom
           ShowCaption = False
@@ -15183,7 +15038,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1151
+          Width = 1147
           Height = 133
           Align = alTop
           TabOrder = 2
@@ -15322,18 +15177,16 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1163
-        Height = 608
+        Width = 1159
+        Height = 607
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1159
-        ExplicitHeight = 607
         object lblRemedyPendingChanges: TLabel
           Left = 1
           Top = 1
-          Width = 1157
+          Width = 1153
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15349,14 +15202,12 @@ object frmHome: TfrmHome
         end
         object pnlRemedyPendingChangesNavigation: TPanel
           Left = 1
-          Top = 565
-          Width = 1157
+          Top = 564
+          Width = 1153
           Height = 38
           Align = alBottom
           ShowCaption = False
           TabOrder = 0
-          ExplicitTop = 564
-          ExplicitWidth = 1153
           object bttRemedyPendingChangesNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15507,12 +15358,11 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1151
+          Width = 1147
           Height = 256
           Align = alTop
           ShowCaption = False
           TabOrder = 1
-          ExplicitWidth = 1147
           object lblRemedyPendingChangesAdditions: TLabel
             Left = 16
             Top = 15
@@ -15651,7 +15501,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15695,14 +15545,12 @@ object frmHome: TfrmHome
         object pnlRemedyPendingChangesEdit: TPanel
           AlignWithMargins = True
           Left = 4
-          Top = 306
-          Width = 1151
+          Top = 305
+          Width = 1147
           Height = 256
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
-          ExplicitTop = 305
-          ExplicitWidth = 1147
           object lblRemedyPendingChangesEdit: TLabel
             Left = 16
             Top = 15
@@ -15841,7 +15689,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -15892,16 +15740,18 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1163
-        Height = 608
+        Width = 1159
+        Height = 607
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
+        ExplicitWidth = 1155
+        ExplicitHeight = 606
         object lblAdminUser: TLabel
           Left = 1
           Top = 1
-          Width = 1157
+          Width = 1153
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15918,7 +15768,7 @@ object frmHome: TfrmHome
         object lblAdminRemedy: TLabel
           Left = 1
           Top = 297
-          Width = 1157
+          Width = 1153
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15935,13 +15785,14 @@ object frmHome: TfrmHome
         object pnlAdminUserEdit: TPanel
           Left = 1
           Top = 33
-          Width = 1157
+          Width = 1153
           Height = 264
           Align = alTop
           TabOrder = 0
+          ExplicitWidth = 1149
           object lblAdminUserEditDaysUsed: TLabel
             Left = 1016
-            Top = 35
+            Top = 44
             Width = 75
             Height = 20
             Caption = 'Days Used:'
@@ -15954,7 +15805,7 @@ object frmHome: TfrmHome
           end
           object lblAdminUserEditDosage: TLabel
             Left = 797
-            Top = 6
+            Top = 18
             Width = 55
             Height = 20
             Caption = 'Dosage:'
@@ -15967,7 +15818,7 @@ object frmHome: TfrmHome
           end
           object lblAdminUserEditReview: TLabel
             Left = 584
-            Top = 6
+            Top = 18
             Width = 52
             Height = 20
             Caption = 'Review:'
@@ -15991,10 +15842,23 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
           end
+          object lblAdminUserEditID: TLabel
+            Left = 536
+            Top = 18
+            Width = 19
+            Height = 20
+            Caption = 'ID:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = []
+            ParentFont = False
+          end
           object bttAdminUserEditRemoveUser: TBitBtn
             Left = 424
             Top = 216
-            Width = 145
+            Width = 154
             Height = 25
             Caption = 'Remove User'
             Font.Charset = DEFAULT_CHARSET
@@ -16011,13 +15875,14 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 15
             Top = 13
-            Width = 393
+            Width = 402
             Height = 228
             Margins.Left = 20
             Margins.Top = 10
             Margins.Right = 20
             Margins.Bottom = 100
             DataSource = dmBoereraad.dsrUser
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
             ReadOnly = True
             TabOrder = 1
             TitleFont.Charset = DEFAULT_CHARSET
@@ -16029,9 +15894,9 @@ object frmHome: TfrmHome
           end
           object lstAdminUserEditReview: TListBox
             Left = 584
-            Top = 32
+            Top = 44
             Width = 207
-            Height = 209
+            Height = 197
             ItemHeight = 15
             TabOrder = 2
           end
@@ -16053,9 +15918,9 @@ object frmHome: TfrmHome
           end
           object redAdminUserEditDosage: TRichEdit
             Left = 797
-            Top = 32
+            Top = 44
             Width = 213
-            Height = 209
+            Height = 197
             Font.Charset = ANSI_CHARSET
             Font.Color = 13431400
             Font.Height = -15
@@ -16072,7 +15937,7 @@ object frmHome: TfrmHome
           end
           object sedAdminUserEditDaysUsed: TSpinEdit
             Left = 1016
-            Top = 61
+            Top = 70
             Width = 128
             Height = 24
             MaxValue = 0
@@ -16084,7 +15949,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 424
             Top = 13
-            Width = 145
+            Width = 107
             Height = 25
             Margins.Left = 50
             Margins.Right = 50
@@ -16100,8 +15965,8 @@ object frmHome: TfrmHome
           object edtAdminUserEditSurname: TEdit
             AlignWithMargins = True
             Left = 424
-            Top = 50
-            Width = 145
+            Top = 44
+            Width = 107
             Height = 25
             Margins.Left = 50
             Margins.Right = 50
@@ -16117,8 +15982,8 @@ object frmHome: TfrmHome
           object edtAdminUserEditEmail: TEdit
             AlignWithMargins = True
             Left = 424
-            Top = 88
-            Width = 145
+            Top = 74
+            Width = 153
             Height = 25
             Margins.Left = 50
             Margins.Right = 50
@@ -16133,8 +15998,8 @@ object frmHome: TfrmHome
           end
           object chkAdminUserEditIsMale: TCheckBox
             Left = 424
-            Top = 126
-            Width = 145
+            Top = 136
+            Width = 154
             Height = 15
             Caption = 'Is Male'
             TabOrder = 9
@@ -16142,7 +16007,7 @@ object frmHome: TfrmHome
           object bttAdminUserEditSaveUser: TBitBtn
             Left = 424
             Top = 185
-            Width = 145
+            Width = 154
             Height = 25
             Caption = 'Save User'
             Font.Charset = DEFAULT_CHARSET
@@ -16154,11 +16019,12 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 10
+            OnClick = bttAdminUserEditSaveUserClick
           end
           object chkAdminUserEditAdmin: TCheckBox
             Left = 424
-            Top = 147
-            Width = 145
+            Top = 157
+            Width = 154
             Height = 22
             Caption = 'Admin Account'
             TabOrder = 11
@@ -16189,14 +16055,45 @@ object frmHome: TfrmHome
             TabOrder = 13
             Value = 0
           end
+          object edtAdminUserEditPassword: TEdit
+            AlignWithMargins = True
+            Left = 424
+            Top = 106
+            Width = 153
+            Height = 25
+            Margins.Left = 50
+            Margins.Right = 50
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 14
+            TextHint = 'Password'
+          end
+          object sedAdminUserEditID: TSpinEdit
+            Left = 536
+            Top = 44
+            Width = 42
+            Height = 24
+            EditorEnabled = False
+            Enabled = False
+            Increment = 0
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 15
+            Value = 0
+          end
         end
         object pnlAdminRemedyEdit: TPanel
           Left = 1
           Top = 329
-          Width = 1157
+          Width = 1153
           Height = 232
           Align = alTop
           TabOrder = 1
+          ExplicitWidth = 1149
           object lblAdminRemedyEditDescription: TLabel
             Left = 424
             Top = 6
@@ -16243,7 +16140,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 15
             Top = 13
-            Width = 393
+            Width = 402
             Height = 212
             Margins.Left = 20
             Margins.Top = 10
@@ -16340,12 +16237,14 @@ object frmHome: TfrmHome
         end
         object pnlAdminNavigation: TPanel
           Left = 1
-          Top = 565
-          Width = 1157
+          Top = 564
+          Width = 1153
           Height = 38
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
+          ExplicitTop = 563
+          ExplicitWidth = 1149
           object bttAdminNavigationHelp: TBitBtn
             Left = 86
             Top = 6
