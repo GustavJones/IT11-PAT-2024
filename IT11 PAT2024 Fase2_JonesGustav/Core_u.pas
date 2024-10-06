@@ -41,6 +41,11 @@ var
   bByte: Byte;
   tInputFile, tOutputFile: file;
 begin
+  if not FileExists(pFileToCopy) then
+  begin
+    exit;
+  end;
+
   AssignFile(tInputFile, pFileToCopy);
   AssignFile(tOutputFile, pFileOutput);
 

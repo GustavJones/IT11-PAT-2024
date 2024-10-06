@@ -3,8 +3,8 @@ object frmHome: TfrmHome
   Top = 44
   BorderStyle = bsDialog
   Caption = 'Boereraad'
-  ClientHeight = 643
-  ClientWidth = 1173
+  ClientHeight = 642
+  ClientWidth = 1169
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,21 +18,21 @@ object frmHome: TfrmHome
   object pgcTabs: TPageControl
     Left = 0
     Top = 0
-    Width = 1173
-    Height = 643
+    Width = 1169
+    Height = 642
     ActivePage = tsRemedyPendingChanges
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
-    ExplicitWidth = 1169
-    ExplicitHeight = 642
+    ExplicitWidth = 1165
+    ExplicitHeight = 641
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
         Left = 0
         Top = 0
-        Width = 1165
-        Height = 613
+        Width = 1161
+        Height = 612
         Align = alClient
         Center = True
         Picture.Data = {
@@ -13267,8 +13267,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 300
         Top = 110
-        Width = 565
-        Height = 393
+        Width = 561
+        Height = 392
         Margins.Left = 300
         Margins.Top = 110
         Margins.Right = 300
@@ -13287,7 +13287,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 57
-          Width = 555
+          Width = 551
           Height = 23
           Align = alTop
           Alignment = taCenter
@@ -13306,7 +13306,7 @@ object frmHome: TfrmHome
           Left = 10
           Top = 91
           Width = 255
-          Height = 288
+          Height = 287
           Margins.Left = 10
           Margins.Top = 8
           Margins.Right = 10
@@ -13338,7 +13338,7 @@ object frmHome: TfrmHome
           object btnLogIn: TButton
             AlignWithMargins = True
             Left = 81
-            Top = 247
+            Top = 246
             Width = 93
             Height = 25
             Margins.Left = 80
@@ -13401,10 +13401,10 @@ object frmHome: TfrmHome
         end
         object pnlSignUp: TPanel
           AlignWithMargins = True
-          Left = 246
+          Left = 242
           Top = 91
           Width = 305
-          Height = 288
+          Height = 287
           Margins.Left = 10
           Margins.Top = 8
           Margins.Right = 10
@@ -13436,7 +13436,7 @@ object frmHome: TfrmHome
           object btnSignUp: TButton
             AlignWithMargins = True
             Left = 101
-            Top = 247
+            Top = 246
             Width = 103
             Height = 25
             Margins.Left = 100
@@ -13525,7 +13525,7 @@ object frmHome: TfrmHome
             Left = 51
             Top = 173
             Width = 89
-            Height = 61
+            Height = 60
             Margins.Left = 50
             Margins.Top = 10
             Margins.Right = 5
@@ -13543,7 +13543,7 @@ object frmHome: TfrmHome
             Left = 145
             Top = 168
             Width = 109
-            Height = 46
+            Height = 45
             Margins.Left = 5
             Margins.Top = 5
             Margins.Right = 50
@@ -13600,7 +13600,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 555
+          Width = 551
           Height = 48
           Align = alTop
           AutoSize = True
@@ -13953,8 +13953,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1159
-        Height = 607
+        Width = 1155
+        Height = 606
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -13962,7 +13962,7 @@ object frmHome: TfrmHome
         object lblRemediesTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1153
+          Width = 1149
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -13980,15 +13980,15 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1147
-          Height = 525
+          Width = 1143
+          Height = 524
           Align = alClient
           TabOrder = 0
           object pnlTile: TPanel
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 1137
+            Width = 1133
             Height = 173
             Align = alTop
             BorderStyle = bsSingle
@@ -13999,7 +13999,7 @@ object frmHome: TfrmHome
               AlignWithMargins = True
               Left = 31
               Top = 4
-              Width = 1071
+              Width = 1067
               Height = 32
               Margins.Left = 30
               Margins.Right = 30
@@ -14167,8 +14167,8 @@ object frmHome: TfrmHome
         end
         object pnlRemediesNavigation: TPanel
           Left = 1
-          Top = 564
-          Width = 1153
+          Top = 563
+          Width = 1149
           Height = 38
           Align = alBottom
           ShowCaption = False
@@ -14329,8 +14329,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1159
-        Height = 607
+        Width = 1155
+        Height = 606
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -14338,7 +14338,7 @@ object frmHome: TfrmHome
         object lblAddRemedyTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1153
+          Width = 1149
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14354,8 +14354,8 @@ object frmHome: TfrmHome
         end
         object pnlAddRemedyNavigation: TPanel
           Left = 1
-          Top = 564
-          Width = 1153
+          Top = 563
+          Width = 1149
           Height = 38
           Align = alBottom
           ShowCaption = False
@@ -14519,8 +14519,8 @@ object frmHome: TfrmHome
         object pnlAddRemedyInputs: TPanel
           Left = 1
           Top = 33
-          Width = 1153
-          Height = 531
+          Width = 1149
+          Height = 530
           Align = alClient
           ShowCaption = False
           TabOrder = 1
@@ -14551,10 +14551,10 @@ object frmHome: TfrmHome
             ParentFont = False
           end
           object imgAddRemedyInputsImage: TImage
-            Left = 424
+            Left = 338
             Top = 323
-            Width = 321
-            Height = 206
+            Width = 473
+            Height = 201
             Center = True
             Proportional = True
             Stretch = True
@@ -14594,7 +14594,7 @@ object frmHome: TfrmHome
             TabOrder = 1
           end
           object cltAddRemedyInputsSymptoms: TCheckListBox
-            Left = 799
+            Left = 783
             Top = 173
             Width = 194
             Height = 144
@@ -14602,16 +14602,16 @@ object frmHome: TfrmHome
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
-            Left = 1015
-            Top = 225
+            Left = 999
+            Top = 233
             Width = 138
             Height = 23
             TabOrder = 3
             TextHint = 'Add symptom'
           end
           object btnAddRemedyInputsRemoveSymptom: TButton
-            Left = 1015
-            Top = 259
+            Left = 999
+            Top = 262
             Width = 138
             Height = 25
             Caption = 'Remove Symptom'
@@ -14619,7 +14619,7 @@ object frmHome: TfrmHome
             OnClick = btnAddRemedyInputsRemoveSymptomClick
           end
           object btnAddRemedyInputsAddSymptom: TButton
-            Left = 1015
+            Left = 999
             Top = 293
             Width = 138
             Height = 24
@@ -14636,8 +14636,8 @@ object frmHome: TfrmHome
             TextHint = 'Remedy Price per Dose'
           end
           object bttAddRemedyInputsCreateRemedy: TBitBtn
-            Left = 1015
-            Top = 504
+            Left = 999
+            Top = 499
             Width = 138
             Height = 25
             Caption = 'Create Remedy'
@@ -14654,7 +14654,7 @@ object frmHome: TfrmHome
           end
           object btnAddRemedyInputsAddImage: TButton
             Left = 32
-            Top = 504
+            Top = 499
             Width = 138
             Height = 25
             Caption = 'Add Image'
@@ -14682,8 +14682,8 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1159
-        Height = 607
+        Width = 1155
+        Height = 606
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
@@ -14691,7 +14691,7 @@ object frmHome: TfrmHome
         object lblRemedyUsageTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1153
+          Width = 1149
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14708,7 +14708,7 @@ object frmHome: TfrmHome
         object lblRemedyUsageUseList: TLabel
           Left = 1
           Top = 172
-          Width = 1153
+          Width = 1149
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14726,26 +14726,25 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 207
-          Width = 1147
-          Height = 354
+          Width = 1143
+          Height = 353
           Align = alClient
           TabOrder = 0
           object pnlReview1: TPanel
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 1120
+            Width = 1133
             Height = 182
             Align = alTop
             BorderStyle = bsSingle
             ShowCaption = False
             TabOrder = 0
-            ExplicitTop = 191
             object lblReview1: TLabel
               AlignWithMargins = True
               Left = 31
               Top = 4
-              Width = 1054
+              Width = 1067
               Height = 32
               Margins.Left = 30
               Margins.Right = 30
@@ -14881,8 +14880,8 @@ object frmHome: TfrmHome
         end
         object pnlRemedyUsageNavigation: TPanel
           Left = 1
-          Top = 564
-          Width = 1153
+          Top = 563
+          Width = 1149
           Height = 38
           Align = alBottom
           ShowCaption = False
@@ -15038,7 +15037,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1147
+          Width = 1143
           Height = 133
           Align = alTop
           TabOrder = 2
@@ -15177,16 +15176,18 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1159
-        Height = 607
+        Width = 1155
+        Height = 606
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
+        ExplicitWidth = 1151
+        ExplicitHeight = 605
         object lblRemedyPendingChanges: TLabel
           Left = 1
           Top = 1
-          Width = 1153
+          Width = 1149
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15202,12 +15203,14 @@ object frmHome: TfrmHome
         end
         object pnlRemedyPendingChangesNavigation: TPanel
           Left = 1
-          Top = 564
-          Width = 1153
+          Top = 563
+          Width = 1149
           Height = 38
           Align = alBottom
           ShowCaption = False
           TabOrder = 0
+          ExplicitTop = 562
+          ExplicitWidth = 1145
           object bttRemedyPendingChangesNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15358,11 +15361,12 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 4
           Top = 36
-          Width = 1147
+          Width = 1143
           Height = 256
           Align = alTop
           ShowCaption = False
           TabOrder = 1
+          ExplicitWidth = 1139
           object lblRemedyPendingChangesAdditions: TLabel
             Left = 16
             Top = 15
@@ -15545,12 +15549,14 @@ object frmHome: TfrmHome
         object pnlRemedyPendingChangesEdit: TPanel
           AlignWithMargins = True
           Left = 4
-          Top = 305
-          Width = 1147
+          Top = 304
+          Width = 1143
           Height = 256
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
+          ExplicitTop = 303
+          ExplicitWidth = 1139
           object lblRemedyPendingChangesEdit: TLabel
             Left = 16
             Top = 15
@@ -15740,18 +15746,16 @@ object frmHome: TfrmHome
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 1159
-        Height = 607
+        Width = 1155
+        Height = 606
         Align = alClient
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1155
-        ExplicitHeight = 606
         object lblAdminUser: TLabel
           Left = 1
           Top = 1
-          Width = 1153
+          Width = 1149
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15768,7 +15772,7 @@ object frmHome: TfrmHome
         object lblAdminRemedy: TLabel
           Left = 1
           Top = 297
-          Width = 1153
+          Width = 1149
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15785,11 +15789,10 @@ object frmHome: TfrmHome
         object pnlAdminUserEdit: TPanel
           Left = 1
           Top = 33
-          Width = 1153
+          Width = 1149
           Height = 264
           Align = alTop
           TabOrder = 0
-          ExplicitWidth = 1149
           object lblAdminUserEditDaysUsed: TLabel
             Left = 1016
             Top = 44
@@ -16089,11 +16092,10 @@ object frmHome: TfrmHome
         object pnlAdminRemedyEdit: TPanel
           Left = 1
           Top = 329
-          Width = 1153
+          Width = 1149
           Height = 232
           Align = alTop
           TabOrder = 1
-          ExplicitWidth = 1149
           object lblAdminRemedyEditDescription: TLabel
             Left = 424
             Top = 6
@@ -16237,14 +16239,12 @@ object frmHome: TfrmHome
         end
         object pnlAdminNavigation: TPanel
           Left = 1
-          Top = 564
-          Width = 1153
+          Top = 563
+          Width = 1149
           Height = 38
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
-          ExplicitTop = 563
-          ExplicitWidth = 1149
           object bttAdminNavigationHelp: TBitBtn
             Left = 86
             Top = 6

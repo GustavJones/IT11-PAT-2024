@@ -72,7 +72,6 @@ begin
   end;
 end;
 
-// TODO TESTING
 procedure TRemedy.Assign(pName : string; pString : string);
 var
   sSymptomsStr, sSymptom, sModifiedDescription : string;
@@ -316,10 +315,10 @@ begin
       SetLength(arrSymptoms, 0);
 
       // Symptom String parsing
-      i := 0;
+      i := 1;
       while (i <= Length(sSymptomsStr)) do
       begin
-        iDelimiter := Pos(sDELIMITER, sSymptomsStr, i + 1);
+        iDelimiter := Pos(sDELIMITER, sSymptomsStr, i);
 
         if iDelimiter <= 0 then
         begin
@@ -327,7 +326,7 @@ begin
         end
         else
         begin
-          sSymptom := Copy(sSymptomsStr, i, iDelimiter - i - 1);
+          sSymptom := Copy(sSymptomsStr, i, iDelimiter - i);
         end;
 
         SetLength(arrSymptoms, Length(arrSymptoms) + 1);

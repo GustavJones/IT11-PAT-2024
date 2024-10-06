@@ -316,6 +316,7 @@ begin
   end;
 
   rRemedy.WritePendingChange(rRemedy.CreatePendingChange);
+  imgAddRemedyInputsImage.Picture.SaveToFile(cProgramCore.GetImageDirectory + rRemedy.sName + '.jpg');
   ShowMessage('Created Remedy create request');
   rRemedy.Destroy;
 end;
@@ -719,6 +720,8 @@ begin
   rCreateRemedy.CreateDBRecord;
   TCore.DeleteFile(cProgramCore.GetPendingChangesDirectory + rCreateRemedy.sName
     + '.txt');
+  TCore.CopyFile(cProgramCore.GetImageDirectory + rCreateRemedy.sName + '.jpg', cProgramCore.GetImageDirectory + IntToStr(rCreateRemedy.GetID) + '.jpg');
+  TCore.DeleteFile(cProgramCore.GetImageDirectory + rCreateRemedy.sName + '.jpg');
 
   pgcTabsChange(Self);
 
@@ -903,15 +906,14 @@ begin
     end;
   end;
 
-  if FileExists(cProgramCore.GetImageDirectory + sRemedyName + '.jpg') then
+  if FileExists(cProgramCore.GetImageDirectory + TRemedy.CalculateFieldInformation('ID', sRemedyInfo) + '.jpg') then
   begin
     imgRemedyPendingChangesEditInfoImage.Picture.LoadFromFile
-      (cProgramCore.GetImageDirectory + sRemedyName + '.jpg');
+      (cProgramCore.GetImageDirectory + TRemedy.CalculateFieldInformation('ID', sRemedyInfo) + '.jpg');
     imgRemedyPendingChangesEditInfoImage.Visible := True;
   end;
 end;
 
-// TODO Bug Description duplication on pending change add
 procedure TfrmHome.bttRemedyPendingChangesEditInfoSaveRemedyClick
   (Sender: TObject);
 var
@@ -926,6 +928,7 @@ begin
   rEditRemedy.iEaseOfUse := sedRemedyPendingChangesEditInfoEaseOfUse.Value;
 
   // Desciption
+  rEditRemedy.sDescription := '';
   for i := 0 to redRemedyPendingChangesEditInfoDescription.Lines.Count - 1 do
   begin
     rEditRemedy.sDescription := rEditRemedy.sDescription +
@@ -957,7 +960,7 @@ begin
 
   pgcTabsChange(Self);
 
-  ShowMessage('Remedy Created');
+  ShowMessage('Remedy Edited');
   rEditRemedy.Destroy;
 end;
 
