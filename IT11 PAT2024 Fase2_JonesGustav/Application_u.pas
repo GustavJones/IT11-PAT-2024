@@ -235,6 +235,9 @@ type
     procedure bttRemedyPendingChangesEditInfoSaveRemedyClick(Sender: TObject);
     procedure bttAdminUserEditSaveUserClick(Sender: TObject);
     procedure btnAddRemedyInputsAddImageClick(Sender: TObject);
+    procedure bttAdminUserEditRemoveUserClick(Sender: TObject);
+    procedure lstAdminUserEditReviewClick(Sender: TObject);
+    procedure dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
 
   private
     function GetUserPasswordFromDB(pUserID: Integer): string;
@@ -644,6 +647,40 @@ begin
   AddRemedy;
 end;
 
+procedure TfrmHome.bttAdminUserEditRemoveUserClick(Sender: TObject);
+var
+  iDBIndex: Integer;
+  iID : Integer;
+  bFound : Boolean;
+begin
+  bFound := False;
+  iDBIndex := dmBoereraad.tblUser.RecNo;
+
+  iID := sedAdminUserEditID.Value;
+
+  if iID = iUserID then
+  begin
+    ShowMessage('Cannot delete logged in account');
+    exit;
+  end;
+
+  dmBoereraad.tblUser.First;
+  while not (dmBoereraad.tblUser.Eof) and not (bFound) do
+  begin
+    if dmBoereraad.tblUser['ID'] = iID then
+    begin
+      dmBoereraad.tblUser.Delete;
+      bFound := True;
+    end
+    else
+    begin
+      dmBoereraad.tblUser.Next;
+    end;
+  end;
+
+  dmBoereraad.tblUser.RecNo := iDBIndex;
+end;
+
 procedure TfrmHome.bttAdminUserEditSaveUserClick(Sender: TObject);
 var
   bFound: Boolean;
@@ -1016,6 +1053,47 @@ begin
   pgcTabs.TabIndex := 0;
 end;
 
+// TODO
+procedure TfrmHome.dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
+const
+  sDELIMITER = #10;
+var
+  sParseStr : string;
+  i : Integer;
+  iDelimiter : Integer;
+  sLine : string;
+begin
+  // Remedy Edit
+  edtAdminRemedyEditName.Text := dmBoereraad.tblRemedy['RemedyName'];
+  edtAdminRemedyEditPrice.Text := FloatToStrF(dmBoereraad.tblRemedy['PricePerDose'], ffCurrency, 10, 2);
+  sedAdminRemedyEditEaseOfUse.Value := dmBoereraad.tblRemedy['EaseOfUse'];
+  sParseStr := dmBoereraad.tblRemedy['Description'];
+
+  // Description Line Seperation
+  redAdminRemedyEditDescription.Lines.Clear;
+  i := 1;
+  while (i <= Length(sParseStr)) do
+  begin
+    iDelimiter := Pos(sDELIMITER, sParseStr, i);
+
+    if (iDelimiter > 0) then
+      sLine := Copy(sParseStr, i, iDelimiter - i)
+    else
+      sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
+
+    redAdminRemedyEditDescription.Lines.Add(sLine);
+
+    if (iDelimiter > 0) then
+    begin
+      i := iDelimiter + 1;
+    end
+    else
+    begin
+      i := Length(sParseStr) + 1;
+    end;
+  end;
+end;
+
 procedure TfrmHome.dbgAdminUserEditUsersCellClick(Column: TColumn);
 var
   iDBIndex: Integer;
@@ -1245,6 +1323,12 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
+// TODO
+procedure TfrmHome.lstAdminUserEditReviewClick(Sender: TObject);
+begin
+  //
+end;
+
 procedure TfrmHome.lstRemedyPendingChangesAdditionsRemediesListClick
   (Sender: TObject);
 var
@@ -1297,7 +1381,6 @@ begin
   bttRemedyPendingChangesEditInfoResetClick(Self);
 end;
 
-// TODO
 procedure TfrmHome.pgcTabsChange(Sender: TObject);
 const
   iHOME_PAGE_INDEX = 0;

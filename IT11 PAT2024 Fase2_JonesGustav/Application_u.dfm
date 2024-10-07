@@ -20,12 +20,10 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1169
     Height = 642
-    ActivePage = tsRemedyPendingChanges
+    ActivePage = tsAdmin
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
-    ExplicitWidth = 1165
-    ExplicitHeight = 641
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -14073,7 +14071,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 17
+              ItemHeight = 15
               Items.Strings = (
                 'Brusing'
                 'Pain'
@@ -14598,7 +14596,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 17
+            ItemHeight = 15
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -15182,8 +15180,6 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1151
-        ExplicitHeight = 605
         object lblRemedyPendingChanges: TLabel
           Left = 1
           Top = 1
@@ -15209,8 +15205,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 0
-          ExplicitTop = 562
-          ExplicitWidth = 1145
           object bttRemedyPendingChangesNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15366,7 +15360,6 @@ object frmHome: TfrmHome
           Align = alTop
           ShowCaption = False
           TabOrder = 1
-          ExplicitWidth = 1139
           object lblRemedyPendingChangesAdditions: TLabel
             Left = 16
             Top = 15
@@ -15505,7 +15498,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15555,8 +15548,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 2
-          ExplicitTop = 303
-          ExplicitWidth = 1139
           object lblRemedyPendingChangesEdit: TLabel
             Left = 16
             Top = 15
@@ -15695,7 +15686,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -15873,6 +15864,7 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 0
+            OnClick = bttAdminUserEditRemoveUserClick
           end
           object dbgAdminUserEditUsers: TDBGrid
             AlignWithMargins = True
@@ -15902,6 +15894,7 @@ object frmHome: TfrmHome
             Height = 197
             ItemHeight = 15
             TabOrder = 2
+            OnClick = lstAdminUserEditReviewClick
           end
           object bttAdminUserEditRemoveReview: TBitBtn
             Left = 1016
@@ -16156,6 +16149,7 @@ object frmHome: TfrmHome
             TitleFont.Height = -12
             TitleFont.Name = 'Segoe UI'
             TitleFont.Style = []
+            OnCellClick = dbgAdminRemedyEditRemedyCellClick
           end
           object redAdminRemedyEditDescription: TRichEdit
             Left = 424
@@ -16167,12 +16161,6 @@ object frmHome: TfrmHome
             Font.Height = -15
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
-            Lines.Strings = (
-              'This is a description of usage '
-              'dose'
-              'e.g.'
-              'Apply 3 times a day after '
-              'meals')
             ParentFont = False
             TabOrder = 2
           end
