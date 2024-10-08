@@ -20,10 +20,12 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1169
     Height = 642
-    ActivePage = tsRemedyUsage
+    ActivePage = tsAdmin
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
+    ExplicitWidth = 1165
+    ExplicitHeight = 641
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -14071,7 +14073,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 15
+              ItemHeight = 17
               Items.Strings = (
                 'Brusing'
                 'Pain'
@@ -14596,7 +14598,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 15
+            ItemHeight = 17
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -14686,6 +14688,8 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
+        ExplicitWidth = 1151
+        ExplicitHeight = 605
         object lblRemedyUsageTitle: TLabel
           Left = 1
           Top = 1
@@ -14728,6 +14732,8 @@ object frmHome: TfrmHome
           Height = 353
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 1139
+          ExplicitHeight = 352
           object pnlReview1: TPanel
             AlignWithMargins = True
             Left = 3
@@ -14738,6 +14744,7 @@ object frmHome: TfrmHome
             BorderStyle = bsSingle
             ShowCaption = False
             TabOrder = 0
+            ExplicitWidth = 1129
             object lblReview1: TLabel
               AlignWithMargins = True
               Left = 31
@@ -14884,6 +14891,8 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 1
+          ExplicitTop = 562
+          ExplicitWidth = 1145
           object bttRemedyUsageNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15039,6 +15048,7 @@ object frmHome: TfrmHome
           Height = 133
           Align = alTop
           TabOrder = 2
+          ExplicitWidth = 1139
           object lblRemedyUsageAddDosage: TLabel
             Left = 159
             Top = 10
@@ -15498,7 +15508,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15686,7 +15696,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -15787,7 +15797,7 @@ object frmHome: TfrmHome
           object lblAdminUserEditDaysUsed: TLabel
             Left = 1016
             Top = 44
-            Width = 75
+            Width = 121
             Height = 20
             Caption = 'Days Used:'
             Font.Charset = DEFAULT_CHARSET
@@ -15826,7 +15836,7 @@ object frmHome: TfrmHome
           object lblAdminUserEditEffectiveness: TLabel
             Left = 1016
             Top = 100
-            Width = 91
+            Width = 121
             Height = 20
             Caption = 'Effectiveness:'
             Font.Charset = DEFAULT_CHARSET
@@ -15899,7 +15909,7 @@ object frmHome: TfrmHome
           object bttAdminUserEditRemoveReview: TBitBtn
             Left = 1016
             Top = 216
-            Width = 145
+            Width = 121
             Height = 25
             Caption = 'Remove Review'
             Font.Charset = DEFAULT_CHARSET
@@ -15911,6 +15921,7 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 3
+            OnClick = bttAdminUserEditRemoveReviewClick
           end
           object redAdminUserEditDosage: TRichEdit
             Left = 797
@@ -15928,7 +15939,7 @@ object frmHome: TfrmHome
           object sedAdminUserEditDaysUsed: TSpinEdit
             Left = 1016
             Top = 70
-            Width = 128
+            Width = 121
             Height = 24
             MaxValue = 0
             MinValue = 0
@@ -16022,7 +16033,7 @@ object frmHome: TfrmHome
           object bttAdminUserEditSaveReview: TBitBtn
             Left = 1016
             Top = 185
-            Width = 145
+            Width = 121
             Height = 25
             Caption = 'Save Review'
             Font.Charset = DEFAULT_CHARSET
@@ -16034,11 +16045,12 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 12
+            OnClick = bttAdminUserEditSaveReviewClick
           end
           object sedAdminUserEditEffectiveness: TSpinEdit
             Left = 1016
             Top = 126
-            Width = 129
+            Width = 121
             Height = 24
             MaxValue = 0
             MinValue = 0
@@ -16112,7 +16124,7 @@ object frmHome: TfrmHome
           object bttAdminRemedyEditRemoveRemedy: TBitBtn
             Left = 1016
             Top = 202
-            Width = 145
+            Width = 121
             Height = 25
             Caption = 'Remove Remedy'
             Font.Charset = DEFAULT_CHARSET
@@ -16124,6 +16136,7 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 0
+            OnClick = bttAdminRemedyEditRemoveRemedyClick
           end
           object dbgAdminRemedyEditRemedy: TDBGrid
             AlignWithMargins = True
@@ -16162,7 +16175,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 1016
             Top = 32
-            Width = 145
+            Width = 73
             Height = 25
             Margins.Left = 50
             Margins.Right = 50
@@ -16178,7 +16191,7 @@ object frmHome: TfrmHome
           object bttAdminRemedyEditSaveRemedy: TBitBtn
             Left = 1016
             Top = 171
-            Width = 145
+            Width = 121
             Height = 25
             Caption = 'Save Remedy'
             Font.Charset = DEFAULT_CHARSET
@@ -16190,12 +16203,13 @@ object frmHome: TfrmHome
             NumGlyphs = 2
             ParentFont = False
             TabOrder = 4
+            OnClick = bttAdminRemedyEditSaveRemedyClick
           end
           object edtAdminRemedyEditPrice: TEdit
             AlignWithMargins = True
             Left = 1016
             Top = 63
-            Width = 145
+            Width = 121
             Height = 25
             Margins.Left = 50
             Margins.Right = 50
@@ -16211,11 +16225,24 @@ object frmHome: TfrmHome
           object sedAdminRemedyEditEaseOfUse: TSpinEdit
             Left = 1016
             Top = 141
-            Width = 145
+            Width = 121
             Height = 24
             MaxValue = 0
             MinValue = 0
             TabOrder = 6
+            Value = 0
+          end
+          object sedAdminRemedyEditID: TSpinEdit
+            Left = 1095
+            Top = 32
+            Width = 42
+            Height = 25
+            EditorEnabled = False
+            Enabled = False
+            Increment = 0
+            MaxValue = 0
+            MinValue = 0
+            TabOrder = 7
             Value = 0
           end
         end

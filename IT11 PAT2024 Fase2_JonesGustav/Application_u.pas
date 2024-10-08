@@ -205,6 +205,7 @@ type
     edtAdminUserEditPassword: TEdit;
     sedAdminUserEditID: TSpinEdit;
     lblAdminUserEditID: TLabel;
+    sedAdminRemedyEditID: TSpinEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure pgcTabsChange(Sender: TObject);
@@ -238,6 +239,10 @@ type
     procedure bttAdminUserEditRemoveUserClick(Sender: TObject);
     procedure lstAdminUserEditReviewClick(Sender: TObject);
     procedure dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
+    procedure bttAdminUserEditSaveReviewClick(Sender: TObject);
+    procedure bttAdminUserEditRemoveReviewClick(Sender: TObject);
+    procedure bttAdminRemedyEditSaveRemedyClick(Sender: TObject);
+    procedure bttAdminRemedyEditRemoveRemedyClick(Sender: TObject);
 
   private
     function GetUserPasswordFromDB(pUserID: Integer): string;
@@ -648,6 +653,122 @@ begin
   AddRemedy;
 end;
 
+procedure TfrmHome.bttAdminRemedyEditRemoveRemedyClick(Sender: TObject);
+const
+  sDELIMITER = #10;
+var
+  iDBIndex : Integer;
+  bFound : Boolean;
+begin
+  bFound := False;
+  iDBIndex := dmBoereraad.tblRemedy.RecNo;
+
+  dmBoereraad.tblRemedy.First;
+  while not (dmBoereraad.tblRemedy.Eof) and not (bFound) do
+  begin
+    if dmBoereraad.tblRemedy['ID'] = sedAdminRemedyEditID.Value then
+    begin
+      dmBoereraad.tblReview.First;
+      while not (dmBoereraad.tblReview.Eof) do
+      begin
+        if dmBoereraad.tblReview['RemedyID'] = dmBoereraad.tblRemedy['ID'] then
+        begin
+          dmBoereraad.tblReview.Delete;
+        end
+        else
+        begin
+          dmBoereraad.tblReview.Next;
+        end;
+      end;
+
+      dmBoereraad.tblRemedy.Delete;
+      bFound := True;
+    end;
+
+    dmBoereraad.tblRemedy.Next;
+  end;
+
+  dmBoereraad.tblRemedy.RecNo := iDBIndex;
+end;
+
+procedure TfrmHome.bttAdminRemedyEditSaveRemedyClick(Sender: TObject);
+const
+  sDELIMITER = #10;
+var
+  iDBIndex : Integer;
+  sPrice, sDescription : string;
+  bFound : Boolean;
+  i: Integer;
+begin
+  bFound := False;
+  sDescription := '';
+  iDBIndex := dmBoereraad.tblRemedy.RecNo;
+
+  dmBoereraad.tblRemedy.First;
+  while not (dmBoereraad.tblRemedy.Eof) and not (bFound) do
+  begin
+    if dmBoereraad.tblRemedy['ID'] = sedAdminRemedyEditID.Value then
+    begin
+      sPrice := edtAdminRemedyEditPrice.Text;
+
+      if sPrice[1] = 'R' then
+      begin
+        Delete(sPrice, 1, 1);
+      end;
+
+      for i := 0 to redAdminRemedyEditDescription.Lines.Count - 1 do
+      begin
+        sDescription := sDescription + redAdminRemedyEditDescription.Lines[i] + sDELIMITER;
+      end;
+
+      dmBoereraad.tblRemedy.Edit;
+
+      dmBoereraad.tblRemedy['RemedyName'] := edtAdminRemedyEditName.Text;
+      dmBoereraad.tblRemedy['PricePerDose'] := StrToFloat(sPrice);
+      dmBoereraad.tblRemedy['Description'] := sDescription;
+      dmBoereraad.tblRemedy['EaseOfUse'] := sedAdminRemedyEditEaseOfUse.Value;
+
+      dmBoereraad.tblRemedy.Post;
+
+      bFound := True;
+    end;
+
+    dmBoereraad.tblRemedy.Next;
+  end;
+
+
+  dmBoereraad.tblRemedy.RecNo := iDBIndex;
+end;
+
+procedure TfrmHome.bttAdminUserEditRemoveReviewClick(Sender: TObject);
+var
+  bFound: Boolean;
+  iIndex: Integer;
+begin
+  bFound := False;
+  iIndex := 0;
+
+  dmBoereraad.tblReview.First;
+  while not(dmBoereraad.tblReview.Eof) and not(bFound) do
+  begin
+    if dmBoereraad.tblReview['UserID'] = sedAdminUserEditID.Value then
+    begin
+      Inc(iIndex);
+    end;
+
+    // Delete Review
+    if iIndex = lstAdminUserEditReview.ItemIndex + 1 then
+    begin
+      dmBoereraad.tblReview.Delete;
+      dbgAdminUserEditUsersCellClick(nil);
+
+      bFound := True;
+    end;
+
+    dmBoereraad.tblReview.Next;
+  end;
+end;
+
 procedure TfrmHome.bttAdminUserEditRemoveUserClick(Sender: TObject);
 var
   iDBIndex: Integer;
@@ -670,6 +791,19 @@ begin
   begin
     if dmBoereraad.tblUser['ID'] = iID then
     begin
+      dmBoereraad.tblReview.First;
+      while not (dmBoereraad.tblReview.Eof) do
+      begin
+        if dmBoereraad.tblReview['UserID'] = dmBoereraad.tblUser['ID'] then
+        begin
+          dmBoereraad.tblReview.Delete;
+        end
+        else
+        begin
+          dmBoereraad.tblReview.Next;
+        end;
+      end;
+
       dmBoereraad.tblUser.Delete;
       bFound := True;
     end
@@ -680,6 +814,49 @@ begin
   end;
 
   dmBoereraad.tblUser.RecNo := iDBIndex;
+end;
+
+procedure TfrmHome.bttAdminUserEditSaveReviewClick(Sender: TObject);
+const
+  sDELIMITER = #10;
+var
+  bFound: Boolean;
+  iIndex: Integer;
+  i, iDelimiter : Integer;
+  sParseStr, sLine : String;
+begin
+  bFound := False;
+  iIndex := 0;
+
+  dmBoereraad.tblReview.First;
+  while not(dmBoereraad.tblReview.Eof) and not(bFound) do
+  begin
+    if dmBoereraad.tblReview['UserID'] = sedAdminUserEditID.Value then
+    begin
+      Inc(iIndex);
+    end;
+
+    // Save Review
+    if iIndex = lstAdminUserEditReview.ItemIndex + 1 then
+    begin
+      // Dosage
+
+      for i := 0 to redAdminUserEditDosage.Lines.Count - 1 do
+      begin
+        sParseStr := sParseStr + redAdminUserEditDosage.Lines[i] + sDELIMITER;
+      end;
+
+      dmBoereraad.tblReview.Edit;
+      dmBoereraad.tblReview['Dosage'] := sParseStr;
+
+      dmBoereraad.tblReview['DaysUsed'] := sedAdminUserEditDaysUsed.Value;
+      dmBoereraad.tblReview['Effectiveness'] := sedAdminUserEditEffectiveness.Value;
+      dmBoereraad.tblReview.Post;
+      bFound := True;
+    end;
+
+    dmBoereraad.tblReview.Next;
+  end;
 end;
 
 procedure TfrmHome.bttAdminUserEditSaveUserClick(Sender: TObject);
@@ -1058,7 +1235,6 @@ begin
   pgcTabs.TabIndex := 0;
 end;
 
-// TODO
 procedure TfrmHome.dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
 const
   sDELIMITER = #10;
@@ -1069,9 +1245,9 @@ var
   sLine: string;
 begin
   // Remedy Edit
+  sedAdminRemedyEditID.Value := dmBoereraad.tblRemedy['ID'];
   edtAdminRemedyEditName.Text := dmBoereraad.tblRemedy['RemedyName'];
-  edtAdminRemedyEditPrice.Text :=
-    FloatToStrF(dmBoereraad.tblRemedy['PricePerDose'], ffCurrency, 10, 2);
+  edtAdminRemedyEditPrice.Text := FloatToStrF(dmBoereraad.tblRemedy['PricePerDose'], ffCurrency, 10, 2);
   sedAdminRemedyEditEaseOfUse.Value := dmBoereraad.tblRemedy['EaseOfUse'];
   sParseStr := dmBoereraad.tblRemedy['Description'];
 
