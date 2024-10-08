@@ -319,7 +319,8 @@ begin
   end;
 
   rRemedy.WritePendingChange(rRemedy.CreatePendingChange);
-  imgAddRemedyInputsImage.Picture.SaveToFile(cProgramCore.GetImageDirectory + rRemedy.sName + '.jpg');
+  imgAddRemedyInputsImage.Picture.SaveToFile(cProgramCore.GetImageDirectory +
+    rRemedy.sName + '.jpg');
   ShowMessage('Created Remedy create request');
   rRemedy.Destroy;
 end;
@@ -650,8 +651,8 @@ end;
 procedure TfrmHome.bttAdminUserEditRemoveUserClick(Sender: TObject);
 var
   iDBIndex: Integer;
-  iID : Integer;
-  bFound : Boolean;
+  iID: Integer;
+  bFound: Boolean;
 begin
   bFound := False;
   iDBIndex := dmBoereraad.tblUser.RecNo;
@@ -665,7 +666,7 @@ begin
   end;
 
   dmBoereraad.tblUser.First;
-  while not (dmBoereraad.tblUser.Eof) and not (bFound) do
+  while not(dmBoereraad.tblUser.Eof) and not(bFound) do
   begin
     if dmBoereraad.tblUser['ID'] = iID then
     begin
@@ -757,8 +758,10 @@ begin
   rCreateRemedy.CreateDBRecord;
   TCore.DeleteFile(cProgramCore.GetPendingChangesDirectory + rCreateRemedy.sName
     + '.txt');
-  TCore.CopyFile(cProgramCore.GetImageDirectory + rCreateRemedy.sName + '.jpg', cProgramCore.GetImageDirectory + IntToStr(rCreateRemedy.GetID) + '.jpg');
-  TCore.DeleteFile(cProgramCore.GetImageDirectory + rCreateRemedy.sName + '.jpg');
+  TCore.CopyFile(cProgramCore.GetImageDirectory + rCreateRemedy.sName + '.jpg',
+    cProgramCore.GetImageDirectory + IntToStr(rCreateRemedy.GetID) + '.jpg');
+  TCore.DeleteFile(cProgramCore.GetImageDirectory + rCreateRemedy.sName
+    + '.jpg');
 
   pgcTabsChange(Self);
 
@@ -943,10 +946,12 @@ begin
     end;
   end;
 
-  if FileExists(cProgramCore.GetImageDirectory + TRemedy.CalculateFieldInformation('ID', sRemedyInfo) + '.jpg') then
+  if FileExists(cProgramCore.GetImageDirectory +
+    TRemedy.CalculateFieldInformation('ID', sRemedyInfo) + '.jpg') then
   begin
     imgRemedyPendingChangesEditInfoImage.Picture.LoadFromFile
-      (cProgramCore.GetImageDirectory + TRemedy.CalculateFieldInformation('ID', sRemedyInfo) + '.jpg');
+      (cProgramCore.GetImageDirectory + TRemedy.CalculateFieldInformation('ID',
+      sRemedyInfo) + '.jpg');
     imgRemedyPendingChangesEditInfoImage.Visible := True;
   end;
 end;
@@ -1058,14 +1063,15 @@ procedure TfrmHome.dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
 const
   sDELIMITER = #10;
 var
-  sParseStr : string;
-  i : Integer;
-  iDelimiter : Integer;
-  sLine : string;
+  sParseStr: string;
+  i: Integer;
+  iDelimiter: Integer;
+  sLine: string;
 begin
   // Remedy Edit
   edtAdminRemedyEditName.Text := dmBoereraad.tblRemedy['RemedyName'];
-  edtAdminRemedyEditPrice.Text := FloatToStrF(dmBoereraad.tblRemedy['PricePerDose'], ffCurrency, 10, 2);
+  edtAdminRemedyEditPrice.Text :=
+    FloatToStrF(dmBoereraad.tblRemedy['PricePerDose'], ffCurrency, 10, 2);
   sedAdminRemedyEditEaseOfUse.Value := dmBoereraad.tblRemedy['EaseOfUse'];
   sParseStr := dmBoereraad.tblRemedy['Description'];
 
@@ -1099,6 +1105,10 @@ var
   iDBIndex: Integer;
 begin
   iDBIndex := dmBoereraad.tblReview.RecNo;
+
+  redAdminUserEditDosage.Lines.Clear;
+  sedAdminUserEditDaysUsed.Value := 0;
+  sedAdminUserEditEffectiveness.Value := 0;
 
   // Review List
   dmBoereraad.tblReview.First;
@@ -1323,10 +1333,61 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-// TODO
 procedure TfrmHome.lstAdminUserEditReviewClick(Sender: TObject);
+const
+  sDELIMITER = #10;
+var
+  bFound: Boolean;
+  iIndex: Integer;
+  i, iDelimiter : Integer;
+  sParseStr, sLine : String;
 begin
-  //
+  bFound := False;
+  iIndex := 0;
+
+  dmBoereraad.tblReview.First;
+  while not(dmBoereraad.tblReview.Eof) and not(bFound) do
+  begin
+    if dmBoereraad.tblReview['UserID'] = sedAdminUserEditID.Value then
+    begin
+      Inc(iIndex);
+    end;
+
+    // Load Review
+    if iIndex = lstAdminUserEditReview.ItemIndex + 1 then
+    begin
+      // Dosage
+      redAdminUserEditDosage.Lines.Clear;
+      sParseStr := dmBoereraad.tblReview['Dosage'];
+      i := 1;
+      while (i <= Length(sParseStr)) do
+      begin
+        iDelimiter := Pos(sDELIMITER, sParseStr, i);
+
+        if (iDelimiter > 0) then
+          sLine := Copy(sParseStr, i, iDelimiter - i)
+        else
+          sLine := Copy(sParseStr, i, Length(sParseStr) - i + 1);
+
+        redAdminUserEditDosage.Lines.Add(sLine);
+
+        if (iDelimiter > 0) then
+        begin
+          i := iDelimiter + 1;
+        end
+        else
+        begin
+          i := Length(sParseStr) + 1;
+        end;
+      end;
+
+      sedAdminUserEditDaysUsed.Value := dmBoereraad.tblReview['DaysUsed'];
+      sedAdminUserEditEffectiveness.Value := dmBoereraad.tblReview['Effectiveness'];
+      bFound := True;
+    end;
+
+    dmBoereraad.tblReview.Next;
+  end;
 end;
 
 procedure TfrmHome.lstRemedyPendingChangesAdditionsRemediesListClick

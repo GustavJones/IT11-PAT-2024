@@ -20,7 +20,7 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1169
     Height = 642
-    ActivePage = tsAdmin
+    ActivePage = tsRemedyUsage
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
@@ -15922,12 +15922,6 @@ object frmHome: TfrmHome
             Font.Height = -15
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
-            Lines.Strings = (
-              'This is a description of usage '
-              'dose'
-              'e.g.'
-              'Apply 3 times a day after '
-              'meals')
             ParentFont = False
             TabOrder = 4
           end
