@@ -20,6 +20,9 @@ type
     redDosage: TRichEdit;
     sedDaysUsed : TSpinEdit;
     sedEffectiveness : TSpinEdit;
+
+    constructor Create(pOwner: TComponent); override;
+
   private
   public
     procedure Init(pParent: TWinControl);
@@ -31,6 +34,21 @@ implementation
 { TdynReviewTile }
 
 // TODO
+constructor TdynReviewTile.Create(pOwner: TComponent);
+begin
+  inherited Create(pOwner);
+  bttRemove:= TBitBtn.Create(Self);
+  bttReset:= TBitBtn.Create(Self);
+  bttSave:= TBitBtn.Create(Self);
+  lblReview:= TLabel.Create(Self);
+  lblDaysUsed:= TLabel.Create(Self);
+  lblDosage:= TLabel.Create(Self);
+  lblEffectiveness:= TLabel.Create(Self);
+  redDosage:= TRichEdit.Create(Self);
+  sedDaysUsed := TSpinEdit.Create(Self);
+  sedEffectiveness := TSpinEdit.Create(Self);
+end;
+
 procedure TdynReviewTile.Init(pParent: TWinControl);
 begin
   Self.Visible := True;

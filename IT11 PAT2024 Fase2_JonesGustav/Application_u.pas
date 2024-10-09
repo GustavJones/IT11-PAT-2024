@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, Remedy_u, Core_u,
+  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, ReviewTile_u, Remedy_u, Core_u,
   Vcl.Buttons, Vcl.Samples.Spin, Vcl.ExtDlgs;
 
 type
@@ -247,6 +247,7 @@ type
   private
     function GetUserPasswordFromDB(pUserID: Integer): string;
     procedure LoadRemediesFromDBToScrollbox;
+    procedure LoadReviewsFromDBToScrollBox;
     procedure LoadPendingChangesFromTFToArr;
     procedure AddRemedy();
     procedure AddReview();
@@ -260,6 +261,7 @@ type
     iUserID: Integer;
     bUserAdmin: Boolean;
     arrRemedyTiles: array of TdynRemedyTile;
+    arrReviewTiles: array of TdynReviewTile;
 
     arrPendingChangeRemedyName: array [1 .. iMAX_PENDING_CHANGES] of string;
     arrPendingChangeRemedyInformation: array [1 .. iMAX_PENDING_CHANGES] of string;
@@ -1331,6 +1333,7 @@ begin
   end;
 
   LoadRemediesFromDBToScrollbox;
+  LoadReviewsFromDBToScrollBox;
   iPendingChangeCount := 0;
 end;
 
@@ -1509,6 +1512,35 @@ begin
   rRemedy.Destroy;
 
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
+end;
+
+// TODO
+procedure TfrmHome.LoadReviewsFromDBToScrollBox;
+const
+  sDELIMITER = ', ';
+var
+  iDBIndex: Integer;
+  rtReviewTile: TdynReviewTile;
+begin
+  rtReviewTile := TdynReviewTile.Create(Self);
+  iDBIndex := dmBoereraad.tblReview.RecNo;
+
+  dmBoereraad.tblReview.First;
+  while not(dmBoereraad.tblReview.Eof) do
+  begin
+    rtReviewTile.Init(sbxRemedyUsageList);
+    rtReviewTile.lblReview.Caption := dmBoereraad.tblReview['RemedyID'];
+
+    // Add to array
+    SetLength(arrReviewTiles, Length(arrReviewTiles) + 1);
+    arrReviewTiles[Length(arrReviewTiles) - 1] := rtReviewTile;
+
+    rtReviewTile := TdynReviewTile.Create(Self);
+
+    dmBoereraad.tblReview.Next;
+  end;
+
+  dmBoereraad.tblReview.RecNo := iDBIndex;
 end;
 
 procedure TfrmHome.lstAdminUserEditReviewClick(Sender: TObject);

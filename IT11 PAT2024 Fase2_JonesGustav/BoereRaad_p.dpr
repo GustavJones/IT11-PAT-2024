@@ -8,7 +8,8 @@ uses
   dmBoereraad_u in 'dmBoereraad_u.pas' {dmBoereraad: TDataModule},
   RemedyTile_u in 'RemedyTile_u.pas',
   Remedy_u in 'Remedy_u.pas',
-  Core_u in 'Core_u.pas';
+  Core_u in 'Core_u.pas',
+  ReviewTile_u in 'ReviewTile_u.pas';
 
 {$R *.res}
 
