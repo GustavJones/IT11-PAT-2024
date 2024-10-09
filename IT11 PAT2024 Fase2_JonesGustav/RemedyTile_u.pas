@@ -39,8 +39,8 @@ type
   var
     rRemedy: TRemedy;
 
-    procedure Init(pParent: TWinControl)overload;
-    procedure Init(pParent: TWinControl; pRemedy: TRemedy)overload;
+    procedure Init(pParent: TWinControl) overload;
+    procedure Init(pParent: TWinControl; pRemedy: TRemedy) overload;
   end;
 
 implementation

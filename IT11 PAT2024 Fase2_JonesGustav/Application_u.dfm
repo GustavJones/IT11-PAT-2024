@@ -20,12 +20,10 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1169
     Height = 642
-    ActivePage = tsAdmin
+    ActivePage = tsRemedyUsage
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
-    ExplicitWidth = 1165
-    ExplicitHeight = 641
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -13936,8 +13934,8 @@ object frmHome: TfrmHome
         end
       end
       object btnHomeLogOut: TButton
-        Left = 1088
-        Top = 575
+        Left = 1072
+        Top = 567
         Width = 75
         Height = 25
         Caption = 'Log Out'
@@ -14073,7 +14071,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 17
+              ItemHeight = 15
               Items.Strings = (
                 'Brusing'
                 'Pain'
@@ -14229,8 +14227,8 @@ object frmHome: TfrmHome
             OnClick = NavigationHomeClick
           end
           object bttRemediesNavigationNext: TBitBtn
-            Left = 1086
-            Top = 6
+            Left = 1062
+            Top = 3
             Width = 75
             Height = 25
             Caption = 'Next'
@@ -14274,8 +14272,8 @@ object frmHome: TfrmHome
             TabOrder = 2
           end
           object bttRemediesNavigationPrevious: TBitBtn
-            Left = 1005
-            Top = 6
+            Left = 981
+            Top = 3
             Width = 75
             Height = 25
             Caption = 'Previous'
@@ -14416,7 +14414,7 @@ object frmHome: TfrmHome
             OnClick = NavigationHomeClick
           end
           object bttAddRemedyNavigationNext: TBitBtn
-            Left = 1086
+            Left = 1062
             Top = 6
             Width = 75
             Height = 25
@@ -14461,7 +14459,7 @@ object frmHome: TfrmHome
             TabOrder = 2
           end
           object bttAddRemedyNavigationPrevious: TBitBtn
-            Left = 1005
+            Left = 981
             Top = 6
             Width = 75
             Height = 25
@@ -14506,7 +14504,7 @@ object frmHome: TfrmHome
             TabOrder = 3
           end
           object bttAddRemedyNavigationReset: TBitBtn
-            Left = 924
+            Left = 900
             Top = 6
             Width = 75
             Height = 25
@@ -14598,7 +14596,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 17
+            ItemHeight = 15
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -14688,8 +14686,6 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1151
-        ExplicitHeight = 605
         object lblRemedyUsageTitle: TLabel
           Left = 1
           Top = 1
@@ -14732,8 +14728,6 @@ object frmHome: TfrmHome
           Height = 353
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1139
-          ExplicitHeight = 352
           object pnlReview1: TPanel
             AlignWithMargins = True
             Left = 3
@@ -14744,7 +14738,6 @@ object frmHome: TfrmHome
             BorderStyle = bsSingle
             ShowCaption = False
             TabOrder = 0
-            ExplicitWidth = 1129
             object lblReview1: TLabel
               AlignWithMargins = True
               Left = 31
@@ -14805,7 +14798,7 @@ object frmHome: TfrmHome
             object bttReview1Save: TBitBtn
               Left = 1015
               Top = 136
-              Width = 124
+              Width = 98
               Height = 25
               Caption = 'Save Updates'
               Font.Charset = DEFAULT_CHARSET
@@ -14821,7 +14814,7 @@ object frmHome: TfrmHome
             object bttReview1Reset: TBitBtn
               Left = 1015
               Top = 74
-              Width = 124
+              Width = 98
               Height = 25
               Caption = 'Reset'
               Kind = bkRetry
@@ -14858,7 +14851,7 @@ object frmHome: TfrmHome
             object bttReview1Remove: TBitBtn
               Left = 1015
               Top = 105
-              Width = 124
+              Width = 98
               Height = 25
               Caption = 'Remove'
               Font.Charset = DEFAULT_CHARSET
@@ -14891,8 +14884,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 1
-          ExplicitTop = 562
-          ExplicitWidth = 1145
           object bttRemedyUsageNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -14949,8 +14940,8 @@ object frmHome: TfrmHome
             OnClick = NavigationHomeClick
           end
           object bttRemedyUsageNavigationNext: TBitBtn
-            Left = 1086
-            Top = 6
+            Left = 1062
+            Top = 3
             Width = 75
             Height = 25
             Caption = 'Next'
@@ -14995,8 +14986,8 @@ object frmHome: TfrmHome
             TabOrder = 2
           end
           object bttRemedyUsageNavigationPrevious: TBitBtn
-            Left = 1005
-            Top = 6
+            Left = 981
+            Top = 3
             Width = 75
             Height = 25
             Caption = 'Previous'
@@ -15048,7 +15039,6 @@ object frmHome: TfrmHome
           Height = 133
           Align = alTop
           TabOrder = 2
-          ExplicitWidth = 1139
           object lblRemedyUsageAddDosage: TLabel
             Left = 159
             Top = 10
@@ -15140,8 +15130,8 @@ object frmHome: TfrmHome
           end
           object bttRemedyUsageAddAddReview: TBitBtn
             Left = 1022
-            Top = 96
-            Width = 124
+            Top = 98
+            Width = 98
             Height = 25
             Caption = 'Add Review'
             Font.Charset = DEFAULT_CHARSET
@@ -15271,8 +15261,8 @@ object frmHome: TfrmHome
             OnClick = NavigationHomeClick
           end
           object bttRemedyPendingChangesNavigationNext: TBitBtn
-            Left = 1086
-            Top = 6
+            Left = 1062
+            Top = 3
             Width = 75
             Height = 25
             Caption = 'Next'
@@ -15316,8 +15306,8 @@ object frmHome: TfrmHome
             TabOrder = 2
           end
           object bttRemedyPendingChangesNavigationPrevious: TBitBtn
-            Left = 1005
-            Top = 6
+            Left = 981
+            Top = 3
             Width = 75
             Height = 25
             Caption = 'Previous'
@@ -15508,7 +15498,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15696,7 +15686,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -15797,7 +15787,7 @@ object frmHome: TfrmHome
           object lblAdminUserEditDaysUsed: TLabel
             Left = 1016
             Top = 44
-            Width = 121
+            Width = 75
             Height = 20
             Caption = 'Days Used:'
             Font.Charset = DEFAULT_CHARSET
@@ -15836,7 +15826,7 @@ object frmHome: TfrmHome
           object lblAdminUserEditEffectiveness: TLabel
             Left = 1016
             Top = 100
-            Width = 121
+            Width = 91
             Height = 20
             Caption = 'Effectiveness:'
             Font.Charset = DEFAULT_CHARSET
@@ -16236,7 +16226,7 @@ object frmHome: TfrmHome
             Left = 1095
             Top = 32
             Width = 42
-            Height = 25
+            Height = 24
             EditorEnabled = False
             Enabled = False
             Increment = 0
@@ -16310,8 +16300,8 @@ object frmHome: TfrmHome
             OnClick = NavigationHomeClick
           end
           object bttAdminNavigationNext: TBitBtn
-            Left = 1086
-            Top = 6
+            Left = 1062
+            Top = 4
             Width = 75
             Height = 25
             Caption = 'Next'
@@ -16356,8 +16346,8 @@ object frmHome: TfrmHome
             TabOrder = 2
           end
           object bttAdminNavigationPrevious: TBitBtn
-            Left = 1005
-            Top = 6
+            Left = 981
+            Top = 4
             Width = 75
             Height = 25
             Caption = 'Previous'

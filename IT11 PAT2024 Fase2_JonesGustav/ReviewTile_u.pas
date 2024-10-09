@@ -1,0 +1,181 @@
+unit ReviewTile_u;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics,
+  Vcl.Dialogs, Vcl.ExtDlgs, Vcl.Samples.Spin, Vcl.Imaging.jpeg,
+  Winapi.Windows, Core_u;
+
+type
+  TdynReviewTile = class(TPanel)
+    bttRemove: TBitBtn;
+    bttReset: TBitBtn;
+    bttSave: TBitBtn;
+    lblReview: TLabel;
+    lblDaysUsed: TLabel;
+    lblDosage: TLabel;
+    lblEffectiveness: TLabel;
+    redDosage: TRichEdit;
+    sedDaysUsed : TSpinEdit;
+    sedEffectiveness : TSpinEdit;
+  private
+  public
+    procedure Init(pParent: TWinControl);
+
+  end;
+
+implementation
+
+{ TdynReviewTile }
+
+// TODO
+procedure TdynReviewTile.Init(pParent: TWinControl);
+begin
+  Self.Visible := True;
+
+  Self.AlignWithMargins := True;
+  Self.Left := 3;
+  Self.Top := 3;
+  Self.Width := 1133;
+  Self.Height := 182;
+  Self.Align := alTop;
+  Self.BorderStyle := bsSingle;
+  Self.ShowCaption := False;
+  Self.TabOrder := 0;
+
+
+  lblReview.Parent := Self;
+  lblReview.AlignWithMargins := True;
+  lblReview.Left := 31;
+  lblReview.Top := 4;
+  lblReview.Width := 1067;
+  lblReview.Height := 32;
+  lblReview.Margins.Left := 30;
+  lblReview.Margins.Right := 30;
+  lblReview.Align := alTop;
+  lblReview.Caption := '';
+  lblReview.Font.Charset := DEFAULT_CHARSET;
+  lblReview.Font.Color := clWindowText;
+  lblReview.Font.Height := -24;
+  lblReview.Font.Name := 'Segoe UI Semibold';
+  lblReview.Font.Style := [TFontStyle.fsBold];
+  lblReview.ParentFont := False;
+
+  lblDosage.Parent := Self;
+  lblDosage.Left := 31;
+  lblDosage.Top := 54;
+  lblDosage.Width := 140;
+  lblDosage.Height := 20;
+  lblDosage.Caption := 'Dosage Information:';
+  lblDosage.Font.Charset := DEFAULT_CHARSET;
+  lblDosage.Font.Color := clWindowText;
+  lblDosage.Font.Height := -15;
+  lblDosage.Font.Name := 'Segoe UI Semibold';
+  lblDosage.Font.Style := [];
+  lblDosage.ParentFont := False;
+
+  lblDaysUsed.Parent := Self;
+  lblDaysUsed.Left := 868;
+  lblDaysUsed.Top := 54;
+  lblDaysUsed.Width := 75;
+  lblDaysUsed.Height := 20;
+  lblDaysUsed.Caption := 'Days Used:';
+  lblDaysUsed.Font.Charset := DEFAULT_CHARSET;
+  lblDaysUsed.Font.Color := clWindowText;
+  lblDaysUsed.Font.Height := -15;
+  lblDaysUsed.Font.Name := 'Segoe UI Semibold';
+  lblDaysUsed.Font.Style := [];
+  lblDaysUsed.ParentFont := False;
+
+  lblEffectiveness.Parent := Self;
+  lblEffectiveness.Left := 868;
+  lblEffectiveness.Top := 110;
+  lblEffectiveness.Width := 141;
+  lblEffectiveness.Height := 20;
+  lblEffectiveness.Caption := 'Effectiveness: (0 - 10)';
+  lblEffectiveness.Font.Charset := DEFAULT_CHARSET;
+  lblEffectiveness.Font.Color := clWindowText;
+  lblEffectiveness.Font.Height := -15;
+  lblEffectiveness.Font.Name := 'Segoe UI Semibold';
+  lblEffectiveness.Font.Style := [];
+  lblEffectiveness.ParentFont := False;
+
+  bttSave.Parent := Self;
+  bttSave.Left := 1015;
+  bttSave.Top := 136;
+  bttSave.Width := 98;
+  bttSave.Height := 25;
+  bttSave.Caption := 'Save Updates';
+  bttSave.Font.Charset := DEFAULT_CHARSET;
+  bttSave.Font.Color := clWindowText;
+  bttSave.Font.Height := -12;
+  bttSave.Font.Name := 'Segoe UI';
+  bttSave.Font.Style := [];
+  bttSave.Kind := bkAll;
+  bttSave.NumGlyphs := 2;
+  bttSave.ParentFont := False;
+  bttSave.TabOrder := 0;
+
+  bttReset.Parent := Self;
+  bttReset.Left := 1015;
+  bttReset.Top := 74;
+  bttReset.Width := 98;
+  bttReset.Height := 25;
+  bttReset.Caption := 'Reset';
+  bttReset.Kind := bkRetry;
+  bttReset.NumGlyphs := 2;
+  bttReset.TabOrder := 1;
+
+  redDosage.Parent := Self;
+  redDosage.Left := 31;
+  redDosage.Top := 80;
+  redDosage.Width := 818;
+  redDosage.Height := 81;
+  redDosage.Font.Charset := ANSI_CHARSET;
+  redDosage.Font.Color := 13431400;
+  redDosage.Font.Height := -15;
+  redDosage.Font.Name := 'Segoe UI';
+  redDosage.Font.Style := [fsBold];
+  redDosage.ParentFont := False;
+  redDosage.TabOrder := 2;
+
+  sedDaysUsed.Parent := Self;
+  sedDaysUsed.Left := 868;
+  sedDaysUsed.Top := 80;
+  sedDaysUsed.Width := 129;
+  sedDaysUsed.Height := 24;
+  sedDaysUsed.MaxValue := 0;
+  sedDaysUsed.MinValue := 0;
+  sedDaysUsed.TabOrder := 3;
+  sedDaysUsed.Value := 0;
+
+  bttRemove.Parent := Self;
+  bttRemove.Left := 1015;
+  bttRemove.Top := 105;
+  bttRemove.Width := 98;
+  bttRemove.Height := 25;
+  bttRemove.Caption := 'Remove';
+  bttRemove.Font.Charset := DEFAULT_CHARSET;
+  bttRemove.Font.Color := clWindowText;
+  bttRemove.Font.Height := -12;
+  bttRemove.Font.Name := 'Segoe UI';
+  bttRemove.Font.Style := [];
+  bttRemove.Kind := bkCancel;
+  bttRemove.NumGlyphs := 2;
+  bttRemove.ParentFont := False;
+  bttRemove.TabOrder := 4;
+
+  sedEffectiveness.Parent := Self;
+  sedEffectiveness.Left := 868;
+  sedEffectiveness.Top := 136;
+  sedEffectiveness.Width := 129;
+  sedEffectiveness.Height := 24;
+  sedEffectiveness.MaxValue := 0;
+  sedEffectiveness.MinValue := 0;
+  sedEffectiveness.TabOrder := 5;
+  sedEffectiveness.Value := 0;
+end;
+
+end.

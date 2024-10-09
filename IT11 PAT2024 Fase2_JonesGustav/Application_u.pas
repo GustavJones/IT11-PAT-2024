@@ -262,8 +262,8 @@ type
     arrRemedyTiles: array of TdynRemedyTile;
 
     arrPendingChangeRemedyName: array [1 .. iMAX_PENDING_CHANGES] of string;
-    arrPendingChangeRemedyInformation: array [1 .. iMAX_PENDING_CHANGES]
-      of string;
+    arrPendingChangeRemedyInformation: array [1 .. iMAX_PENDING_CHANGES] of string;
+
     iPendingChangeCount: Integer;
     iAdditionsSelectedIndex: Integer;
     iEditSelectedIndex: Integer;
@@ -1184,6 +1184,8 @@ begin
 end;
 
 procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
+const
+  sDELIMITER = #10;
 var
   iTableIndex: Integer;
   iDaysUsed: Integer;
@@ -1199,7 +1201,7 @@ begin
 
   for i := 1 to redRemedyUsageAddDosage.Lines.Count do
   begin
-    sDosageInformation := sDosageInformation + '#' +
+    sDosageInformation := sDosageInformation + sDELIMITER +
       redRemedyUsageAddDosage.Lines[i];
   end;
 
