@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
   Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics,
   Vcl.Dialogs, Vcl.ExtDlgs, Vcl.Samples.Spin, Vcl.Imaging.jpeg,
-  Winapi.Windows, Core_u;
+  Winapi.Windows, Core_u, dmBoereraad_u;
 
 type
   TdynReviewTile = class(TPanel)
@@ -24,8 +24,15 @@ type
     constructor Create(pOwner: TComponent); override;
 
   private
+    procedure RemoveReview(pSender: TObject);
+    procedure ResetReview(pSender: TObject);
+    procedure SaveReview(pSender: TObject);
+
+  var
+    iReviewID : Integer;
   public
-    procedure Init(pParent: TWinControl);
+    procedure Init(pParent: TWinControl) overload;
+    procedure Init(pParent: TWinControl; pReviewID : Integer) overload;
 
   end;
 
@@ -33,7 +40,6 @@ implementation
 
 { TdynReviewTile }
 
-// TODO
 constructor TdynReviewTile.Create(pOwner: TComponent);
 begin
   inherited Create(pOwner);
@@ -53,6 +59,7 @@ procedure TdynReviewTile.Init(pParent: TWinControl);
 begin
   Self.Visible := True;
 
+  Self.Parent := pParent;
   Self.AlignWithMargins := True;
   Self.Left := 3;
   Self.Top := 3;
@@ -125,26 +132,28 @@ begin
   bttSave.Top := 136;
   bttSave.Width := 98;
   bttSave.Height := 25;
+  bttSave.Kind := bkAll;
   bttSave.Caption := 'Save Updates';
   bttSave.Font.Charset := DEFAULT_CHARSET;
   bttSave.Font.Color := clWindowText;
   bttSave.Font.Height := -12;
   bttSave.Font.Name := 'Segoe UI';
   bttSave.Font.Style := [];
-  bttSave.Kind := bkAll;
   bttSave.NumGlyphs := 2;
   bttSave.ParentFont := False;
   bttSave.TabOrder := 0;
+  bttSave.OnClick := SaveReview;
 
   bttReset.Parent := Self;
   bttReset.Left := 1015;
   bttReset.Top := 74;
   bttReset.Width := 98;
   bttReset.Height := 25;
-  bttReset.Caption := 'Reset';
   bttReset.Kind := bkRetry;
+  bttReset.Caption := 'Reset';
   bttReset.NumGlyphs := 2;
   bttReset.TabOrder := 1;
+  bttReset.OnClick := ResetReview;
 
   redDosage.Parent := Self;
   redDosage.Left := 31;
@@ -164,7 +173,7 @@ begin
   sedDaysUsed.Top := 80;
   sedDaysUsed.Width := 129;
   sedDaysUsed.Height := 24;
-  sedDaysUsed.MaxValue := 0;
+  sedDaysUsed.MaxValue := 10000;
   sedDaysUsed.MinValue := 0;
   sedDaysUsed.TabOrder := 3;
   sedDaysUsed.Value := 0;
@@ -174,26 +183,171 @@ begin
   bttRemove.Top := 105;
   bttRemove.Width := 98;
   bttRemove.Height := 25;
+  bttRemove.Kind := bkCancel;
   bttRemove.Caption := 'Remove';
   bttRemove.Font.Charset := DEFAULT_CHARSET;
   bttRemove.Font.Color := clWindowText;
   bttRemove.Font.Height := -12;
   bttRemove.Font.Name := 'Segoe UI';
   bttRemove.Font.Style := [];
-  bttRemove.Kind := bkCancel;
   bttRemove.NumGlyphs := 2;
   bttRemove.ParentFont := False;
   bttRemove.TabOrder := 4;
+  bttRemove.OnClick := RemoveReview;
 
   sedEffectiveness.Parent := Self;
   sedEffectiveness.Left := 868;
   sedEffectiveness.Top := 136;
   sedEffectiveness.Width := 129;
   sedEffectiveness.Height := 24;
-  sedEffectiveness.MaxValue := 0;
+  sedEffectiveness.MaxValue := 10;
   sedEffectiveness.MinValue := 0;
   sedEffectiveness.TabOrder := 5;
   sedEffectiveness.Value := 0;
+end;
+
+procedure TdynReviewTile.Init(pParent: TWinControl; pReviewID : Integer);
+begin
+  Init(pParent);
+  iReviewID := pReviewID;
+  ResetReview(nil);
+end;
+
+procedure TdynReviewTile.RemoveReview(pSender: TObject);
+var
+  iDBIndex : Integer;
+  bFound : Boolean;
+begin
+  bFound := False;
+  iDBIndex := dmBoereraad.tblReview.RecNo;
+
+  dmBoereraad.tblReview.First;
+  while not (dmBoereraad.tblReview.Eof) and not (bFound) do
+  begin
+    if dmBoereraad.tblReview['ID'] = iReviewID then
+    begin
+      bFound := True;
+    end
+    else
+    begin
+      dmBoereraad.tblReview.Next;
+    end;
+  end;
+
+  dmBoereraad.tblReview.Delete;
+  dmBoereraad.tblReview.RecNo := iDBIndex;
+  Self.Visible := False;
+end;
+
+procedure TdynReviewTile.ResetReview(pSender: TObject);
+var
+  bFound : Boolean;
+  iRemedyDBIndex, iReviewDBIndex : Integer;
+  i, iDelimiter : Integer;
+  sReview, sDosage, sLine : string;
+  iDaysUsed, iEffectiveness : Integer;
+begin
+  bFound := False;
+  iRemedyDBIndex := dmBoereraad.tblRemedy.RecNo;
+  iReviewDBIndex := dmBoereraad.tblReview.RecNo;
+
+  // Load info
+  dmBoereraad.tblReview.First;
+  while not (dmBoereraad.tblReview.Eof) and not (bFound) do
+  begin
+    if dmBoereraad.tblReview['ID'] = iReviewID then
+    begin
+      dmBoereraad.tblRemedy.First;
+      while not (dmBoereraad.tblRemedy.Eof) do
+      begin
+        if dmBoereraad.tblReview['RemedyID'] = dmBoereraad.tblRemedy['ID'] then
+        begin
+          sReview := dmBoereraad.tblRemedy['RemedyName'];
+        end;
+
+        dmBoereraad.tblRemedy.Next;
+      end;
+
+      sDosage := dmBoereraad.tblReview['Dosage'];
+      iDaysUsed := dmBoereraad.tblReview['DaysUsed'];
+      iEffectiveness := dmBoereraad.tblReview['Effectiveness'];
+    end;
+
+    dmBoereraad.tblReview.Next;
+  end;
+
+  // Apply visually
+  lblReview.Caption := sReview;
+
+  // Dosage
+  redDosage.Lines.Clear;
+  i := 1;
+  while (i <= Length(sDosage)) do
+  begin
+    iDelimiter := Pos(#10, sDosage, i);
+
+    if (iDelimiter > 0) then
+      sLine := Copy(sDosage, i, iDelimiter - i)
+    else
+      sLine := Copy(sDosage, i, Length(sDosage) - i + 1);
+
+    redDosage.Lines.Add(sLine);
+
+    if (iDelimiter > 0) then
+    begin
+      i := iDelimiter + 1;
+    end
+    else
+    begin
+      i := Length(sDosage) + 1;
+    end;
+  end;
+
+  sedDaysUsed.Value := iDaysUsed;
+  sedEffectiveness.Value := iEffectiveness;
+
+  dmBoereraad.tblRemedy.RecNo := iRemedyDBIndex;
+  dmBoereraad.tblReview.RecNo := iReviewDBIndex;
+end;
+
+procedure TdynReviewTile.SaveReview(pSender: TObject);
+var
+  iDBIndex : Integer;
+  bFound : Boolean;
+  sDosage : string;
+  i: Integer;
+begin
+  sDosage := '';
+  bFound := False;
+  iDBIndex := dmBoereraad.tblReview.RecNo;
+
+  dmBoereraad.tblReview.First;
+  while not (dmBoereraad.tblReview.Eof) and not (bFound) do
+  begin
+    if dmBoereraad.tblReview['ID'] = iReviewID then
+    begin
+      bFound := True;
+    end
+    else
+    begin
+      dmBoereraad.tblReview.Next;
+    end;
+  end;
+
+  for i := 0 to redDosage.Lines.Count - 1 do
+  begin
+    sDosage := sDosage + redDosage.Lines[i] + #10;
+  end;
+
+  dmBoereraad.tblReview.Edit;
+
+  dmBoereraad.tblReview['DaysUsed'] := sedDaysUsed.Value;
+  dmBoereraad.tblReview['Effectiveness'] := sedEffectiveness.Value;
+  dmBoereraad.tblReview['Dosage'] := sDosage;
+
+  dmBoereraad.tblReview.Post;
+
+  dmBoereraad.tblReview.RecNo := iDBIndex;
 end;
 
 end.

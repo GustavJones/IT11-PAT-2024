@@ -243,6 +243,7 @@ type
     procedure bttAdminUserEditRemoveReviewClick(Sender: TObject);
     procedure bttAdminRemedyEditSaveRemedyClick(Sender: TObject);
     procedure bttAdminRemedyEditRemoveRemedyClick(Sender: TObject);
+    procedure bttRemedyUsageAddResetClick(Sender: TObject);
 
   private
     function GetUserPasswordFromDB(pUserID: Integer): string;
@@ -332,10 +333,53 @@ begin
   rRemedy.Destroy;
 end;
 
-// TODO
 procedure TfrmHome.AddReview;
+const
+  sDELIMITER = #10;
+var
+  iTableIndex: Integer;
+  iDaysUsed: Integer;
+  sDosageInformation: String;
+  iEffectiveness: Integer;
+  iRemedyID: Integer;
+  i: Integer;
 begin
-  //
+  iTableIndex := dmBoereraad.tblReview.RecNo;
+
+  iDaysUsed := sedRemedyUsageAddDaysUsed.Value;
+  sDosageInformation := redRemedyUsageAddDosage.Lines[0];
+
+  for i := 1 to redRemedyUsageAddDosage.Lines.Count do
+  begin
+    sDosageInformation := sDosageInformation + sDELIMITER +
+      redRemedyUsageAddDosage.Lines[i];
+  end;
+
+  iEffectiveness := sedRemedyUsageAddEffectiveness.Value;
+
+  dmBoereraad.tblRemedy.First;
+  while not(dmBoereraad.tblRemedy.Eof) do
+  begin
+    if dmBoereraad.tblRemedy['RemedyName'] = cmbRemedyUsageAddRemedy.Items
+      [cmbRemedyUsageAddRemedy.ItemIndex] then
+    begin
+      iRemedyID := dmBoereraad.tblRemedy['ID'];
+    end;
+
+    dmBoereraad.tblRemedy.Next;
+  end;
+
+  dmBoereraad.tblReview.Last;
+
+  dmBoereraad.tblReview.Append;
+  dmBoereraad.tblReview['DaysUsed'] := iDaysUsed;
+  dmBoereraad.tblReview['Dosage'] := sDosageInformation;
+  dmBoereraad.tblReview['Effectiveness'] := iEffectiveness;
+  dmBoereraad.tblReview['UserID'] := iUserID;
+  dmBoereraad.tblReview['RemedyID'] := iRemedyID;
+  dmBoereraad.tblReview.Post;
+
+  dmBoereraad.tblReview.RecNo := iTableIndex;
 end;
 
 procedure TfrmHome.btnAddRemedyInputsAddImageClick(Sender: TObject);
@@ -392,6 +436,8 @@ begin
 end;
 
 procedure TfrmHome.btnHomeLogOutClick(Sender: TObject);
+var
+  i: Integer;
 begin
   if bUserAdmin then
   begin
@@ -409,6 +455,13 @@ begin
 
     iUserID := 0;
     bUserAdmin := False;
+
+    for i := 0 to Length(arrReviewTiles) - 1 do
+    begin
+      arrReviewTiles[i].Destroy;
+    end;
+
+    SetLength(arrReviewTiles, 0);
   end;
 end;
 
@@ -470,6 +523,7 @@ begin
     exit;
   end;
 
+  LoadReviewsFromDBToScrollBox;
   ShowMessage('Login Successful');
   SetupPages;
 
@@ -1186,52 +1240,20 @@ begin
 end;
 
 procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
-const
-  sDELIMITER = #10;
-var
-  iTableIndex: Integer;
-  iDaysUsed: Integer;
-  sDosageInformation: String;
-  iEffectiveness: Integer;
-  iRemedyID: Integer;
-  i: Integer;
 begin
-  iTableIndex := dmBoereraad.tblReview.RecNo;
+  // Validation
 
-  iDaysUsed := sedRemedyUsageAddDaysUsed.Value;
-  sDosageInformation := redRemedyUsageAddDosage.Lines[0];
+  AddReview;
+  bttRemedyUsageAddResetClick(nil);
+end;
 
-  for i := 1 to redRemedyUsageAddDosage.Lines.Count do
-  begin
-    sDosageInformation := sDosageInformation + sDELIMITER +
-      redRemedyUsageAddDosage.Lines[i];
-  end;
-
-  iEffectiveness := sedRemedyUsageAddEffectiveness.Value;
-
-  dmBoereraad.tblRemedy.First;
-  while not(dmBoereraad.tblRemedy.Eof) do
-  begin
-    if dmBoereraad.tblRemedy['RemedyName'] = cmbRemedyUsageAddRemedy.Items
-      [cmbRemedyUsageAddRemedy.ItemIndex] then
-    begin
-      iRemedyID := dmBoereraad.tblRemedy['ID'];
-    end;
-
-    dmBoereraad.tblRemedy.Next;
-  end;
-
-  dmBoereraad.tblReview.Last;
-
-  dmBoereraad.tblReview.Append;
-  dmBoereraad.tblReview['DaysUsed'] := iDaysUsed;
-  dmBoereraad.tblReview['Dosage'] := sDosageInformation;
-  dmBoereraad.tblReview['Effectiveness'] := iEffectiveness;
-  dmBoereraad.tblReview['UserID'] := iUserID;
-  dmBoereraad.tblReview['RemedyID'] := iRemedyID;
-  dmBoereraad.tblReview.Post;
-
-  dmBoereraad.tblReview.RecNo := iTableIndex;
+procedure TfrmHome.bttRemedyUsageAddResetClick(Sender: TObject);
+begin
+  cmbRemedyUsageAddRemedy.ItemIndex := -1;
+  cmbRemedyUsageAddRemedy.Text := 'Remedy Name';
+  sedRemedyUsageAddDaysUsed.Value := 0;
+  redRemedyUsageAddDosage.Lines.Clear;
+  sedRemedyUsageAddEffectiveness.Value := 0;
 end;
 
 procedure TfrmHome.NavigationHomeClick(Sender: TObject);
@@ -1333,7 +1355,6 @@ begin
   end;
 
   LoadRemediesFromDBToScrollbox;
-  LoadReviewsFromDBToScrollBox;
   iPendingChangeCount := 0;
 end;
 
@@ -1514,33 +1535,27 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-// TODO
 procedure TfrmHome.LoadReviewsFromDBToScrollBox;
-const
-  sDELIMITER = ', ';
 var
-  iDBIndex: Integer;
   rtReviewTile: TdynReviewTile;
+  iReviewID : Integer;
 begin
-  rtReviewTile := TdynReviewTile.Create(Self);
-  iDBIndex := dmBoereraad.tblReview.RecNo;
-
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) do
   begin
-    rtReviewTile.Init(sbxRemedyUsageList);
-    rtReviewTile.lblReview.Caption := dmBoereraad.tblReview['RemedyID'];
+    if dmBoereraad.tblReview['UserID'] = iUserID then
+    begin
+      rtReviewTile := TdynReviewTile.Create(Self);
+      iReviewID := dmBoereraad.tblReview['ID'];
+      rtReviewTile.Init(sbxRemedyUsageList, iReviewID);
 
-    // Add to array
-    SetLength(arrReviewTiles, Length(arrReviewTiles) + 1);
-    arrReviewTiles[Length(arrReviewTiles) - 1] := rtReviewTile;
-
-    rtReviewTile := TdynReviewTile.Create(Self);
+      // Add to array
+      SetLength(arrReviewTiles, Length(arrReviewTiles) + 1);
+      arrReviewTiles[Length(arrReviewTiles) - 1] := rtReviewTile;
+    end;
 
     dmBoereraad.tblReview.Next;
   end;
-
-  dmBoereraad.tblReview.RecNo := iDBIndex;
 end;
 
 procedure TfrmHome.lstAdminUserEditReviewClick(Sender: TObject);
