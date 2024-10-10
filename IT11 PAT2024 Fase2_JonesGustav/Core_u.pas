@@ -65,6 +65,9 @@ end;
 procedure TCore.CoreInit();
 begin
   sDATA_DIRECTORY := GetCurrentDir;
+
+  CreateDir(GetImageDirectory);
+  CreateDir(GetPendingChangesDirectory);
 end;
 
 constructor TCore.Create;

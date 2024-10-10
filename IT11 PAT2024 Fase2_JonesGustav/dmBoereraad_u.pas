@@ -11,11 +11,11 @@ uses
       sTBLREMEDY_PRICE = 'RemedyPrice';
       sTBLREMEDY_DESCRIPTION = 'RemedyDescription';
       sTBLREMEDY_EASEOFUSE = 'RemedyEaseOfUse';
-      sTBLREMEDY_SYMPTOMSUSE = 'RemedySymptomsUse';
+      sTBLREMEDY_SYMPTOMSUSE = 'RemedySymptomUse';
 
       sTBLREVIEW_ID = 'ID';
       sTBLREVIEW_USERID = 'UserID';
-      sTBLREVIEW_REMEDYID = 'ReviewID';
+      sTBLREVIEW_REMEDYID = 'RemedyID';
       sTBLREVIEW_DOSAGE = 'ReviewDosage';
       sTBLREVIEW_DAYSUSED = 'ReviewDaysUsed';
       sTBLREVIEW_EFFECTIVENESS = 'ReviewEffectiveness';
