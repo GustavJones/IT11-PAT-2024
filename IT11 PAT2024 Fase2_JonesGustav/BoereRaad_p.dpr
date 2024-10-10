@@ -18,6 +18,7 @@ begin
 
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'BoereRaad';
   Application.CreateForm(TfrmHome, frmHome);
   Application.CreateForm(TdmBoereraad, dmBoereraad);
   Application.Run;
