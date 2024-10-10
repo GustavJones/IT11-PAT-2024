@@ -1,0 +1,9 @@
+New Remedies pending changes:
+
+Select a remedy from 'Additions' and edit the correct information.
+When done press 'Add Remedy' to add the remedy to the program database.
+
+Edited Remedies pending changes:
+
+Select a remedy from 'Edit' and edit the correct information.
+When done press 'Save Remedy' to save the remedy to the program database.

@@ -1,0 +1,8 @@
+Edit Users by selecting names from the DBGrid
+and clicking 'Save User' or 'Remove User' when done.
+
+Edit Selected user's reviews by selecting the review
+and clicking 'Save Review' or 'Remove Review' when done.
+
+Edit Remedies by selecting remedies from the DBGrid
+and clicking 'Save Remedy' or 'Remove Remedy' when done.

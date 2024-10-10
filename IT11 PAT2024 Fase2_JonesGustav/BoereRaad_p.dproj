@@ -4,7 +4,7 @@
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -115,6 +115,14 @@
         <DCCReference Include="Remedy_u.pas"/>
         <DCCReference Include="Core_u.pas"/>
         <DCCReference Include="ReviewTile_u.pas"/>
+        <DCCReference Include="AdminHelp_u.pas">
+            <Form>frmAdminHelp</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UserHelp_u.pas">
+            <Form>frmUserHelp</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

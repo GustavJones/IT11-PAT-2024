@@ -1,0 +1,5 @@
+Admin
+
+View and edit all the information contained in the application.
+
+The place to access all the information in the program.

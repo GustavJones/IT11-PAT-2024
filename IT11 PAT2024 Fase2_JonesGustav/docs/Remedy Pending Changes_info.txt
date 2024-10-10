@@ -1,0 +1,5 @@
+Remedy Changes
+
+Save changes made by users to the main database of the program.
+
+Ensure facts and mistakes are corrected to use as medical information.
