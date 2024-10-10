@@ -42,6 +42,7 @@ implementation
 
 constructor TdynReviewTile.Create(pOwner: TComponent);
 begin
+  // Create children
   inherited Create(pOwner);
   bttRemove:= TBitBtn.Create(Self);
   bttReset:= TBitBtn.Create(Self);
@@ -57,6 +58,8 @@ end;
 
 procedure TdynReviewTile.Init(pParent: TWinControl);
 begin
+  // Setup Dynamic components
+  // Dynamic components
   Self.Visible := True;
 
   Self.Parent := pParent;
@@ -208,6 +211,7 @@ end;
 
 procedure TdynReviewTile.Init(pParent: TWinControl; pReviewID : Integer);
 begin
+  // Read review from ID
   Init(pParent);
   iReviewID := pReviewID;
   ResetReview(nil);
@@ -218,9 +222,11 @@ var
   iDBIndex : Integer;
   bFound : Boolean;
 begin
+  // Delete a review from DB
   bFound := False;
   iDBIndex := dmBoereraad.tblReview.RecNo;
 
+  // ADO: Delete a record
   dmBoereraad.tblReview.First;
   while not (dmBoereraad.tblReview.Eof) and not (bFound) do
   begin
@@ -247,11 +253,12 @@ var
   sReview, sDosage, sLine : string;
   iDaysUsed, iEffectiveness : Integer;
 begin
+  // Read review info from DB to component
   bFound := False;
   iRemedyDBIndex := dmBoereraad.tblRemedy.RecNo;
   iReviewDBIndex := dmBoereraad.tblReview.RecNo;
 
-  // Load info
+  // ADO
   dmBoereraad.tblReview.First;
   while not (dmBoereraad.tblReview.Eof) and not (bFound) do
   begin
@@ -317,6 +324,8 @@ var
   sDosage : string;
   i: Integer;
 begin
+  // Update review from component inputs
+
   // Validation
   if (redDosage.Lines.Count = 0) or ((redDosage.Lines.Count = 1) and (redDosage.Lines[0] = '')) then
   begin
@@ -343,6 +352,7 @@ begin
   bFound := False;
   iDBIndex := dmBoereraad.tblReview.RecNo;
 
+  // ADO: Update record
   dmBoereraad.tblReview.First;
   while not (dmBoereraad.tblReview.Eof) and not (bFound) do
   begin

@@ -13289,7 +13289,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 57
-          Width = 551
+          Width = 403
           Height = 23
           Align = alTop
           Alignment = taCenter
@@ -13301,7 +13301,6 @@ object frmHome: TfrmHome
           Font.Style = []
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 403
         end
         object pnlLogIn: TPanel
           AlignWithMargins = True
@@ -13321,7 +13320,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 1
             Top = 6
-            Width = 253
+            Width = 60
             Height = 30
             Margins.Left = 0
             Margins.Top = 5
@@ -13336,7 +13335,6 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
-            ExplicitWidth = 60
           end
           object btnLogIn: TButton
             AlignWithMargins = True
@@ -13422,7 +13420,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 1
             Top = 6
-            Width = 303
+            Width = 75
             Height = 30
             Margins.Left = 0
             Margins.Top = 5
@@ -13437,7 +13435,6 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
-            ExplicitWidth = 75
           end
           object btnSignUp: TButton
             AlignWithMargins = True
@@ -13975,6 +13972,8 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
+        ExplicitWidth = 1151
+        ExplicitHeight = 605
         object lblRemediesTitle: TLabel
           Left = 1
           Top = 1
@@ -14000,6 +13999,8 @@ object frmHome: TfrmHome
           Height = 524
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 1139
+          ExplicitHeight = 523
           object pnlTile: TPanel
             AlignWithMargins = True
             Left = 3
@@ -14011,6 +14012,7 @@ object frmHome: TfrmHome
             ShowCaption = False
             TabOrder = 0
             Visible = False
+            ExplicitWidth = 1129
             object lblTileTitle: TLabel
               AlignWithMargins = True
               Left = 31
@@ -14189,6 +14191,8 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 1
+          ExplicitTop = 562
+          ExplicitWidth = 1145
           object bttRemediesNavigationHelp: TBitBtn
             Left = 86
             Top = 6

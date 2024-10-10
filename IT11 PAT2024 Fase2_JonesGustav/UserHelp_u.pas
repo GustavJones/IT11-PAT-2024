@@ -38,6 +38,7 @@ var
   sLine : string;
   tFile : TextFile;
 begin
+  // Read help information from textfiles
   redInfo.Lines.Clear;
   redHelp.Lines.Clear;
 

@@ -51,6 +51,7 @@ implementation
 
 function TRemedy.ReadPendingChange : string;
 begin
+  // Call to class method
   Result := TRemedy.ReadPendingChange(sName);
 end;
 
@@ -58,6 +59,7 @@ procedure TRemedy.Assign(pRemedy: TRemedy);
 var
   i: Integer;
 begin
+  // Copy info from another TRemedy
   iID := pRemedy.GetID;
   iEaseOfUse := pRemedy.iEaseOfUse;
   sName := pRemedy.sName;
@@ -77,6 +79,7 @@ var
   sSymptomsStr, sSymptom, sModifiedDescription : string;
   i, iSymptomSeperatorIndex : Integer;
 begin
+  // Copy info from serialized string
   sName := pName;
   iID := StrToInt(CalculateFieldInformation('ID', pString));
   rPrice := StrToFloat(CalculateFieldInformation('Price', pString));
@@ -130,6 +133,7 @@ var
   iFieldIndex, iFieldSeperatorIndex : Integer;
   sOutput : string;
 begin
+  // Return the value stored in the serialized string
   iFieldIndex := Pos(pFieldName, pSerializedChanges);
 
   if iFieldIndex > 0 then
@@ -161,8 +165,10 @@ var
 
   sSymptomsStr: String;
 begin
+  // Create a new DB record from TRemedy info
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
+  // ADO: Append Record
   dmBoereraad.tblRemedy.Last;
   dmBoereraad.tblRemedy.Append;
   dmBoereraad.tblRemedy[sTBLREMEDY_NAME] := '';
@@ -183,6 +189,7 @@ var
   sOutput : string;
   i : Integer;
 begin
+  // Write remedy info to a serialized string
   sOutput := '';
   sSymptoms := '';
   sModifiedDescription := '';
@@ -221,6 +228,7 @@ end;
 
 function TRemedy.GetID: Integer;
 begin
+  // Return read-only version of ID
   result := iID;
 end;
 
@@ -233,6 +241,7 @@ var
   sLine, sOutput : string;
   i : Integer;
 begin
+  // Read a serialised string from a textfile
   sOutput := '';
   sSymptoms := '';
   sModifiedDescription := '';
@@ -268,6 +277,7 @@ var
   sSymptoms: String;
   i: Integer;
 begin
+  // For testing purposes only
   ShowMessage('ID: ' + IntToStr(iID));
   ShowMessage('Name: ' + sName);
   ShowMessage('Description: ' + sDescription);
@@ -295,12 +305,14 @@ var
 
   bFound : Boolean;
 begin
+  // Read remedy record into object
   bFound := False;
 
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   dmBoereraad.tblRemedy.First;
 
+  // ADO
   while (not(dmBoereraad.tblRemedy.Eof)) and (not (bFound)) do
   begin
     if (dmBoereraad.tblRemedy[sTBLREMEDY_ID] = pID) then
@@ -360,8 +372,10 @@ var
   sSymptomsStr: String;
 
 begin
+  // Edit a remedy record in the DB
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
+  // ADO: Update a record
   dmBoereraad.tblRemedy.First;
   while (not(dmBoereraad.tblRemedy.Eof)) and (not(bFound)) do
   begin
@@ -401,6 +415,7 @@ var
   sDirPath : string;
   sFileName : string;
 begin
+  // Write serialized string to a textfile
   sDirPath := cProgramCore.GetPendingChangesDirectory;
   sFileName := sDirPath + pName + '.txt';
 
@@ -415,6 +430,7 @@ end;
 
 procedure TRemedy.WritePendingChange(pChanges : string);
 begin
+  // Call class method
   WritePendingChange(sName, pChanges);
 end;
 

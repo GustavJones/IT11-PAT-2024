@@ -43,6 +43,7 @@ var
   bByte: Byte;
   tInputFile, tOutputFile: file;
 begin
+  // Binary copy file from one location to another
   if not FileExists(pFileToCopy) then
   begin
     exit;
@@ -66,6 +67,7 @@ end;
 
 procedure TCore.CoreInit();
 begin
+  // Setup directories
   sDATA_DIRECTORY := GetCurrentDir;
 
   CreateDir(GetImageDirectory);
@@ -92,6 +94,7 @@ class procedure TCore.CreateFile(pFilepath: string);
 var
   tFile: TextFile;
 begin
+  // Create a blank file
   if not System.SysUtils.FileExists(pFilepath) then
   begin
     AssignFile(tFile, pFilepath);
@@ -103,26 +106,31 @@ end;
 
 class procedure TCore.DeleteFile(pFilepath: string);
 begin
+  // Delete a file
   System.SysUtils.DeleteFile(pFilepath);
 end;
 
 function TCore.GetDataDirectory: String;
 begin
+  // Return the directory of the program file
   result := sDATA_DIRECTORY + '\';
 end;
 
 function TCore.GetHelpDirectory: String;
 begin
+  // Return the relative help directory
   result := GetDataDirectory + sHELP_DIRECTORY + '\';
 end;
 
 function TCore.GetImageDirectory: String;
 begin
+  // Return the relative image directory
   result := GetDataDirectory + sIMAGE_DIRECTORY + '\';
 end;
 
 function TCore.GetPendingChangesDirectory: String;
 begin
+  // Return the changes help directory
   result := GetDataDirectory + sPENDING_CHANGES_DIRECTORY + '\';
 end;
 
@@ -132,6 +140,7 @@ var
   sFileName: string;
   iPathIndex: Integer;
 begin
+  // Read directory contents and return a seperated string of paths
   sOutput := '';
 
   for var f in System.IOUtils.TDirectory.GetFiles(pPath) do
@@ -160,6 +169,7 @@ end;
 
 class procedure TCore.RenameFile(pOldPath, pNewPath: string);
 begin
+  // Rename a file
   System.SysUtils.RenameFile(pOldPath, pNewPath);
 end;
 

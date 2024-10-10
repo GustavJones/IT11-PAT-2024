@@ -5,6 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Data.Win.ADODB, Data.DB;
 
+  // Database field reading constants
   const
       sTBLREMEDY_ID = 'ID';
       sTBLREMEDY_NAME = 'RemedyName';
@@ -57,12 +58,14 @@ implementation
 
 function TdmBoereraad.InitialiseDatabase() : Boolean;
 begin
+  // Setup database for ADO programming
   if not (FileExists('BoereRaadDB.mdb')) then
   begin
     Result := False;
     Exit;
   end;
 
+  // ADO: Setup
   conBoereraad.ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=BoereRaadDB.mdb;Mode=ReadWrite;Persist Security Info=False';
   conBoereraad.LoginPrompt := False;
   conBoereraad.Open;

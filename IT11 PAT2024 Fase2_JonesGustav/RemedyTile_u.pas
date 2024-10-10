@@ -49,6 +49,7 @@ implementation
 
 constructor TdynRemedyTile.Create(pOwner: TComponent);
 begin
+  // Create children
   inherited Create(pOwner);
 
   bttReset := TBitBtn.Create(Self);
@@ -74,6 +75,8 @@ procedure TdynRemedyTile.AddSymptom(pSender: TObject);
 var
   sSymptom: String;
 begin
+  // Add a symptom to list
+
   // Validation
   if (edtSymptom.Text = '') then
   begin
@@ -101,6 +104,8 @@ var
   sParseStr: String;
   sLine: String;
 begin
+  // Create dynamic component and read values
+  // Dynamic Component
   Init(pParent);
 
   lblRemedy.Caption := pRemedy.sName;
@@ -148,6 +153,7 @@ end;
 
 procedure TdynRemedyTile.Init(pParent: TWinControl);
 begin
+  // Setup dynamic components
   rRemedy := TRemedy.Create;
 
   Self.Visible := True;
@@ -220,7 +226,7 @@ begin
 
   lblEaseOfUse.Parent := Self;
   lblEaseOfUse.Left := 1015;
-  lblEaseOfUse.Top := 65;
+  lblEaseOfUse.Top := 67;
   lblEaseOfUse.Width := 100;
   lblEaseOfUse.Height := 17;
   lblEaseOfUse.Caption := 'Ease Of Use: ';
@@ -338,6 +344,7 @@ var
   i: Integer;
   bRemoved : Boolean;
 begin
+  // Remove symptom from list
   bRemoved := False;
 
   // Remove checked Symptoms from checklist
@@ -368,6 +375,7 @@ var
   sParseStr: String;
   sLine: String;
 begin
+  // Reset input controls to db values
   redDescription.Lines.Clear;
   cltSymptoms.Items.Clear;
 
@@ -417,6 +425,7 @@ procedure TdynRemedyTile.UpdateImage(pSender: TObject);
 var
   dlgImageSelect: TOpenPictureDialog;
 begin
+  // Load a new image and save to directory
   dlgImageSelect := TOpenPictureDialog.Create(Self);
   dlgImageSelect.Filter := 'JPEG Images (*.jpg, *.jpeg)|*.JPG;*.JPEG';
   dlgImageSelect.Execute;
@@ -451,6 +460,7 @@ var
   rTempRemedy : TRemedy;
   bEdit : Boolean;
 begin
+  // Update remedy and create pending change
   sPrice := edtPrice.Text;
 
   for i := 1 to Length(sPrice) do

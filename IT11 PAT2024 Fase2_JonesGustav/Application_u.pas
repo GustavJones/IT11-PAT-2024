@@ -292,6 +292,8 @@ var
   sPrice: String;
   i: Integer;
 begin
+  // Add remedy to pending change textfile by reading inputs
+
   // Read Inputs
   rRemedy := TRemedy.Create;
 
@@ -348,6 +350,7 @@ var
   iRemedyID: Integer;
   i: Integer;
 begin
+  // Add a review to the database from inputs
   iTableIndex := dmBoereraad.tblReview.RecNo;
 
   iDaysUsed := sedRemedyUsageAddDaysUsed.Value;
@@ -361,6 +364,7 @@ begin
 
   iEffectiveness := sedRemedyUsageAddEffectiveness.Value;
 
+  // ADO
   dmBoereraad.tblRemedy.First;
   while not(dmBoereraad.tblRemedy.Eof) do
   begin
@@ -390,6 +394,7 @@ procedure TfrmHome.btnAddRemedyInputsAddImageClick(Sender: TObject);
 var
   dlgImageSelect: TOpenPictureDialog;
 begin
+  // Add image to new remedy
   dlgImageSelect := TOpenPictureDialog.Create(Self);
   dlgImageSelect.Filter := 'JPEG Images (*.jpg, *.jpeg)|*.JPG;*.JPEG';
   dlgImageSelect.Execute;
@@ -411,6 +416,7 @@ procedure TfrmHome.btnAddRemedyInputsAddSymptomClick(Sender: TObject);
 var
   sSymptom: string;
 begin
+  // Add a symptom to checklistbox to add to new symptom
   if (edtAddRemedyInputsAddSymptom.Text = '') then
   begin
     ShowMessage('Please enter a symptom');
@@ -444,6 +450,7 @@ procedure TfrmHome.btnHomeLogOutClick(Sender: TObject);
 var
   i: Integer;
 begin
+  // Log User out
   if bUserAdmin then
   begin
     tsAdmin.TabVisible := False;
@@ -495,7 +502,7 @@ begin
   sEmail := edtLogInEmail.Text;
   sPassword := edtLogInPassword.Text;
 
-  // Get User ID
+  // ADO: Get User ID
   dmBoereraad.tblUser.First;
   while (not dmBoereraad.tblUser.Eof) and (not bFound) do
   begin
@@ -550,6 +557,7 @@ procedure TfrmHome.btnRemedyPendingChangesAdditionsInfoAddSymptomClick
 var
   sSymptom: String;
 begin
+  // Add symptom to pending change list
   if (edtRemedyPendingChangesAdditionsInfoSymptomName.Text = '') then
   begin
     ShowMessage('Please enter a symptom');
@@ -586,6 +594,7 @@ procedure TfrmHome.btnRemedyPendingChangesEditInfoAddSymptomClick
 var
   sSymptom: String;
 begin
+  // Add symptom to pending change list
   if (edtRemedyPendingChangesEditInfoSymptomName.Text = '') then
   begin
     ShowMessage('Please enter a symptom');
@@ -616,7 +625,6 @@ begin
   end;
 end;
 
-// TODO
 procedure TfrmHome.btnSignUpClick(Sender: TObject);
 const
   iUSER_NAME_FIELD_SIZE = 40;
@@ -628,6 +636,8 @@ var
   dDate : TDate;
   dCurrentDate : TDate;
 begin
+  // Create new user from inputs
+
   // Validation
   // Presence check
   if edtSignUpName.Text = '' then
@@ -709,7 +719,7 @@ begin
     exit;
   end;
 
-  // Add to DB
+  // ADO: Add record to DB
   iDBIndex := dmBoereraad.tblUser.RecNo;
 
   dmBoereraad.tblUser.Last;
@@ -738,6 +748,8 @@ var
   i: Integer;
   sPrice : String;
 begin
+  // Validate inputs for new remedy
+
   // Validation
   if (edtAddRemedyInputsRemedyName.Text = '') then
   begin
@@ -822,6 +834,7 @@ end;
 
 procedure TfrmHome.bttAddRemedyNavigationResetClick(Sender: TObject);
 begin
+  // Clear inputs for creating remedies
   edtAddRemedyInputsRemedyName.Text := '';
   edtAddRemedyInputsPrice.Text := '';
   sedAddRemedyInputsEaseOfUse.Value := 0;
@@ -837,9 +850,11 @@ var
   iDBIndex : Integer;
   bFound : Boolean;
 begin
+  // Remove a remedy from DBGrid
   bFound := False;
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
+  // ADO : Removing a primary table record and deleting references
   dmBoereraad.tblRemedy.First;
   while not (dmBoereraad.tblRemedy.Eof) and not (bFound) do
   begin
@@ -877,6 +892,8 @@ var
   bFound : Boolean;
   i: Integer;
 begin
+  // Save edits to remedy from DBGrid
+
   // Validation
   if sedAdminRemedyEditID.Value <= 0 then
   begin
@@ -950,6 +967,7 @@ begin
   sDescription := '';
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
+  // ADO: Update a record from PK
   dmBoereraad.tblRemedy.First;
   while not (dmBoereraad.tblRemedy.Eof) and not (bFound) do
   begin
@@ -991,9 +1009,11 @@ var
   bFound: Boolean;
   iIndex: Integer;
 begin
+  // Remove selected review from DB
   bFound := False;
   iIndex := 0;
 
+  // ADO: Delete child table records
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) and not(bFound) do
   begin
@@ -1021,17 +1041,20 @@ var
   iID: Integer;
   bFound: Boolean;
 begin
+  // Delete user from admin page and all it's references
   bFound := False;
   iDBIndex := dmBoereraad.tblUser.RecNo;
 
   iID := sedAdminUserEditID.Value;
 
+  // Don't delete logged in account
   if iID = iUserID then
   begin
     ShowMessage('Cannot delete logged in account');
     exit;
   end;
 
+  // ADO: Delete primary table record and child table references
   dmBoereraad.tblUser.First;
   while not(dmBoereraad.tblUser.Eof) and not(bFound) do
   begin
@@ -1071,6 +1094,8 @@ var
   i, iDelimiter : Integer;
   sParseStr, sLine : String;
 begin
+  // Save selected review information to DB
+
   // Validation
   if lstAdminUserEditReview.ItemIndex < 0 then
   begin
@@ -1103,6 +1128,7 @@ begin
   bFound := False;
   iIndex := 0;
 
+  // ADO: Edit child table records
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) and not(bFound) do
   begin
@@ -1140,6 +1166,8 @@ var
   iDBIndex: Integer;
   i: Integer;
 begin
+  // Edit user records selected in DBGrid
+
   // Validation
   if edtAdminUserEditName.Text = '' then
   begin
@@ -1172,6 +1200,7 @@ begin
   bFound := False;
   iDBIndex := dmBoereraad.tblUser.RecNo;
 
+  // ADO: Edit a primary table record
   dmBoereraad.tblUser.First;
   while not(dmBoereraad.tblUser.Eof) and not(bFound) do
   begin
@@ -1204,6 +1233,8 @@ var
   sPrice: string;
   i: Integer;
 begin
+  // Create a remedy primary table record from input
+
   // Validation
   if lstRemedyPendingChangesAdditionsRemediesList.ItemIndex < 0 then
   begin
@@ -1335,6 +1366,8 @@ var
   sSymptoms, sDescription, sLine: string;
   i, iDelimiter: Integer;
 begin
+  // Update UI components from array contents for new remedy changes
+
   if iAdditionsSelectedIndex < 0 then
   begin
     edtRemedyPendingChangesAdditionsInfoName.Text := '';
@@ -1427,6 +1460,8 @@ var
   sSymptoms, sDescription, sLine: string;
   i, iDelimiter: Integer;
 begin
+  // Update UI components from array contents for remedy edit changes
+
   if iEditSelectedIndex < 0 then
   begin
     edtRemedyPendingChangesEditInfoName.Text := '';
@@ -1519,6 +1554,8 @@ var
   sPrice: string;
   i: Integer;
 begin
+  // Save remedy info to DB from arrays (read into UI components)
+
   // Validation
   if lstRemedyPendingChangesEditRemediesList.ItemIndex < 0 then
   begin
@@ -1639,6 +1676,8 @@ end;
 
 procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
 begin
+  // Validate review inputs and call review creation
+
   // Validation
   if cmbRemedyUsageAddRemedy.ItemIndex < 0 then
   begin
@@ -1676,6 +1715,7 @@ end;
 
 procedure TfrmHome.bttRemedyUsageAddResetClick(Sender: TObject);
 begin
+  // Clear inputs for review creation
   cmbRemedyUsageAddRemedy.ItemIndex := -1;
   cmbRemedyUsageAddRemedy.Text := 'Remedy Name';
   sedRemedyUsageAddDaysUsed.Value := 0;
@@ -1685,14 +1725,14 @@ end;
 
 procedure TfrmHome.NavigationBackClick(Sender: TObject);
 begin
+  // Navigate to previous page
   pgcTabs.TabIndex := pgcTabs.TabIndex - 1;
 end;
 
-// TODO
 procedure TfrmHome.NavigationHelpClick(Sender: TObject);
-var
-  iDBIndex : Integer;
 begin
+  // Open help forms
+
   if bUserAdmin then
   begin
     AdminHelp_u.frmAdminHelp.Show;
@@ -1705,11 +1745,13 @@ end;
 
 procedure TfrmHome.NavigationHomeClick(Sender: TObject);
 begin
+  // Navigate to first page
   pgcTabs.TabIndex := 0;
 end;
 
 procedure TfrmHome.NavigationNextClick(Sender: TObject);
 begin
+  // Navigate to next page
   pgcTabs.TabIndex := pgcTabs.TabIndex + 1;
 end;
 
@@ -1722,7 +1764,9 @@ var
   iDelimiter: Integer;
   sLine: string;
 begin
-  // Remedy Edit
+  // Load selected remedy from DBGrid to controls
+
+  // ADO: Display record
   sedAdminRemedyEditID.Value := dmBoereraad.tblRemedy[sTBLREMEDY_ID];
   edtAdminRemedyEditName.Text := dmBoereraad.tblRemedy[sTBLREMEDY_NAME];
   edtAdminRemedyEditPrice.Text := FloatToStrF(dmBoereraad.tblRemedy[sTBLREMEDY_PRICE], ffCurrency, 10, 2);
@@ -1758,6 +1802,8 @@ procedure TfrmHome.dbgAdminUserEditUsersCellClick(Column: TColumn);
 var
   iDBIndex: Integer;
 begin
+  // Display User info from DBGrid selection
+  // ADO: Display record
   iDBIndex := dmBoereraad.tblReview.RecNo;
 
   redAdminUserEditDosage.Lines.Clear;
@@ -1794,6 +1840,7 @@ end;
 
 procedure TfrmHome.FormActivate(Sender: TObject);
 begin
+  // Initialise Database file
   if not(bDBInit) then
   begin
     if not(dmBoereraad.InitialiseDatabase) then
@@ -1818,6 +1865,7 @@ var
   smStyleManager: TStyleManager;
   siStyleInfo: TStyleInfo;
 begin
+  // Load style to UI
   smStyleManager := TStyleManager.Create;
 
   if (bUSE_CUSTOM_STYLE) then
@@ -1850,9 +1898,11 @@ var
   bFound: Boolean;
   sOutput: string;
 begin
+  // Return the name of a remedy from it's ID
   bFound := False;
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
+  // ADO: Search for record by PK
   dmBoereraad.tblRemedy.First;
   while not(dmBoereraad.tblRemedy.Eof) and not(bFound) do
   begin
@@ -1876,9 +1926,11 @@ var
 
   sPassword: String;
 begin
+  // Return the password of a user from DB
   bFound := False;
   iDBIndex := dmBoereraad.tblUser.RecNo;
 
+  // ADO: Search for record by PK
   dmBoereraad.tblUser.First;
   while (not(dmBoereraad.tblUser.Eof)) and (not(bFound)) do
   begin
@@ -1905,6 +1957,8 @@ var
   i, iSeperator, iExtensionIndex: Integer;
   bMaxChanges: Boolean;
 begin
+  // Read Files and populate parallel arrays
+
   // Arrays
   iPendingChangeCount := 0;
   bMaxChanges := False;
@@ -1964,6 +2018,8 @@ var
   rtRemedyTile: TdynRemedyTile;
   i: Integer;
 begin
+  // Create Remedy tiles for records in DB
+
   // Dynamic Component
   for i := 0 to Length(arrRemedyTiles) - 1 do
   begin
@@ -1976,6 +2032,7 @@ begin
   rtRemedyTile := TdynRemedyTile.Create(Self);
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
+  // ADO: Loop through records to get PK and pull info from PK
   dmBoereraad.tblRemedy.First;
   while not(dmBoereraad.tblRemedy.Eof) do
   begin
@@ -2002,6 +2059,8 @@ var
   iReviewID : Integer;
   i : Integer;
 begin
+  // Create review tiles from DB records
+
   // Dynamic Component
   for i := 0 to Length(arrReviewTiles) - 1 do
   begin
@@ -2010,6 +2069,7 @@ begin
 
   SetLength(arrReviewTiles, 0);
 
+ // ADO: Loop through records to get PK and pull info from PK
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) do
   begin
@@ -2037,9 +2097,11 @@ var
   i, iDelimiter : Integer;
   sParseStr, sLine : String;
 begin
+  // Display review info from selected user in DBGrid
   bFound := False;
   iIndex := 0;
 
+  // ADO: Search for record and display
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) and not(bFound) do
   begin
@@ -2091,6 +2153,7 @@ var
   iIndex: Integer;
   i: Integer;
 begin
+  // Set selected item index
   iIndex := 0;
 
   for i := 1 to iPendingChangeCount do
@@ -2117,6 +2180,7 @@ var
   iIndex: Integer;
   i: Integer;
 begin
+  // Set selected item index
   iIndex := 0;
 
   for i := 1 to iPendingChangeCount do
@@ -2152,10 +2216,11 @@ begin
   case pgcTabs.ActivePageIndex of
     iREMEDY_REVIEWS_PAGE_INDEX:
       begin
-        // List Reviews of selected user
+        // Populate remedies for review creation
         iTableIndex := dmBoereraad.tblRemedy.RecNo;
         cmbRemedyUsageAddRemedy.Items.Clear;
 
+        // ADO: Populate combobox with records
         while not(dmBoereraad.tblRemedy.Eof) do
         begin
           cmbRemedyUsageAddRemedy.Items.Add
@@ -2168,6 +2233,7 @@ begin
       end;
     iPENDING_CHANGES_PAGE_INDEX:
       begin
+        // Populate listboxes from arrays
         iAdditionsSelectedIndex := -1;
         iEditSelectedIndex := -1;
 
@@ -2198,6 +2264,7 @@ end;
 
 procedure TfrmHome.SetupPages;
 begin
+  // Show pages on login
   if bUserAdmin then
   begin
     tsAdmin.TabVisible := True;
