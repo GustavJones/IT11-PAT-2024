@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
   Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, ReviewTile_u, Remedy_u, Core_u,
-  Vcl.Buttons, Vcl.Samples.Spin, Vcl.ExtDlgs;
+  Vcl.Buttons, Vcl.Samples.Spin, Vcl.ExtDlgs, System.DateUtils;
 
 type
   TfrmHome = class(TForm)
@@ -472,6 +472,19 @@ var
   sEmail: string;
   sPassword: string;
 begin
+  // Validation
+  if edtLogInEmail.Text = '' then
+  begin
+    ShowMessage('Please enter an email');
+    exit;
+  end;
+
+  if edtLogInPassword.Text = '' then
+  begin
+    ShowMessage('Please enter a password');
+    exit;
+  end;
+
   bFound := False;
   iTableIndex := dmBoereraad.tblUser.RecNo;
 
@@ -604,6 +617,7 @@ begin
   end;
 end;
 
+// TODO
 procedure TfrmHome.btnSignUpClick(Sender: TObject);
 const
   iUSER_NAME_FIELD_SIZE = 40;
@@ -612,6 +626,8 @@ const
   iUSER_PASSWORD_FIELD_SIZE = 30;
 var
   iDBIndex: Integer;
+  dDate : TDate;
+  dCurrentDate : TDate;
 begin
   // Validation
   // Presence check
@@ -636,6 +652,12 @@ begin
   if edtSignUpEmail.Text = '' then
   begin
     ShowMessage('Please enter your email');
+    exit;
+  end;
+
+  if rgpSignUpGender.ItemIndex < 0 then
+  begin
+    ShowMessage('Please select a birth gender');
     exit;
   end;
 
@@ -667,6 +689,27 @@ begin
       + ' characters');
     exit;
   end;
+
+  // Age Check
+  dDate := dtpSignUpBirthDate.Date;
+  dCurrentDate := Date;
+
+  if dDate > dCurrentDate then
+  begin
+    ShowMessage('Cannot select a date in the future');
+    exit;
+  end
+  else if dDate = dCurrentDate then
+  begin
+    ShowMessage('Cannot select today''s Date');
+    exit;
+  end
+  else if YearOf(dDate) < YearOf(dCurrentDate) - 16 then
+  begin
+    ShowMessage('User Not 16 years old')
+    exit;
+  end;
+
 
   // Add to DB
   iDBIndex := dmBoereraad.tblUser.RecNo;
