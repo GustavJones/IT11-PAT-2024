@@ -360,10 +360,10 @@ begin
   dmBoereraad.tblRemedy.First;
   while not(dmBoereraad.tblRemedy.Eof) do
   begin
-    if dmBoereraad.tblRemedy['RemedyName'] = cmbRemedyUsageAddRemedy.Items
+    if dmBoereraad.tblRemedy[sTBLREMEDY_NAME] = cmbRemedyUsageAddRemedy.Items
       [cmbRemedyUsageAddRemedy.ItemIndex] then
     begin
-      iRemedyID := dmBoereraad.tblRemedy['ID'];
+      iRemedyID := dmBoereraad.tblRemedy[sTBLREMEDY_ID];
     end;
 
     dmBoereraad.tblRemedy.Next;
@@ -372,11 +372,11 @@ begin
   dmBoereraad.tblReview.Last;
 
   dmBoereraad.tblReview.Append;
-  dmBoereraad.tblReview['DaysUsed'] := iDaysUsed;
-  dmBoereraad.tblReview['Dosage'] := sDosageInformation;
-  dmBoereraad.tblReview['Effectiveness'] := iEffectiveness;
-  dmBoereraad.tblReview['UserID'] := iUserID;
-  dmBoereraad.tblReview['RemedyID'] := iRemedyID;
+  dmBoereraad.tblReview[sTBLREVIEW_DAYSUSED] := iDaysUsed;
+  dmBoereraad.tblReview[sTBLREVIEW_DOSAGE] := sDosageInformation;
+  dmBoereraad.tblReview[sTBLREVIEW_EFFECTIVENESS] := iEffectiveness;
+  dmBoereraad.tblReview[sTBLREVIEW_USERID] := iUserID;
+  dmBoereraad.tblReview[sTBLREVIEW_REMEDYID] := iRemedyID;
   dmBoereraad.tblReview.Post;
 
   dmBoereraad.tblReview.RecNo := iTableIndex;
@@ -488,11 +488,11 @@ begin
   dmBoereraad.tblUser.First;
   while (not dmBoereraad.tblUser.Eof) and (not bFound) do
   begin
-    if dmBoereraad.tblUser['Email'] = sEmail then
+    if dmBoereraad.tblUser[sTBLUSER_EMAIL] = sEmail then
     begin
       bFound := True;
-      iUserID := dmBoereraad.tblUser['ID'];
-      if dmBoereraad.tblUser['IsAdmin'] then
+      iUserID := dmBoereraad.tblUser[sTBLUSER_ID];
+      if dmBoereraad.tblUser[sTBLUSER_TYPE] then
       begin
         bUserAdmin := True;
       end
@@ -674,20 +674,20 @@ begin
   dmBoereraad.tblUser.Last;
   dmBoereraad.tblUser.Append;
 
-  dmBoereraad.tblUser['UserName'] := edtSignUpName.Text;
-  dmBoereraad.tblUser['UserSurname'] := edtSignUpSurname.Text;
-  dmBoereraad.tblUser['Email'] := edtSignUpEmail.Text;
-  dmBoereraad.tblUser['Password'] := edtSignUpPassword.Text;
-  dmBoereraad.tblUser['BirthDate'] := dtpSignUpBirthDate.Date;
+  dmBoereraad.tblUser[sTBLUSER_NAME] := edtSignUpName.Text;
+  dmBoereraad.tblUser[sTBLUSER_SURNAME] := edtSignUpSurname.Text;
+  dmBoereraad.tblUser[sTBLUSER_EMAIL] := edtSignUpEmail.Text;
+  dmBoereraad.tblUser[sTBLUSER_PASSWORD] := edtSignUpPassword.Text;
+  dmBoereraad.tblUser[sTBLUSER_BIRTHDATE] := dtpSignUpBirthDate.Date;
 
   case rgpSignUpGender.ItemIndex of
     0:
-      dmBoereraad.tblUser['IsMale'] := True;
+      dmBoereraad.tblUser[sTBLUSER_GENDER] := True;
     1:
-      dmBoereraad.tblUser['IsMale'] := False;
+      dmBoereraad.tblUser[sTBLUSER_GENDER] := False;
   end;
 
-  dmBoereraad.tblUser['IsAdmin'] := chkSignUpAdmin.Checked;
+  dmBoereraad.tblUser[sTBLUSER_TYPE] := chkSignUpAdmin.Checked;
   dmBoereraad.tblUser.Post;
 end;
 
@@ -722,12 +722,12 @@ begin
   dmBoereraad.tblRemedy.First;
   while not (dmBoereraad.tblRemedy.Eof) and not (bFound) do
   begin
-    if dmBoereraad.tblRemedy['ID'] = sedAdminRemedyEditID.Value then
+    if dmBoereraad.tblRemedy[sTBLREMEDY_ID] = sedAdminRemedyEditID.Value then
     begin
       dmBoereraad.tblReview.First;
       while not (dmBoereraad.tblReview.Eof) do
       begin
-        if dmBoereraad.tblReview['RemedyID'] = dmBoereraad.tblRemedy['ID'] then
+        if dmBoereraad.tblReview[sTBLREVIEW_REMEDYID] = dmBoereraad.tblRemedy[sTBLREMEDY_ID] then
         begin
           dmBoereraad.tblReview.Delete;
         end
@@ -763,7 +763,7 @@ begin
   dmBoereraad.tblRemedy.First;
   while not (dmBoereraad.tblRemedy.Eof) and not (bFound) do
   begin
-    if dmBoereraad.tblRemedy['ID'] = sedAdminRemedyEditID.Value then
+    if dmBoereraad.tblRemedy[sTBLREMEDY_ID] = sedAdminRemedyEditID.Value then
     begin
       sPrice := edtAdminRemedyEditPrice.Text;
 
@@ -779,10 +779,10 @@ begin
 
       dmBoereraad.tblRemedy.Edit;
 
-      dmBoereraad.tblRemedy['RemedyName'] := edtAdminRemedyEditName.Text;
-      dmBoereraad.tblRemedy['PricePerDose'] := StrToFloat(sPrice);
-      dmBoereraad.tblRemedy['Description'] := sDescription;
-      dmBoereraad.tblRemedy['EaseOfUse'] := sedAdminRemedyEditEaseOfUse.Value;
+      dmBoereraad.tblRemedy[sTBLREMEDY_NAME] := edtAdminRemedyEditName.Text;
+      dmBoereraad.tblRemedy[sTBLREMEDY_PRICE] := StrToFloat(sPrice);
+      dmBoereraad.tblRemedy[sTBLREMEDY_DESCRIPTION] := sDescription;
+      dmBoereraad.tblRemedy[sTBLREMEDY_EASEOFUSE] := sedAdminRemedyEditEaseOfUse.Value;
 
       dmBoereraad.tblRemedy.Post;
 
@@ -807,7 +807,7 @@ begin
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) and not(bFound) do
   begin
-    if dmBoereraad.tblReview['UserID'] = sedAdminUserEditID.Value then
+    if dmBoereraad.tblReview[sTBLREVIEW_USERID] = sedAdminUserEditID.Value then
     begin
       Inc(iIndex);
     end;
@@ -845,12 +845,12 @@ begin
   dmBoereraad.tblUser.First;
   while not(dmBoereraad.tblUser.Eof) and not(bFound) do
   begin
-    if dmBoereraad.tblUser['ID'] = iID then
+    if dmBoereraad.tblUser[sTBLUSER_ID] = iID then
     begin
       dmBoereraad.tblReview.First;
       while not (dmBoereraad.tblReview.Eof) do
       begin
-        if dmBoereraad.tblReview['UserID'] = dmBoereraad.tblUser['ID'] then
+        if dmBoereraad.tblReview[sTBLREVIEW_USERID] = dmBoereraad.tblUser[sTBLUSER_ID] then
         begin
           dmBoereraad.tblReview.Delete;
         end
@@ -887,7 +887,7 @@ begin
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) and not(bFound) do
   begin
-    if dmBoereraad.tblReview['UserID'] = sedAdminUserEditID.Value then
+    if dmBoereraad.tblReview[sTBLREVIEW_USERID] = sedAdminUserEditID.Value then
     begin
       Inc(iIndex);
     end;
@@ -903,10 +903,10 @@ begin
       end;
 
       dmBoereraad.tblReview.Edit;
-      dmBoereraad.tblReview['Dosage'] := sParseStr;
+      dmBoereraad.tblReview[sTBLREVIEW_DOSAGE] := sParseStr;
 
-      dmBoereraad.tblReview['DaysUsed'] := sedAdminUserEditDaysUsed.Value;
-      dmBoereraad.tblReview['Effectiveness'] := sedAdminUserEditEffectiveness.Value;
+      dmBoereraad.tblReview[sTBLREVIEW_DAYSUSED] := sedAdminUserEditDaysUsed.Value;
+      dmBoereraad.tblReview[sTBLREVIEW_EFFECTIVENESS] := sedAdminUserEditEffectiveness.Value;
       dmBoereraad.tblReview.Post;
       bFound := True;
     end;
@@ -927,7 +927,7 @@ begin
   dmBoereraad.tblUser.First;
   while not(dmBoereraad.tblUser.Eof) and not(bFound) do
   begin
-    if dmBoereraad.tblUser['ID'] = sedAdminUserEditID.Value then
+    if dmBoereraad.tblUser[sTBLUSER_ID] = sedAdminUserEditID.Value then
     begin
       bFound := True;
     end;
@@ -938,12 +938,12 @@ begin
   dmBoereraad.tblUser.Prior;
 
   dmBoereraad.tblUser.Edit;
-  dmBoereraad.tblUser['UserName'] := edtAdminUserEditName.Text;
-  dmBoereraad.tblUser['UserSurname'] := edtAdminUserEditSurname.Text;
-  dmBoereraad.tblUser['IsAdmin'] := chkAdminUserEditAdmin.Checked;
-  dmBoereraad.tblUser['IsMale'] := chkAdminUserEditIsMale.Checked;
-  dmBoereraad.tblUser['Email'] := edtAdminUserEditEmail.Text;
-  dmBoereraad.tblUser['Password'] := edtAdminUserEditPassword.Text;
+  dmBoereraad.tblUser[sTBLUSER_NAME] := edtAdminUserEditName.Text;
+  dmBoereraad.tblUser[sTBLUSER_SURNAME] := edtAdminUserEditSurname.Text;
+  dmBoereraad.tblUser[sTBLUSER_TYPE] := chkAdminUserEditAdmin.Checked;
+  dmBoereraad.tblUser[sTBLUSER_GENDER] := chkAdminUserEditIsMale.Checked;
+  dmBoereraad.tblUser[sTBLUSER_EMAIL] := edtAdminUserEditEmail.Text;
+  dmBoereraad.tblUser[sTBLUSER_PASSWORD] := edtAdminUserEditPassword.Text;
   dmBoereraad.tblUser.Post;
 
   dmBoereraad.tblUser.RecNo := iDBIndex;
@@ -1261,6 +1261,7 @@ begin
   pgcTabs.TabIndex := 0;
 end;
 
+// TODO DB REFACTOR
 procedure TfrmHome.dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
 const
   sDELIMITER = #10;
@@ -1328,14 +1329,14 @@ begin
   end;
 
   // User Edit
-  sedAdminUserEditID.Value := dmBoereraad.tblUser['ID'];
-  edtAdminUserEditName.Text := dmBoereraad.tblUser['UserName'];
-  edtAdminUserEditSurname.Text := dmBoereraad.tblUser['UserSurname'];
-  edtAdminUserEditEmail.Text := dmBoereraad.tblUser['Email'];
-  edtAdminUserEditPassword.Text := dmBoereraad.tblUser['Password'];
+  sedAdminUserEditID.Value := dmBoereraad.tblUser[sTBLUSER_ID];
+  edtAdminUserEditName.Text := dmBoereraad.tblUser[sTBLUSER_NAME];
+  edtAdminUserEditSurname.Text := dmBoereraad.tblUser[sTBLUSER_SURNAME];
+  edtAdminUserEditEmail.Text := dmBoereraad.tblUser[sTBLUSER_EMAIL];
+  edtAdminUserEditPassword.Text := dmBoereraad.tblUser[sTBLUSER_PASSWORD];
 
-  chkAdminUserEditIsMale.Checked := dmBoereraad.tblUser['IsMale'];
-  chkAdminUserEditAdmin.Checked := dmBoereraad.tblUser['IsAdmin'];
+  chkAdminUserEditIsMale.Checked := dmBoereraad.tblUser[sTBLUSER_GENDER];
+  chkAdminUserEditAdmin.Checked := dmBoereraad.tblUser[sTBLUSER_TYPE];
 
   dmBoereraad.tblReview.RecNo := iDBIndex;
 end;
@@ -1433,7 +1434,7 @@ begin
   begin
     if (dmBoereraad.tblUser['ID'] = pUserID) then
     begin
-      sPassword := dmBoereraad.tblUser['Password'];
+      sPassword := dmBoereraad.tblUser[sTBLUSER_PASSWORD];
 
       bFound := True;
     end;

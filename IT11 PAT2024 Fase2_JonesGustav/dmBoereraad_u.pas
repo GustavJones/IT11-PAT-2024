@@ -5,6 +5,30 @@ interface
 uses
   System.SysUtils, System.Classes, Data.Win.ADODB, Data.DB;
 
+  const
+      sTBLREMEDY_ID = 'ID';
+      sTBLREMEDY_NAME = 'RemedyName';
+      sTBLREMEDY_PRICE = 'RemedyPrice';
+      sTBLREMEDY_DESCRIPTION = 'RemedyDescription';
+      sTBLREMEDY_EASEOFUSE = 'RemedyEaseOfUse';
+      sTBLREMEDY_SYMPTOMSUSE = 'RemedySymptomsUse';
+
+      sTBLREVIEW_ID = 'ID';
+      sTBLREVIEW_USERID = 'UserID';
+      sTBLREVIEW_REMEDYID = 'ReviewID';
+      sTBLREVIEW_DOSAGE = 'ReviewDosage';
+      sTBLREVIEW_DAYSUSED = 'ReviewDaysUsed';
+      sTBLREVIEW_EFFECTIVENESS = 'ReviewEffectiveness';
+
+      sTBLUSER_ID = 'ID';
+      sTBLUSER_NAME = 'UserName';
+      sTBLUSER_SURNAME = 'UserSurname';
+      sTBLUSER_EMAIL = 'UserEmail';
+      sTBLUSER_PASSWORD = 'UserPassword';
+      sTBLUSER_BIRTHDATE = 'UserBirthDate';
+      sTBLUSER_GENDER = 'IsMale';
+      sTBLUSER_TYPE = 'IsAdmin';
+
 type
   TdmBoereraad = class(TDataModule)
     conBoereraad: TADOConnection;

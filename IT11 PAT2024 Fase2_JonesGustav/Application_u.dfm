@@ -24,8 +24,6 @@ object frmHome: TfrmHome
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
-    ExplicitWidth = 1165
-    ExplicitHeight = 641
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -13287,7 +13285,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 57
-          Width = 551
+          Width = 403
           Height = 23
           Align = alTop
           Alignment = taCenter
@@ -13299,7 +13297,6 @@ object frmHome: TfrmHome
           Font.Style = []
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 403
         end
         object pnlLogIn: TPanel
           AlignWithMargins = True
@@ -13318,7 +13315,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 1
             Top = 6
-            Width = 253
+            Width = 60
             Height = 30
             Margins.Left = 0
             Margins.Top = 5
@@ -13333,7 +13330,6 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
-            ExplicitWidth = 60
           end
           object btnLogIn: TButton
             AlignWithMargins = True
@@ -13416,7 +13412,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 1
             Top = 6
-            Width = 303
+            Width = 75
             Height = 30
             Margins.Left = 0
             Margins.Top = 5
@@ -13431,7 +13427,6 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
-            ExplicitWidth = 75
           end
           object btnSignUp: TButton
             AlignWithMargins = True
@@ -14073,7 +14068,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 17
+              ItemHeight = 15
               Items.Strings = (
                 'Brusing'
                 'Pain'
@@ -14598,7 +14593,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 17
+            ItemHeight = 15
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -14688,8 +14683,6 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1151
-        ExplicitHeight = 605
         object lblRemedyUsageTitle: TLabel
           Left = 1
           Top = 1
@@ -14732,8 +14725,6 @@ object frmHome: TfrmHome
           Height = 353
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1139
-          ExplicitHeight = 352
           object pnlReview1: TPanel
             AlignWithMargins = True
             Left = 3
@@ -14745,13 +14736,12 @@ object frmHome: TfrmHome
             ShowCaption = False
             TabOrder = 0
             Visible = False
-            ExplicitWidth = 1129
             object lblReview1: TLabel
               AlignWithMargins = True
               Left = 31
               Top = 4
               Width = 897
-              Height = 29
+              Height = 32
               Margins.Left = 30
               Margins.Right = 200
               Align = alTop
@@ -14762,9 +14752,7 @@ object frmHome: TfrmHome
               Font.Name = 'Segoe UI Semibold'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitLeft = -420
-              ExplicitTop = 19
-              ExplicitWidth = 1067
+              ExplicitWidth = 72
             end
             object lblReview1Dosage: TLabel
               Left = 31
@@ -14894,8 +14882,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 1
-          ExplicitTop = 562
-          ExplicitWidth = 1145
           object bttRemedyUsageNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -15051,7 +15037,6 @@ object frmHome: TfrmHome
           Height = 133
           Align = alTop
           TabOrder = 2
-          ExplicitWidth = 1139
           object lblRemedyUsageAddDosage: TLabel
             Left = 159
             Top = 10
@@ -15508,7 +15493,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15696,7 +15681,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
