@@ -165,13 +165,13 @@ begin
 
   dmBoereraad.tblRemedy.Last;
   dmBoereraad.tblRemedy.Append;
-  dmBoereraad.tblRemedy['RemedyName'] := '';
-  dmBoereraad.tblRemedy['Description'] := '';
-  dmBoereraad.tblRemedy['EaseOfUse'] := 0;
-  dmBoereraad.tblRemedy['PricePerDose'] := 0.0;
+  dmBoereraad.tblRemedy[sTBLREMEDY_NAME] := '';
+  dmBoereraad.tblRemedy[sTBLREMEDY_DESCRIPTION] := '';
+  dmBoereraad.tblRemedy[sTBLREMEDY_EASEOFUSE] := 0;
+  dmBoereraad.tblRemedy[sTBLREMEDY_PRICE] := 0.0;
   dmBoereraad.tblRemedy.Post;
 
-  iID := dmBoereraad.tblRemedy['ID'];
+  iID := dmBoereraad.tblRemedy[sTBLREMEDY_ID];
   UpdateDBRecord;
 
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
@@ -303,15 +303,15 @@ begin
 
   while (not(dmBoereraad.tblRemedy.Eof)) and (not (bFound)) do
   begin
-    if (dmBoereraad.tblRemedy['ID'] = pID) then
+    if (dmBoereraad.tblRemedy[sTBLREMEDY_ID] = pID) then
     begin
-      iID := dmBoereraad.tblRemedy['ID'];
-      sName := dmBoereraad.tblRemedy['RemedyName'];
-      rPrice := dmBoereraad.tblRemedy['PricePerDose'];
-      sDescription := dmBoereraad.tblRemedy['Description'];
-      iEaseOfUse := dmBoereraad.tblRemedy['EaseOfUse'];
+      iID := dmBoereraad.tblRemedy[sTBLREMEDY_ID];
+      sName := dmBoereraad.tblRemedy[sTBLREMEDY_NAME];
+      rPrice := dmBoereraad.tblRemedy[sTBLREMEDY_PRICE];
+      sDescription := dmBoereraad.tblRemedy[sTBLREMEDY_DESCRIPTION];
+      iEaseOfUse := dmBoereraad.tblRemedy[sTBLREMEDY_EASEOFUSE];
 
-      sSymptomsStr := dmBoereraad.tblRemedy['SymptomUse'];
+      sSymptomsStr := dmBoereraad.tblRemedy[sTBLREMEDY_SYMPTOMSUSE];
       SetLength(arrSymptoms, 0);
 
       // Symptom String parsing
@@ -367,13 +367,13 @@ begin
   begin
     sSymptomsStr := '';
 
-    if (dmBoereraad.tblRemedy['ID'] = iID) then
+    if (dmBoereraad.tblRemedy[sTBLREMEDY_ID] = iID) then
     begin
       dmBoereraad.tblRemedy.Edit;
-      dmBoereraad.tblRemedy['RemedyName'] := sName;
-      dmBoereraad.tblRemedy['Description'] := sDescription;
-      dmBoereraad.tblRemedy['EaseOfUse'] := iEaseOfUse;
-      dmBoereraad.tblRemedy['PricePerDose'] := rPrice;
+      dmBoereraad.tblRemedy[sTBLREMEDY_NAME] := sName;
+      dmBoereraad.tblRemedy[sTBLREMEDY_DESCRIPTION] := sDescription;
+      dmBoereraad.tblRemedy[sTBLREMEDY_EASEOFUSE] := iEaseOfUse;
+      dmBoereraad.tblRemedy[sTBLREMEDY_PRICE] := rPrice;
 
       // Symptoms
       for i := 0 to Length(arrSymptoms) - 1 do
@@ -383,7 +383,7 @@ begin
 
       Delete(sSymptomsStr, Length(sSymptomsStr) - Length(sSEPERATOR) + 1,
         Length(sSEPERATOR));
-      dmBoereraad.tblRemedy['SymptomUse'] := sSymptomsStr;
+      dmBoereraad.tblRemedy[sTBLREMEDY_SYMPTOMSUSE] := sSymptomsStr;
       dmBoereraad.tblRemedy.Post;
 
       bFound := True;

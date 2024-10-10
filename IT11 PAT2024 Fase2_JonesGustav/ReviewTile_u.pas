@@ -224,7 +224,7 @@ begin
   dmBoereraad.tblReview.First;
   while not (dmBoereraad.tblReview.Eof) and not (bFound) do
   begin
-    if dmBoereraad.tblReview['ID'] = iReviewID then
+    if dmBoereraad.tblReview[sTBLREVIEW_ID] = iReviewID then
     begin
       bFound := True;
     end
@@ -255,22 +255,22 @@ begin
   dmBoereraad.tblReview.First;
   while not (dmBoereraad.tblReview.Eof) and not (bFound) do
   begin
-    if dmBoereraad.tblReview['ID'] = iReviewID then
+    if dmBoereraad.tblReview[sTBLREVIEW_ID] = iReviewID then
     begin
       dmBoereraad.tblRemedy.First;
       while not (dmBoereraad.tblRemedy.Eof) do
       begin
-        if dmBoereraad.tblReview['RemedyID'] = dmBoereraad.tblRemedy['ID'] then
+        if dmBoereraad.tblReview[sTBLREVIEW_REMEDYID] = dmBoereraad.tblRemedy[sTBLREMEDY_ID] then
         begin
-          sReview := dmBoereraad.tblRemedy['RemedyName'];
+          sReview := dmBoereraad.tblRemedy[sTBLREMEDY_NAME];
         end;
 
         dmBoereraad.tblRemedy.Next;
       end;
 
-      sDosage := dmBoereraad.tblReview['Dosage'];
-      iDaysUsed := dmBoereraad.tblReview['DaysUsed'];
-      iEffectiveness := dmBoereraad.tblReview['Effectiveness'];
+      sDosage := dmBoereraad.tblReview[sTBLREVIEW_DOSAGE];
+      iDaysUsed := dmBoereraad.tblReview[sTBLREVIEW_DAYSUSED];
+      iEffectiveness := dmBoereraad.tblReview[sTBLREVIEW_EFFECTIVENESS];
     end;
 
     dmBoereraad.tblReview.Next;
@@ -324,7 +324,7 @@ begin
   dmBoereraad.tblReview.First;
   while not (dmBoereraad.tblReview.Eof) and not (bFound) do
   begin
-    if dmBoereraad.tblReview['ID'] = iReviewID then
+    if dmBoereraad.tblReview[sTBLREVIEW_ID] = iReviewID then
     begin
       bFound := True;
     end
@@ -341,9 +341,9 @@ begin
 
   dmBoereraad.tblReview.Edit;
 
-  dmBoereraad.tblReview['DaysUsed'] := sedDaysUsed.Value;
-  dmBoereraad.tblReview['Effectiveness'] := sedEffectiveness.Value;
-  dmBoereraad.tblReview['Dosage'] := sDosage;
+  dmBoereraad.tblReview[sTBLREVIEW_DAYSUSED] := sedDaysUsed.Value;
+  dmBoereraad.tblReview[sTBLREVIEW_EFFECTIVENESS] := sedEffectiveness.Value;
+  dmBoereraad.tblReview[sTBLREVIEW_DOSAGE] := sDosage;
 
   dmBoereraad.tblReview.Post;
 

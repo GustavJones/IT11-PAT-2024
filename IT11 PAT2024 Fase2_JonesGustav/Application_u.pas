@@ -1261,7 +1261,6 @@ begin
   pgcTabs.TabIndex := 0;
 end;
 
-// TODO DB REFACTOR
 procedure TfrmHome.dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
 const
   sDELIMITER = #10;
@@ -1272,11 +1271,11 @@ var
   sLine: string;
 begin
   // Remedy Edit
-  sedAdminRemedyEditID.Value := dmBoereraad.tblRemedy['ID'];
-  edtAdminRemedyEditName.Text := dmBoereraad.tblRemedy['RemedyName'];
-  edtAdminRemedyEditPrice.Text := FloatToStrF(dmBoereraad.tblRemedy['PricePerDose'], ffCurrency, 10, 2);
-  sedAdminRemedyEditEaseOfUse.Value := dmBoereraad.tblRemedy['EaseOfUse'];
-  sParseStr := dmBoereraad.tblRemedy['Description'];
+  sedAdminRemedyEditID.Value := dmBoereraad.tblRemedy[sTBLREMEDY_ID];
+  edtAdminRemedyEditName.Text := dmBoereraad.tblRemedy[sTBLREMEDY_NAME];
+  edtAdminRemedyEditPrice.Text := FloatToStrF(dmBoereraad.tblRemedy[sTBLREMEDY_PRICE], ffCurrency, 10, 2);
+  sedAdminRemedyEditEaseOfUse.Value := dmBoereraad.tblRemedy[sTBLREMEDY_EASEOFUSE];
+  sParseStr := dmBoereraad.tblRemedy[sTBLREMEDY_DESCRIPTION];
 
   // Description Line Seperation
   redAdminRemedyEditDescription.Lines.Clear;
@@ -1319,10 +1318,10 @@ begin
   lstAdminUserEditReview.Items.Clear;
   while not(dmBoereraad.tblReview.Eof) do
   begin
-    if dmBoereraad.tblReview['UserID'] = dmBoereraad.tblUser['ID'] then
+    if dmBoereraad.tblReview[sTBLREVIEW_USERID] = dmBoereraad.tblUser[sTBLUSER_ID] then
     begin
       lstAdminUserEditReview.Items.Add
-        (GetRemedyName(dmBoereraad.tblReview['RemedyID']));
+        (GetRemedyName(dmBoereraad.tblReview[sTBLREVIEW_REMEDYID]));
     end;
 
     dmBoereraad.tblReview.Next;
@@ -1406,9 +1405,9 @@ begin
   dmBoereraad.tblRemedy.First;
   while not(dmBoereraad.tblRemedy.Eof) and not(bFound) do
   begin
-    if dmBoereraad.tblRemedy['ID'] = pID then
+    if dmBoereraad.tblRemedy[sTBLREMEDY_ID] = pID then
     begin
-      sOutput := dmBoereraad.tblRemedy['RemedyName'];
+      sOutput := dmBoereraad.tblRemedy[sTBLREMEDY_NAME];
       bFound := True;
     end;
 
@@ -1432,7 +1431,7 @@ begin
   dmBoereraad.tblUser.First;
   while (not(dmBoereraad.tblUser.Eof)) and (not(bFound)) do
   begin
-    if (dmBoereraad.tblUser['ID'] = pUserID) then
+    if (dmBoereraad.tblUser[sTBLUSER_ID] = pUserID) then
     begin
       sPassword := dmBoereraad.tblUser[sTBLUSER_PASSWORD];
 
@@ -1519,7 +1518,7 @@ begin
   dmBoereraad.tblRemedy.First;
   while not(dmBoereraad.tblRemedy.Eof) do
   begin
-    rRemedy.ReadDBRecord(dmBoereraad.tblRemedy['ID']);
+    rRemedy.ReadDBRecord(dmBoereraad.tblRemedy[sTBLREMEDY_ID]);
     rtRemedyTile.Init(sbxRemediesList, rRemedy);
 
     // Add to array
@@ -1544,10 +1543,10 @@ begin
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) do
   begin
-    if dmBoereraad.tblReview['UserID'] = iUserID then
+    if dmBoereraad.tblReview[sTBLREVIEW_USERID] = iUserID then
     begin
       rtReviewTile := TdynReviewTile.Create(Self);
-      iReviewID := dmBoereraad.tblReview['ID'];
+      iReviewID := dmBoereraad.tblReview[sTBLREVIEW_ID];
       rtReviewTile.Init(sbxRemedyUsageList, iReviewID);
 
       // Add to array
@@ -1574,7 +1573,7 @@ begin
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) and not(bFound) do
   begin
-    if dmBoereraad.tblReview['UserID'] = sedAdminUserEditID.Value then
+    if dmBoereraad.tblReview[sTBLREVIEW_USERID] = sedAdminUserEditID.Value then
     begin
       Inc(iIndex);
     end;
@@ -1584,7 +1583,7 @@ begin
     begin
       // Dosage
       redAdminUserEditDosage.Lines.Clear;
-      sParseStr := dmBoereraad.tblReview['Dosage'];
+      sParseStr := dmBoereraad.tblReview[sTBLREVIEW_DOSAGE];
       i := 1;
       while (i <= Length(sParseStr)) do
       begin
@@ -1607,8 +1606,8 @@ begin
         end;
       end;
 
-      sedAdminUserEditDaysUsed.Value := dmBoereraad.tblReview['DaysUsed'];
-      sedAdminUserEditEffectiveness.Value := dmBoereraad.tblReview['Effectiveness'];
+      sedAdminUserEditDaysUsed.Value := dmBoereraad.tblReview[sTBLREVIEW_DAYSUSED];
+      sedAdminUserEditEffectiveness.Value := dmBoereraad.tblReview[sTBLREVIEW_EFFECTIVENESS];
       bFound := True;
     end;
 
@@ -1690,7 +1689,7 @@ begin
         while not(dmBoereraad.tblRemedy.Eof) do
         begin
           cmbRemedyUsageAddRemedy.Items.Add
-            (dmBoereraad.tblRemedy['RemedyName']);
+            (dmBoereraad.tblRemedy[sTBLREMEDY_NAME]);
 
           dmBoereraad.tblRemedy.Next;
         end;

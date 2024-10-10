@@ -14333,7 +14333,7 @@ object frmHome: TfrmHome
         object lblAddRemedyTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1149
+          Width = 144
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14345,7 +14345,6 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 144
         end
         object pnlAddRemedyNavigation: TPanel
           Left = 1
@@ -15178,7 +15177,7 @@ object frmHome: TfrmHome
         object lblRemedyPendingChanges: TLabel
           Left = 1
           Top = 1
-          Width = 1149
+          Width = 194
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15190,7 +15189,6 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 194
         end
         object pnlRemedyPendingChangesNavigation: TPanel
           Left = 1
@@ -15741,7 +15739,7 @@ object frmHome: TfrmHome
         object lblAdminUser: TLabel
           Left = 1
           Top = 1
-          Width = 1149
+          Width = 133
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15753,12 +15751,11 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 133
         end
         object lblAdminRemedy: TLabel
           Left = 1
           Top = 297
-          Width = 1149
+          Width = 171
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15770,7 +15767,6 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 171
         end
         object pnlAdminUserEdit: TPanel
           Left = 1
