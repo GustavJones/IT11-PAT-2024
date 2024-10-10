@@ -14,6 +14,7 @@ type
     function GetDataDirectory(): String;
     function GetImageDirectory(): String;
     function GetPendingChangesDirectory(): String;
+    function GetHelpDirectory(): String;
     class procedure CreateFile(pFilepath: string);
     class procedure DeleteFile(pFilepath: string);
     class procedure CreateDir(pPath: string);
@@ -28,6 +29,7 @@ type
   const
     sIMAGE_DIRECTORY = 'images';
     sPENDING_CHANGES_DIRECTORY = 'changes';
+    sHELP_DIRECTORY = 'help';
 
   end;
 
@@ -68,6 +70,7 @@ begin
 
   CreateDir(GetImageDirectory);
   CreateDir(GetPendingChangesDirectory);
+  CreateDir(GetHelpDirectory);
 end;
 
 constructor TCore.Create;
@@ -106,6 +109,11 @@ end;
 function TCore.GetDataDirectory: String;
 begin
   result := sDATA_DIRECTORY + '\';
+end;
+
+function TCore.GetHelpDirectory: String;
+begin
+  result := GetDataDirectory + sHELP_DIRECTORY + '\';
 end;
 
 function TCore.GetImageDirectory: String;

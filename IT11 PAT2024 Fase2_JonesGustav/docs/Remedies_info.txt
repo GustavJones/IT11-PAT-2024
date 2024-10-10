@@ -1,0 +1,5 @@
+Remedies
+
+Displays all the available documented remedies contained in the app's database.
+
+Seamlessly edit remedies information including description, the symptoms to use for, image of the remedy, price and ease of use (how easy is it to use)

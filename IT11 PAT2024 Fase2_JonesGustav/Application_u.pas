@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Themes, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.CheckLst, Vcl.Imaging.pngimage, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, ReviewTile_u, Remedy_u, Core_u,
+  Vcl.Grids, Vcl.DBGrids, dmBoereraad_u, RemedyTile_u, ReviewTile_u, Remedy_u, Core_u, AdminHelp_u, UserHelp_u,
   Vcl.Buttons, Vcl.Samples.Spin, Vcl.ExtDlgs, System.DateUtils;
 
 type
@@ -245,6 +245,9 @@ type
     procedure bttAdminRemedyEditRemoveRemedyClick(Sender: TObject);
     procedure bttRemedyUsageAddResetClick(Sender: TObject);
     procedure bttAddRemedyNavigationResetClick(Sender: TObject);
+    procedure NavigationNextClick(Sender: TObject);
+    procedure NavigationBackClick(Sender: TObject);
+    procedure NavigationHelpClick(Sender: TObject);
 
   private
     function GetUserPasswordFromDB(pUserID: Integer): string;
@@ -532,6 +535,7 @@ begin
   end;
 
   LoadReviewsFromDBToScrollBox;
+  LoadRemediesFromDBToScrollbox;
   ShowMessage('Login Successful');
   SetupPages;
 
@@ -1679,9 +1683,34 @@ begin
   sedRemedyUsageAddEffectiveness.Value := 0;
 end;
 
+procedure TfrmHome.NavigationBackClick(Sender: TObject);
+begin
+  pgcTabs.TabIndex := pgcTabs.TabIndex - 1;
+end;
+
+// TODO
+procedure TfrmHome.NavigationHelpClick(Sender: TObject);
+var
+  iDBIndex : Integer;
+begin
+  if bUserAdmin then
+  begin
+    AdminHelp_u.frmAdminHelp.Show;
+  end
+  else
+  begin
+    UserHelp_u.frmUserHelp.Show;
+  end;
+end;
+
 procedure TfrmHome.NavigationHomeClick(Sender: TObject);
 begin
   pgcTabs.TabIndex := 0;
+end;
+
+procedure TfrmHome.NavigationNextClick(Sender: TObject);
+begin
+  pgcTabs.TabIndex := pgcTabs.TabIndex + 1;
 end;
 
 procedure TfrmHome.dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
@@ -1777,7 +1806,6 @@ begin
     end;
   end;
 
-  LoadRemediesFromDBToScrollbox;
   iPendingChangeCount := 0;
 end;
 
@@ -1934,7 +1962,16 @@ var
   iDBIndex: Integer;
   rRemedy: TRemedy;
   rtRemedyTile: TdynRemedyTile;
+  i: Integer;
 begin
+  // Dynamic Component
+  for i := 0 to Length(arrRemedyTiles) - 1 do
+  begin
+    arrRemedyTiles[i].Destroy;
+  end;
+
+  SetLength(arrRemedyTiles, 0);
+
   rRemedy := TRemedy.Create;
   rtRemedyTile := TdynRemedyTile.Create(Self);
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
@@ -1965,6 +2002,7 @@ var
   iReviewID : Integer;
   i : Integer;
 begin
+  // Dynamic Component
   for i := 0 to Length(arrReviewTiles) - 1 do
   begin
     arrReviewTiles[i].Destroy;

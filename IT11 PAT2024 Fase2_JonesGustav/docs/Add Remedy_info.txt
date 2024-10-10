@@ -1,0 +1,5 @@
+Add Remedy
+
+Create a new request to add a remedy to the program database.
+
+Easily insert the relevant info of the new remedy.

@@ -163,6 +163,7 @@ begin
   Self.ShowCaption := False;
   Self.TabOrder := 0;
   Self.Visible := True;
+  Self.Font.Size := 10;
 
   lblRemedy.Parent := Self;
   lblRemedy.AlignWithMargins := True;
@@ -247,7 +248,7 @@ begin
 
   btnRemoveSymptom.Parent := Self;
   btnRemoveSymptom.Left := 877;
-  btnRemoveSymptom.Top := 65;
+  btnRemoveSymptom.Top := 67;
   btnRemoveSymptom.Width := 121;
   btnRemoveSymptom.Height := 25;
   btnRemoveSymptom.Caption := 'Remove Symptom';
@@ -286,7 +287,7 @@ begin
 
   btnUpdateImage.Parent := Self;
   btnUpdateImage.Left := 877;
-  btnUpdateImage.Top := 88;
+  btnUpdateImage.Top := 94;
   btnUpdateImage.Width := 121;
   btnUpdateImage.Height := 25;
   btnUpdateImage.Caption := 'Update Image';

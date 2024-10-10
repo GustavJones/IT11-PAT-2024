@@ -1,0 +1,14 @@
+Add a new review:
+
+Select a remedy to create the review for.
+Enter the
+  - Days Used
+  - Dosage Used every day
+  - Effectiveness of the remedy
+and click the 'Add Review' button.
+
+Edit reviews by entering
+  - Dosage
+  - Days Used
+  - Effectiveness
+and click the 'Save Updates' button.

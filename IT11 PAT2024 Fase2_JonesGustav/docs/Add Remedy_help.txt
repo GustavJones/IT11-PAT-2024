@@ -1,0 +1,10 @@
+A new remedy can be created by:
+
+Enter the
+  - Name
+  - Price
+  - Ease of Use
+  - Description
+  - Symptoms
+  - Image (Optional)
+and click the 'Create Remedy' button.

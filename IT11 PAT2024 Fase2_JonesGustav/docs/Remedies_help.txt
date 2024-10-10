@@ -1,0 +1,12 @@
+Each remedy can be interacted with in the following ways:
+
+- To edit a remedy:
+Change the
+  - Description
+  - Symptoms
+  - Price
+  - Ease of Use
+and click the 'Save Updates' button.
+
+- To reset to Database values:
+Click the 'Reset' button.

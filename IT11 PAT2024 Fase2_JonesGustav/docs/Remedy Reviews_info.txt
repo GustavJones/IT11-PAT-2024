@@ -1,0 +1,5 @@
+Remedy Reviews
+
+Displays all of the user created reviews as tiles and provide an interface to create new reviews for remedies.
+
+Quickly add new reviews with the simple UI and edit existing reviews of remedies.
