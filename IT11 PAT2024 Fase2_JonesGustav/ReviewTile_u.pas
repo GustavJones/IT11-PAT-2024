@@ -317,6 +317,28 @@ var
   sDosage : string;
   i: Integer;
 begin
+  // Validation
+  if (redDosage.Lines.Count = 0) or ((redDosage.Lines.Count = 1) and (redDosage.Lines[0] = '')) then
+  begin
+    ShowMessage('Please enter a dosage for the review');
+    redDosage.SetFocus;
+    exit;
+  end;
+
+  if sedDaysUsed.Value <= 0 then
+  begin
+    ShowMessage('Please set days remedy used value');
+    sedDaysUsed.SetFocus;
+    exit;
+  end;
+
+  if sedEffectiveness.Value <= 0 then
+  begin
+    ShowMessage('Please set effectiveness value between 1 - 10');
+    sedDaysUsed.SetFocus;
+    exit;
+  end;
+
   sDosage := '';
   bFound := False;
   iDBIndex := dmBoereraad.tblReview.RecNo;

@@ -244,6 +244,7 @@ type
     procedure bttAdminRemedyEditSaveRemedyClick(Sender: TObject);
     procedure bttAdminRemedyEditRemoveRemedyClick(Sender: TObject);
     procedure bttRemedyUsageAddResetClick(Sender: TObject);
+    procedure bttAddRemedyNavigationResetClick(Sender: TObject);
 
   private
     function GetUserPasswordFromDB(pUserID: Integer): string;
@@ -397,6 +398,7 @@ begin
   else
   begin
     imgAddRemedyInputsImage.Picture.LoadFromFile(dlgImageSelect.FileName);
+    imgAddRemedyInputsImage.Visible := True;
   end;
 
   dlgImageSelect.Destroy;
@@ -455,13 +457,6 @@ begin
 
     iUserID := 0;
     bUserAdmin := False;
-
-    for i := 0 to Length(arrReviewTiles) - 1 do
-    begin
-      arrReviewTiles[i].Destroy;
-    end;
-
-    SetLength(arrReviewTiles, 0);
   end;
 end;
 
@@ -704,12 +699,11 @@ begin
     ShowMessage('Cannot select today''s Date');
     exit;
   end
-  else if YearOf(dDate) < YearOf(dCurrentDate) - 16 then
+  else if YearsBetween(dCurrentDate, dDate) < 16 then
   begin
-    ShowMessage('User Not 16 years old')
+    ShowMessage('User Not at least 16 years old');
     exit;
   end;
-
 
   // Add to DB
   iDBIndex := dmBoereraad.tblUser.RecNo;
@@ -735,21 +729,101 @@ begin
 end;
 
 procedure TfrmHome.bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
+var
+  iResponse : Integer;
+  i: Integer;
+  sPrice : String;
 begin
   // Validation
   if (edtAddRemedyInputsRemedyName.Text = '') then
   begin
     ShowMessage('Please enter a remedy name');
+    edtAddRemedyInputsRemedyName.SetFocus;
     exit;
   end;
 
   if (edtAddRemedyInputsPrice.Text = '') then
   begin
     ShowMessage('Please enter a remedy price');
+    edtAddRemedyInputsPrice.SetFocus;
     exit;
   end;
 
+  sPrice := edtAddRemedyInputsPrice.Text;
+  for i := 1 to Length(sPrice) do
+  begin
+    if sPrice[i] = '.' then
+    begin
+      sPrice[i] := ',';
+    end;
+  end;
+  edtAddRemedyInputsPrice.Text := sPrice;
+
+  try
+    if edtAddRemedyInputsPrice.Text[1] = 'R' then
+    begin
+      if StrToFloat(Copy(edtAddRemedyInputsPrice.Text, 2)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end
+    else
+    begin
+      if StrToFloat(Copy(edtAddRemedyInputsPrice.Text, 1)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end;
+  except
+    on E: EConvertError do
+    begin
+      ShowMessage('Please enter a valid price amount: ' + E.Message);
+      exit;
+    end;
+  end;
+
+  if sedAddRemedyInputsEaseOfUse.Value = 0 then
+  begin
+    ShowMessage('Please set a ease of use value between 1 - 10');
+    sedAddRemedyInputsEaseOfUse.SetFocus;
+    exit;
+  end;
+
+  if (redAddRemedyInputsDescription.Lines.Count = 0) or ((redAddRemedyInputsDescription.Lines.Count = 1) and (redAddRemedyInputsDescription.Lines[0] = '')) then
+  begin
+    ShowMessage('Please enter a description for the remedy');
+    redAddRemedyInputsDescription.SetFocus;
+    exit;
+  end;
+
+  if cltAddRemedyInputsSymptoms.Items.Count = 0 then
+  begin
+    ShowMessage('Please add symptoms to use this remedy for');
+    edtAddRemedyInputsAddSymptom.SetFocus;
+    exit;
+  end;
+
+  if not Assigned(imgAddRemedyInputsImage.Picture.Graphic) then
+  begin
+    iResponse := MessageDlg('No image loaded for remedy. Do you want to continue?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+    if (iResponse = mrNo) or (iResponse = mrCancel) then
+    begin
+      btnAddRemedyInputsAddImage.SetFocus;
+      exit;
+    end;
+  end;
+
   AddRemedy;
+end;
+
+procedure TfrmHome.bttAddRemedyNavigationResetClick(Sender: TObject);
+begin
+  edtAddRemedyInputsRemedyName.Text := '';
+  edtAddRemedyInputsPrice.Text := '';
+  sedAddRemedyInputsEaseOfUse.Value := 0;
+  redAddRemedyInputsDescription.Lines.Clear;
+  cltAddRemedyInputsSymptoms.Items.Clear;
+  imgAddRemedyInputsImage.Visible := False;
 end;
 
 procedure TfrmHome.bttAdminRemedyEditRemoveRemedyClick(Sender: TObject);
@@ -799,6 +873,75 @@ var
   bFound : Boolean;
   i: Integer;
 begin
+  // Validation
+  if sedAdminRemedyEditID.Value <= 0 then
+  begin
+    ShowMessage('Please select a remedy from DBGrid');
+    dbgAdminRemedyEditRemedy.SetFocus;
+    exit;
+  end;
+
+  if (redAdminRemedyEditDescription.Lines.Count = 0) or ((redAdminRemedyEditDescription.Lines.Count = 1) and (redAdminRemedyEditDescription.Lines[0] = '')) then
+  begin
+    ShowMessage('Please enter a dosage for the review');
+    redAdminRemedyEditDescription.SetFocus;
+    exit;
+  end;
+
+  if edtAdminRemedyEditName.Text = '' then
+  begin
+    ShowMessage('Please enter a remedy name');
+    edtAdminRemedyEditName.SetFocus;
+    exit;
+  end;
+
+  if sedAdminRemedyEditEaseOfUse.Value <= 0 then
+  begin
+    ShowMessage('Please set ease of use value between 1 - 10');
+    sedAdminRemedyEditEaseOfUse.SetFocus;
+    exit;
+  end;
+
+  if edtAdminRemedyEditPrice.Text = '' then
+  begin
+    ShowMessage('Please set a price for the remedy');
+    edtAdminRemedyEditPrice.SetFocus;
+    exit;
+  end;
+
+  sPrice := edtAdminRemedyEditPrice.Text;
+  for i := 1 to Length(sPrice) do
+  begin
+    if sPrice[i] = '.' then
+    begin
+      sPrice[i] := ',';
+    end;
+  end;
+  edtAdminRemedyEditPrice.Text := sPrice;
+
+  try
+    if edtAdminRemedyEditPrice.Text[1] = 'R' then
+    begin
+      if StrToFloat(Copy(edtAdminRemedyEditPrice.Text, 2)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end
+    else
+    begin
+      if StrToFloat(Copy(edtAdminRemedyEditPrice.Text, 1)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end;
+  except
+    on E: EConvertError do
+    begin
+      ShowMessage('Please enter a valid price amount: ' + E.Message);
+      exit;
+    end;
+  end;
+
   bFound := False;
   sDescription := '';
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
@@ -924,6 +1067,35 @@ var
   i, iDelimiter : Integer;
   sParseStr, sLine : String;
 begin
+  // Validation
+  if lstAdminUserEditReview.ItemIndex < 0 then
+  begin
+    ShowMessage('Please select a review from list');
+    lstAdminUserEditReview.SetFocus;
+    exit;
+  end;
+
+  if (redAdminUserEditDosage.Lines.Count = 0) or ((redAdminUserEditDosage.Lines.Count = 1) and (redAdminUserEditDosage.Lines[0] = '')) then
+  begin
+    ShowMessage('Please enter a dosage for the review');
+    redAdminUserEditDosage.SetFocus;
+    exit;
+  end;
+
+  if sedAdminUserEditDaysUsed.Value <= 0 then
+  begin
+    ShowMessage('Please set days remedy used value');
+    sedAdminUserEditDaysUsed.SetFocus;
+    exit;
+  end;
+
+  if sedAdminUserEditEffectiveness.Value <= 0 then
+  begin
+    ShowMessage('Please set effectiveness value between 1 - 10');
+    sedAdminUserEditEffectiveness.SetFocus;
+    exit;
+  end;
+
   bFound := False;
   iIndex := 0;
 
@@ -964,6 +1136,35 @@ var
   iDBIndex: Integer;
   i: Integer;
 begin
+  // Validation
+  if edtAdminUserEditName.Text = '' then
+  begin
+    ShowMessage('Please enter your name');
+    edtAdminUserEditName.SetFocus;
+    exit;
+  end;
+
+  if edtAdminUserEditSurname.Text = '' then
+  begin
+    ShowMessage('Please enter your surname');
+    edtAdminUserEditSurname.SetFocus;
+    exit;
+  end;
+
+  if edtAdminUserEditPassword.Text = '' then
+  begin
+    ShowMessage('Please enter your password');
+    edtAdminUserEditPassword.SetFocus;
+    exit;
+  end;
+
+  if edtAdminUserEditEmail.Text = '' then
+  begin
+    ShowMessage('Please enter your email');
+    edtAdminUserEditEmail.SetFocus;
+    exit;
+  end;
+
   bFound := False;
   iDBIndex := dmBoereraad.tblUser.RecNo;
 
@@ -999,6 +1200,81 @@ var
   sPrice: string;
   i: Integer;
 begin
+  // Validation
+  if lstRemedyPendingChangesAdditionsRemediesList.ItemIndex < 0 then
+  begin
+    ShowMessage('Please select a remedy from the list below');
+    exit;
+  end;
+
+  if edtRemedyPendingChangesAdditionsInfoName.Text = '' then
+  begin
+    ShowMessage('Please enter a name for the remedy');
+    edtRemedyPendingChangesAdditionsInfoName.SetFocus;
+    exit;
+  end;
+
+  if edtRemedyPendingChangesAdditionsInfoPrice.Text = '' then
+  begin
+    ShowMessage('Please set a price for the remedy');
+    edtRemedyPendingChangesAdditionsInfoPrice.SetFocus;
+    exit;
+  end;
+
+  sPrice := edtRemedyPendingChangesAdditionsInfoPrice.Text;
+  for i := 1 to Length(sPrice) do
+  begin
+    if sPrice[i] = '.' then
+    begin
+      sPrice[i] := ',';
+    end;
+  end;
+  edtRemedyPendingChangesAdditionsInfoPrice.Text := sPrice;
+
+  try
+    if edtRemedyPendingChangesAdditionsInfoPrice.Text[1] = 'R' then
+    begin
+      if StrToFloat(Copy(edtRemedyPendingChangesAdditionsInfoPrice.Text, 2)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end
+    else
+    begin
+      if StrToFloat(Copy(edtRemedyPendingChangesAdditionsInfoPrice.Text, 1)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end;
+  except
+    on E: EConvertError do
+    begin
+      ShowMessage('Please enter a valid price amount: ' + E.Message);
+      exit;
+    end;
+  end;
+
+  if sedRemedyPendingChangesAdditionsInfoEaseOfUse.Value <= 0 then
+  begin
+    ShowMessage('Please set a ease of use value between 1 - 10');
+    sedRemedyPendingChangesAdditionsInfoEaseOfUse.SetFocus;
+    exit;
+  end;
+
+  if (redRemedyPendingChangesAdditionsInfoDescription.Lines.Count = 0) or ((redRemedyPendingChangesAdditionsInfoDescription.Lines.Count = 1) and (redRemedyPendingChangesAdditionsInfoDescription.Lines[0] = '')) then
+  begin
+    ShowMessage('Please enter a description for the remedy');
+    redRemedyPendingChangesAdditionsInfoDescription.SetFocus;
+    exit;
+  end;
+
+  if cltRemedyPendingChangesAdditionsInfoSymptoms.Items.Count = 0 then
+  begin
+    ShowMessage('Please add symptoms to use this remedy for');
+    edtRemedyPendingChangesAdditionsInfoSymptomName.SetFocus;
+    exit;
+  end;
+
   rCreateRemedy := TRemedy.Create;
   rCreateRemedy.sName := edtRemedyPendingChangesAdditionsInfoName.Text;
   rCreateRemedy.iEaseOfUse :=
@@ -1239,6 +1515,81 @@ var
   sPrice: string;
   i: Integer;
 begin
+  // Validation
+  if lstRemedyPendingChangesEditRemediesList.ItemIndex < 0 then
+  begin
+    ShowMessage('Please select a remedy from the list below');
+    exit;
+  end;
+
+  if edtRemedyPendingChangesEditInfoName.Text = '' then
+  begin
+    ShowMessage('Please enter a name for the remedy');
+    edtRemedyPendingChangesEditInfoName.SetFocus;
+    exit;
+  end;
+
+  if edtRemedyPendingChangesEditInfoPrice.Text = '' then
+  begin
+    ShowMessage('Please set a price for the remedy');
+    edtRemedyPendingChangesEditInfoPrice.SetFocus;
+    exit;
+  end;
+
+  sPrice := edtRemedyPendingChangesEditInfoPrice.Text;
+  for i := 1 to Length(sPrice) do
+  begin
+    if sPrice[i] = '.' then
+    begin
+      sPrice[i] := ',';
+    end;
+  end;
+  edtRemedyPendingChangesEditInfoPrice.Text := sPrice;
+
+  try
+    if edtRemedyPendingChangesEditInfoPrice.Text[1] = 'R' then
+    begin
+      if StrToFloat(Copy(edtRemedyPendingChangesEditInfoPrice.Text, 2)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end
+    else
+    begin
+      if StrToFloat(Copy(edtRemedyPendingChangesEditInfoPrice.Text, 1)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end;
+  except
+    on E: EConvertError do
+    begin
+      ShowMessage('Please enter a valid price amount: ' + E.Message);
+      exit;
+    end;
+  end;
+
+  if sedRemedyPendingChangesEditInfoEaseOfUse.Value <= 0 then
+  begin
+    ShowMessage('Please set a ease of use value between 1 - 10');
+    sedRemedyPendingChangesEditInfoEaseOfUse.SetFocus;
+    exit;
+  end;
+
+  if (redRemedyPendingChangesEditInfoDescription.Lines.Count = 0) or ((redRemedyPendingChangesEditInfoDescription.Lines.Count = 1) and (redRemedyPendingChangesEditInfoDescription.Lines[0] = '')) then
+  begin
+    ShowMessage('Please enter a description for the remedy');
+    redRemedyPendingChangesEditInfoDescription.SetFocus;
+    exit;
+  end;
+
+  if cltRemedyPendingChangesEditInfoSymptoms.Items.Count = 0 then
+  begin
+    ShowMessage('Please add symptoms to use this remedy for');
+    edtRemedyPendingChangesEditInfoSymptomName.SetFocus;
+    exit;
+  end;
+
   rEditRemedy := TRemedy.Create;
   rEditRemedy.Assign(arrPendingChangeRemedyName[iEditSelectedIndex],
     arrPendingChangeRemedyInformation[iEditSelectedIndex]);
@@ -1285,9 +1636,38 @@ end;
 procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
 begin
   // Validation
+  if cmbRemedyUsageAddRemedy.ItemIndex < 0 then
+  begin
+    ShowMessage('Please select a remedy from remedy list');
+    cmbRemedyUsageAddRemedy.SetFocus;
+    exit;
+  end;
+
+  if sedRemedyUsageAddDaysUsed.Value <= 0 then
+  begin
+    ShowMessage('Please add the amount of days the remedy was used');
+    sedRemedyUsageAddDaysUsed.SetFocus;
+    exit;
+  end;
+
+  if (redRemedyUsageAddDosage.Lines.Count = 0) or ((redRemedyUsageAddDosage.Lines.Count = 1) and (redRemedyUsageAddDosage.Lines[0] = '')) then
+  begin
+    ShowMessage('Please enter a description for the remedy');
+    redRemedyUsageAddDosage.SetFocus;
+    exit;
+  end;
+
+  if sedRemedyUsageAddEffectiveness.Value = 0 then
+  begin
+    ShowMessage('Please set a effectiveness value between 1 - 10');
+    sedRemedyUsageAddEffectiveness.SetFocus;
+    exit;
+  end;
 
   AddReview;
   bttRemedyUsageAddResetClick(nil);
+  LoadReviewsFromDBToScrollBox;
+  ShowMessage('Created Remedy Review');
 end;
 
 procedure TfrmHome.bttRemedyUsageAddResetClick(Sender: TObject);
@@ -1497,6 +1877,7 @@ var
   i, iSeperator, iExtensionIndex: Integer;
   bMaxChanges: Boolean;
 begin
+  // Arrays
   iPendingChangeCount := 0;
   bMaxChanges := False;
   i := 1;
@@ -1582,7 +1963,15 @@ procedure TfrmHome.LoadReviewsFromDBToScrollBox;
 var
   rtReviewTile: TdynReviewTile;
   iReviewID : Integer;
+  i : Integer;
 begin
+  for i := 0 to Length(arrReviewTiles) - 1 do
+  begin
+    arrReviewTiles[i].Destroy;
+  end;
+
+  SetLength(arrReviewTiles, 0);
+
   dmBoereraad.tblReview.First;
   while not(dmBoereraad.tblReview.Eof) do
   begin

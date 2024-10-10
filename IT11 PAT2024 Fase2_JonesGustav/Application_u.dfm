@@ -24,6 +24,8 @@ object frmHome: TfrmHome
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
+    ExplicitWidth = 1165
+    ExplicitHeight = 641
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -14071,7 +14073,7 @@ object frmHome: TfrmHome
               Top = 42
               Width = 128
               Height = 79
-              ItemHeight = 15
+              ItemHeight = 17
               Items.Strings = (
                 'Brusing'
                 'Pain'
@@ -14333,6 +14335,8 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
+        ExplicitWidth = 1151
+        ExplicitHeight = 605
         object lblAddRemedyTitle: TLabel
           Left = 1
           Top = 1
@@ -14358,6 +14362,8 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 0
+          ExplicitTop = 562
+          ExplicitWidth = 1145
           object bttAddRemedyNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -14512,6 +14518,7 @@ object frmHome: TfrmHome
             Kind = bkRetry
             NumGlyphs = 2
             TabOrder = 4
+            OnClick = bttAddRemedyNavigationResetClick
           end
         end
         object pnlAddRemedyInputs: TPanel
@@ -14522,6 +14529,8 @@ object frmHome: TfrmHome
           Align = alClient
           ShowCaption = False
           TabOrder = 1
+          ExplicitWidth = 1145
+          ExplicitHeight = 529
           object lblAddRemedyInputsRemedyName: TLabel
             Left = 32
             Top = 19
@@ -14596,7 +14605,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 15
+            ItemHeight = 17
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -14664,7 +14673,7 @@ object frmHome: TfrmHome
             Top = 77
             Width = 151
             Height = 24
-            MaxValue = 0
+            MaxValue = 10
             MinValue = 0
             TabOrder = 9
             Value = 0
@@ -14673,7 +14682,7 @@ object frmHome: TfrmHome
       end
     end
     object tsRemedyUsage: TTabSheet
-      Caption = 'Remedy Usage'
+      Caption = 'Remedy Reviews'
       ImageIndex = 5
       TabVisible = False
       object pnlRemedyUsage: TPanel
@@ -15110,7 +15119,7 @@ object frmHome: TfrmHome
             Top = 98
             Width = 128
             Height = 24
-            MaxValue = 0
+            MaxValue = 10000
             MinValue = 0
             TabOrder = 1
             Value = 0
@@ -15496,7 +15505,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15530,7 +15539,7 @@ object frmHome: TfrmHome
               Top = 144
               Width = 145
               Height = 24
-              MaxValue = 0
+              MaxValue = 10
               MinValue = 0
               TabOrder = 9
               Value = 0
@@ -15684,7 +15693,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 15
+              ItemHeight = 17
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
@@ -15718,7 +15727,7 @@ object frmHome: TfrmHome
               Top = 144
               Width = 145
               Height = 24
-              MaxValue = 0
+              MaxValue = 10
               MinValue = 0
               TabOrder = 9
               Value = 0
@@ -15929,7 +15938,7 @@ object frmHome: TfrmHome
             Top = 70
             Width = 121
             Height = 24
-            MaxValue = 0
+            MaxValue = 10000
             MinValue = 0
             TabOrder = 5
             Value = 0
@@ -16137,6 +16146,7 @@ object frmHome: TfrmHome
             Margins.Right = 20
             Margins.Bottom = 100
             DataSource = dmBoereraad.dsrRemedy
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
             ReadOnly = True
             TabOrder = 1
             TitleFont.Charset = DEFAULT_CHARSET
@@ -16208,7 +16218,7 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             TabOrder = 5
-            TextHint = 'Price Per Dose'
+            TextHint = 'Price'
           end
           object sedAdminRemedyEditEaseOfUse: TSpinEdit
             Left = 1016

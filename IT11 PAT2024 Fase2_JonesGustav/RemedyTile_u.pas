@@ -74,6 +74,7 @@ procedure TdynRemedyTile.AddSymptom(pSender: TObject);
 var
   sSymptom: String;
 begin
+  // Validation
   if (edtSymptom.Text = '') then
   begin
     ShowMessage('Please enter a symptom');
@@ -334,16 +335,25 @@ end;
 procedure TdynRemedyTile.RemoveSymptom(pSender: TObject);
 var
   i: Integer;
+  bRemoved : Boolean;
 begin
+  bRemoved := False;
+
   // Remove checked Symptoms from checklist
   for i := cltSymptoms.Items.Count downto 1 do
   begin
     if cltSymptoms.Checked[i - 1] then
     begin
       cltSymptoms.Items.Delete(i - 1);
+      bRemoved := True;
     end;
   end;
 
+  // Validation
+  if not bRemoved then
+  begin
+    ShowMessage('Please select a symptom to remove');
+  end;
 end;
 
 procedure TdynRemedyTile.ResetRemedy(pSender: TObject);
@@ -410,6 +420,7 @@ begin
   dlgImageSelect.Filter := 'JPEG Images (*.jpg, *.jpeg)|*.JPG;*.JPEG';
   dlgImageSelect.Execute;
 
+  // Validation
   if not FileExists(dlgImageSelect.FileName) then
   begin
     ShowMessage('File not found. Please try again!');
@@ -439,6 +450,69 @@ var
   rTempRemedy : TRemedy;
   bEdit : Boolean;
 begin
+  sPrice := edtPrice.Text;
+
+  for i := 1 to Length(sPrice) do
+  begin
+    if sPrice[i] = '.' then
+    begin
+      sPrice[i] := ',';
+    end;
+  end;
+  edtPrice.Text := sPrice;
+
+  // Validation
+  if (redDescription.Lines.Count = 0) or ((redDescription.Lines.Count = 1) and (redDescription.Lines[0] = '')) then
+  begin
+    ShowMessage('Please enter a description for the remedy');
+    redDescription.SetFocus;
+    exit;
+  end;
+
+  if cltSymptoms.Items.Count = 0 then
+  begin
+    ShowMessage('Please add symptoms to use this remedy for');
+    edtSymptom.SetFocus;
+    exit;
+  end;
+
+  if sedEaseOfUse.Value = 0 then
+  begin
+    ShowMessage('Please set a ease of use value between 1 - 10');
+    sedEaseOfUse.SetFocus;
+    exit;
+  end;
+
+  if edtPrice.Text = '' then
+  begin
+    ShowMessage('Please set a price for the remedy');
+    edtPrice.SetFocus;
+    exit;
+  end;
+
+  try
+    if edtPrice.Text[1] = 'R' then
+    begin
+      if StrToFloat(Copy(edtPrice.Text, 2)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end
+    else
+    begin
+      if StrToFloat(Copy(edtPrice.Text, 1)) < 0 then
+      begin
+        raise EConvertError.Create('Price cannot be negative');
+      end;
+    end;
+  except
+    on E: EConvertError do
+    begin
+      ShowMessage('Please enter a valid price amount: ' + E.Message);
+      exit;
+    end;
+  end;
+
   bEdit := False;
   rTempRemedy := TRemedy.Create;
 
@@ -447,7 +521,11 @@ begin
 
   // Price
   sPrice := edtPrice.Text;
-  Delete(sPrice, 1, 1);
+  if sPrice[1] = 'R' then
+  begin
+    Delete(sPrice, 1, 1);
+  end;
+
   rTempRemedy.rPrice := StrToFloat(sPrice);
 
   // Symptoms
