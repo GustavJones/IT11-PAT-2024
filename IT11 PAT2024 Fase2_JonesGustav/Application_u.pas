@@ -254,6 +254,7 @@ type
     procedure LoadRemediesFromDBToScrollbox;
     procedure LoadReviewsFromDBToScrollBox;
     procedure LoadPendingChangesFromTFToArr;
+    procedure SortPendingChangesInArr;
     procedure AddRemedy();
     procedure AddReview();
     procedure SetupPages();
@@ -1992,6 +1993,7 @@ begin
 
     sRemedyInfo := TRemedy.ReadPendingChange(sRemedyName);
 
+    // Array: Add item to array
     if iPendingChangeCount < iMAX_PENDING_CHANGES then
     begin
       Inc(iPendingChangeCount);
@@ -2007,6 +2009,7 @@ begin
   end;
 
   rPendingRemedy.Destroy;
+  SortPendingChangesInArr;
 end;
 
 procedure TfrmHome.LoadRemediesFromDBToScrollbox;
@@ -2156,6 +2159,7 @@ begin
   // Set selected item index
   iIndex := 0;
 
+  // Array: Search for ID < 0 and index = listbox index
   for i := 1 to iPendingChangeCount do
   begin
     if StrToInt(TRemedy.CalculateFieldInformation('ID',
@@ -2183,6 +2187,7 @@ begin
   // Set selected item index
   iIndex := 0;
 
+  // Array: Search for ID > 0 and index = listbox index
   for i := 1 to iPendingChangeCount do
   begin
     if StrToInt(TRemedy.CalculateFieldInformation('ID',
@@ -2276,6 +2281,19 @@ begin
     tsAddRemedy.TabVisible := True;
     tsRemedyUsage.TabVisible := True;
   end;
+end;
+
+// TODO
+procedure TfrmHome.SortPendingChangesInArr;
+var
+  i: Integer;
+  j: Integer;
+  k: Integer;
+  iSelectedIndex : Integer;
+begin
+  // Sort pending changes array in alphabetical order
+
+
 end;
 
 end.

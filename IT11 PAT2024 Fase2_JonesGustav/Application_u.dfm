@@ -20,12 +20,10 @@ object frmHome: TfrmHome
     Top = 0
     Width = 1169
     Height = 642
-    ActivePage = tsRemedies
+    ActivePage = tsRemedyPendingChanges
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
-    ExplicitWidth = 1165
-    ExplicitHeight = 641
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -13283,13 +13281,11 @@ object frmHome: TfrmHome
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seBorder]
-        ExplicitWidth = 557
-        ExplicitHeight = 391
         object lblDescription: TLabel
           AlignWithMargins = True
           Left = 3
           Top = 57
-          Width = 403
+          Width = 551
           Height = 23
           Align = alTop
           Alignment = taCenter
@@ -13301,6 +13297,7 @@ object frmHome: TfrmHome
           Font.Style = []
           ParentFont = False
           StyleElements = [seClient, seBorder]
+          ExplicitWidth = 403
         end
         object pnlLogIn: TPanel
           AlignWithMargins = True
@@ -13315,12 +13312,11 @@ object frmHome: TfrmHome
           Align = alLeft
           ShowCaption = False
           TabOrder = 0
-          ExplicitHeight = 286
           object lblLogIn: TLabel
             AlignWithMargins = True
             Left = 1
             Top = 6
-            Width = 60
+            Width = 253
             Height = 30
             Margins.Left = 0
             Margins.Top = 5
@@ -13335,6 +13331,7 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
+            ExplicitWidth = 60
           end
           object btnLogIn: TButton
             AlignWithMargins = True
@@ -13349,7 +13346,6 @@ object frmHome: TfrmHome
             Caption = 'Log In'
             TabOrder = 1
             OnClick = btnLogInClick
-            ExplicitTop = 245
           end
           object pnlHomeLoginFields: TPanel
             AlignWithMargins = True
@@ -13414,13 +13410,11 @@ object frmHome: TfrmHome
           Align = alRight
           ShowCaption = False
           TabOrder = 1
-          ExplicitLeft = 238
-          ExplicitHeight = 286
           object lblSignUp: TLabel
             AlignWithMargins = True
             Left = 1
             Top = 6
-            Width = 75
+            Width = 303
             Height = 30
             Margins.Left = 0
             Margins.Top = 5
@@ -13435,6 +13429,7 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
+            ExplicitWidth = 75
           end
           object btnSignUp: TButton
             AlignWithMargins = True
@@ -13449,7 +13444,6 @@ object frmHome: TfrmHome
             Caption = 'Sign Up'
             TabOrder = 6
             OnClick = btnSignUpClick
-            ExplicitTop = 245
           end
           object edtSignUpEmail: TEdit
             AlignWithMargins = True
@@ -13541,7 +13535,6 @@ object frmHome: TfrmHome
               'Female')
             Constraints.MaxHeight = 72
             TabOrder = 4
-            ExplicitHeight = 59
           end
           object pnlHomeSignUpBirthDate: TPanel
             AlignWithMargins = True
@@ -13556,7 +13549,6 @@ object frmHome: TfrmHome
             Align = alRight
             BevelOuter = bvNone
             TabOrder = 5
-            ExplicitHeight = 44
             object lblSignUpBirthDay: TLabel
               AlignWithMargins = True
               Left = 0
@@ -13612,7 +13604,6 @@ object frmHome: TfrmHome
           AutoSize = True
           BevelOuter = bvNone
           TabOrder = 2
-          ExplicitWidth = 547
           object imgIcon: TImage
             Left = 230
             Top = 0
@@ -13972,8 +13963,6 @@ object frmHome: TfrmHome
         BorderStyle = bsSingle
         ShowCaption = False
         TabOrder = 0
-        ExplicitWidth = 1151
-        ExplicitHeight = 605
         object lblRemediesTitle: TLabel
           Left = 1
           Top = 1
@@ -13999,8 +13988,6 @@ object frmHome: TfrmHome
           Height = 524
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1139
-          ExplicitHeight = 523
           object pnlTile: TPanel
             AlignWithMargins = True
             Left = 3
@@ -14012,7 +13999,6 @@ object frmHome: TfrmHome
             ShowCaption = False
             TabOrder = 0
             Visible = False
-            ExplicitWidth = 1129
             object lblTileTitle: TLabel
               AlignWithMargins = True
               Left = 31
@@ -14191,8 +14177,6 @@ object frmHome: TfrmHome
           Align = alBottom
           ShowCaption = False
           TabOrder = 1
-          ExplicitTop = 562
-          ExplicitWidth = 1145
           object bttRemediesNavigationHelp: TBitBtn
             Left = 86
             Top = 6
@@ -14625,7 +14609,7 @@ object frmHome: TfrmHome
             Top = 173
             Width = 194
             Height = 144
-            ItemHeight = 17
+            ItemHeight = 15
             TabOrder = 2
           end
           object edtAddRemedyInputsAddSymptom: TEdit
@@ -15531,7 +15515,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit
@@ -15719,7 +15703,7 @@ object frmHome: TfrmHome
               Top = 80
               Width = 113
               Height = 89
-              ItemHeight = 17
+              ItemHeight = 15
               TabOrder = 5
             end
             object edtRemedyPendingChangesEditInfoSymptomName: TEdit
