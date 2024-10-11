@@ -13285,7 +13285,7 @@ object frmHome: TfrmHome
           AlignWithMargins = True
           Left = 3
           Top = 57
-          Width = 551
+          Width = 403
           Height = 23
           Align = alTop
           Alignment = taCenter
@@ -13297,7 +13297,6 @@ object frmHome: TfrmHome
           Font.Style = []
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 403
         end
         object pnlLogIn: TPanel
           AlignWithMargins = True
@@ -13316,7 +13315,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 1
             Top = 6
-            Width = 253
+            Width = 60
             Height = 30
             Margins.Left = 0
             Margins.Top = 5
@@ -13331,7 +13330,6 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
-            ExplicitWidth = 60
           end
           object btnLogIn: TButton
             AlignWithMargins = True
@@ -13414,7 +13412,7 @@ object frmHome: TfrmHome
             AlignWithMargins = True
             Left = 1
             Top = 6
-            Width = 303
+            Width = 75
             Height = 30
             Margins.Left = 0
             Margins.Top = 5
@@ -13429,7 +13427,6 @@ object frmHome: TfrmHome
             Font.Style = []
             ParentFont = False
             StyleElements = [seClient, seBorder]
-            ExplicitWidth = 75
           end
           object btnSignUp: TButton
             AlignWithMargins = True
@@ -14345,7 +14342,7 @@ object frmHome: TfrmHome
         object lblAddRemedyTitle: TLabel
           Left = 1
           Top = 1
-          Width = 1149
+          Width = 144
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -14357,7 +14354,6 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 144
         end
         object pnlAddRemedyNavigation: TPanel
           Left = 1
@@ -15763,7 +15759,7 @@ object frmHome: TfrmHome
         object lblAdminUser: TLabel
           Left = 1
           Top = 1
-          Width = 1149
+          Width = 133
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15775,12 +15771,11 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 133
         end
         object lblAdminRemedy: TLabel
           Left = 1
           Top = 297
-          Width = 1149
+          Width = 171
           Height = 32
           Align = alTop
           Alignment = taCenter
@@ -15792,7 +15787,6 @@ object frmHome: TfrmHome
           Font.Style = [fsBold]
           ParentFont = False
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 171
         end
         object pnlAdminUserEdit: TPanel
           Left = 1

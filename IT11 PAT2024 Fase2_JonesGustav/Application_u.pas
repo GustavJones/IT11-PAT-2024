@@ -1855,6 +1855,9 @@ begin
   end;
 
   iPendingChangeCount := 0;
+
+  FormatSettings.DecimalSeparator := ',';
+  FormatSettings.ThousandSeparator := ' ';
 end;
 
 procedure TfrmHome.FormCreate(Sender: TObject);
@@ -2289,11 +2292,43 @@ var
   i: Integer;
   j: Integer;
   k: Integer;
-  iSelectedIndex : Integer;
+  bSort : Boolean;
+  sFirst, sSecond : string;
+  sNameTemp, sInfoTemp : string;
 begin
   // Sort pending changes array in alphabetical order
 
+  for i := 1 to iPendingChangeCount - 1 do
+  begin
+    for j := i + 1 to iPendingChangeCount do
+    begin
+      bSort := False;
+      sFirst := arrPendingChangeRemedyName[i];
+      sSecond := arrPendingChangeRemedyName[j];
 
+      k := 1;
+      while (k <= Length(sFirst)) and (k <= Length(sSecond)) and not (bSort) do
+      begin
+        if arrPendingChangeRemedyName[i][k] > arrPendingChangeRemedyName[j][k] then
+        begin
+          sNameTemp := arrPendingChangeRemedyName[i];
+          sInfoTemp := arrPendingChangeRemedyInformation[i];
+
+          arrPendingChangeRemedyName[i] := arrPendingChangeRemedyName[j];
+          arrPendingChangeRemedyName[j] := sNameTemp;
+
+          arrPendingChangeRemedyInformation[i] := arrPendingChangeRemedyInformation[j];
+          arrPendingChangeRemedyInformation[j] := sInfoTemp;
+          bSort := True;
+        end
+        else if arrPendingChangeRemedyName[i][k] < arrPendingChangeRemedyName[j][k] then
+        begin
+          bSort := True;
+        end;
+        Inc(k);
+      end;
+    end;
+  end;
 end;
 
 end.
