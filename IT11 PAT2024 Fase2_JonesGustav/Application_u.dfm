@@ -24,6 +24,8 @@ object frmHome: TfrmHome
     Align = alClient
     TabOrder = 0
     OnChange = pgcTabsChange
+    ExplicitWidth = 1161
+    ExplicitHeight = 640
     object tsHome: TTabSheet
       Caption = 'Home'
       object imgBackground: TImage
@@ -13281,6 +13283,8 @@ object frmHome: TfrmHome
         ShowCaption = False
         TabOrder = 1
         StyleElements = [seFont, seBorder]
+        ExplicitWidth = 553
+        ExplicitHeight = 390
         object lblDescription: TLabel
           AlignWithMargins = True
           Left = 3
@@ -13312,6 +13316,7 @@ object frmHome: TfrmHome
           Align = alLeft
           ShowCaption = False
           TabOrder = 0
+          ExplicitHeight = 285
           object lblLogIn: TLabel
             AlignWithMargins = True
             Left = 1
@@ -13335,38 +13340,41 @@ object frmHome: TfrmHome
           end
           object btnLogIn: TButton
             AlignWithMargins = True
-            Left = 81
+            Left = 66
             Top = 245
-            Width = 61
+            Width = 91
             Height = 25
-            Margins.Left = 80
-            Margins.Right = 80
+            Margins.Left = 65
+            Margins.Right = 65
             Margins.Bottom = 15
             Align = alBottom
             Caption = 'Log In'
             TabOrder = 1
             OnClick = btnLogInClick
-            ExplicitWidth = 93
+            ExplicitLeft = 81
+            ExplicitTop = 244
+            ExplicitWidth = 61
           end
           object pnlHomeLoginFields: TPanel
             AlignWithMargins = True
-            Left = 51
+            Left = 16
             Top = 119
-            Width = 121
+            Width = 191
             Height = 62
-            Margins.Left = 50
+            Margins.Left = 15
             Margins.Top = 80
-            Margins.Right = 50
+            Margins.Right = 15
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
             TabOrder = 0
-            ExplicitWidth = 153
+            ExplicitLeft = 51
+            ExplicitWidth = 121
             object edtLogInEmail: TEdit
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 115
+              Width = 185
               Height = 25
               Align = alTop
               Font.Charset = DEFAULT_CHARSET
@@ -13378,13 +13386,14 @@ object frmHome: TfrmHome
               TabOrder = 0
               Text = 'thecook@gmail.com'
               TextHint = 'Email'
-              ExplicitWidth = 147
+              ExplicitLeft = 0
+              ExplicitWidth = 118
             end
             object edtLogInPassword: TEdit
               AlignWithMargins = True
               Left = 3
               Top = 34
-              Width = 115
+              Width = 185
               Height = 25
               Align = alTop
               Font.Charset = DEFAULT_CHARSET
@@ -13397,7 +13406,7 @@ object frmHome: TfrmHome
               TabOrder = 1
               Text = 'meth@life!'
               TextHint = 'Password'
-              ExplicitWidth = 147
+              ExplicitWidth = 115
             end
           end
         end
@@ -13414,6 +13423,8 @@ object frmHome: TfrmHome
           Align = alRight
           ShowCaption = False
           TabOrder = 1
+          ExplicitLeft = 238
+          ExplicitHeight = 285
           object lblSignUp: TLabel
             AlignWithMargins = True
             Left = 1
@@ -13448,7 +13459,7 @@ object frmHome: TfrmHome
             Caption = 'Sign Up'
             TabOrder = 7
             OnClick = btnSignUpClick
-            ExplicitWidth = 103
+            ExplicitTop = 244
           end
           object edtSignUpEmail: TEdit
             AlignWithMargins = True
@@ -13467,7 +13478,6 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 2
             TextHint = 'Email'
-            ExplicitWidth = 203
           end
           object edtSignUpPassword: TEdit
             AlignWithMargins = True
@@ -13487,7 +13497,6 @@ object frmHome: TfrmHome
             PasswordChar = '*'
             TabOrder = 3
             TextHint = 'Password'
-            ExplicitWidth = 203
           end
           object edtSignUpName: TEdit
             AlignWithMargins = True
@@ -13506,7 +13515,6 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 0
             TextHint = 'Name'
-            ExplicitWidth = 203
           end
           object edtSignUpSurname: TEdit
             AlignWithMargins = True
@@ -13525,7 +13533,6 @@ object frmHome: TfrmHome
             ParentFont = False
             TabOrder = 1
             TextHint = 'Surname'
-            ExplicitWidth = 203
           end
           object rgpSignUpGender: TRadioGroup
             AlignWithMargins = True
@@ -13544,6 +13551,7 @@ object frmHome: TfrmHome
               'Female')
             Constraints.MaxHeight = 72
             TabOrder = 4
+            ExplicitHeight = 58
           end
           object pnlHomeSignUpBirthDate: TPanel
             AlignWithMargins = True
@@ -13558,7 +13566,7 @@ object frmHome: TfrmHome
             Align = alRight
             BevelOuter = bvNone
             TabOrder = 5
-            ExplicitLeft = 145
+            ExplicitHeight = 43
             object lblSignUpBirthDay: TLabel
               AlignWithMargins = True
               Left = 0
@@ -13593,8 +13601,6 @@ object frmHome: TfrmHome
               Date = 45531.000000000000000000
               Time = 0.806187974536442200
               TabOrder = 0
-              ExplicitLeft = 8
-              ExplicitWidth = 101
             end
           end
           object chkSignUpAdmin: TCheckBox
@@ -13616,6 +13622,7 @@ object frmHome: TfrmHome
           AutoSize = True
           BevelOuter = bvNone
           TabOrder = 2
+          ExplicitWidth = 543
           object imgIcon: TImage
             Left = 230
             Top = 0

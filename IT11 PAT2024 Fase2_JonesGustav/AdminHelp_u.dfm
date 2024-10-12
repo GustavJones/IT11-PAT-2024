@@ -39,7 +39,7 @@ object frmAdminHelp: TfrmAdminHelp
     ShowCaption = False
     TabOrder = 0
     ExplicitLeft = 319
-    ExplicitHeight = 405
+    ExplicitHeight = 267
     object lblHelp: TLabel
       Left = 1
       Top = 1
@@ -79,7 +79,7 @@ object frmAdminHelp: TfrmAdminHelp
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitHeight = 525
+      ExplicitHeight = 231
     end
   end
   object pnlInfo: TPanel
@@ -91,7 +91,7 @@ object frmAdminHelp: TfrmAdminHelp
     Align = alLeft
     ShowCaption = False
     TabOrder = 1
-    ExplicitHeight = 405
+    ExplicitHeight = 267
     object lblSelectPage: TLabel
       AlignWithMargins = True
       Left = 11
@@ -165,7 +165,7 @@ object frmAdminHelp: TfrmAdminHelp
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 1
-      ExplicitHeight = 318
+      ExplicitHeight = 179
     end
   end
   object pnlAdvancedHelp: TPanel
@@ -186,6 +186,8 @@ object frmAdminHelp: TfrmAdminHelp
     ShowCaption = False
     TabOrder = 2
     VerticalAlignment = taAlignTop
+    ExplicitTop = 303
+    ExplicitWidth = 618
     object lblAdvancedHelpTitle: TLabel
       AlignWithMargins = True
       Left = 4
@@ -223,8 +225,7 @@ object frmAdminHelp: TfrmAdminHelp
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitTop = 93
-      ExplicitHeight = 121
+      ExplicitWidth = 596
     end
     object pnlAdvancedHelpControls: TPanel
       AlignWithMargins = True
@@ -239,6 +240,7 @@ object frmAdminHelp: TfrmAdminHelp
       Align = alTop
       ShowCaption = False
       TabOrder = 1
+      ExplicitWidth = 596
       object btnAdvancedHelpGenerate: TButton
         AlignWithMargins = True
         Left = 476
@@ -248,8 +250,8 @@ object frmAdminHelp: TfrmAdminHelp
         Align = alRight
         Caption = 'Generate Answer'
         TabOrder = 0
-        ExplicitLeft = 496
-        ExplicitHeight = 30
+        OnClick = btnAdvancedHelpGenerateClick
+        ExplicitLeft = 472
       end
       object bmbAdvancedHelpReset: TBitBtn
         AlignWithMargins = True
@@ -262,9 +264,8 @@ object frmAdminHelp: TfrmAdminHelp
         Kind = bkRetry
         NumGlyphs = 2
         TabOrder = 1
-        ExplicitLeft = 344
-        ExplicitTop = 10
-        ExplicitHeight = 25
+        OnClick = bmbAdvancedHelpResetClick
+        ExplicitLeft = 391
       end
       object edtAdvancedHelpPrompt: TEdit
         AlignWithMargins = True
@@ -275,9 +276,34 @@ object frmAdminHelp: TfrmAdminHelp
         Align = alLeft
         TabOrder = 2
         TextHint = 'Help Prompt'
-        ExplicitLeft = 11
-        ExplicitHeight = 22
+        ExplicitHeight = 25
       end
     end
+  end
+  object rcClient: TRESTClient
+    BaseURL = 'http://127.0.0.1:11434/api/generate'
+    Params = <>
+    SynchronizedEvents = False
+    Left = 456
+    Top = 456
+  end
+  object reqRequest: TRESTRequest
+    AssignedValues = [rvConnectTimeout, rvReadTimeout]
+    Client = rcClient
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        Name = 'body'
+        ContentTypeStr = 'application/json'
+      end>
+    Response = respResponse
+    SynchronizedEvents = False
+    Left = 512
+    Top = 456
+  end
+  object respResponse: TRESTResponse
+    Left = 560
+    Top = 456
   end
 end
