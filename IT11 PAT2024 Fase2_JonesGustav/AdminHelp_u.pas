@@ -79,6 +79,7 @@ begin
   end;
 
   sPrompt := edtAdvancedHelpPrompt.Text;
+  redAdvancedHelpOutput.Lines.Clear;
 
   if FileExists(cProgramCore.GetDataDirectory + sPROMPT_TEMPLATE_FILE) then
   begin
@@ -95,8 +96,14 @@ begin
   end
   else
   begin
-    TCore.CreateFile(cProgramCore.GetDataDirectory + sPROMPT_TEMPLATE_FILE);
-    sRequest := '';
+    sRequest := '{' + #10  + '  "model": "llama3.2",' + #10 + '  "prompt": "$PROMPT",' + #10 + '  "stream": false' + #10 + '}';
+
+    AssignFile(tPromptTemplate, cProgramCore.GetDataDirectory + sPROMPT_TEMPLATE_FILE);
+    Rewrite(tPromptTemplate);
+
+    Write(tPromptTemplate, sRequest);
+
+    CloseFile(tPromptTemplate);
   end;
 
   if FileExists(cProgramCore.GetDataDirectory + sAI_URL_FILE) then

@@ -16,6 +16,3 @@ xcopy /S /Q /Y "%PROJECT_PATH%IT11 PAT2024 Fase1_JonesGustav\*.mdb" "%SCRIPT_PAT
 
 xcopy /S /Q /Y "%SCRIPT_PATH%docs\*.txt" "%SCRIPT_PATH%Win32\Debug\help"
 xcopy /S /Q /Y "%SCRIPT_PATH%docs\*.txt" "%SCRIPT_PATH%Win32\Release\help"
-
-xcopy /S /Q /Y "%SCRIPT_PATH%docs\*.json" "%SCRIPT_PATH%Win32\Debug"
-xcopy /S /Q /Y "%SCRIPT_PATH%docs\*.json" "%SCRIPT_PATH%Win32\Release"
