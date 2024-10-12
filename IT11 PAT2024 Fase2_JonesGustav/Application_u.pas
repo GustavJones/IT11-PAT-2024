@@ -47,17 +47,17 @@ type
     sbxRemediesList: TScrollBox;
     tsAddRemedy: TTabSheet;
     pnlRemediesNavigation: TPanel;
-    bttRemediesNavigationHelp: TBitBtn;
-    bttRemediesNavigationHome: TBitBtn;
-    bttRemediesNavigationNext: TBitBtn;
-    bttRemediesNavigationPrevious: TBitBtn;
+    bmbRemediesNavigationHelp: TBitBtn;
+    bmbRemediesNavigationHome: TBitBtn;
+    bmbRemediesNavigationNext: TBitBtn;
+    bmbRemediesNavigationPrevious: TBitBtn;
     pnlAddRemedy: TPanel;
     lblAddRemedyTitle: TLabel;
     pnlAddRemedyNavigation: TPanel;
-    bttAddRemedyNavigationHelp: TBitBtn;
-    bttAddRemedyNavigationHome: TBitBtn;
-    bttAddRemedyNavigationNext: TBitBtn;
-    bttAddRemedyNavigationPrevious: TBitBtn;
+    bmbAddRemedyNavigationHelp: TBitBtn;
+    bmbAddRemedyNavigationHome: TBitBtn;
+    bmbAddRemedyNavigationNext: TBitBtn;
+    bmbAddRemedyNavigationPrevious: TBitBtn;
     pnlAddRemedyInputs: TPanel;
     edtAddRemedyInputsRemedyName: TEdit;
     redAddRemedyInputsDescription: TRichEdit;
@@ -69,17 +69,17 @@ type
     lblAddRemedyInputsRemedyInfo: TLabel;
     edtAddRemedyInputsPrice: TEdit;
     imgAddRemedyInputsImage: TImage;
-    bttAddRemedyNavigationReset: TBitBtn;
-    bttAddRemedyInputsCreateRemedy: TBitBtn;
+    bmbAddRemedyNavigationReset: TBitBtn;
+    bmbAddRemedyInputsCreateRemedy: TBitBtn;
     btnAddRemedyInputsAddImage: TButton;
     tsRemedyPendingChanges: TTabSheet;
     pnlRemedyPendingChanges: TPanel;
     lblRemedyPendingChanges: TLabel;
     pnlRemedyPendingChangesNavigation: TPanel;
-    bttRemedyPendingChangesNavigationHelp: TBitBtn;
-    bttRemedyPendingChangesNavigationHome: TBitBtn;
-    bttRemedyPendingChangesNavigationNext: TBitBtn;
-    bttRemedyPendingChangesNavigationPrevious: TBitBtn;
+    bmbRemedyPendingChangesNavigationHelp: TBitBtn;
+    bmbRemedyPendingChangesNavigationHome: TBitBtn;
+    bmbRemedyPendingChangesNavigationNext: TBitBtn;
+    bmbRemedyPendingChangesNavigationPrevious: TBitBtn;
     pnlRemedyPendingChangesAdditions: TPanel;
     lblRemedyPendingChangesAdditions: TLabel;
     lstRemedyPendingChangesAdditionsRemediesList: TListBox;
@@ -88,8 +88,8 @@ type
     pnlRemedyPendingChangesAdditionsInfo: TPanel;
     lblPendingChangesAdditionsInfo: TLabel;
     redRemedyPendingChangesAdditionsInfoDescription: TRichEdit;
-    bttRemedyPendingChangesAdditionsInfoReset: TBitBtn;
-    bttRemedyPendingChangesAdditionsInfoAddRemedy: TBitBtn;
+    bmbRemedyPendingChangesAdditionsInfoReset: TBitBtn;
+    bmbRemedyPendingChangesAdditionsInfoAddRemedy: TBitBtn;
     cltRemedyPendingChangesAdditionsInfoSymptoms: TCheckListBox;
     edtRemedyPendingChangesAdditionsInfoSymptomName: TEdit;
     btnRemedyPendingChangesAdditionsInfoRemoveSymptom: TButton;
@@ -106,8 +106,8 @@ type
     edtRemedyPendingChangesEditInfoName: TEdit;
     edtRemedyPendingChangesEditInfoPrice: TEdit;
     redRemedyPendingChangesEditInfoDescription: TRichEdit;
-    bttRemedyPendingChangesEditInfoReset: TBitBtn;
-    bttRemedyPendingChangesEditInfoSaveRemedy: TBitBtn;
+    bmbRemedyPendingChangesEditInfoReset: TBitBtn;
+    bmbRemedyPendingChangesEditInfoSaveRemedy: TBitBtn;
     cltRemedyPendingChangesEditInfoSymptoms: TCheckListBox;
     edtRemedyPendingChangesEditInfoSymptomName: TEdit;
     btnRemedyPendingChangesEditInfoRemoveSymptom: TButton;
@@ -117,34 +117,25 @@ type
     lblRemedyUsageTitle: TLabel;
     sbxRemedyUsageList: TScrollBox;
     pnlRemedyUsageNavigation: TPanel;
-    bttRemedyUsageNavigationHelp: TBitBtn;
-    bttRemedyUsageNavigationHome: TBitBtn;
-    bttRemedyUsageNavigationNext: TBitBtn;
-    bttRemedyUsageNavigationPrevious: TBitBtn;
-    pnlReview1: TPanel;
-    lblReview1: TLabel;
-    bttReview1Save: TBitBtn;
+    bmbRemedyUsageNavigationHelp: TBitBtn;
+    bmbRemedyUsageNavigationHome: TBitBtn;
+    bmbRemedyUsageNavigationNext: TBitBtn;
+    bmbRemedyUsageNavigationPrevious: TBitBtn;
     pnlRemedyUsageAdd: TPanel;
-    bttReview1Reset: TBitBtn;
-    redReview1Dosage: TRichEdit;
-    sedReview1DaysUsed: TSpinEdit;
-    lblReview1Dosage: TLabel;
-    lblReview1DaysUsed: TLabel;
     lblRemedyUsageAddDosage: TLabel;
     redRemedyUsageAddDosage: TRichEdit;
     lblRemedyUsageAddDaysUsed: TLabel;
     sedRemedyUsageAddDaysUsed: TSpinEdit;
-    bttRemedyUsageAddReset: TBitBtn;
-    bttRemedyUsageAddAddReview: TBitBtn;
+    bmbRemedyUsageAddReset: TBitBtn;
+    bmbRemedyUsageAddAddReview: TBitBtn;
     lblRemedyUsageUseList: TLabel;
     lblRemedyUsageAddRemedyName: TLabel;
     sedAddRemedyInputsEaseOfUse: TSpinEdit;
     lblAddRemedyInputsEaseOfUse: TLabel;
-    bttAdminUserEditRemoveUser: TBitBtn;
+    bmbAdminUserEditRemoveUser: TBitBtn;
     lstAdminUserEditReview: TListBox;
-    bttReview1Remove: TBitBtn;
     pnlAdminUserEdit: TPanel;
-    bttAdminUserEditRemoveReview: TBitBtn;
+    bmbAdminUserEditRemoveReview: TBitBtn;
     redAdminUserEditDosage: TRichEdit;
     sedAdminUserEditDaysUsed: TSpinEdit;
     lblAdminUserEditDaysUsed: TLabel;
@@ -154,50 +145,32 @@ type
     edtAdminUserEditSurname: TEdit;
     edtAdminUserEditEmail: TEdit;
     chkAdminUserEditIsMale: TCheckBox;
-    bttAdminUserEditSaveUser: TBitBtn;
+    bmbAdminUserEditSaveUser: TBitBtn;
     pnlAdminRemedyEdit: TPanel;
     lblAdminRemedyEditDescription: TLabel;
-    bttAdminRemedyEditRemoveRemedy: TBitBtn;
+    bmbAdminRemedyEditRemoveRemedy: TBitBtn;
     dbgAdminRemedyEditRemedy: TDBGrid;
     redAdminRemedyEditDescription: TRichEdit;
     edtAdminRemedyEditName: TEdit;
-    bttAdminRemedyEditSaveRemedy: TBitBtn;
+    bmbAdminRemedyEditSaveRemedy: TBitBtn;
     edtAdminRemedyEditPrice: TEdit;
     lblAdminRemedy: TLabel;
     sedAdminRemedyEditEaseOfUse: TSpinEdit;
     chkSignUpAdmin: TCheckBox;
     chkAdminUserEditAdmin: TCheckBox;
-    bttAdminUserEditSaveReview: TBitBtn;
+    bmbAdminUserEditSaveReview: TBitBtn;
     sedRemedyUsageAddEffectiveness: TSpinEdit;
-    sedReview1Effectiveness: TSpinEdit;
-    lblReview1Effectiveness: TLabel;
     lblRemedyUsageAddEffectiveness: TLabel;
     cmbRemedyUsageAddRemedy: TComboBox;
     lblAdminRemedyEditEaseOfUse: TLabel;
     pnlAdminNavigation: TPanel;
-    bttAdminNavigationHelp: TBitBtn;
-    bttAdminNavigationHome: TBitBtn;
-    bttAdminNavigationNext: TBitBtn;
-    bttAdminNavigationPrevious: TBitBtn;
+    bmbAdminNavigationHelp: TBitBtn;
+    bmbAdminNavigationHome: TBitBtn;
+    bmbAdminNavigationNext: TBitBtn;
+    bmbAdminNavigationPrevious: TBitBtn;
     sedAdminUserEditEffectiveness: TSpinEdit;
     lblAdminUserEditEffectiveness: TLabel;
     btnHomeLogOut: TButton;
-    pnlTile: TPanel;
-    lblTileTitle: TLabel;
-    lblSymptom: TLabel;
-    imgImage: TImage;
-    lblPrice: TLabel;
-    edtPrice: TEdit;
-    cltSymptoms: TCheckListBox;
-    btnRemoveSymptom: TButton;
-    btnAddSymptom: TButton;
-    Edit4: TEdit;
-    redDescription: TRichEdit;
-    btnUpdateImage: TButton;
-    bttReset: TBitBtn;
-    bttSave: TBitBtn;
-    Label1: TLabel;
-    SpinEdit3: TSpinEdit;
     sedRemedyPendingChangesAdditionsInfoEaseOfUse: TSpinEdit;
     lblRemedyPendingChangesAdditionsInfoEaseOfUse: TLabel;
     lblRemedyPendingChangesEditInfoEaseOfUse: TLabel;
@@ -214,9 +187,9 @@ type
 
     procedure btnHomeLogOutClick(Sender: TObject);
     procedure NavigationHomeClick(Sender: TObject);
-    procedure bttRemedyUsageAddAddReviewClick(Sender: TObject);
+    procedure bmbRemedyUsageAddAddReviewClick(Sender: TObject);
     procedure dbgAdminUserEditUsersCellClick(Column: TColumn);
-    procedure bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
+    procedure bmbAddRemedyInputsCreateRemedyClick(Sender: TObject);
     procedure btnAddRemedyInputsAddSymptomClick(Sender: TObject);
     procedure btnAddRemedyInputsRemoveSymptomClick(Sender: TObject);
     procedure lstRemedyPendingChangesAdditionsRemediesListClick
@@ -225,26 +198,26 @@ type
       (Sender: TObject);
     procedure btnRemedyPendingChangesAdditionsInfoRemoveSymptomClick
       (Sender: TObject);
-    procedure bttRemedyPendingChangesAdditionsInfoResetClick(Sender: TObject);
-    procedure bttRemedyPendingChangesAdditionsInfoAddRemedyClick
+    procedure bmbRemedyPendingChangesAdditionsInfoResetClick(Sender: TObject);
+    procedure bmbRemedyPendingChangesAdditionsInfoAddRemedyClick
       (Sender: TObject);
     procedure lstRemedyPendingChangesEditRemediesListClick(Sender: TObject);
-    procedure bttRemedyPendingChangesEditInfoResetClick(Sender: TObject);
+    procedure bmbRemedyPendingChangesEditInfoResetClick(Sender: TObject);
     procedure btnRemedyPendingChangesEditInfoAddSymptomClick(Sender: TObject);
     procedure btnRemedyPendingChangesEditInfoRemoveSymptomClick
       (Sender: TObject);
-    procedure bttRemedyPendingChangesEditInfoSaveRemedyClick(Sender: TObject);
-    procedure bttAdminUserEditSaveUserClick(Sender: TObject);
+    procedure bmbRemedyPendingChangesEditInfoSaveRemedyClick(Sender: TObject);
+    procedure bmbAdminUserEditSaveUserClick(Sender: TObject);
     procedure btnAddRemedyInputsAddImageClick(Sender: TObject);
-    procedure bttAdminUserEditRemoveUserClick(Sender: TObject);
+    procedure bmbAdminUserEditRemoveUserClick(Sender: TObject);
     procedure lstAdminUserEditReviewClick(Sender: TObject);
     procedure dbgAdminRemedyEditRemedyCellClick(Column: TColumn);
-    procedure bttAdminUserEditSaveReviewClick(Sender: TObject);
-    procedure bttAdminUserEditRemoveReviewClick(Sender: TObject);
-    procedure bttAdminRemedyEditSaveRemedyClick(Sender: TObject);
-    procedure bttAdminRemedyEditRemoveRemedyClick(Sender: TObject);
-    procedure bttRemedyUsageAddResetClick(Sender: TObject);
-    procedure bttAddRemedyNavigationResetClick(Sender: TObject);
+    procedure bmbAdminUserEditSaveReviewClick(Sender: TObject);
+    procedure bmbAdminUserEditRemoveReviewClick(Sender: TObject);
+    procedure bmbAdminRemedyEditSaveRemedyClick(Sender: TObject);
+    procedure bmbAdminRemedyEditRemoveRemedyClick(Sender: TObject);
+    procedure bmbRemedyUsageAddResetClick(Sender: TObject);
+    procedure bmbAddRemedyNavigationResetClick(Sender: TObject);
     procedure NavigationNextClick(Sender: TObject);
     procedure NavigationBackClick(Sender: TObject);
     procedure NavigationHelpClick(Sender: TObject);
@@ -743,7 +716,7 @@ begin
   dmBoereraad.tblUser.Post;
 end;
 
-procedure TfrmHome.bttAddRemedyInputsCreateRemedyClick(Sender: TObject);
+procedure TfrmHome.bmbAddRemedyInputsCreateRemedyClick(Sender: TObject);
 var
   iResponse : Integer;
   i: Integer;
@@ -833,7 +806,7 @@ begin
   AddRemedy;
 end;
 
-procedure TfrmHome.bttAddRemedyNavigationResetClick(Sender: TObject);
+procedure TfrmHome.bmbAddRemedyNavigationResetClick(Sender: TObject);
 begin
   // Clear inputs for creating remedies
   edtAddRemedyInputsRemedyName.Text := '';
@@ -844,7 +817,7 @@ begin
   imgAddRemedyInputsImage.Visible := False;
 end;
 
-procedure TfrmHome.bttAdminRemedyEditRemoveRemedyClick(Sender: TObject);
+procedure TfrmHome.bmbAdminRemedyEditRemoveRemedyClick(Sender: TObject);
 const
   sDELIMITER = #10;
 var
@@ -884,7 +857,7 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-procedure TfrmHome.bttAdminRemedyEditSaveRemedyClick(Sender: TObject);
+procedure TfrmHome.bmbAdminRemedyEditSaveRemedyClick(Sender: TObject);
 const
   sDELIMITER = #10;
 var
@@ -1005,7 +978,7 @@ begin
   dmBoereraad.tblRemedy.RecNo := iDBIndex;
 end;
 
-procedure TfrmHome.bttAdminUserEditRemoveReviewClick(Sender: TObject);
+procedure TfrmHome.bmbAdminUserEditRemoveReviewClick(Sender: TObject);
 var
   bFound: Boolean;
   iIndex: Integer;
@@ -1036,7 +1009,7 @@ begin
   end;
 end;
 
-procedure TfrmHome.bttAdminUserEditRemoveUserClick(Sender: TObject);
+procedure TfrmHome.bmbAdminUserEditRemoveUserClick(Sender: TObject);
 var
   iDBIndex: Integer;
   iID: Integer;
@@ -1086,7 +1059,7 @@ begin
   dmBoereraad.tblUser.RecNo := iDBIndex;
 end;
 
-procedure TfrmHome.bttAdminUserEditSaveReviewClick(Sender: TObject);
+procedure TfrmHome.bmbAdminUserEditSaveReviewClick(Sender: TObject);
 const
   sDELIMITER = #10;
 var
@@ -1161,7 +1134,7 @@ begin
   end;
 end;
 
-procedure TfrmHome.bttAdminUserEditSaveUserClick(Sender: TObject);
+procedure TfrmHome.bmbAdminUserEditSaveUserClick(Sender: TObject);
 var
   bFound: Boolean;
   iDBIndex: Integer;
@@ -1227,7 +1200,7 @@ begin
   dmBoereraad.tblUser.RecNo := iDBIndex;
 end;
 
-procedure TfrmHome.bttRemedyPendingChangesAdditionsInfoAddRemedyClick
+procedure TfrmHome.bmbRemedyPendingChangesAdditionsInfoAddRemedyClick
   (Sender: TObject);
 var
   rCreateRemedy: TRemedy;
@@ -1357,7 +1330,7 @@ begin
   rCreateRemedy.Destroy;
 end;
 
-procedure TfrmHome.bttRemedyPendingChangesAdditionsInfoResetClick
+procedure TfrmHome.bmbRemedyPendingChangesAdditionsInfoResetClick
   (Sender: TObject);
 const
   sDESCRIPTION_DELIMITER = #9;
@@ -1452,7 +1425,7 @@ begin
   end;
 end;
 
-procedure TfrmHome.bttRemedyPendingChangesEditInfoResetClick(Sender: TObject);
+procedure TfrmHome.bmbRemedyPendingChangesEditInfoResetClick(Sender: TObject);
 const
   sDESCRIPTION_DELIMITER = #9;
   sSYMPTOM_DELIMITER = ',';
@@ -1548,7 +1521,7 @@ begin
   end;
 end;
 
-procedure TfrmHome.bttRemedyPendingChangesEditInfoSaveRemedyClick
+procedure TfrmHome.bmbRemedyPendingChangesEditInfoSaveRemedyClick
   (Sender: TObject);
 var
   rEditRemedy: TRemedy;
@@ -1675,7 +1648,7 @@ begin
   rEditRemedy.Destroy;
 end;
 
-procedure TfrmHome.bttRemedyUsageAddAddReviewClick(Sender: TObject);
+procedure TfrmHome.bmbRemedyUsageAddAddReviewClick(Sender: TObject);
 begin
   // Validate review inputs and call review creation
 
@@ -1709,12 +1682,12 @@ begin
   end;
 
   AddReview;
-  bttRemedyUsageAddResetClick(nil);
+  bmbRemedyUsageAddResetClick(nil);
   LoadReviewsFromDBToScrollBox;
   ShowMessage('Created Remedy Review');
 end;
 
-procedure TfrmHome.bttRemedyUsageAddResetClick(Sender: TObject);
+procedure TfrmHome.bmbRemedyUsageAddResetClick(Sender: TObject);
 begin
   // Clear inputs for review creation
   cmbRemedyUsageAddRemedy.ItemIndex := -1;
@@ -1963,7 +1936,7 @@ var
 begin
   // Read Files and populate parallel arrays
 
-  // Arrays
+  // Array
   iPendingChangeCount := 0;
   bMaxChanges := False;
   i := 1;
@@ -2019,6 +1992,7 @@ procedure TfrmHome.LoadRemediesFromDBToScrollbox;
 const
   sDELIMITER = ', ';
 var
+  bEnd : Boolean;
   iDBIndex: Integer;
   rRemedy: TRemedy;
   rtRemedyTile: TdynRemedyTile;
@@ -2034,13 +2008,14 @@ begin
 
   SetLength(arrRemedyTiles, 0);
 
+  bEnd := False;
   rRemedy := TRemedy.Create;
   rtRemedyTile := TdynRemedyTile.Create(Self);
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
 
   // ADO: Loop through records to get PK and pull info from PK
-  dmBoereraad.tblRemedy.First;
-  while not(dmBoereraad.tblRemedy.Eof) do
+  dmBoereraad.tblRemedy.Last;
+  while (dmBoereraad.tblRemedy.RecNo > 0) and not (bEnd) do
   begin
     rRemedy.ReadDBRecord(dmBoereraad.tblRemedy[sTBLREMEDY_ID]);
     rtRemedyTile.Init(sbxRemediesList, rRemedy);
@@ -2051,7 +2026,14 @@ begin
 
     rtRemedyTile := TdynRemedyTile.Create(Self);
 
-    dmBoereraad.tblRemedy.Next;
+    if dmBoereraad.tblRemedy.RecNo > 1 then
+    begin
+      dmBoereraad.tblRemedy.Prior;
+    end
+    else
+    begin
+      bEnd := True;
+    end;
   end;
 
   rRemedy.Destroy;
@@ -2061,11 +2043,13 @@ end;
 
 procedure TfrmHome.LoadReviewsFromDBToScrollBox;
 var
+  bEnd : Boolean;
   rtReviewTile: TdynReviewTile;
   iReviewID : Integer;
   i : Integer;
 begin
   // Create review tiles from DB records
+  bEnd := False;
 
   // Dynamic Component
   for i := 0 to Length(arrReviewTiles) - 1 do
@@ -2076,8 +2060,8 @@ begin
   SetLength(arrReviewTiles, 0);
 
  // ADO: Loop through records to get PK and pull info from PK
-  dmBoereraad.tblReview.First;
-  while not(dmBoereraad.tblReview.Eof) do
+  dmBoereraad.tblReview.Last;
+  while (dmBoereraad.tblReview.RecNo > 0) and not (bEnd) do
   begin
     if dmBoereraad.tblReview[sTBLREVIEW_USERID] = iUserID then
     begin
@@ -2090,7 +2074,14 @@ begin
       arrReviewTiles[Length(arrReviewTiles) - 1] := rtReviewTile;
     end;
 
-    dmBoereraad.tblReview.Next;
+    if dmBoereraad.tblReview.RecNo > 1 then
+    begin
+      dmBoereraad.tblReview.Prior;
+    end
+    else
+    begin
+      bEnd := True;
+    end;
   end;
 end;
 
@@ -2178,7 +2169,7 @@ begin
     end;
   end;
 
-  bttRemedyPendingChangesAdditionsInfoResetClick(Self);
+  bmbRemedyPendingChangesAdditionsInfoResetClick(Self);
 end;
 
 procedure TfrmHome.lstRemedyPendingChangesEditRemediesListClick
@@ -2206,7 +2197,7 @@ begin
     end;
   end;
 
-  bttRemedyPendingChangesEditInfoResetClick(Self);
+  bmbRemedyPendingChangesEditInfoResetClick(Self);
 end;
 
 procedure TfrmHome.pgcTabsChange(Sender: TObject);
@@ -2264,8 +2255,8 @@ begin
           end;
         end;
 
-        bttRemedyPendingChangesAdditionsInfoResetClick(Self);
-        bttRemedyPendingChangesEditInfoResetClick(Self);
+        bmbRemedyPendingChangesAdditionsInfoResetClick(Self);
+        bmbRemedyPendingChangesEditInfoResetClick(Self);
       end;
   end;
 end;
@@ -2286,7 +2277,6 @@ begin
   end;
 end;
 
-// TODO
 procedure TfrmHome.SortPendingChangesInArr;
 var
   i: Integer;
@@ -2297,7 +2287,7 @@ var
   sNameTemp, sInfoTemp : string;
 begin
   // Sort pending changes array in alphabetical order
-
+  // Array: Sorting alphabetically
   for i := 1 to iPendingChangeCount - 1 do
   begin
     for j := i + 1 to iPendingChangeCount do
@@ -2326,6 +2316,21 @@ begin
           bSort := True;
         end;
         Inc(k);
+      end;
+    end;
+
+    if not (bSort) then
+    begin
+      if Length(arrPendingChangeRemedyName[i]) > Length(arrPendingChangeRemedyName[j]) then
+      begin
+        sNameTemp := arrPendingChangeRemedyName[i];
+        sInfoTemp := arrPendingChangeRemedyInformation[i];
+
+        arrPendingChangeRemedyName[i] := arrPendingChangeRemedyName[j];
+        arrPendingChangeRemedyName[j] := sNameTemp;
+
+        arrPendingChangeRemedyInformation[i] := arrPendingChangeRemedyInformation[j];
+        arrPendingChangeRemedyInformation[j] := sInfoTemp;
       end;
     end;
   end;

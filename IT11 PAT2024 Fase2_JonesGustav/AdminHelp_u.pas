@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.ExtCtrls, Core_u;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.ExtCtrls, Core_u,
+  Vcl.Buttons;
 
 type
   TfrmAdminHelp = class(TForm)
@@ -17,6 +18,13 @@ type
     lblInfo: TLabel;
     cmbPage: TComboBox;
     redInfo: TRichEdit;
+    pnlAdvancedHelp: TPanel;
+    lblAdvancedHelpTitle: TLabel;
+    redAdvancedHelpOutput: TRichEdit;
+    edtAdvancedHelpPrompt: TEdit;
+    btnAdvancedHelpGenerate: TButton;
+    pnlAdvancedHelpControls: TPanel;
+    bmbAdvancedHelpReset: TBitBtn;
     procedure cmbPageChange(Sender: TObject);
   private
     { Private declarations }

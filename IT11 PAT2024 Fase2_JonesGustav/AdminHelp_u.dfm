@@ -1,9 +1,9 @@
 object frmAdminHelp: TfrmAdminHelp
-  Left = 327
-  Top = 145
+  Left = 286
+  Top = 83
   BorderStyle = bsDialog
   Caption = 'Admin Help'
-  ClientHeight = 442
+  ClientHeight = 525
   ClientWidth = 628
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -34,7 +34,7 @@ object frmAdminHelp: TfrmAdminHelp
     Left = 323
     Top = 33
     Width = 302
-    Height = 406
+    Height = 268
     Align = alRight
     ShowCaption = False
     TabOrder = 0
@@ -64,7 +64,7 @@ object frmAdminHelp: TfrmAdminHelp
       Left = 11
       Top = 29
       Width = 280
-      Height = 370
+      Height = 232
       Margins.Left = 10
       Margins.Right = 10
       Margins.Bottom = 6
@@ -74,10 +74,12 @@ object frmAdminHelp: TfrmAdminHelp
       Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
+      HideScrollBars = False
       ParentFont = False
       ReadOnly = True
+      ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitHeight = 369
+      ExplicitHeight = 525
     end
   end
   object pnlInfo: TPanel
@@ -85,7 +87,7 @@ object frmAdminHelp: TfrmAdminHelp
     Left = 3
     Top = 33
     Width = 302
-    Height = 406
+    Height = 268
     Align = alLeft
     ShowCaption = False
     TabOrder = 1
@@ -137,7 +139,7 @@ object frmAdminHelp: TfrmAdminHelp
       Margins.Right = 10
       Align = alTop
       TabOrder = 0
-      Text = 'User Page'
+      Text = 'Admin Page'
       OnChange = cmbPageChange
       Items.Strings = (
         'Remedy Pending Changes'
@@ -148,7 +150,7 @@ object frmAdminHelp: TfrmAdminHelp
       Left = 11
       Top = 81
       Width = 280
-      Height = 318
+      Height = 180
       Margins.Left = 10
       Margins.Right = 10
       Margins.Bottom = 6
@@ -158,10 +160,124 @@ object frmAdminHelp: TfrmAdminHelp
       Font.Height = -15
       Font.Name = 'Rea'
       Font.Style = []
+      HideScrollBars = False
       ParentFont = False
       ReadOnly = True
+      ScrollBars = ssVertical
       TabOrder = 1
-      ExplicitHeight = 317
+      ExplicitHeight = 318
+    end
+  end
+  object pnlAdvancedHelp: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 304
+    Width = 622
+    Height = 218
+    Margins.Top = 0
+    Align = alBottom
+    Alignment = taLeftJustify
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI Semibold'
+    Font.Style = []
+    ParentFont = False
+    ShowCaption = False
+    TabOrder = 2
+    VerticalAlignment = taAlignTop
+    object lblAdvancedHelpTitle: TLabel
+      AlignWithMargins = True
+      Left = 4
+      Top = 4
+      Width = 614
+      Height = 21
+      Align = alTop
+      Alignment = taCenter
+      Caption = 'Advanced Help'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 11130150
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+      StyleElements = [seClient, seBorder]
+      ExplicitWidth = 112
+    end
+    object redAdvancedHelpOutput: TRichEdit
+      AlignWithMargins = True
+      Left = 11
+      Top = 63
+      Width = 600
+      Height = 151
+      Margins.Left = 10
+      Margins.Right = 10
+      Align = alClient
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      HideScrollBars = False
+      ParentFont = False
+      ReadOnly = True
+      ScrollBars = ssVertical
+      TabOrder = 0
+      ExplicitTop = 93
+      ExplicitHeight = 121
+    end
+    object pnlAdvancedHelpControls: TPanel
+      AlignWithMargins = True
+      Left = 11
+      Top = 28
+      Width = 600
+      Height = 32
+      Margins.Left = 10
+      Margins.Top = 0
+      Margins.Right = 10
+      Margins.Bottom = 0
+      Align = alTop
+      ShowCaption = False
+      TabOrder = 1
+      object btnAdvancedHelpGenerate: TButton
+        AlignWithMargins = True
+        Left = 476
+        Top = 4
+        Width = 120
+        Height = 24
+        Align = alRight
+        Caption = 'Generate Answer'
+        TabOrder = 0
+        ExplicitLeft = 496
+        ExplicitHeight = 30
+      end
+      object bmbAdvancedHelpReset: TBitBtn
+        AlignWithMargins = True
+        Left = 395
+        Top = 4
+        Width = 75
+        Height = 24
+        Align = alRight
+        Caption = 'Reset'
+        Kind = bkRetry
+        NumGlyphs = 2
+        TabOrder = 1
+        ExplicitLeft = 344
+        ExplicitTop = 10
+        ExplicitHeight = 25
+      end
+      object edtAdvancedHelpPrompt: TEdit
+        AlignWithMargins = True
+        Left = 4
+        Top = 4
+        Width = 371
+        Height = 24
+        Align = alLeft
+        TabOrder = 2
+        TextHint = 'Help Prompt'
+        ExplicitLeft = 11
+        ExplicitHeight = 22
+      end
     end
   end
 end

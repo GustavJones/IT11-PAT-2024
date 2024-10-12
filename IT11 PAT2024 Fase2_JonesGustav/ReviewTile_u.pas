@@ -71,7 +71,7 @@ begin
   Self.Align := alTop;
   Self.BorderStyle := bsSingle;
   Self.ShowCaption := False;
-  Self.TabOrder := 0;
+  Self.TabStop := False;
 
 
   lblReview.Parent := Self;
@@ -144,7 +144,7 @@ begin
   bttSave.Font.Style := [];
   bttSave.NumGlyphs := 2;
   bttSave.ParentFont := False;
-  bttSave.TabOrder := 0;
+  bttSave.TabStop := False;
   bttSave.OnClick := SaveReview;
 
   bttReset.Parent := Self;
@@ -155,7 +155,7 @@ begin
   bttReset.Kind := bkRetry;
   bttReset.Caption := 'Reset';
   bttReset.NumGlyphs := 2;
-  bttReset.TabOrder := 1;
+  bttReset.TabStop := False;
   bttReset.OnClick := ResetReview;
 
   redDosage.Parent := Self;
@@ -169,7 +169,7 @@ begin
   redDosage.Font.Name := 'Segoe UI';
   redDosage.Font.Style := [fsBold];
   redDosage.ParentFont := False;
-  redDosage.TabOrder := 2;
+  redDosage.TabStop := False;
 
   sedDaysUsed.Parent := Self;
   sedDaysUsed.Left := 868;
@@ -178,7 +178,7 @@ begin
   sedDaysUsed.Height := 24;
   sedDaysUsed.MaxValue := 10000;
   sedDaysUsed.MinValue := 0;
-  sedDaysUsed.TabOrder := 3;
+  sedDaysUsed.TabStop := False;
   sedDaysUsed.Value := 0;
 
   bttRemove.Parent := Self;
@@ -195,7 +195,7 @@ begin
   bttRemove.Font.Style := [];
   bttRemove.NumGlyphs := 2;
   bttRemove.ParentFont := False;
-  bttRemove.TabOrder := 4;
+  bttRemove.TabStop := False;
   bttRemove.OnClick := RemoveReview;
 
   sedEffectiveness.Parent := Self;
@@ -205,7 +205,7 @@ begin
   sedEffectiveness.Height := 24;
   sedEffectiveness.MaxValue := 10;
   sedEffectiveness.MinValue := 0;
-  sedEffectiveness.TabOrder := 5;
+  sedEffectiveness.TabStop := False;
   sedEffectiveness.Value := 0;
 end;
 

@@ -167,9 +167,9 @@ begin
   Self.Align := alTop;
   Self.BorderStyle := bsSingle;
   Self.ShowCaption := False;
-  Self.TabOrder := 0;
   Self.Visible := True;
   Self.Font.Size := 10;
+  Self.TabStop := False;
 
   lblRemedy.Parent := Self;
   lblRemedy.AlignWithMargins := True;
@@ -242,7 +242,7 @@ begin
   edtPrice.Top := 42;
   edtPrice.Width := 100;
   edtPrice.Height := 23;
-  edtPrice.TabOrder := 0;
+  edtPrice.TabStop := False;
   edtPrice.TextHint := 'Price per Unit: ';
 
   cltSymptoms.Parent := Self;
@@ -250,7 +250,7 @@ begin
   cltSymptoms.Top := 42;
   cltSymptoms.Width := 128;
   cltSymptoms.Height := 79;
-  cltSymptoms.TabOrder := 1;
+  cltSymptoms.TabStop := False;
 
   btnRemoveSymptom.Parent := Self;
   btnRemoveSymptom.Left := 877;
@@ -258,7 +258,7 @@ begin
   btnRemoveSymptom.Width := 121;
   btnRemoveSymptom.Height := 25;
   btnRemoveSymptom.Caption := 'Remove Symptom';
-  btnRemoveSymptom.TabOrder := 2;
+  btnRemoveSymptom.TabStop := False;
   btnRemoveSymptom.OnClick := RemoveSymptom;
 
   btnAddSymptom.Parent := Self;
@@ -267,7 +267,7 @@ begin
   btnAddSymptom.Width := 121;
   btnAddSymptom.Height := 24;
   btnAddSymptom.Caption := 'Add Symptom';
-  btnAddSymptom.TabOrder := 3;
+  btnAddSymptom.TabStop := False;
   btnAddSymptom.OnClick := AddSymptom;
 
   edtSymptom.Parent := Self;
@@ -275,7 +275,7 @@ begin
   edtSymptom.Top := 127;
   edtSymptom.Width := 128;
   edtSymptom.Height := 23;
-  edtSymptom.TabOrder := 4;
+  edtSymptom.TabStop := False;
   edtSymptom.TextHint := 'Add Symptom: ';
 
   redDescription.Parent := Self;
@@ -289,7 +289,7 @@ begin
   redDescription.Font.Name := 'Segoe UI';
   redDescription.Font.Style := [fsBold];
   redDescription.ParentFont := False;
-  redDescription.TabOrder := 5;
+  redDescription.TabStop := False;
 
   btnUpdateImage.Parent := Self;
   btnUpdateImage.Left := 877;
@@ -297,7 +297,7 @@ begin
   btnUpdateImage.Width := 121;
   btnUpdateImage.Height := 25;
   btnUpdateImage.Caption := 'Update Image';
-  btnUpdateImage.TabOrder := 6;
+  btnUpdateImage.TabStop := False;
   btnUpdateImage.OnClick := UpdateImage;
 
   bttReset.Parent := Self;
@@ -308,7 +308,7 @@ begin
   bttReset.Kind := bkRetry;
   bttReset.Caption := 'Reset';
   bttReset.NumGlyphs := 2;
-  bttReset.TabOrder := 7;
+  bttReset.TabStop := False;
   bttReset.OnClick := ResetRemedy;
 
   bttSave.Parent := Self;
@@ -325,7 +325,7 @@ begin
   bttSave.Font.Style := [];
   bttSave.NumGlyphs := 2;
   bttSave.ParentFont := False;
-  bttSave.TabOrder := 8;
+  bttSave.TabStop := False;
   bttSave.OnClick := UpdateRemedy;
 
   sedEaseOfUse.Parent := Self;
@@ -335,7 +335,7 @@ begin
   sedEaseOfUse.Height := 24;
   sedEaseOfUse.MaxValue := 10;
   sedEaseOfUse.MinValue := 0;
-  sedEaseOfUse.TabOrder := 9;
+  sedEaseOfUse.TabStop := False;
   sedEaseOfUse.Value := 0;
 end;
 
