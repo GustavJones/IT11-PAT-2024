@@ -33,7 +33,10 @@ type
     procedure btnAdvancedHelpGenerateClick(Sender: TObject);
     procedure bmbAdvancedHelpResetClick(Sender: TObject);
   private
-    { Private declarations }
+    const
+      sAI_URL_FILE = 'ollama.txt';
+      sPROMPT_TEMPLATE_FILE = 'prompt.json';
+      sDEFAULT_URL = 'http://127.0.0.1:11434/api/generate';
   public
     { Public declarations }
   end;
@@ -56,10 +59,12 @@ procedure TfrmUserHelp.btnAdvancedHelpGenerateClick(Sender: TObject);
 const
   sPROMPT_REPLACE_STRING = '$PROMPT';
 var
+  tAIFile : TextFile;
   tPromptTemplate : TextFile;
   sLine : string;
   iReplaceIndex : Integer;
   sPrompt : string;
+  sURL : string;
   sRequest : string;
   sResponse : string;
   jvJSONValue : TJSONValue;
@@ -75,9 +80,9 @@ begin
 
   sPrompt := edtAdvancedHelpPrompt.Text;
 
-  if FileExists(cProgramCore.GetDataDirectory + 'prompt.json') then
+  if FileExists(cProgramCore.GetDataDirectory + sPROMPT_TEMPLATE_FILE) then
   begin
-    AssignFile(tPromptTemplate, cProgramCore.GetDataDirectory + 'prompt.json');
+    AssignFile(tPromptTemplate, cProgramCore.GetDataDirectory + sPROMPT_TEMPLATE_FILE);
     Reset(tPromptTemplate);
 
     while not Eof(tPromptTemplate) do
@@ -90,8 +95,28 @@ begin
   end
   else
   begin
-    TCore.CreateFile(cProgramCore.GetDataDirectory + 'prompt.json');
+    TCore.CreateFile(cProgramCore.GetDataDirectory + sPROMPT_TEMPLATE_FILE);
     sRequest := '';
+  end;
+
+  if FileExists(cProgramCore.GetDataDirectory + sAI_URL_FILE) then
+  begin
+    AssignFile(tAIFile, cProgramCore.GetDataDirectory + sAI_URL_FILE);
+    Reset(tAIFile);
+
+    Read(tAIFile, sURL);
+
+    CloseFile(tAIFile);
+  end
+  else
+  begin
+    sURL := sDEFAULT_URL;
+    AssignFile(tAIFile, cProgramCore.GetDataDirectory + sAI_URL_FILE);
+    Rewrite(tAIFile);
+
+    Write(tAIFile, sURL);
+
+    CloseFile(tAIFile);
   end;
 
   if sRequest = '' then
@@ -99,6 +124,14 @@ begin
     ShowMessage('Error in getting request template');
     exit;
   end;
+
+  if sURL = '' then
+  begin
+    ShowMessage('Error in getting AI server URL');
+    exit;
+  end;
+
+  rcClient.BaseURL := sURL;
 
   iReplaceIndex := Pos(sPROMPT_REPLACE_STRING, sRequest);
   Insert(sPrompt, sRequest, iReplaceIndex + Length(sPROMPT_REPLACE_STRING));
