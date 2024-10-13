@@ -341,6 +341,13 @@ begin
     exit;
   end;
 
+  if Length(redDosage.Lines.Text) > iREVIEW_DOSAGE_FIELD_SIZE then
+  begin
+    ShowMessage('Dosage too long. Must be less than ' + IntToStr(iREVIEW_DOSAGE_FIELD_SIZE) + ' characters');
+    redDosage.SetFocus;
+    exit;
+  end;
+
   if sedDaysUsed.Value <= 0 then
   begin
     ShowMessage('Please set days remedy used value');

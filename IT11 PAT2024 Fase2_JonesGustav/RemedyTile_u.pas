@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
   Vcl.CheckLst, Vcl.ComCtrls, Vcl.Controls, Vcl.Forms, Vcl.Graphics,
-  Vcl.Dialogs, Vcl.ExtDlgs, Vcl.Samples.Spin, Vcl.Imaging.jpeg,
+  Vcl.Dialogs, Vcl.ExtDlgs, Vcl.Samples.Spin, Vcl.Imaging.jpeg, dmBoereraad_u,
   Winapi.Windows, Remedy_u, Core_u;
 
 type
@@ -476,6 +476,13 @@ begin
   if (redDescription.Lines.Count = 0) or ((redDescription.Lines.Count = 1) and (redDescription.Lines[0] = '')) then
   begin
     ShowMessage('Please enter a description for the remedy');
+    redDescription.SetFocus;
+    exit;
+  end;
+
+  if Length(redDescription.Lines.Text) > iREMEDY_DESCRIPTION_FIELD_SIZE then
+  begin
+    ShowMessage('Description too long. Must be less than ' + IntToStr(iREMEDY_DESCRIPTION_FIELD_SIZE) + ' characters');
     redDescription.SetFocus;
     exit;
   end;

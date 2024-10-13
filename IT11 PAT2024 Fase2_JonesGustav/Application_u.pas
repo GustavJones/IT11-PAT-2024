@@ -614,11 +614,6 @@ begin
 end;
 
 procedure TfrmHome.btnSignUpClick(Sender: TObject);
-const
-  iUSER_NAME_FIELD_SIZE = 40;
-  iUSER_SURNAME_FIELD_SIZE = 70;
-  iUSER_EMAIL_FIELD_SIZE = 50;
-  iUSER_PASSWORD_FIELD_SIZE = 30;
 var
   iDBIndex: Integer;
   dDate : TDate;
@@ -775,6 +770,13 @@ begin
     exit;
   end;
 
+  if (Length(edtAddRemedyInputsRemedyName.Text) > iREMEDY_NAME_FIELD_SIZE) then
+  begin
+    ShowMessage('Remedy name too long. Must be less than ' + IntToStr(iREMEDY_NAME_FIELD_SIZE) + ' characters');
+    edtAddRemedyInputsRemedyName.SetFocus;
+    exit;
+  end;
+
   if (edtAddRemedyInputsPrice.Text = '') then
   begin
     ShowMessage('Please enter a remedy price');
@@ -828,6 +830,14 @@ begin
     redAddRemedyInputsDescription.SetFocus;
     exit;
   end;
+
+  if Length(redAddRemedyInputsDescription.Lines.Text) > iREMEDY_DESCRIPTION_FIELD_SIZE then
+  begin
+    ShowMessage('Description too long. Must be less than ' + IntToStr(iREMEDY_DESCRIPTION_FIELD_SIZE) + ' characters');
+    redAddRemedyInputsDescription.SetFocus;
+    exit;
+  end;
+
 
   if cltAddRemedyInputsSymptoms.Items.Count = 0 then
   begin
@@ -1745,6 +1755,13 @@ begin
   if (redRemedyUsageAddDosage.Lines.Count = 0) or ((redRemedyUsageAddDosage.Lines.Count = 1) and (redRemedyUsageAddDosage.Lines[0] = '')) then
   begin
     ShowMessage('Please enter a description for the remedy');
+    redRemedyUsageAddDosage.SetFocus;
+    exit;
+  end;
+
+  if Length(redRemedyUsageAddDosage.Lines.Text) > iREVIEW_DOSAGE_FIELD_SIZE then
+  begin
+    ShowMessage('Dosage too long. Must be less than ' + IntToStr(iREVIEW_DOSAGE_FIELD_SIZE) + ' characters');
     redRemedyUsageAddDosage.SetFocus;
     exit;
   end;

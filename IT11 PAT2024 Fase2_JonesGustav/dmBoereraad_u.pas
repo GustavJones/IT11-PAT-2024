@@ -30,6 +30,15 @@ uses
       sTBLUSER_GENDER = 'IsMale';
       sTBLUSER_TYPE = 'IsAdmin';
 
+      iUSER_NAME_FIELD_SIZE = 40;
+      iUSER_SURNAME_FIELD_SIZE = 70;
+      iUSER_EMAIL_FIELD_SIZE = 50;
+      iUSER_PASSWORD_FIELD_SIZE = 30;
+
+      iREMEDY_NAME_FIELD_SIZE = 100;
+      iREMEDY_DESCRIPTION_FIELD_SIZE = 255;
+
+      iREVIEW_DOSAGE_FIELD_SIZE = 150;
 type
   TdmBoereraad = class(TDataModule)
     conBoereraad: TADOConnection;
