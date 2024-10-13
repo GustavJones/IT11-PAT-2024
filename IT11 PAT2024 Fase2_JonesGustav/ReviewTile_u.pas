@@ -219,9 +219,16 @@ end;
 
 procedure TdynReviewTile.RemoveReview(pSender: TObject);
 var
+  iResponse : Integer;
   iDBIndex : Integer;
   bFound : Boolean;
 begin
+  iResponse := MessageDlg('Are you sure you want to remove this review?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+  if (iResponse = mrNo) or (iResponse = mrCancel) then
+  begin
+    exit;
+  end;
+
   // Delete a review from DB
   bFound := False;
   iDBIndex := dmBoereraad.tblReview.RecNo;

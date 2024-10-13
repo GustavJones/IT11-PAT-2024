@@ -179,6 +179,8 @@ type
     sedAdminUserEditID: TSpinEdit;
     lblAdminUserEditID: TLabel;
     sedAdminRemedyEditID: TSpinEdit;
+    lblRemedyPendingChangesAdditionsSelect: TLabel;
+    lblRemedyPendingChangesEditSelect: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure pgcTabsChange(Sender: TObject);
@@ -309,7 +311,6 @@ begin
   rRemedy.WritePendingChange(rRemedy.CreatePendingChange);
   imgAddRemedyInputsImage.Picture.SaveToFile(cProgramCore.GetImageDirectory +
     rRemedy.sName + '.jpg');
-  ShowMessage('Created Remedy create request');
   rRemedy.Destroy;
 end;
 
@@ -409,14 +410,24 @@ end;
 procedure TfrmHome.btnAddRemedyInputsRemoveSymptomClick(Sender: TObject);
 var
   i: Integer;
+  bRemoved : Boolean;
 begin
+  bRemoved := False;
+
   // Remove checked Symptoms from checklist
   for i := cltAddRemedyInputsSymptoms.Items.Count downto 1 do
   begin
     if cltAddRemedyInputsSymptoms.Checked[i - 1] then
     begin
       cltAddRemedyInputsSymptoms.Items.Delete(i - 1);
+      bRemoved := True;
     end;
+  end;
+
+  // Validation
+  if not bRemoved then
+  begin
+    ShowMessage('Please select a symptom to remove');
   end;
 end;
 
@@ -442,6 +453,9 @@ begin
     iUserID := 0;
     bUserAdmin := False;
   end;
+
+  edtLogInEmail.Text := '';
+  edtLogInPassword.Text := '';
 end;
 
 procedure TfrmHome.btnLogInClick(Sender: TObject);
@@ -609,6 +623,7 @@ var
   iDBIndex: Integer;
   dDate : TDate;
   dCurrentDate : TDate;
+  bExists : Boolean;
 begin
   // Create new user from inputs
 
@@ -693,9 +708,28 @@ begin
     exit;
   end;
 
-  // ADO: Add record to DB
+  // ADO: Search for existing record with same email
+  bExists := False;
   iDBIndex := dmBoereraad.tblUser.RecNo;
+  dmBoereraad.tblUser.First;
+  while not (dmBoereraad.tblUser.Eof) and not (bExists) do
+  begin
+    if dmBoereraad.tblUser[sTBLUSER_EMAIL] = edtSignUpEmail.Text then
+    begin
+      bExists := True;
+    end;
 
+    dmBoereraad.tblUser.Next;
+  end;
+
+  if bExists then
+  begin
+    ShowMessage('User with this email already exists. Please use another email');
+    dmBoereraad.tblUser.RecNo := iDBIndex;
+    exit;
+  end;
+
+  // ADO: Add record to DB
   dmBoereraad.tblUser.Last;
   dmBoereraad.tblUser.Append;
 
@@ -812,7 +846,18 @@ begin
     end;
   end;
 
+  if FileExists(cProgramCore.GetPendingChangesDirectory + edtAddRemedyInputsRemedyName.Text + '.txt') then
+  begin
+    iResponse := MessageDlg('Remedy request already exists. Do you want to overwrite?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+    if (iResponse = mrNo) or (iResponse = mrCancel) then
+    begin
+      edtAddRemedyInputsRemedyName.SetFocus;
+      exit;
+    end;
+  end;
+
   AddRemedy;
+  ShowMessage('Created Remedy addition request');
 end;
 
 procedure TfrmHome.bmbAddRemedyNavigationResetClick(Sender: TObject);
@@ -830,9 +875,16 @@ procedure TfrmHome.bmbAdminRemedyEditRemoveRemedyClick(Sender: TObject);
 const
   sDELIMITER = #10;
 var
+  iResponse : Integer;
   iDBIndex : Integer;
   bFound : Boolean;
 begin
+  iResponse := MessageDlg('Are you sure you want to remove this remedy?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+  if (iResponse = mrNo) or (iResponse = mrCancel) then
+  begin
+    exit;
+  end;
+
   // Remove a remedy from DBGrid
   bFound := False;
   iDBIndex := dmBoereraad.tblRemedy.RecNo;
@@ -989,9 +1041,16 @@ end;
 
 procedure TfrmHome.bmbAdminUserEditRemoveReviewClick(Sender: TObject);
 var
+  iResponse : Integer;
   bFound: Boolean;
   iIndex: Integer;
 begin
+  iResponse := MessageDlg('Are you sure you want to remove this review?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+  if (iResponse = mrNo) or (iResponse = mrCancel) then
+  begin
+    exit;
+  end;
+
   // Remove selected review from DB
   bFound := False;
   iIndex := 0;
@@ -1020,10 +1079,17 @@ end;
 
 procedure TfrmHome.bmbAdminUserEditRemoveUserClick(Sender: TObject);
 var
+  iResponse : Integer;
   iDBIndex: Integer;
   iID: Integer;
   bFound: Boolean;
 begin
+  iResponse := MessageDlg('Are you sure you want to remove this user?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+  if (iResponse = mrNo) or (iResponse = mrCancel) then
+  begin
+    exit;
+  end;
+
   // Delete user from admin page and all it's references
   bFound := False;
   iDBIndex := dmBoereraad.tblUser.RecNo;

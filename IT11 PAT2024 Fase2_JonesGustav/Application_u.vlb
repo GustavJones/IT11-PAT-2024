@@ -245,9 +245,6 @@ Coordinates=597,280,216,58
 [lblRemedyUsageAddDosage]
 Coordinates=10,892,179,58
 
-[pgcTabs]
-Coordinates=969,1164,64,36
-
 [chkAdminUserEditAdmin]
 Coordinates=538,688,157,58
 
@@ -496,4 +493,7 @@ Coordinates=803,416,153,58
 
 [bmbAdminNavigationPrevious]
 Coordinates=1073,144,176,58
+
+[pgcTabs]
+Coordinates=969,1164,64,36
 
