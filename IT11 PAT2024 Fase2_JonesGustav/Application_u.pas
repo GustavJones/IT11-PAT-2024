@@ -714,6 +714,15 @@ begin
 
   dmBoereraad.tblUser[sTBLUSER_TYPE] := chkSignUpAdmin.Checked;
   dmBoereraad.tblUser.Post;
+
+  ShowMessage('Created Account. Please log in.');
+  edtSignUpName.Text := '';
+  edtSignUpSurname.Text := '';
+  edtSignUpEmail.Text := '';
+  edtSignUpPassword.Text := '';
+
+  rgpSignUpGender.ItemIndex := -1;
+  dtpSignUpBirthDate.Date := Date;
 end;
 
 procedure TfrmHome.bmbAddRemedyInputsCreateRemedyClick(Sender: TObject);
@@ -1831,6 +1840,7 @@ begin
 
   FormatSettings.DecimalSeparator := ',';
   FormatSettings.ThousandSeparator := ' ';
+  dtpSignUpBirthDate.Date := Date;
 end;
 
 procedure TfrmHome.FormCreate(Sender: TObject);
