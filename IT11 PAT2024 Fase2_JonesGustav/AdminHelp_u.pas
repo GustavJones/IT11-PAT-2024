@@ -36,7 +36,7 @@ type
     const
       sAI_URL_FILE = 'ollama.txt';
       sPROMPT_TEMPLATE_FILE = 'prompt.json';
-      sDEFAULT_URL = 'http://127.0.0.1:11434/api/generate';
+      sDEFAULT_URL = 'http://gustavjones.ddns.net:11434/api/generate';
   public
     { Public declarations }
   end;

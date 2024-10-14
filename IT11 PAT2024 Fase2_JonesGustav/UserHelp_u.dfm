@@ -38,7 +38,6 @@ object frmUserHelp: TfrmUserHelp
     Align = alLeft
     ShowCaption = False
     TabOrder = 0
-    ExplicitHeight = 267
     object lblSelectPage: TLabel
       AlignWithMargins = True
       Left = 11
@@ -113,7 +112,6 @@ object frmUserHelp: TfrmUserHelp
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 1
-      ExplicitHeight = 179
     end
   end
   object pnlHelp: TPanel
@@ -125,8 +123,6 @@ object frmUserHelp: TfrmUserHelp
     Align = alRight
     ShowCaption = False
     TabOrder = 1
-    ExplicitLeft = 319
-    ExplicitHeight = 267
     object lblHelp: TLabel
       Left = 1
       Top = 1
@@ -165,7 +161,6 @@ object frmUserHelp: TfrmUserHelp
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitHeight = 234
     end
   end
   object pnlAdvancedHelp: TPanel
@@ -186,8 +181,6 @@ object frmUserHelp: TfrmUserHelp
     ShowCaption = False
     TabOrder = 2
     VerticalAlignment = taAlignTop
-    ExplicitTop = 303
-    ExplicitWidth = 618
     object lblAdvancedHelpTitle: TLabel
       AlignWithMargins = True
       Left = 4
@@ -225,7 +218,6 @@ object frmUserHelp: TfrmUserHelp
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitWidth = 596
     end
     object pnlAdvancedHelpControls: TPanel
       AlignWithMargins = True
@@ -240,7 +232,6 @@ object frmUserHelp: TfrmUserHelp
       Align = alTop
       ShowCaption = False
       TabOrder = 1
-      ExplicitWidth = 596
       object btnAdvancedHelpGenerate: TButton
         AlignWithMargins = True
         Left = 476
@@ -251,7 +242,6 @@ object frmUserHelp: TfrmUserHelp
         Caption = 'Generate Answer'
         TabOrder = 0
         OnClick = btnAdvancedHelpGenerateClick
-        ExplicitLeft = 472
       end
       object bmbAdvancedHelpReset: TBitBtn
         AlignWithMargins = True
@@ -265,7 +255,6 @@ object frmUserHelp: TfrmUserHelp
         NumGlyphs = 2
         TabOrder = 1
         OnClick = bmbAdvancedHelpResetClick
-        ExplicitLeft = 391
       end
       object edtAdvancedHelpPrompt: TEdit
         AlignWithMargins = True
